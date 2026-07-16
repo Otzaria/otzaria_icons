@@ -34,7 +34,7 @@
 - Added a Windows visual baseline covering every glyph.
 - Installed an isolated Android API 36 toolchain and passed local release builds
   for the minimal app and full gallery.
-- Included the canonical GPLv3 text in `COPYING`.
+- Included the canonical GPLv3 text in `LICENSE`.
 - Expanded the manifest with immutable IDs, full provenance, directionality,
   deprecation, and upstream metadata.
 - Made `tool/config.yaml` the generator configuration source.

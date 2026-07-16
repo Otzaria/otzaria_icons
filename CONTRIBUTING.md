@@ -13,6 +13,25 @@ the public API, font mapping, visual style, and licensing record stable.
 This repository is an unofficial extension and is not affiliated with or
 endorsed by Microsoft.
 
+## Contribution license
+
+Every icon, SVG, code change, document, or other contribution submitted for
+inclusion is licensed automatically under **GPL-3.0-only**, the same license as
+the library. By opening a pull request or otherwise submitting a contribution,
+you confirm that:
+
+- you own the contribution or have sufficient rights to license it;
+- the project may copy, modify, redistribute, and publish it under
+  GPL-3.0-only;
+- no additional restriction, incompatible license, trademark condition, or
+  confidential material applies to it; and
+- all third-party or derivative material is identified with complete source,
+  author, license, and revision information.
+
+Acceptance into the repository does not transfer copyright ownership, but the
+contribution remains available under GPL-3.0-only. Maintainers may reject
+material whose origin or licensing cannot be verified.
+
 ## Preparing SVG files
 
 Add SVGs directly to `assets_src/svg/`. Follow the exact
@@ -20,10 +39,48 @@ Add SVGs directly to `assets_src/svg/`. Follow the exact
 and satisfy [SVG requirements](docs/svg_requirements.md) and the
 [visual design specification](docs/icon_design_spec.md).
 
-All current artwork is original and GPL-3.0-only. By contributing original
-artwork, confirm that you have the right to release it under that license. A
-third-party or derivative source requires complete provenance and license review
-before inclusion; do not label derivative work as `custom`.
+The committed SVG must already use final 24x24 coordinates. Its preferred
+structure is a single `<svg>` root containing one or more direct `<path>`
+children:
+
+```svg
+<svg xmlns="http://www.w3.org/2000/svg"
+     width="24"
+     height="24"
+     viewBox="0 0 24 24">
+  <path d="M4 3h16v18H4Z"/>
+</svg>
+```
+
+Required:
+
+- exact `width="24"`, `height="24"`, and `viewBox="0 0 24 24"`;
+- one or more filled `<path>` elements using native 24x24 coordinates;
+- closed outlines in place of strokes;
+- multiple paths only when they are genuinely needed;
+- `fill-rule="evenodd"` only when holes require it.
+
+Do not submit transforms, large source coordinates hidden behind a scale,
+wrapper groups, strokes, shapes that have not been converted to paths, text,
+fonts, raster images, clipping, masks, filters, scripts, embedded CSS, symbols,
+or external references. For example, this is invalid even though a browser may
+display it at the correct apparent size:
+
+```svg
+<svg xmlns="http://www.w3.org/2000/svg"
+     width="24"
+     height="24"
+     viewBox="0 0 24 24">
+  <g transform="translate(2 2) scale(0.04)">
+    <path d="M50 50 ..."/>
+  </g>
+</svg>
+```
+
+Such transforms can survive differently during font conversion and cause poor
+rendering or overflow at 16-24 px. Export the final path coordinates from the
+vector editor before submission, then inspect the actual generated font at all
+required sizes.
 
 ## Generation workflow
 
@@ -77,9 +134,9 @@ with a migration path, and do not silently remove the glyph.
 - Gallery review is complete.
 - `CHANGELOG.md` describes the addition/change.
 - Provenance and GPL compatibility are confirmed.
+- The contributor has the right to submit the work under GPL-3.0-only.
 - No cache, local SDK, build output, or IDE files are included.
 - Public names remain Fluent-compatible `snake_case`.
 
 See [Adding icons](docs/adding_icons.md), [Testing and CI](docs/testing_and_ci.md),
 and [Release process](docs/release_process.md).
-

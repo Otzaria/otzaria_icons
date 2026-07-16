@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.1.2 - 2026-07-16
+
+- Restored the original visual designs of `book_open_lines`,
+  `book_open_lines_search`, and `search_full` in both variants.
+- Flattened their existing transforms mathematically into native 24x24 path
+  coordinates without redrawing or simplifying the artwork.
+- Consolidated the GPLv3 license into one canonical `LICENSE` file.
+- Documented automatic GPL-3.0-only licensing for accepted contributions and
+  the required valid SVG structure.
+- Strengthened SVG validation and added a reusable transform-flattening tool.
+
 ## 0.1.1 - 2026-07-16
 
 - Rebuilt `book_open_lines`, `book_open_lines_search`, and `search_full`

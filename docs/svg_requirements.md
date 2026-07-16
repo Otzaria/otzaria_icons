@@ -30,12 +30,41 @@ visual review.
 ## Paths
 
 - Convert all strokes to closed, filled outlines before adding the file.
-- Do not leave `stroke`, `stroke-width`, `<line>`, text, raster images, scripts,
-  or embedded styles.
-- Remove unnecessary wrapper groups.
+- The root `<svg>` should contain only one or more direct `<path>` children.
+- Do not leave groups, transforms, `stroke`, `stroke-width`, primitive shapes,
+  text, fonts, raster images, clipping, masks, filters, scripts, symbols,
+  external references, or embedded styles.
 - Use explicit `fill-rule="evenodd"` only where interior holes truly require
   it; otherwise prefer non-zero winding paths for maximum font compatibility.
 - The generated font is monochrome. Color is supplied by Flutter's `Icon`.
+
+### Minimal valid structure
+
+```svg
+<svg xmlns="http://www.w3.org/2000/svg"
+     width="24"
+     height="24"
+     viewBox="0 0 24 24">
+  <path d="M4 3h16v18H4Z"/>
+</svg>
+```
+
+### Invalid transformed structure
+
+```svg
+<svg xmlns="http://www.w3.org/2000/svg"
+     width="24"
+     height="24"
+     viewBox="0 0 24 24">
+  <g transform="translate(2 2) scale(0.04)">
+    <path d="M50 50 ..."/>
+  </g>
+</svg>
+```
+
+The invalid example still contains a large-coordinate drawing. A browser can
+scale it correctly, but font conversion and small-size rasterization may not.
+Transforms must be applied to the actual path data before the SVG is committed.
 
 ## Safe sanitation
 

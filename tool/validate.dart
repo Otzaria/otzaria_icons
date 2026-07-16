@@ -62,6 +62,10 @@ void main(List<String> arguments) {
       if (rootElement.getAttribute('viewBox') != '0 0 24 24') {
         errors.add('$fileName.svg: viewBox must be exactly "0 0 24 24"');
       }
+      if (rootElement.getAttribute('width') != '24' ||
+          rootElement.getAttribute('height') != '24') {
+        errors.add('$fileName.svg: width and height must both be exactly "24"');
+      }
       if (document.descendants.whereType<XmlElement>().any(
             (element) =>
                 element.name.local == 'style' || element.name.local == 'script',
@@ -84,23 +88,30 @@ void main(List<String> arguments) {
           )) {
         errors.add('$fileName.svg: strokes must be converted to filled paths');
       }
+      const allowedElements = {'svg', 'path'};
+      final unsupportedElements = document.descendants
+          .whereType<XmlElement>()
+          .map((element) => element.name.local)
+          .where((name) => !allowedElements.contains(name))
+          .toSet();
+      if (unsupportedElements.isNotEmpty) {
+        errors.add(
+          '$fileName.svg: only direct path elements are allowed; found '
+          '${unsupportedElements.toList()..sort()}',
+        );
+      }
       final paths = document.descendants
           .whereType<XmlElement>()
           .where((element) => element.name.local == 'path')
-          .length;
-      if (paths == 0) {
-        errors.add('$fileName.svg: no path elements found');
-      } else if (paths > 20) {
-        warnings.add('$fileName.svg: unusually high path count ($paths)');
+          .toList();
+      if (paths.any((path) => path.parentElement != rootElement)) {
+        errors.add('$fileName.svg: every path must be a direct child of <svg>');
       }
-      if (document.descendants.whereType<XmlElement>().any(
-            (element) =>
-                element.name.local == 'g' &&
-                element.getAttribute('transform') == null,
-          )) {
+      if (paths.isEmpty) {
+        errors.add('$fileName.svg: no path elements found');
+      } else if (paths.length > 20) {
         warnings.add(
-          '$fileName.svg: contains an untransformed <g>; '
-          'flatten if unnecessary',
+          '$fileName.svg: unusually high path count (${paths.length})',
         );
       }
     } on XmlParserException catch (error) {
