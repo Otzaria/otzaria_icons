@@ -12,23 +12,6 @@ final class GalleryIcon {
 }
 
 const iconCatalog = <GalleryIcon>[
-  GalleryIcon('book_open_arc_24_filled', OtzariaIcons.book_open_arc_24_filled),
-  GalleryIcon(
-      'book_open_arc_24_regular', OtzariaIcons.book_open_arc_24_regular),
-  GalleryIcon(
-      'book_open_lines_24_filled', OtzariaIcons.book_open_lines_24_filled),
-  GalleryIcon(
-      'book_open_lines_24_regular', OtzariaIcons.book_open_lines_24_regular),
-  GalleryIcon('book_open_lines_search_24_filled',
-      OtzariaIcons.book_open_lines_search_24_filled),
-  GalleryIcon('book_open_lines_search_24_regular',
-      OtzariaIcons.book_open_lines_search_24_regular),
-  GalleryIcon(
-      'book_search_trl_24_filled', OtzariaIcons.book_search_trl_24_filled),
-  GalleryIcon(
-      'book_search_trl_24_regular', OtzariaIcons.book_search_trl_24_regular),
-  GalleryIcon('search_full_24_filled', OtzariaIcons.search_full_24_filled),
-  GalleryIcon('search_full_24_regular', OtzariaIcons.search_full_24_regular),
   GalleryIcon('book_24_filled', OtzariaIcons.book_24_filled),
   GalleryIcon('book_24_regular', OtzariaIcons.book_24_regular),
   GalleryIcon('book_download_24_filled', OtzariaIcons.book_download_24_filled),

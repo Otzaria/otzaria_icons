@@ -1,6 +1,6 @@
 name: otzaria_icons
 description: Custom icons for Otzaria, with a Fluent UI compatible API.
-version: 0.2.0
+version: 0.2.1
 repository: https://github.com/Otzaria/otzaria_icons
 issue_tracker: https://github.com/Otzaria/otzaria_icons/issues
 publish_to: none

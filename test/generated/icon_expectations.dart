@@ -5,18 +5,6 @@ import 'package:flutter/widgets.dart';
 import 'package:otzaria_icons/otzaria_icons.dart';
 
 const generatedIconExpectations = <String, IconData>{
-  'book_open_arc_24_filled': OtzariaIcons.book_open_arc_24_filled,
-  'book_open_arc_24_regular': OtzariaIcons.book_open_arc_24_regular,
-  'book_open_lines_24_filled': OtzariaIcons.book_open_lines_24_filled,
-  'book_open_lines_24_regular': OtzariaIcons.book_open_lines_24_regular,
-  'book_open_lines_search_24_filled':
-      OtzariaIcons.book_open_lines_search_24_filled,
-  'book_open_lines_search_24_regular':
-      OtzariaIcons.book_open_lines_search_24_regular,
-  'book_search_trl_24_filled': OtzariaIcons.book_search_trl_24_filled,
-  'book_search_trl_24_regular': OtzariaIcons.book_search_trl_24_regular,
-  'search_full_24_filled': OtzariaIcons.search_full_24_filled,
-  'search_full_24_regular': OtzariaIcons.search_full_24_regular,
   'book_24_filled': OtzariaIcons.book_24_filled,
   'book_24_regular': OtzariaIcons.book_24_regular,
   'book_download_24_filled': OtzariaIcons.book_download_24_filled,

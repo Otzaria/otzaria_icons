@@ -52,10 +52,10 @@
 2. Configure Git author identity, create the initial commit, and create the
    GitHub repository when approved.
 3. Run CI plus Linux/macOS release validation on GitHub.
-4. Tag `v0.1.0` only after every required check passes.
+4. Create a version tag only after every required check passes.
 
 ## Current release gates
 
 - The GitHub repository and initial commit do not exist yet.
 - Linux and macOS release builds must run on GitHub-hosted runners.
-- `v0.1.0` must be created only after those checks pass.
+- A release tag must be created only after those checks pass.

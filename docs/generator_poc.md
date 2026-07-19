@@ -10,17 +10,15 @@ Toolchain:
 
 Inputs, in controlled `svgMap` insertion order:
 
-1. `book_open_arc_24_filled.svg` (original POC name:
-   `book_database_24_filled.svg`)
-2. `book_open_arc_24_regular.svg` (original POC name:
-   `book_database_24_regular.svg`)
+1. `book_24_filled.svg`
+2. `book_24_regular.svg`
 
 Observed output:
 
 | Index | SVG name | Glyph metadata name | Codepoint |
 | ---: | --- | --- | --- |
-| 0 | `book_open_arc_24_filled` | `book_open_arc_24_filled` | `0xE000` |
-| 1 | `book_open_arc_24_regular` | `book_open_arc_24_regular` | `0xE001` |
+| 0 | `book_24_filled` | `book_24_filled` | `0xE000` |
+| 1 | `book_24_regular` | `book_24_regular` | `0xE001` |
 
 The package source and runtime result agree: version 4.1.0 assigns
 `0xE000 + index`. The insertion order of the supplied `Map` is preserved.

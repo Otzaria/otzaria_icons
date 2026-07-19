@@ -5,7 +5,7 @@ Date: 2026-07-16
 The app under `test_apps/minimal/` references only:
 
 ```dart
-Icon(OtzariaIcons.book_open_arc_24_regular)
+Icon(OtzariaIcons.book_open_large_24_regular)
 ```
 
 A Flutter 3.44.0 Web release build completed without a non-constant `IconData`

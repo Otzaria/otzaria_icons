@@ -9,6 +9,7 @@ gallery_output: example/lib/generated/icon_catalog.dart
 test_expectations_output: test/generated/icon_expectations.dart
 notices_output: THIRD_PARTY_NOTICES.md
 catalog_output: docs/icon_catalog.svg
+web_catalog_output: index.html
 canvas_width: 24
 canvas_height: 24
 codepoint_start: 0xe000

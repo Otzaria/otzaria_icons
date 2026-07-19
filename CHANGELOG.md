@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.2.1 - 2026-07-19
+
+- Removed the 10 legacy icon names from the former personal repository; their
+  artwork now exists under the renamed official icon set.
+- Reallocated the official icon manifest from `U+E000` without deprecated
+  aliases or backward-compatibility entries.
+- Added a generated, searchable Hebrew icon catalog for GitHub Pages with an
+  adjustable preview size.
+
 ## 0.2.0 - 2026-07-19
 
 - Added 52 original Otzaria icons while preserving all 10 previously published

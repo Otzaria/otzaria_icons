@@ -5,14 +5,14 @@
 Every public value is a compile-time constant:
 
 ```dart
-const Icon(OtzariaIcons.search_full_24_regular);
+const Icon(OtzariaIcons.search_24_regular);
 ```
 
 Pass normal `Icon` properties for size, color, accessibility, and direction:
 
 ```dart
 const Icon(
-  OtzariaIcons.book_search_trl_24_regular,
+  OtzariaIcons.book_search_24_regular,
   size: 20,
   color: Color(0xFF005FB8),
   semanticLabel: 'Search the library',
@@ -27,8 +27,8 @@ selected or emphasized state. Not every icon must have both variants.
 ```dart
 Icon(
   selected
-      ? OtzariaIcons.book_open_lines_24_filled
-      : OtzariaIcons.book_open_lines_24_regular,
+      ? OtzariaIcons.book_open_large_lines_24_filled
+      : OtzariaIcons.book_open_large_lines_24_regular,
 );
 ```
 
@@ -54,7 +54,7 @@ from semantics:
 
 ```dart
 const ExcludeSemantics(
-  child: Icon(OtzariaIcons.book_open_arc_24_regular),
+  child: Icon(OtzariaIcons.book_open_large_24_regular),
 );
 ```
 
@@ -66,8 +66,8 @@ This package exposes visual names. Product meaning belongs in Otzaria:
 
 ```dart
 abstract final class AppIcons {
-  static const library = OtzariaIcons.book_open_arc_24_regular;
-  static const librarySelected = OtzariaIcons.book_open_arc_24_filled;
+  static const library = OtzariaIcons.book_open_large_24_regular;
+  static const librarySelected = OtzariaIcons.book_open_large_24_filled;
 }
 ```
 
@@ -82,4 +82,3 @@ The complete catalog exists only inside `example/`.
 
 The generated `IconData` retains both `fontFamily` and `fontPackage`; these are
 required for package font lookup and icon tree-shaking.
-

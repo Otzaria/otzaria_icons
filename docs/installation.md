@@ -10,7 +10,7 @@ dependencies:
   otzaria_icons:
     git:
       url: https://github.com/Otzaria/otzaria_icons
-      ref: v0.1.0
+      ref: v0.2.1
 ```
 
 Run `flutter pub get`, then import:
@@ -19,7 +19,7 @@ Run `flutter pub get`, then import:
 import 'package:otzaria_icons/otzaria_icons.dart';
 ```
 
-The tag must match the package version (`0.1.0` → `v0.1.0`). Do not depend on
+The tag must match the package version (`0.2.1` → `v0.2.1`). Do not depend on
 `main`, because a moving branch makes builds non-reproducible and may introduce
 API or glyph changes without changing the consuming application's lockfile.
 
@@ -33,7 +33,7 @@ dependencies:
   otzaria_icons:
     git:
       url: https://github.com/Otzaria/otzaria_icons
-      ref: v0.1.0
+      ref: v0.2.1
 ```
 
 There is no codepoint collision even if both fonts use the Unicode Private Use

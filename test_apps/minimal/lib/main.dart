@@ -11,7 +11,7 @@ class MinimalIconApp extends StatelessWidget {
     return const MaterialApp(
       home: Scaffold(
         body: Center(
-          child: Icon(OtzariaIcons.book_open_arc_24_regular),
+          child: Icon(OtzariaIcons.book_open_large_24_regular),
         ),
       ),
     );

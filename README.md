@@ -5,7 +5,7 @@ provides original icons that are missing from Microsoft Fluent UI System Icons,
 while following the same public naming convention:
 
 ```dart
-Icon(OtzariaIcons.book_open_arc_24_regular);
+Icon(OtzariaIcons.book_open_large_24_regular);
 ```
 
 This package is independent of `fluentui_system_icons`. Applications may use
@@ -18,6 +18,10 @@ Related projects:
 - [Microsoft Fluent UI System Icons](https://github.com/microsoft/fluentui-system-icons)
 
 ## Available icons
+
+Open the [searchable interactive catalog](index.html) to filter icons by name
+and adjust their preview size. The same file can be published directly with
+GitHub Pages and is regenerated automatically with the icon font.
 
 The catalog below is also the Windows visual regression test. Every generated
 glyph is rendered at 16, 20, 24, 32, and 48 logical pixels so small-size defects
@@ -51,7 +55,7 @@ dependencies:
   otzaria_icons:
     git:
       url: https://github.com/Otzaria/otzaria_icons
-      ref: v0.1.0
+      ref: v0.2.1
 ```
 
 Then fetch dependencies:
@@ -83,7 +87,7 @@ Use an icon like any other Flutter `IconData`:
 
 ```dart
 const Icon(
-  OtzariaIcons.book_open_arc_24_regular,
+  OtzariaIcons.book_open_large_24_regular,
   size: 24,
   color: Color(0xFF202020),
   semanticLabel: 'Open book',
@@ -94,8 +98,8 @@ Regular and filled variants are separate constants:
 
 ```dart
 final icon = isSelected
-    ? OtzariaIcons.book_open_arc_24_filled
-    : OtzariaIcons.book_open_arc_24_regular;
+    ? OtzariaIcons.book_open_large_24_filled
+    : OtzariaIcons.book_open_large_24_regular;
 
 return Icon(icon, size: 24);
 ```
@@ -107,7 +111,7 @@ import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:otzaria_icons/otzaria_icons.dart';
 
 const Icon(FluentIcons.arrow_right_24_regular);
-const Icon(OtzariaIcons.book_open_lines_search_24_regular);
+const Icon(OtzariaIcons.book_open_large_search_24_regular);
 ```
 
 The color comes from `Icon.color`, `IconTheme`, or the surrounding widget.
@@ -121,7 +125,7 @@ application rather than in this package:
 ```dart
 abstract final class AppIcons {
   static const librarySearch =
-      OtzariaIcons.book_open_lines_search_24_regular;
+      OtzariaIcons.book_open_large_search_24_regular;
 }
 ```
 
@@ -134,8 +138,8 @@ Names match this exact pattern:
 
 ```text
 <descriptive_name>_<size>_<variant>
-book_open_arc_24_regular
-book_open_arc_24_filled
+book_open_large_24_regular
+book_open_large_24_filled
 ```
 
 The current accepted regular expression is:

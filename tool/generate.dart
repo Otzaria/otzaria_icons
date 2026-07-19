@@ -139,6 +139,9 @@ Future<void> main(List<String> arguments) async {
   File(config.catalogOutput)
     ..parent.createSync(recursive: true)
     ..writeAsStringSync(_generateSvgCatalog(manifest.icons));
+  File(config.webCatalogOutput)
+    ..parent.createSync(recursive: true)
+    ..writeAsStringSync(_generateWebCatalog(manifest.icons));
 
   final formatResult = await Process.run(
     Platform.resolvedExecutable,
@@ -213,6 +216,7 @@ Future<void> _checkGeneratedFiles(IconConfig config) async {
       config.manifestFile,
       config.noticesOutput,
       config.catalogOutput,
+      config.webCatalogOutput,
     ]) {
       final source = FileSystemEntity.typeSync(path);
       final destination = p.join(temp.path, path);
@@ -241,6 +245,7 @@ Future<void> _checkGeneratedFiles(IconConfig config) async {
       config.testExpectationsOutput,
       config.noticesOutput,
       config.catalogOutput,
+      config.webCatalogOutput,
       ...Directory(config.sourceDirectory)
           .listSync()
           .whereType<File>()
@@ -368,6 +373,7 @@ IconConfig _readConfig(File file) {
     testExpectationsOutput: requiredValue<String>('test_expectations_output'),
     noticesOutput: requiredValue<String>('notices_output'),
     catalogOutput: requiredValue<String>('catalog_output'),
+    webCatalogOutput: requiredValue<String>('web_catalog_output'),
     canvasWidth: width,
     canvasHeight: height,
     codepointStart: start,
@@ -536,6 +542,107 @@ String _generateSvgCatalog(List<ManifestIcon> icons) {
   return '${buffer.toString()}</svg>\n';
 }
 
+String _generateWebCatalog(List<ManifestIcon> icons) {
+  final iconData = icons
+      .map(
+        (icon) =>
+            "    { name: '${icon.name}', codepoint: 0x${icon.codepoint.toRadixString(16)} },",
+      )
+      .join('\n');
+  return r'''<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="קטלוג האייקונים של אוצריא">
+  <title>אייקוני אוצריא</title>
+  <style>
+    @font-face {
+      font-family: "OtzariaIcons";
+      src: url("./lib/fonts/otzaria_icons.otf") format("opentype");
+      font-display: block;
+    }
+    :root { color-scheme: light dark; --bg: #fafafa; --card: #fff; --text: #202020; --muted: #686868; --border: #e3e3e3; --accent: #6b4eff; }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--bg); color: var(--text); font-family: Arial, sans-serif; text-align: center; }
+    main { width: min(1180px, calc(100% - 32px)); margin: 0 auto; padding: 48px 0 64px; }
+    h1 { margin: 0 0 8px; font-size: clamp(2rem, 5vw, 3.2rem); }
+    .subtitle { margin: 0 0 30px; color: var(--muted); }
+    .controls { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 12px; margin-bottom: 28px; }
+    input[type="search"] { width: min(420px, 100%); min-height: 44px; padding: 0 16px; border: 1px solid var(--border); border-radius: 10px; background: var(--card); color: var(--text); font: inherit; }
+    .size-control { display: flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 10px; border: 1px solid var(--border); border-radius: 10px; background: var(--card); }
+    button { width: 34px; height: 34px; border: 0; border-radius: 8px; background: transparent; color: var(--text); font-size: 22px; cursor: pointer; }
+    button:hover { background: color-mix(in srgb, var(--accent) 12%, transparent); }
+    input[type="range"] { width: 120px; accent-color: var(--accent); }
+    #grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 14px; }
+    .card { min-width: 0; padding: 24px 14px 16px; border: 1px solid var(--border); border-radius: 14px; background: var(--card); }
+    .icon { display: grid; min-height: 124px; place-items: center; font-family: "OtzariaIcons"; font-size: var(--icon-size, 64px); line-height: 1; }
+    .name { direction: ltr; overflow-wrap: anywhere; font: 13px/1.5 Consolas, monospace; color: var(--muted); }
+    #empty { display: none; padding: 60px 0; color: var(--muted); }
+    @media (prefers-color-scheme: dark) { :root { --bg: #171717; --card: #222; --text: #f3f3f3; --muted: #b9b9b9; --border: #3a3a3a; } }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>אייקוני אוצריא</h1>
+    <p class="subtitle"><span id="count"></span> אייקונים בספרייה</p>
+    <div class="controls">
+      <input id="search" type="search" placeholder="חיפוש לפי שם האייקון" aria-label="חיפוש אייקונים">
+      <div class="size-control" aria-label="שינוי גודל התצוגה">
+        <button id="smaller" type="button" title="הקטנה" aria-label="הקטנת האייקונים">−</button>
+        <input id="size" type="range" min="32" max="120" step="4" value="64" aria-label="גודל האייקונים">
+        <button id="larger" type="button" title="הגדלה" aria-label="הגדלת האייקונים">+</button>
+      </div>
+    </div>
+    <section id="grid" aria-live="polite"></section>
+    <p id="empty">לא נמצאו אייקונים מתאימים.</p>
+  </main>
+  <script>
+  const icons = [
+{{ICON_DATA}}
+  ];
+  const grid = document.querySelector('#grid');
+  const search = document.querySelector('#search');
+  const size = document.querySelector('#size');
+  const empty = document.querySelector('#empty');
+  const count = document.querySelector('#count');
+
+  function render() {
+    const query = search.value.trim().toLowerCase();
+    const visible = icons.filter(icon => icon.name.toLowerCase().includes(query));
+    grid.replaceChildren(...visible.map(icon => {
+      const card = document.createElement('article');
+      card.className = 'card';
+      const glyph = document.createElement('span');
+      glyph.className = 'icon';
+      glyph.setAttribute('aria-hidden', 'true');
+      glyph.textContent = String.fromCodePoint(icon.codepoint);
+      const name = document.createElement('div');
+      name.className = 'name';
+      name.textContent = icon.name;
+      card.append(glyph, name);
+      return card;
+    }));
+    count.textContent = visible.length;
+    empty.style.display = visible.length ? 'none' : 'block';
+  }
+
+  function changeSize(delta) {
+    size.value = Math.min(Number(size.max), Math.max(Number(size.min), Number(size.value) + delta));
+    size.dispatchEvent(new Event('input'));
+  }
+  search.addEventListener('input', render);
+  size.addEventListener('input', () => document.documentElement.style.setProperty('--icon-size', `${size.value}px`));
+  document.querySelector('#smaller').addEventListener('click', () => changeSize(-4));
+  document.querySelector('#larger').addEventListener('click', () => changeSize(4));
+  render();
+  </script>
+</body>
+</html>
+'''
+      .replaceFirst('{{ICON_DATA}}', iconData);
+}
+
 String _serializeManifest(IconManifest manifest) {
   final buffer = StringBuffer()
     ..writeln('schema_version: ${manifest.schemaVersion}')
@@ -647,6 +754,7 @@ final class IconConfig {
     required this.testExpectationsOutput,
     required this.noticesOutput,
     required this.catalogOutput,
+    required this.webCatalogOutput,
     required this.canvasWidth,
     required this.canvasHeight,
     required this.codepointStart,
@@ -665,6 +773,7 @@ final class IconConfig {
   final String testExpectationsOutput;
   final String noticesOutput;
   final String catalogOutput;
+  final String webCatalogOutput;
   final int canvasWidth;
   final int canvasHeight;
   final int codepointStart;

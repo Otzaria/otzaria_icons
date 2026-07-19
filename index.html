@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="קטלוג האייקונים של אוצריא">
+  <title>אייקוני אוצריא</title>
+  <style>
+    @font-face {
+      font-family: "OtzariaIcons";
+      src: url("./lib/fonts/otzaria_icons.otf") format("opentype");
+      font-display: block;
+    }
+    :root { color-scheme: light dark; --bg: #fafafa; --card: #fff; --text: #202020; --muted: #686868; --border: #e3e3e3; --accent: #6b4eff; }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--bg); color: var(--text); font-family: Arial, sans-serif; text-align: center; }
+    main { width: min(1180px, calc(100% - 32px)); margin: 0 auto; padding: 48px 0 64px; }
+    h1 { margin: 0 0 8px; font-size: clamp(2rem, 5vw, 3.2rem); }
+    .subtitle { margin: 0 0 30px; color: var(--muted); }
+    .controls { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 12px; margin-bottom: 28px; }
+    input[type="search"] { width: min(420px, 100%); min-height: 44px; padding: 0 16px; border: 1px solid var(--border); border-radius: 10px; background: var(--card); color: var(--text); font: inherit; }
+    .size-control { display: flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 10px; border: 1px solid var(--border); border-radius: 10px; background: var(--card); }
+    button { width: 34px; height: 34px; border: 0; border-radius: 8px; background: transparent; color: var(--text); font-size: 22px; cursor: pointer; }
+    button:hover { background: color-mix(in srgb, var(--accent) 12%, transparent); }
+    input[type="range"] { width: 120px; accent-color: var(--accent); }
+    #grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 14px; }
+    .card { min-width: 0; padding: 24px 14px 16px; border: 1px solid var(--border); border-radius: 14px; background: var(--card); }
+    .icon { display: grid; min-height: 124px; place-items: center; font-family: "OtzariaIcons"; font-size: var(--icon-size, 64px); line-height: 1; }
+    .name { direction: ltr; overflow-wrap: anywhere; font: 13px/1.5 Consolas, monospace; color: var(--muted); }
+    #empty { display: none; padding: 60px 0; color: var(--muted); }
+    @media (prefers-color-scheme: dark) { :root { --bg: #171717; --card: #222; --text: #f3f3f3; --muted: #b9b9b9; --border: #3a3a3a; } }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>אייקוני אוצריא</h1>
+    <p class="subtitle"><span id="count"></span> אייקונים בספרייה</p>
+    <div class="controls">
+      <input id="search" type="search" placeholder="חיפוש לפי שם האייקון" aria-label="חיפוש אייקונים">
+      <div class="size-control" aria-label="שינוי גודל התצוגה">
+        <button id="smaller" type="button" title="הקטנה" aria-label="הקטנת האייקונים">−</button>
+        <input id="size" type="range" min="32" max="120" step="4" value="64" aria-label="גודל האייקונים">
+        <button id="larger" type="button" title="הגדלה" aria-label="הגדלת האייקונים">+</button>
+      </div>
+    </div>
+    <section id="grid" aria-live="polite"></section>
+    <p id="empty">לא נמצאו אייקונים מתאימים.</p>
+  </main>
+  <script>
+  const icons = [
+    { name: 'book_24_filled', codepoint: 0xe000 },
+    { name: 'book_24_regular', codepoint: 0xe001 },
+    { name: 'book_download_24_filled', codepoint: 0xe002 },
+    { name: 'book_download_24_regular', codepoint: 0xe003 },
+    { name: 'book_empty_24_filled', codepoint: 0xe004 },
+    { name: 'book_empty_24_regular', codepoint: 0xe005 },
+    { name: 'book_hyperlink_24_filled', codepoint: 0xe006 },
+    { name: 'book_hyperlink_24_regular', codepoint: 0xe007 },
+    { name: 'book_link_24_filled', codepoint: 0xe008 },
+    { name: 'book_link_24_regular', codepoint: 0xe009 },
+    { name: 'book_open_large_24_filled', codepoint: 0xe00a },
+    { name: 'book_open_large_24_regular', codepoint: 0xe00b },
+    { name: 'book_open_large_lines_24_filled', codepoint: 0xe00c },
+    { name: 'book_open_large_lines_24_regular', codepoint: 0xe00d },
+    { name: 'book_open_large_search_24_filled', codepoint: 0xe00e },
+    { name: 'book_open_large_search_24_regular', codepoint: 0xe00f },
+    { name: 'book_open_medium_24_regular', codepoint: 0xe010 },
+    { name: 'book_open_medium_line_24_regular', codepoint: 0xe011 },
+    { name: 'book_open_medium_search_24_regular', codepoint: 0xe012 },
+    { name: 'book_open_small_24_regular', codepoint: 0xe013 },
+    { name: 'book_open_small_line_24_regular', codepoint: 0xe014 },
+    { name: 'book_pdf_24_filled', codepoint: 0xe015 },
+    { name: 'book_pdf_24_regular', codepoint: 0xe016 },
+    { name: 'book_search_24_filled', codepoint: 0xe017 },
+    { name: 'book_search_24_regular', codepoint: 0xe018 },
+    { name: 'book_upload_24_filled', codepoint: 0xe019 },
+    { name: 'book_upload_24_regular', codepoint: 0xe01a },
+    { name: 'book_word_24_filled', codepoint: 0xe01b },
+    { name: 'book_word_24_regular', codepoint: 0xe01c },
+    { name: 'book_zim_24_filled', codepoint: 0xe01d },
+    { name: 'book_zim_24_regular', codepoint: 0xe01e },
+    { name: 'booklet_empty_24_regular', codepoint: 0xe01f },
+    { name: 'books_stacked_high_24_regular', codepoint: 0xe020 },
+    { name: 'books_stacked_low_24_regular', codepoint: 0xe021 },
+    { name: 'bookshelf_24_filled', codepoint: 0xe022 },
+    { name: 'bookshelf_24_regular', codepoint: 0xe023 },
+    { name: 'dependent_library_24_regular', codepoint: 0xe024 },
+    { name: 'document_column_24_filled', codepoint: 0xe025 },
+    { name: 'document_column_24_regular', codepoint: 0xe026 },
+    { name: 'document_word_24_filled', codepoint: 0xe027 },
+    { name: 'document_word_24_regular', codepoint: 0xe028 },
+    { name: 'hyperlink_24_regular', codepoint: 0xe029 },
+    { name: 'link_24_regular', codepoint: 0xe02a },
+    { name: 'otzaria_icon_24_regular', codepoint: 0xe02b },
+    { name: 'otzaria_icon_empty_24_regular', codepoint: 0xe02c },
+    { name: 'otzaria_icon_line_24_regular', codepoint: 0xe02d },
+    { name: 'search_24_filled', codepoint: 0xe02e },
+    { name: 'search_24_regular', codepoint: 0xe02f },
+    { name: 'search_in_the_book_24_regular', codepoint: 0xe030 },
+    { name: 'search_in_the_library_24_regular', codepoint: 0xe031 },
+    { name: 'search_not_found_24_filled', codepoint: 0xe032 },
+    { name: 'search_not_found_24_regular', codepoint: 0xe033 },
+  ];
+  const grid = document.querySelector('#grid');
+  const search = document.querySelector('#search');
+  const size = document.querySelector('#size');
+  const empty = document.querySelector('#empty');
+  const count = document.querySelector('#count');
+
+  function render() {
+    const query = search.value.trim().toLowerCase();
+    const visible = icons.filter(icon => icon.name.toLowerCase().includes(query));
+    grid.replaceChildren(...visible.map(icon => {
+      const card = document.createElement('article');
+      card.className = 'card';
+      const glyph = document.createElement('span');
+      glyph.className = 'icon';
+      glyph.setAttribute('aria-hidden', 'true');
+      glyph.textContent = String.fromCodePoint(icon.codepoint);
+      const name = document.createElement('div');
+      name.className = 'name';
+      name.textContent = icon.name;
+      card.append(glyph, name);
+      return card;
+    }));
+    count.textContent = visible.length;
+    empty.style.display = visible.length ? 'none' : 'block';
+  }
+
+  function changeSize(delta) {
+    size.value = Math.min(Number(size.max), Math.max(Number(size.min), Number(size.value) + delta));
+    size.dispatchEvent(new Event('input'));
+  }
+  search.addEventListener('input', render);
+  size.addEventListener('input', () => document.documentElement.style.setProperty('--icon-size', `${size.value}px`));
+  document.querySelector('#smaller').addEventListener('click', () => changeSize(-4));
+  document.querySelector('#larger').addEventListener('click', () => changeSize(4));
+  render();
+  </script>
+</body>
+</html>
