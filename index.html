@@ -11,41 +11,58 @@
       src: url("./lib/fonts/otzaria_icons.otf") format("opentype");
       font-display: block;
     }
-    :root { color-scheme: light dark; --bg: #fafafa; --card: #fff; --text: #202020; --muted: #686868; --border: #e3e3e3; --accent: #6b4eff; }
+    :root { color-scheme: light; --bg: #f7f4ed; --surface: #fffdf8; --card: #ffffff; --text: #25231f; --muted: #716b60; --border: #e7dfd2; --accent: #9b6c2f; --accent-soft: #f1e4ce; --shadow: 0 14px 40px rgba(67, 49, 25, .08); }
     * { box-sizing: border-box; }
-    body { margin: 0; background: var(--bg); color: var(--text); font-family: Arial, sans-serif; text-align: center; }
-    main { width: min(1180px, calc(100% - 32px)); margin: 0 auto; padding: 48px 0 64px; }
-    h1 { margin: 0 0 8px; font-size: clamp(2rem, 5vw, 3.2rem); }
-    .subtitle { margin: 0 0 30px; color: var(--muted); }
-    .controls { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 12px; margin-bottom: 28px; }
-    input[type="search"] { width: min(420px, 100%); min-height: 44px; padding: 0 16px; border: 1px solid var(--border); border-radius: 10px; background: var(--card); color: var(--text); font: inherit; }
-    .size-control { display: flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 10px; border: 1px solid var(--border); border-radius: 10px; background: var(--card); }
-    button { width: 34px; height: 34px; border: 0; border-radius: 8px; background: transparent; color: var(--text); font-size: 22px; cursor: pointer; }
-    button:hover { background: color-mix(in srgb, var(--accent) 12%, transparent); }
+    body { margin: 0; background: var(--bg); color: var(--text); font-family: Arial, "Noto Sans Hebrew", sans-serif; text-align: center; }
+    .hero { padding: 64px 20px 92px; background: radial-gradient(circle at 50% -30%, #fff 0, transparent 58%), linear-gradient(145deg, #f7f0e4, #efe4d1); border-bottom: 1px solid var(--border); }
+    .brand { display: inline-flex; align-items: center; gap: 10px; margin-bottom: 20px; color: var(--accent); font-size: 15px; font-weight: 700; }
+    .brand-mark { display: grid; width: 38px; height: 38px; place-items: center; border: 1px solid #d8c29f; border-radius: 50%; background: rgba(255,255,255,.65); font-size: 21px; }
+    h1 { margin: 0 0 12px; font-size: clamp(2.35rem, 7vw, 4.6rem); letter-spacing: -.035em; }
+    .subtitle { max-width: 620px; margin: 0 auto; color: var(--muted); font-size: clamp(1rem, 2.5vw, 1.2rem); line-height: 1.7; }
+    main { width: min(1220px, calc(100% - 32px)); margin: -48px auto 0; padding-bottom: 64px; position: relative; }
+    .toolbar { margin-bottom: 28px; padding: 18px; border: 1px solid var(--border); border-radius: 18px; background: rgba(255,253,248,.94); box-shadow: var(--shadow); backdrop-filter: blur(12px); }
+    .controls { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 12px; }
+    input[type="search"] { width: min(520px, 100%); min-height: 50px; padding: 0 18px; border: 1px solid var(--border); border-radius: 12px; outline: none; background: var(--card); color: var(--text); font: inherit; transition: border-color .2s, box-shadow .2s; }
+    input[type="search"]:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(155,108,47,.13); }
+    .size-control { display: flex; align-items: center; gap: 8px; min-height: 50px; padding: 0 10px; border: 1px solid var(--border); border-radius: 12px; background: var(--card); }
+    button { width: 36px; height: 36px; border: 0; border-radius: 9px; background: transparent; color: var(--accent); font-size: 23px; cursor: pointer; }
+    button:hover, button:focus-visible { background: var(--accent-soft); outline: none; }
     input[type="range"] { width: 120px; accent-color: var(--accent); }
-    #grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 14px; }
-    .card { min-width: 0; padding: 24px 14px 16px; border: 1px solid var(--border); border-radius: 14px; background: var(--card); }
-    .icon { display: grid; min-height: 124px; place-items: center; font-family: "OtzariaIcons"; font-size: var(--icon-size, 64px); line-height: 1; }
-    .name { direction: ltr; overflow-wrap: anywhere; font: 13px/1.5 Consolas, monospace; color: var(--muted); }
+    .results { margin: 0 4px 16px; color: var(--muted); font-size: 14px; text-align: right; }
+    #grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 16px; }
+    .card { min-width: 0; padding: 28px 16px 18px; border: 1px solid var(--border); border-radius: 16px; background: var(--card); box-shadow: 0 3px 14px rgba(67,49,25,.035); transition: transform .18s, border-color .18s, box-shadow .18s; }
+    .card:hover { transform: translateY(-3px); border-color: #d5c2a3; box-shadow: 0 12px 30px rgba(67,49,25,.09); }
+    .icon { display: grid; min-height: 142px; place-items: center; font-family: "OtzariaIcons"; font-size: var(--icon-size, 72px); line-height: 1; color: #28241e; }
+    .name { direction: ltr; min-height: 42px; display: grid; place-items: center; overflow-wrap: anywhere; font: 13px/1.5 Consolas, monospace; color: var(--muted); }
     #empty { display: none; padding: 60px 0; color: var(--muted); }
-    @media (prefers-color-scheme: dark) { :root { --bg: #171717; --card: #222; --text: #f3f3f3; --muted: #b9b9b9; --border: #3a3a3a; } }
+    footer { padding: 8px 20px 42px; color: var(--muted); font-size: 14px; }
+    footer a { color: var(--accent); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+    @media (max-width: 560px) { .hero { padding-top: 46px; } main { width: min(100% - 20px, 1220px); } .toolbar { padding: 12px; } .size-control { width: 100%; justify-content: center; } #grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 10px; } .card { padding-inline: 10px; } }
   </style>
 </head>
 <body>
+  <header class="hero">
+    <div class="brand"><span class="brand-mark" aria-hidden="true">א</span><span>פרויקט אוצריא</span></div>
+    <h1>ספריית האייקונים</h1>
+    <p class="subtitle">אייקונים מקוריים עבור אוצריא, זמינים לתצוגה בכל גודל ומוכנים לשימוש בפרויקט.</p>
+  </header>
   <main>
-    <h1>אייקוני אוצריא</h1>
-    <p class="subtitle"><span id="count"></span> אייקונים בספרייה</p>
-    <div class="controls">
-      <input id="search" type="search" placeholder="חיפוש לפי שם האייקון" aria-label="חיפוש אייקונים">
-      <div class="size-control" aria-label="שינוי גודל התצוגה">
-        <button id="smaller" type="button" title="הקטנה" aria-label="הקטנת האייקונים">−</button>
-        <input id="size" type="range" min="32" max="120" step="4" value="64" aria-label="גודל האייקונים">
-        <button id="larger" type="button" title="הגדלה" aria-label="הגדלת האייקונים">+</button>
+    <div class="toolbar">
+      <div class="controls">
+        <input id="search" type="search" placeholder="חיפוש לפי שם האייקון…" aria-label="חיפוש אייקונים" autocomplete="off">
+        <div class="size-control" aria-label="שינוי גודל התצוגה">
+          <button id="smaller" type="button" title="הקטנה" aria-label="הקטנת האייקונים">−</button>
+          <input id="size" type="range" min="40" max="128" step="4" value="72" aria-label="גודל האייקונים">
+          <button id="larger" type="button" title="הגדלה" aria-label="הגדלת האייקונים">+</button>
+        </div>
       </div>
     </div>
+    <p class="results"><span id="count"></span> אייקונים מוצגים</p>
     <section id="grid" aria-live="polite"></section>
     <p id="empty">לא נמצאו אייקונים מתאימים.</p>
   </main>
+  <footer>פרויקט קוד פתוח ברישיון GPL-3.0 · <a href="https://www.otzaria.org/">אתר אוצריא</a> · <a href="https://github.com/Otzaria/otzaria_icons">GitHub</a></footer>
   <script>
   const icons = [
     { name: 'book_24_filled', codepoint: 0xe000 },
