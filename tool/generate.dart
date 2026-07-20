@@ -186,11 +186,22 @@ GenericGlyph _glyphFromSvg(
   required bool ignoreShapes,
 }) {
   final svg = Svg.parse(name, source, ignoreShapes: ignoreShapes);
-  final outlines = <Outline>[];
+  // Collect every outline from every <path> element in the SVG *before*
+  // normalizing winding direction. A glyph is one nonzero-fill shape at the
+  // font level: the rasterizer sums winding contributions across ALL
+  // contours together, regardless of which source <path> they came from.
+  // Normalizing per-path (the previous behavior) left sibling <path>
+  // elements free to wind in opposite directions; where two independently
+  // authored, solidly-filled layers overlapped, their contributions could
+  // cancel to a winding number of zero and render as an unintended
+  // transparent hole instead of the solid fill both layers intended. See
+  // docs/svg_requirements.md's "Multiple <path> elements are allowed" note:
+  // that guarantee only holds if winding is reconciled across all of them.
+  final rawOutlines = <Outline>[];
   for (final path in svg.elementList.whereType<PathElement>()) {
-    final pathOutlines = PathToOutlineConverter(svg, path).convert();
-    outlines.addAll(_convertPathToNonZero(pathOutlines));
+    rawOutlines.addAll(PathToOutlineConverter(svg, path).convert());
   }
+  final outlines = _normalizeGlyphWinding(rawOutlines);
   return GenericGlyph(
     outlines,
     svg.viewBox,
@@ -205,11 +216,21 @@ GenericGlyph _glyphFromSvg(
   );
 }
 
-List<Outline> _convertPathToNonZero(
-  List<Outline> outlines,
-) {
+/// Normalizes winding direction across *all* outlines belonging to one
+/// glyph, regardless of which original `<path>` element produced them and
+/// regardless of each outline's own declared `fill-rule`.
+///
+/// Every outline is assigned a nesting depth: the number of larger-area
+/// outlines (from anywhere in the glyph) whose interior contains one of its
+/// points. Even-depth outlines (top-level shapes, or shapes nested inside an
+/// even number of ancestors) are forced to a consistent "positive" winding;
+/// odd-depth outlines (genuine interior holes) are forced to the opposite
+/// winding. This is the same nonzero-from-evenodd trick the generator
+/// already used for a single self-intersecting path, now applied glyph-wide
+/// so that independently drawn, overlapping solid layers reinforce each
+/// other instead of cancelling out.
+List<Outline> _normalizeGlyphWinding(List<Outline> outlines) {
   return outlines.map((outline) {
-    if (outline.fillRule != FillRule.evenodd) return outline.copy();
     final point = outline.pointList.first;
     var depth = 0;
     final outlineArea = _signedArea(outline).abs();

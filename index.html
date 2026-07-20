@@ -43,9 +43,11 @@
 </head>
 <body>
   <header class="hero">
-    <div class="brand"><span class="brand-mark" aria-hidden="true">א</span><span>פרויקט אוצריא</span></div>
+<div style="text-align: center; padding: 0.5rem 0;">
+  <img src="https://otzaria.org/logo.svg" alt="אוצריא" style="max-width: 140px; height: auto; display: inline-block;">
+</div>
     <h1>ספריית האייקונים</h1>
-    <p class="subtitle">אייקונים מקוריים עבור אוצריא, זמינים לתצוגה בכל גודל ומוכנים לשימוש בפרויקט.</p>
+    <p class="subtitle">אייקונים נוספים עבור אוצריא, זמינים לתצוגה בכל גודל ומוכנים לשימוש בפרויקט.</p>
   </header>
   <main>
     <div class="toolbar">
@@ -62,7 +64,19 @@
     <section id="grid" aria-live="polite"></section>
     <p id="empty">לא נמצאו אייקונים מתאימים.</p>
   </main>
-  <footer>פרויקט קוד פתוח ברישיון GPL-3.0 · <a href="https://www.otzaria.org/">אתר אוצריא</a> · <a href="https://github.com/Otzaria/otzaria_icons">GitHub</a></footer>
+<footer style="text-align: center; padding: 1.5rem; font-size: 0.9rem; line-height: 1.6; color: #555;">
+  <p style="margin: 0 0 0.5rem 0;">
+    פרויקט ספריית האייקונים הינו קוד פתוח ברישיון GPL-3.0
+    <br>
+    כהשלמה לספריית
+    <a href="https://github.com/microsoft/fluentui-system-icons" target="_blank" rel="noopener">Fluent UI System Icons</a>
+  </p>
+  <p style="margin: 0;">
+    <a href="https://www.otzaria.org/">אתר אוצריא</a>
+    ·
+    <a href="https://github.com/Otzaria/otzaria_icons">פרויקט האייקונים ב-GitHub</a>
+  </p>
+</footer>
   <script>
   const icons = [
     { name: 'book_24_filled', codepoint: 0xe000 },
