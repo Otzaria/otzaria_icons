@@ -15,14 +15,17 @@
 - Added a CI check (`normalize_svg_overlaps.py --check`) that fails when a
   committed source still contains overlapping or seaming paths.
 - Added `tool/repair_glyphs.py`, run as the final generation step, which
-  rewrites each non-knockout glyph outline directly from its source SVG. The
-  pinned `icon_font_generator` distorts some complex glyphs during outline
-  conversion (a ~4-unit horizontal shift on `book_open_large_search_24_filled`,
-  contour damage on `stander_24_filled` and `search_in_the_text_24_regular`)
-  even from clean sources; this makes every glyph match the catalog exactly. It
-  is deterministic, preserves the fixed font timestamp and all generator
-  metadata, and leaves intended knockouts untouched. Generation now requires
-  Python 3 with `skia-pathops` and `fonttools`.
+  rewrites every glyph outline directly from its source SVG. The pinned
+  `icon_font_generator` distorts some complex glyphs during outline conversion
+  (a ~4-unit horizontal shift on `book_open_large_search_24_filled`, contour
+  damage on `stander_24_filled` and `search_in_the_text_24_regular`) even from
+  clean sources; this makes every glyph match the catalog exactly. Interior
+  knockouts (`document_word`, `document_bullet_list`, `book_open_alef`) are
+  rebuilt as a boolean difference (body minus the cut) so the cut is transparent
+  regardless of source winding — this fixed the alef in `book_open_alef_24_filled`,
+  which had rendered solid black. Deterministic; preserves the fixed font
+  timestamp and all generator metadata. Generation now requires Python 3 with
+  pinned `skia-pathops` and `fonttools` (`tool/requirements.txt`).
 
 ## 0.2.1 - 2026-07-19
 

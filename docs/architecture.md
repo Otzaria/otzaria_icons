@@ -41,9 +41,10 @@ distorts a few complex glyphs — a horizontal shift on
 `book_open_large_search_24_filled`, contour damage on `stander` and
 `search_in_the_text` — even from clean, correctly wound sources; this step makes
 the font geometry byte-for-byte what the sources and `docs/icon_catalog.svg`
-show. It is deterministic, preserves the fixed head timestamp and all generator
-metadata, and leaves the three intended interior knockouts untouched. It
-therefore requires Python 3 with `skia-pathops` and `fonttools`.
+show. Interior-knockout icons are rebuilt as a boolean difference (body minus
+the cut) so the cut stays transparent regardless of source winding. It is
+deterministic, preserves the fixed head timestamp and all generator metadata,
+and therefore requires Python 3 with `skia-pathops` and `fonttools`.
 
 ## Public API
 

@@ -9,16 +9,16 @@ correctly-wound path: it translated `book_open_large_search_24_filled` ~4 units
 left and mangled contours in `stander_24_filled` / `search_in_the_text_24_regular`.
 These defects are internal to the pinned generator and unrelated to the source.
 
-This step runs AFTER `dart run tool/generate.dart`. For every non-knockout icon
-it rebuilds the CFF charstring straight from the committed source path, mapping
-the 24x24 canvas onto the em (y-flipped) with no re-fitting, so the font geometry
-is byte-for-byte what the source (and docs/icon_catalog.svg) show. All font
-structure, names, codepoints, advance widths, and metadata produced by the
-generator are preserved untouched.
+This step runs AFTER `dart run tool/generate.dart`. For every icon it rebuilds
+the CFF charstring straight from the committed source, mapping the 24x24 canvas
+onto the em (y-flipped) with no re-fitting, so the font geometry is byte-for-byte
+what the source (and docs/icon_catalog.svg) show. All font structure, names,
+codepoints, advance widths, and metadata produced by the generator are preserved.
 
-Intended interior knockouts (document_word, document_bullet_list, book_open_alef)
-rely on the generator's winding reconciliation across their multiple paths and
-already render correctly, so they are detected and left exactly as generated.
+Interior-knockout icons (document_word, document_bullet_list, book_open_alef) are
+rebuilt as `body` minus the knocked-out shapes via a boolean difference, so the
+cut is transparent regardless of the source winding. This is what fixed the alef
+in book_open_alef_24_filled, which the generator had filled solid black.
 
 Deterministic: identical sources produce an identical charstring, and the OTF
 head timestamp set by the generator is preserved, so `generate.dart --check`
@@ -53,25 +53,44 @@ def read_paths(text):
     return out
 
 
-def is_knockout(paths):
+def _simplified(d, fr):
+    p = pathops.Path()
+    parse_path(d, p.getPen())
+    p.fillType = (pathops.FillType.EVEN_ODD if fr == "evenodd"
+                  else pathops.FillType.WINDING)
+    return pathops.simplify(p)
+
+
+def knockout_outline(paths):
+    """For an interior-knockout icon, return a pathops.Path of (body minus the
+    knocked-out shapes) so the cut renders transparent regardless of the source
+    winding; otherwise return None (the glyph is drawn straight from its paths).
+
+    A path whose filled area sits >97% inside the union of the other paths is
+    treated as a knockout (the alef in book_open_alef_24_filled, the "W" in
+    document_word_24_filled, the bullets in document_bullet_list_24_filled).
+    """
     if len(paths) < 2:
-        return False
-    simps = []
-    for d, fr in paths:
-        p = pathops.Path()
-        parse_path(d, p.getPen())
-        p.fillType = (pathops.FillType.EVEN_ODD if fr == "evenodd"
-                      else pathops.FillType.WINDING)
-        simps.append(pathops.simplify(p))
-    for i, pi in enumerate(simps):
-        others = [s for j, s in enumerate(simps) if j != i]
+        return None
+    simps = [_simplified(d, fr) for d, fr in paths]
+    holes, body = [], []
+    for i, s in enumerate(simps):
+        others = [x for j, x in enumerate(simps) if j != i]
         u = pathops.Path()
         pathops.union(others, u.getPen())
         inter = pathops.Path()
-        pathops.intersection([pi], [u], inter.getPen())
-        if abs(pi.area) > 1e-6 and abs(inter.area) / abs(pi.area) > 0.97:
-            return True
-    return False
+        pathops.intersection([s], [u], inter.getPen())
+        inside = abs(inter.area) / abs(s.area) if abs(s.area) > 1e-6 else 0
+        (holes if inside > 0.97 else body).append(s)
+    if not holes:
+        return None
+    solid = pathops.Path()
+    pathops.union(body, solid.getPen())
+    cut = pathops.Path()
+    pathops.union(holes, cut.getPen())
+    result = pathops.Path()
+    pathops.difference([solid], [cut], result.getPen())
+    return result
 
 
 def main(argv):
@@ -94,19 +113,21 @@ def main(argv):
     # 24x24 canvas (y-down) -> em (y-up): scale(scale,-scale), translate(0,upm)
     transform = (scale, 0, 0, -scale, 0, upm)
 
-    rebuilt, skipped = [], []
+    rebuilt, knockouts = [], 0
     for icon in manifest["icons"]:
         name = icon["name"]
         glyph_name = cmap[icon["codepoint"]]
         paths = read_paths(open(os.path.join(src_dir, name + ".svg")).read())
-        if is_knockout(paths):
-            skipped.append(name)
-            continue
         advance = hmtx[glyph_name][0]
         pen = T2CharStringPen(advance, None)
         tpen = TransformPen(pen, transform)
-        for d, _ in paths:
-            parse_path(d, tpen)
+        outline = knockout_outline(paths)
+        if outline is not None:
+            outline.draw(tpen)  # body minus transparent cuts
+            knockouts += 1
+        else:
+            for d, _ in paths:
+                parse_path(d, tpen)
         cs = pen.getCharString(private=top.Private)
         rebuilt.append((glyph_name, cs, name))
 
@@ -118,15 +139,14 @@ def main(argv):
                 mismatched.append(name)
         for n in mismatched:
             print("STALE-GLYPH  %s" % n)
-        print("%d glyph(s) differ from source, %d knockout(s) skipped."
-              % (len(mismatched), len(skipped)))
+        print("%d glyph(s) differ from source." % len(mismatched))
         return 1 if mismatched else 0
 
     for glyph_name, cs, _ in rebuilt:
         charStrings[glyph_name] = cs
     font.save(font_path)
-    print("Repaired %d glyph(s) from source; left %d knockout(s) untouched."
-          % (len(rebuilt), len(skipped)))
+    print("Repaired %d glyph(s) from source (%d interior knockouts)."
+          % (len(rebuilt), knockouts))
     return 0
 
 

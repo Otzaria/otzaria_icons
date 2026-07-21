@@ -67,9 +67,10 @@ Generation performs this sequence:
    `icon_font_generator` distorts a few complex glyphs during outline
    conversion — a horizontal shift on `book_open_large_search_24_filled`,
    contour damage on `stander` and `search_in_the_text` — even from clean
-   sources. This step rewrites each non-knockout glyph's outline directly from
-   its SVG so the font matches the catalog exactly. It is deterministic and
-   preserves all generator metadata; intended knockouts are left untouched.
+   sources. This step rewrites each glyph's outline directly from its SVG so the
+   font matches the catalog exactly. Interior knockouts are rebuilt as a boolean
+   difference (body minus the cut) so the cut stays transparent regardless of
+   source winding. It is deterministic and preserves all generator metadata.
 
 New records receive an opaque stable ID such as `icon-0011`. Never change an ID
 after allocation. Complete or correct the new manifest record if its provenance,
