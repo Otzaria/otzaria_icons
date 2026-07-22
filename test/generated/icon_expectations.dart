@@ -130,4 +130,6 @@ const generatedIconExpectations = <String, IconData>{
       OtzariaIcons.book_open_tzurat_hadaf_24_regular,
   'search_in_the_text_24_regular': OtzariaIcons.search_in_the_text_24_regular,
   'text_alef_bet_list_24_regular': OtzariaIcons.text_alef_bet_list_24_regular,
+  'search_in_the_settings_24_regular':
+      OtzariaIcons.search_in_the_settings_24_regular,
 };

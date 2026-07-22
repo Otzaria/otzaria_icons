@@ -1650,3 +1650,18 @@ icons:
     author: Otzaria contributors
     license: GPL-3.0-only
     upstream_commit: null
+  - id: icon-0111
+    name: search_in_the_settings_24_regular
+    source: assets_src/svg/search_in_the_settings_24_regular.svg
+    codepoint: 0xe06e
+    variant: regular
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: custom
+    based_on: null
+    author: Otzaria contributors
+    license: GPL-3.0-only
+    upstream_commit: null

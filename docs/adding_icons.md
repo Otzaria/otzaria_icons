@@ -1,5 +1,10 @@
 # Adding icons
 
+> **Prefer a one-click flow?** Run the graphical build helper — double-click
+> `otzaria_build.bat` (Windows) or run `python otzaria_build.py`, and pick
+> "After adding / editing icons". It runs every step below in order. See
+> `docs/build_helper.md`. The manual steps follow for reference.
+
 ## Quick workflow
 
 One-time setup: install the pinned Python tools used by generation.

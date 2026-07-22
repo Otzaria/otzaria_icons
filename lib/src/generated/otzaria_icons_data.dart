@@ -779,6 +779,13 @@ abstract final class OtzariaIcons {
     fontPackage: fontPackage,
   );
 
+  /// `search_in_the_settings_24_regular.svg`
+  static const IconData search_in_the_settings_24_regular = IconData(
+    0xe06e,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
   /// Every icon in this library, keyed by its name.
   static const Map<String, IconData> allIcons = <String, IconData>{
     'book_24_filled': book_24_filled,
@@ -891,5 +898,6 @@ abstract final class OtzariaIcons {
     'book_open_tzurat_hadaf_24_regular': book_open_tzurat_hadaf_24_regular,
     'search_in_the_text_24_regular': search_in_the_text_24_regular,
     'text_alef_bet_list_24_regular': text_alef_bet_list_24_regular,
+    'search_in_the_settings_24_regular': search_in_the_settings_24_regular,
   };
 }

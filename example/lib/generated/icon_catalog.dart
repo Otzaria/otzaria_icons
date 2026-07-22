@@ -184,4 +184,6 @@ const iconCatalog = <GalleryIcon>[
       OtzariaIcons.search_in_the_text_24_regular),
   GalleryIcon('text_alef_bet_list_24_regular',
       OtzariaIcons.text_alef_bet_list_24_regular),
+  GalleryIcon('search_in_the_settings_24_regular',
+      OtzariaIcons.search_in_the_settings_24_regular),
 ];
