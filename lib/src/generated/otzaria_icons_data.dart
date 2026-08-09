@@ -821,6 +821,111 @@ abstract final class OtzariaIcons {
     fontPackage: fontPackage,
   );
 
+  /// `alef_rashi_24_regular.svg`
+  static const IconData alef_rashi_24_regular = IconData(
+    0xe074,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `alef_stam_24_regular.svg`
+  static const IconData alef_stam_24_regular = IconData(
+    0xe075,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `book_alef_rashi_24_filled.svg`
+  static const IconData book_alef_rashi_24_filled = IconData(
+    0xe076,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `book_alef_rashi_24_regular.svg`
+  static const IconData book_alef_rashi_24_regular = IconData(
+    0xe077,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `book_number_24_filled.svg`
+  static const IconData book_number_24_filled = IconData(
+    0xe078,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `book_number_24_regular.svg`
+  static const IconData book_number_24_regular = IconData(
+    0xe079,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `book_tet_24_filled.svg`
+  static const IconData book_tet_24_filled = IconData(
+    0xe07a,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `book_tet_24_regular.svg`
+  static const IconData book_tet_24_regular = IconData(
+    0xe07b,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `otzaria_icon_24_filled.svg`
+  static const IconData otzaria_icon_24_filled = IconData(
+    0xe07c,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `otzaria_icon_2_page_24_filled.svg`
+  static const IconData otzaria_icon_2_page_24_filled = IconData(
+    0xe07d,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `otzaria_icon_line_24_filled.svg`
+  static const IconData otzaria_icon_line_24_filled = IconData(
+    0xe07e,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `tet_24_regular.svg`
+  static const IconData tet_24_regular = IconData(
+    0xe07f,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `tet_behind_tet_24_regular.svg`
+  static const IconData tet_behind_tet_24_regular = IconData(
+    0xe080,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `tet_near_tet_24_regular.svg`
+  static const IconData tet_near_tet_24_regular = IconData(
+    0xe081,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `tet_tet_24_regular.svg`
+  static const IconData tet_tet_24_regular = IconData(
+    0xe082,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
   /// Every icon in this library, keyed by its name.
   static const Map<String, IconData> allIcons = <String, IconData>{
     'book_24_filled': book_24_filled,
@@ -939,5 +1044,20 @@ abstract final class OtzariaIcons {
     'book_information_24_filled': book_information_24_filled,
     'book_information_24_regular': book_information_24_regular,
     'yoma_deilula_24_regular': yoma_deilula_24_regular,
+    'alef_rashi_24_regular': alef_rashi_24_regular,
+    'alef_stam_24_regular': alef_stam_24_regular,
+    'book_alef_rashi_24_filled': book_alef_rashi_24_filled,
+    'book_alef_rashi_24_regular': book_alef_rashi_24_regular,
+    'book_number_24_filled': book_number_24_filled,
+    'book_number_24_regular': book_number_24_regular,
+    'book_tet_24_filled': book_tet_24_filled,
+    'book_tet_24_regular': book_tet_24_regular,
+    'otzaria_icon_24_filled': otzaria_icon_24_filled,
+    'otzaria_icon_2_page_24_filled': otzaria_icon_2_page_24_filled,
+    'otzaria_icon_line_24_filled': otzaria_icon_line_24_filled,
+    'tet_24_regular': tet_24_regular,
+    'tet_behind_tet_24_regular': tet_behind_tet_24_regular,
+    'tet_near_tet_24_regular': tet_near_tet_24_regular,
+    'tet_tet_24_regular': tet_tet_24_regular,
   };
 }

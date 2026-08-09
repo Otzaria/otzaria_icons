@@ -52,7 +52,22 @@ SVG_DIR = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__)
 PATH_RE = re.compile(r'<path\b([^>]*?)/?>')
 D_RE = re.compile(r'\bd\s*=\s*"([^"]*)"')
 FR_RE = re.compile(r'fill-rule\s*=\s*"([^"]*)"')
+FILL_RE = re.compile(r'\bfill\s*=\s*"([^"]*)"', re.IGNORECASE)
 NUM_RE = re.compile(r'-?\d+\.?\d*(?:e-?\d+)?')
+
+LEGACY_INFERRED_KNOCKOUTS = {
+    "book_alef_rashi_24_filled.svg",
+    "book_tet_24_filled.svg",
+    "clock_add_24_regular.svg",
+    "document_word_24_filled.svg",
+}
+
+
+def is_white(value):
+    if value is None:
+        return False
+    value = value.strip().lower().replace(" ", "")
+    return value in {"white", "#fff", "#ffffff", "rgb(255,255,255)"}
 
 
 def read_paths(text):
@@ -61,19 +76,27 @@ def read_paths(text):
         attrs = m.group(1)
         d = D_RE.search(attrs)
         fr = FR_RE.search(attrs)
+        fill = FILL_RE.search(attrs)
         if d:
-            out.append((d.group(1), fr.group(1) if fr else "nonzero"))
+            out.append((
+                d.group(1),
+                fr.group(1) if fr else "nonzero",
+                fill.group(1) if fill else None,
+            ))
     return out
 
 
-def is_knockout(paths):
+def is_knockout(paths, name=""):
     """True if a whole path sits inside the union of the others: an intended
     white knockout that unioning would destroy. Threshold and detection live in
     glyph_geometry so this stays in lockstep with repair_glyphs.py."""
     if len(paths) < 2:
         return False
-    simps = [simplified(d, fr) for d, fr in paths]
-    return any(is_knockout_index(simps, i) for i in range(len(simps)))
+    simps = [simplified(d, fr) for d, fr, _ in paths]
+    return any(is_white(fill) for _, _, fill in paths) or (
+        name in LEGACY_INFERRED_KNOCKOUTS
+        and any(is_knockout_index(simps, i) for i in range(len(simps)))
+    )
 
 
 def _count_moves(path):
@@ -96,12 +119,12 @@ def overlap_risk(paths):
         into fewer contours than the sources declare, i.e. hairline seams.
     Returns (overlap_area, weld_count).
     """
-    simps = [simplified(d, fr) for d, fr in paths]
+    simps = [simplified(d, fr) for d, fr, _ in paths]
     area_sum = sum(abs(s.area) for s in simps)
     u = pathops.Path()
     pathops.union(simps, u.getPen())
     overlap = area_sum - abs(u.area)
-    raw = sum(_count_d_subpaths(d) for d, _ in paths)
+    raw = sum(_count_d_subpaths(d) for d, _, _ in paths)
     weld = raw - _count_moves(u)
     return overlap, weld
 
@@ -117,7 +140,7 @@ def _round(dstr, ndigits=6):
 
 
 def union_d(paths):
-    contours = [simplified(d, fr) for d, fr in paths]
+    contours = [simplified(d, fr) for d, fr, _ in paths]
     result = pathops.Path()
     pathops.union(contours, result.getPen())
     pen = SVGPathPen(None)
@@ -125,12 +148,12 @@ def union_d(paths):
     return _round(pen.getCommands())
 
 
-def normalized_svg(text):
+def normalized_svg(text, name=""):
     """Return (new_svg_text or None, reason). None means leave file unchanged."""
     paths = read_paths(text)
     if not paths:
         return None, "no <path> elements"
-    if is_knockout(paths):
+    if is_knockout(paths, name):
         return None, "intended knockout (skipped)"
     d = union_d(paths)
     new = ('<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" '
@@ -158,7 +181,7 @@ def main(argv):
             if not paths:
                 skipped.append((name, "no <path> elements"))
                 continue
-            if is_knockout(paths):
+            if is_knockout(paths, name):
                 skipped.append((name, "intended knockout"))
                 continue
             overlap, weld = overlap_risk(paths)
@@ -178,8 +201,8 @@ def main(argv):
     changed, skipped = [], []
     for path in files:
         text = open(path, encoding="utf-8").read()
-        new, reason = normalized_svg(text)
         name = os.path.basename(path)
+        new, reason = normalized_svg(text, name)
         if new is None:
             skipped.append((name, reason))
             continue

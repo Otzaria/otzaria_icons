@@ -192,4 +192,24 @@ const iconCatalog = <GalleryIcon>[
   GalleryIcon(
       'book_information_24_regular', OtzariaIcons.book_information_24_regular),
   GalleryIcon('yoma_deilula_24_regular', OtzariaIcons.yoma_deilula_24_regular),
+  GalleryIcon('alef_rashi_24_regular', OtzariaIcons.alef_rashi_24_regular),
+  GalleryIcon('alef_stam_24_regular', OtzariaIcons.alef_stam_24_regular),
+  GalleryIcon(
+      'book_alef_rashi_24_filled', OtzariaIcons.book_alef_rashi_24_filled),
+  GalleryIcon(
+      'book_alef_rashi_24_regular', OtzariaIcons.book_alef_rashi_24_regular),
+  GalleryIcon('book_number_24_filled', OtzariaIcons.book_number_24_filled),
+  GalleryIcon('book_number_24_regular', OtzariaIcons.book_number_24_regular),
+  GalleryIcon('book_tet_24_filled', OtzariaIcons.book_tet_24_filled),
+  GalleryIcon('book_tet_24_regular', OtzariaIcons.book_tet_24_regular),
+  GalleryIcon('otzaria_icon_24_filled', OtzariaIcons.otzaria_icon_24_filled),
+  GalleryIcon('otzaria_icon_2_page_24_filled',
+      OtzariaIcons.otzaria_icon_2_page_24_filled),
+  GalleryIcon(
+      'otzaria_icon_line_24_filled', OtzariaIcons.otzaria_icon_line_24_filled),
+  GalleryIcon('tet_24_regular', OtzariaIcons.tet_24_regular),
+  GalleryIcon(
+      'tet_behind_tet_24_regular', OtzariaIcons.tet_behind_tet_24_regular),
+  GalleryIcon('tet_near_tet_24_regular', OtzariaIcons.tet_near_tet_24_regular),
+  GalleryIcon('tet_tet_24_regular', OtzariaIcons.tet_tet_24_regular),
 ];

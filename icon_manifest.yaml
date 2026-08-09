@@ -1740,3 +1740,228 @@ icons:
     author: Otzaria contributors
     license: GPL-3.0-only
     upstream_commit: null
+  - id: icon-0117
+    name: alef_rashi_24_regular
+    source: assets_src/svg/alef_rashi_24_regular.svg
+    codepoint: 0xe074
+    variant: regular
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: custom
+    based_on: null
+    author: Otzaria contributors
+    license: GPL-3.0-only
+    upstream_commit: null
+  - id: icon-0118
+    name: alef_stam_24_regular
+    source: assets_src/svg/alef_stam_24_regular.svg
+    codepoint: 0xe075
+    variant: regular
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: custom
+    based_on: null
+    author: Otzaria contributors
+    license: GPL-3.0-only
+    upstream_commit: null
+  - id: icon-0119
+    name: book_alef_rashi_24_filled
+    source: assets_src/svg/book_alef_rashi_24_filled.svg
+    codepoint: 0xe076
+    variant: filled
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: custom
+    based_on: null
+    author: Otzaria contributors
+    license: GPL-3.0-only
+    upstream_commit: null
+  - id: icon-0120
+    name: book_alef_rashi_24_regular
+    source: assets_src/svg/book_alef_rashi_24_regular.svg
+    codepoint: 0xe077
+    variant: regular
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: custom
+    based_on: null
+    author: Otzaria contributors
+    license: GPL-3.0-only
+    upstream_commit: null
+  - id: icon-0121
+    name: book_number_24_filled
+    source: assets_src/svg/book_number_24_filled.svg
+    codepoint: 0xe078
+    variant: filled
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: custom
+    based_on: null
+    author: Otzaria contributors
+    license: GPL-3.0-only
+    upstream_commit: null
+  - id: icon-0122
+    name: book_number_24_regular
+    source: assets_src/svg/book_number_24_regular.svg
+    codepoint: 0xe079
+    variant: regular
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: custom
+    based_on: null
+    author: Otzaria contributors
+    license: GPL-3.0-only
+    upstream_commit: null
+  - id: icon-0123
+    name: book_tet_24_filled
+    source: assets_src/svg/book_tet_24_filled.svg
+    codepoint: 0xe07a
+    variant: filled
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: custom
+    based_on: null
+    author: Otzaria contributors
+    license: GPL-3.0-only
+    upstream_commit: null
+  - id: icon-0124
+    name: book_tet_24_regular
+    source: assets_src/svg/book_tet_24_regular.svg
+    codepoint: 0xe07b
+    variant: regular
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: custom
+    based_on: null
+    author: Otzaria contributors
+    license: GPL-3.0-only
+    upstream_commit: null
+  - id: icon-0125
+    name: otzaria_icon_24_filled
+    source: assets_src/svg/otzaria_icon_24_filled.svg
+    codepoint: 0xe07c
+    variant: filled
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: custom
+    based_on: null
+    author: Otzaria contributors
+    license: GPL-3.0-only
+    upstream_commit: null
+  - id: icon-0126
+    name: otzaria_icon_2_page_24_filled
+    source: assets_src/svg/otzaria_icon_2_page_24_filled.svg
+    codepoint: 0xe07d
+    variant: filled
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: custom
+    based_on: null
+    author: Otzaria contributors
+    license: GPL-3.0-only
+    upstream_commit: null
+  - id: icon-0127
+    name: otzaria_icon_line_24_filled
+    source: assets_src/svg/otzaria_icon_line_24_filled.svg
+    codepoint: 0xe07e
+    variant: filled
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: custom
+    based_on: null
+    author: Otzaria contributors
+    license: GPL-3.0-only
+    upstream_commit: null
+  - id: icon-0128
+    name: tet_24_regular
+    source: assets_src/svg/tet_24_regular.svg
+    codepoint: 0xe07f
+    variant: regular
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: custom
+    based_on: null
+    author: Otzaria contributors
+    license: GPL-3.0-only
+    upstream_commit: null
+  - id: icon-0129
+    name: tet_behind_tet_24_regular
+    source: assets_src/svg/tet_behind_tet_24_regular.svg
+    codepoint: 0xe080
+    variant: regular
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: custom
+    based_on: null
+    author: Otzaria contributors
+    license: GPL-3.0-only
+    upstream_commit: null
+  - id: icon-0130
+    name: tet_near_tet_24_regular
+    source: assets_src/svg/tet_near_tet_24_regular.svg
+    codepoint: 0xe081
+    variant: regular
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: custom
+    based_on: null
+    author: Otzaria contributors
+    license: GPL-3.0-only
+    upstream_commit: null
+  - id: icon-0131
+    name: tet_tet_24_regular
+    source: assets_src/svg/tet_tet_24_regular.svg
+    codepoint: 0xe082
+    variant: regular
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: custom
+    based_on: null
+    author: Otzaria contributors
+    license: GPL-3.0-only
+    upstream_commit: null

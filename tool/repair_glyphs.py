@@ -42,6 +42,24 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PATH_RE = re.compile(r'<path\b([^>]*?)/?>')
 D_RE = re.compile(r'\bd\s*=\s*"([^"]*)"')
 FR_RE = re.compile(r'fill-rule\s*=\s*"([^"]*)"')
+FILL_RE = re.compile(r'\bfill\s*=\s*"([^"]*)"', re.IGNORECASE)
+
+# These older sources predate explicit paint metadata.  Their nested detail
+# path is an intentional knockout, so keep the geometric fallback narrowly
+# scoped to them instead of applying it to every multi-path icon.
+LEGACY_INFERRED_KNOCKOUTS = {
+    "book_alef_rashi_24_filled",
+    "book_tet_24_filled",
+    "clock_add_24_regular",
+    "document_word_24_filled",
+}
+
+
+def is_white(value):
+    if value is None:
+        return False
+    value = value.strip().lower().replace(" ", "")
+    return value in {"white", "#fff", "#ffffff", "rgb(255,255,255)"}
 
 
 def read_paths(text):
@@ -49,12 +67,17 @@ def read_paths(text):
     for m in PATH_RE.finditer(text):
         d = D_RE.search(m.group(1))
         fr = FR_RE.search(m.group(1))
+        fill = FILL_RE.search(m.group(1))
         if d:
-            out.append((d.group(1), fr.group(1) if fr else "nonzero"))
+            out.append((
+                d.group(1),
+                fr.group(1) if fr else "nonzero",
+                fill.group(1) if fill else None,
+            ))
     return out
 
 
-def knockout_outline(paths):
+def knockout_outline(name, paths):
     """For an interior-knockout icon, return a pathops.Path of (body minus the
     knocked-out shapes) so the cut renders transparent regardless of the source
     winding; otherwise return None (the glyph is drawn straight from its paths).
@@ -66,10 +89,14 @@ def knockout_outline(paths):
     """
     if len(paths) < 2:
         return None
-    simps = [simplified(d, fr) for d, fr in paths]
+    simps = [simplified(d, fr) for d, fr, _ in paths]
     holes, body = [], []
-    for i, s in enumerate(simps):
-        (holes if is_knockout_index(simps, i) else body).append(s)
+    infer_legacy = name in LEGACY_INFERRED_KNOCKOUTS
+    for i, (s, (_, _, fill)) in enumerate(zip(simps, paths)):
+        knockout = is_white(fill) or (
+            infer_legacy and is_knockout_index(simps, i)
+        )
+        (holes if knockout else body).append(s)
     if not holes:
         return None
     solid = pathops.Path()
@@ -112,12 +139,12 @@ def main(argv):
         advance = hmtx[glyph_name][0]
         pen = T2CharStringPen(advance, None)
         tpen = TransformPen(pen, transform)
-        outline = knockout_outline(paths)
+        outline = knockout_outline(name, paths)
         if outline is not None:
             outline.draw(tpen)  # body minus transparent cuts
             knockouts += 1
         else:
-            for d, _ in paths:
+            for d, _, _ in paths:
                 parse_path(d, tpen)
         cs = pen.getCharString(private=top.Private)
         rebuilt.append((glyph_name, cs, name))
