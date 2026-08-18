@@ -153,4 +153,7 @@ const generatedIconExpectations = <String, IconData>{
   'tet_behind_tet_24_regular': OtzariaIcons.tet_behind_tet_24_regular,
   'tet_near_tet_24_regular': OtzariaIcons.tet_near_tet_24_regular,
   'tet_tet_24_regular': OtzariaIcons.tet_tet_24_regular,
+  'search_in_numbered_list_24_regular':
+      OtzariaIcons.search_in_numbered_list_24_regular,
+  'search_in_titles_24_regular': OtzariaIcons.search_in_titles_24_regular,
 };
