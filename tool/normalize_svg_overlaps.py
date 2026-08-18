@@ -150,6 +150,8 @@ def union_d(paths):
 
 def normalized_svg(text, name=""):
     """Return (new_svg_text or None, reason). None means leave file unchanged."""
+    if 'data-preserve-overlap="true"' in text:
+        return None, "intentional layered icon (skipped)"
     paths = read_paths(text)
     if not paths:
         return None, "no <path> elements"
@@ -177,7 +179,11 @@ def main(argv):
         need, skipped = [], []
         for path in files:
             name = os.path.basename(path)
-            paths = read_paths(open(path, encoding="utf-8").read())
+            text = open(path, encoding="utf-8").read()
+            if 'data-preserve-overlap="true"' in text:
+                skipped.append((name, "intentional layered icon"))
+                continue
+            paths = read_paths(text)
             if not paths:
                 skipped.append((name, "no <path> elements"))
                 continue

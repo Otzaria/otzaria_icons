@@ -21,6 +21,13 @@ Future<void> main(List<String> arguments) async {
   if (arguments.any((argument) => argument != '--check')) {
     _fail('Usage: dart run tool/generate.dart [--check]');
   }
+  final logoFile = File(p.join(Directory.current.path, 'logo.webp'));
+  if (!logoFile.existsSync()) {
+    _fail(
+      'Missing logo.webp. The generated GitHub Pages catalog references this '
+      'local deployment asset. Expected: ${logoFile.path}',
+    );
+  }
   final config = _readConfig(File('tool/config.yaml'));
 
   if (checkOnly) {
@@ -404,6 +411,7 @@ Future<void> _checkGeneratedFiles(IconConfig config) async {
       'test/generated',
       'analysis_options.yaml',
       'pubspec.yaml',
+      'logo.webp',
       config.manifestFile,
       config.noticesOutput,
       config.catalogOutput,
@@ -808,6 +816,7 @@ String _generateWebCatalog(List<ManifestIcon> icons) {
     .hero { padding: 64px 20px 92px; background: radial-gradient(circle at 50% -30%, #fff 0, transparent 58%), linear-gradient(145deg, #f7f0e4, #efe4d1); border-bottom: 1px solid var(--border); }
     .brand { display: inline-flex; align-items: center; gap: 10px; margin-bottom: 20px; color: var(--accent); font-size: 15px; font-weight: 700; }
     .brand-mark { display: grid; width: 38px; height: 38px; place-items: center; border: 1px solid #d8c29f; border-radius: 50%; background: rgba(255,255,255,.65); font-size: 21px; }
+    .hero-logo { display: inline-block; width: min(180px, 42vw); height: auto; }
     h1 { margin: 0 0 12px; font-size: clamp(2.35rem, 7vw, 4.6rem); letter-spacing: -.035em; }
     .subtitle { max-width: 620px; margin: 0 auto; color: var(--muted); font-size: clamp(1rem, 2.5vw, 1.2rem); line-height: 1.7; }
     main { width: min(1220px, calc(100% - 32px)); margin: -48px auto 0; padding-bottom: 64px; position: relative; }
@@ -844,7 +853,7 @@ String _generateWebCatalog(List<ManifestIcon> icons) {
 <body>
   <header class="hero">
     <div style="text-align: center; padding: 0.5rem 0;">
-      <img src="https://otzaria.org/logo.svg" alt="אוצריא" style="max-width: 140px; height: auto; display: inline-block;">
+      <img class="hero-logo" src="./logo.webp" alt="אוצריא">
     </div>
     <h1>ספריית האייקונים</h1>
     <p class="subtitle">אייקונים נוספים עבור אוצריא, זמינים לתצוגה בכל גודל ומוכנים לשימוש בפרויקט.</p>
