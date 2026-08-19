@@ -156,4 +156,6 @@ const generatedIconExpectations = <String, IconData>{
   'search_in_numbered_list_24_regular':
       OtzariaIcons.search_in_numbered_list_24_regular,
   'search_in_titles_24_regular': OtzariaIcons.search_in_titles_24_regular,
+  'book_star_24_filled': OtzariaIcons.book_star_24_filled,
+  'book_star_24_regular': OtzariaIcons.book_star_24_regular,
 };

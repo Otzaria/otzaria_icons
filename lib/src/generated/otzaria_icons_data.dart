@@ -940,6 +940,20 @@ abstract final class OtzariaIcons {
     fontPackage: fontPackage,
   );
 
+  /// `book_star_24_filled.svg`
+  static const IconData book_star_24_filled = IconData(
+    0xe085,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `book_star_24_regular.svg`
+  static const IconData book_star_24_regular = IconData(
+    0xe086,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
   /// Every icon in this library, keyed by its name.
   static const Map<String, IconData> allIcons = <String, IconData>{
     'book_24_filled': book_24_filled,
@@ -1075,5 +1089,7 @@ abstract final class OtzariaIcons {
     'tet_tet_24_regular': tet_tet_24_regular,
     'search_in_numbered_list_24_regular': search_in_numbered_list_24_regular,
     'search_in_titles_24_regular': search_in_titles_24_regular,
+    'book_star_24_filled': book_star_24_filled,
+    'book_star_24_regular': book_star_24_regular,
   };
 }
