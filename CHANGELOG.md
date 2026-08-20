@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+- Redrawn `book_open_tzurat_hadaf_24_{regular,filled}` (same names and
+  codepoints): the center block no longer straddles the two page columns —
+  the columns now recess around it with a uniform gap, removing the 3D
+  "square resting on cylinders" look reported in Otzaria issue #904.
+
 - Renamed `book_open_alef_24_{filled,regular}` to `book_alef_24_{filled,regular}`
   (same codepoints `U+E068`/`U+E069`; no backward-compatible aliases).
 - Added `clock_add_24_regular` and `search_in_the_person_24_regular`.
