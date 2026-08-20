@@ -2,6 +2,16 @@
 
 ## Unreleased
 
+- Refined `book_open_tzurat_hadaf_24_{regular,filled}` further (same names
+  and codepoints, visual-only): the glyph is ~1.2x larger, and the center
+  block is now a portrait rectangle (taller than wide, like an actual page)
+  rather than a square, since the top arm has far less vertical room before
+  its own tab than the bottom arm does. The horizontal gap grew a little at
+  the expense of the page arms' width; the bottom vertical gap shrank in
+  favor of a taller bottom arm. The `regular` outline is now one constant
+  stroke thickness applied as a true offset everywhere, replacing a
+  hand-placed inner boundary that varied between 0.75 and 0.9 per segment.
+
 - Redrawn `book_open_tzurat_hadaf_24_{regular,filled}` (same names and
   codepoints): the center block no longer straddles the two page columns —
   the columns now recess around it with a uniform gap, removing the 3D
