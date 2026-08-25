@@ -218,4 +218,6 @@ const iconCatalog = <GalleryIcon>[
       'search_in_titles_24_regular', OtzariaIcons.search_in_titles_24_regular),
   GalleryIcon('book_star_24_filled', OtzariaIcons.book_star_24_filled),
   GalleryIcon('book_star_24_regular', OtzariaIcons.book_star_24_regular),
+  GalleryIcon('book_md_24_filled', OtzariaIcons.book_md_24_filled),
+  GalleryIcon('book_md_24_regular', OtzariaIcons.book_md_24_regular),
 ];
