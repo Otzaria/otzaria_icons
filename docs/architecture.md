@@ -46,6 +46,49 @@ the cut) so the cut stays transparent regardless of source winding. It is
 deterministic, preserves the fixed head timestamp and all generator metadata,
 and therefore requires Python 3 with `skia-pathops` and `fonttools`.
 
+## The tools
+
+Everything in `tool/` falls into one of three groups. The Python tools need
+`skia-pathops`, `fonttools` and `pyyaml` (`pip install -r tool/requirements.txt`).
+
+**Run by the generator.** These execute as part of
+`dart run tool/generate.dart` and need no separate invocation:
+
+| Tool | Role |
+| --- | --- |
+| `generate.dart` | The pipeline itself: validates, sanitizes, allocates codepoints, builds the OTF, and regenerates the Dart API, catalog, gallery and notices. |
+| `validate.dart` | Enforces names, canvas, path rules, manifest integrity and codepoint allocation. Also runs standalone in CI. |
+| `sanitize.dart` | Conservative cleanup of a source: flattens a sole wrapper group only where nothing can be lost. |
+| `normalize_canvas.dart` | Guard that rejects any source not already on a native 24x24 canvas. |
+| `normalize_svg_overlaps.py` | Resolves overlapping or seaming paths into one clean outline. `--check` is the CI gate. |
+| `repair_glyphs.py` | Rewrites every glyph outline in the finished OTF directly from its source, and cuts the interior knockouts. |
+| `glyph_geometry.py` | Shared helper: the single definition of what counts as an interior knockout, used by both of the two above. |
+
+**Source maintenance.** Run by hand when working on artwork; each is
+described in [source_structure.md](source_structure.md):
+
+| Tool | Role |
+| --- | --- |
+| `format_svg.py` | Rewrites sources into the canonical written form. |
+| `unify_shared_parts.py` | Gives artwork shared between icons one spelling. |
+| `family_report.py` | Reports what families share, and where they have drifted apart. |
+| `audit_geometry.py` | Reports specks, spikes, slivers, needles, self-crossing contours, and features too thin for 16 px. |
+| `repair_artifacts.py` | Removes that debris, one bounded pass per defect category. |
+| `restroke_alef.py` | Changes a letterform's stroke weights and length. |
+| `region_diff.py` | Proves a rewrite did not change what an icon draws, by comparing exact vector regions. |
+| `raster_diff.py` | The same question answered independently, by rendering both versions and comparing pixels. |
+
+**One-off preparation.** For bringing outside artwork into the set. None are
+part of any routine build:
+
+| Tool | Role |
+| --- | --- |
+| `prepare_svg_sources.dart` | Converts an incompatible export - strokes, text, masks, transforms, a foreign canvas - into direct filled paths, using Inkscape. |
+| `flatten_svg_transforms.dart` | Applies the simple translate/scale wrapper some legacy artwork carries, preserving the geometry exactly rather than redrawing it. |
+| `scale_svg_paths.dart` | Uniformly scales path geometry about the centre of the 24x24 canvas. |
+| `check_glyph_coverage.py` | Asserts every manifest codepoint maps to a non-empty outline in the committed font, so a blank glyph cannot ship. Run in CI. |
+| `check_font_subset.dart` | Confirms tree shaking actually subset the font in a release build. Run in CI. |
+
 ## Public API
 
 `lib/otzaria_icons.dart` exports only generated icon constants. Gallery catalogs

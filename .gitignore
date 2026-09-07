@@ -18,3 +18,11 @@ example/.dart_tool/
 example/build/
 test_apps/minimal/.dart_tool/
 test_apps/minimal/build/
+
+# Python bytecode from the generation and analysis tools.
+__pycache__/
+*.pyc
+
+# Flutter writes the golden comparison images here when a golden test fails.
+# They are diagnostic output for one run, not repository content.
+test/failures/

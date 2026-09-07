@@ -1,6 +1,27 @@
 # Changelog
 
-## Unreleased
+## 0.3.0 - 2026-09-08
+
+- Added `alef_alef_24_regular` (`U+E089`): two alefs of equal size side by side,
+  laid out to match `tet_tet_24_regular` exactly - each letter 10.80 units wide
+  at x 0.95 and x 12.25, a 0.5 unit gap, optically centred. The set now ships
+  **138** icons over a contiguous `U+E000`-`U+E089`.
+
+- Opened up `document_column_24_{regular,filled}`: the gap between the two
+  columns goes from 0.5 to 1.0 units and the gap between rows from 1.5 to 2.0
+  (row pitch 3.0 to 3.5). The bar block keeps its position and extent, so the
+  bars shorten from 5.0 to 4.5 units. The filled variant's bars are knocked out
+  of the document rather than drawn on it, and that winding is preserved.
+
+- Removed committed temporary files and stopped them recurring: Flutter's
+  golden-comparison output in `test/failures/` and the Python bytecode in
+  `tool/__pycache__/` were both tracked. Both are now in `.gitignore`.
+
+- Documented every tool. `docs/architecture.md` now carries a complete inventory
+  of `tool/`, grouped by whether the generator runs it, it maintains sources, or
+  it is one-off preparation. `flatten_svg_transforms.dart` and
+  `scale_svg_paths.dart` had no documentation at all; `glyph_geometry.py` and
+  `check_glyph_coverage.py` appeared only in a historical review.
 
 - **Set the alef letterform lighter** across the 16 icons that carry it (same
   names and codepoints, visual change): every stroke is 15% thinner, the

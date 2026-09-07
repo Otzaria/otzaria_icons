@@ -160,4 +160,5 @@ const generatedIconExpectations = <String, IconData>{
   'book_star_24_regular': OtzariaIcons.book_star_24_regular,
   'book_md_24_filled': OtzariaIcons.book_md_24_filled,
   'book_md_24_regular': OtzariaIcons.book_md_24_regular,
+  'alef_alef_24_regular': OtzariaIcons.alef_alef_24_regular,
 };

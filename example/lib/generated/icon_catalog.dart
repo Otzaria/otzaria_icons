@@ -220,4 +220,5 @@ const iconCatalog = <GalleryIcon>[
   GalleryIcon('book_star_24_regular', OtzariaIcons.book_star_24_regular),
   GalleryIcon('book_md_24_filled', OtzariaIcons.book_md_24_filled),
   GalleryIcon('book_md_24_regular', OtzariaIcons.book_md_24_regular),
+  GalleryIcon('alef_alef_24_regular', OtzariaIcons.alef_alef_24_regular),
 ];
