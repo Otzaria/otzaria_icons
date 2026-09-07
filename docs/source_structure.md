@@ -137,9 +137,45 @@ python3 tool/audit_geometry.py
 python3 tool/audit_geometry.py --kind self-crossing
 ```
 
-Reports the debris that patching leaves behind - specks, spikes, needles,
-self-crossing contours - and the features too thin to survive at 16 px. Fixing
-any of these moves pixels, so nothing is changed automatically.
+Reports the debris that patching leaves behind - specks, spikes, slivers,
+needles, self-crossing contours - and the features too thin to survive at 16 px.
+It only judges; nothing is changed.
+
+### Removing the debris
+
+```console
+python3 tool/repair_artifacts.py --check      # report, change nothing
+python3 tool/repair_artifacts.py             # all passes
+python3 tool/repair_artifacts.py --lossless  # only the crossings pass
+python3 tool/repair_artifacts.py --only slivers
+```
+
+Acts on what the audit finds. Each category is a separate pass with its own
+justification and its own limit on how far the icon may move:
+
+| Pass | What it removes | Limit |
+| --- | --- | --- |
+| `crossings` | a contour that crosses itself, replaced by the outline its own winding rule already resolves to | exact - nothing moves |
+| `specks` | separate contours far too small to be design | 0.01 sq units of area each |
+| `needles` | consecutive points sitting on top of each other | 0.01 units |
+| `slivers` | a vertex where the outline doubles back on itself - a hairline enclosing no area | 0.004 sq units of area |
+| `spikes` | a whisker jutting off an otherwise smooth outline | 0.05 units |
+
+Two of the passes are bounded by **area removed** rather than by how far the
+outline moves, and that distinction matters. A speck sitting a unit away from
+the body is a whole unit from the remaining outline, and a sliver's vertex can
+stick out a quarter of a unit while the ink it adds is zero. A displacement
+limit would refuse to remove exactly the defects that are most obviously debris,
+so those two are judged by how much ink actually leaves the icon.
+
+The passes feed each other - merging a duplicate point leaves a vertex that is
+now a whisker - so they sweep until nothing changes. Run `tool/format_svg.py`
+afterwards to restore the canonical written form, then `tool/unify_shared_parts.py`.
+
+The audit's **thin ink** and **thin gap** findings are deliberately *not*
+repaired. Those are not debris, they are how the icon was drawn, and widening a
+stroke or opening a gap is a redraw. They stay in the report for a person to
+decide on.
 
 ## Proving that nothing changed
 

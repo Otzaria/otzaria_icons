@@ -29,14 +29,40 @@
   16, 20, 24, 32 and 48 px, whose worst case is 9 of 576 pixels differing by at
   most 7% of one grey level, the signature of a subpixel edge shift.
 
+- Removed the geometric debris that years of hand-patching had left in the
+  outlines. Across the set: **67 specks** (separate filled contours far too
+  small to be design - median 0.00005 square units, slivers that paint
+  nothing), **6 self-crossing contours**, **3 hairline slivers** where an
+  outline doubled back on itself, **412 duplicated points**, and **140
+  whiskers** jutting off otherwise smooth outlines. The self-crossings mattered
+  most: they rendered correctly only because their coordinates happened to land
+  where they did, so any nearby edit could have flipped a large area black or
+  white without warning.
+
+  This is the one change in this release that touches the artwork, and it stays
+  far below anything visible: at 16 px only two icons change at all, by at most
+  3 pixels of 256 and 4% of one grey level. Removing every whisker from the
+  alef, bookshelf and dependent-library icons leaves all three pixel-identical
+  at 500 px. What is gone is only visible under heavy magnification, which is
+  where it was showing up.
+
+  A side effect confirms the debris was debris: before the cleanup, six sources
+  carried "detail" below a thousandth of a unit and needed 4-6 decimals to write
+  losslessly. Afterwards 136 of 137 fit in three decimals.
+
+  The audit's `thin ink` and `thin gap` findings were deliberately left alone -
+  those are design decisions, not debris, and widening a stroke is a redraw.
+
 - Added the tooling that produced and verifies all of the above:
   `tool/format_svg.py` (canonical form), `tool/unify_shared_parts.py` (one
   spelling per shared part), `tool/family_report.py` (what families share and
-  where they have drifted), `tool/audit_geometry.py` (specks, spikes, needles,
-  self-crossing contours, and features too thin to survive at 16 px),
-  `tool/region_diff.py` and `tool/raster_diff.py` (the two independent proofs
-  that a rewrite changed nothing). The rewriting tools refuse any change that
-  moves an outline and leave the file untouched.
+  where they have drifted), `tool/audit_geometry.py` (specks, spikes, slivers,
+  needles, self-crossing contours, and features too thin to survive at 16 px),
+  `tool/repair_artifacts.py` (removes that debris, one bounded pass per defect
+  category), `tool/region_diff.py` and `tool/raster_diff.py` (the two
+  independent proofs of what a rewrite did and did not change). Every tool
+  verifies each edit against the resolved region and keeps it only if the icon
+  stayed inside that pass's limit.
 
 - Refined `book_open_tzurat_hadaf_24_{regular,filled}` further (same names
   and codepoints, visual-only): the glyph is ~1.2x larger, and the center
