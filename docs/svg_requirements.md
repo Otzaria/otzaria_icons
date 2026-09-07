@@ -3,6 +3,13 @@
 An SVG is accepted only when it satisfies the mechanical rules below and passes
 visual review.
 
+Committed sources are additionally kept in one canonical written form - absolute
+commands, one contour per line, a fixed decimal precision per file, and shared
+parts spelled identically across a family. Run `python3 tool/format_svg.py`
+after adding or editing a file; see
+[source_structure.md](source_structure.md) for that form and the tools that
+maintain and verify it.
+
 ## File and naming
 
 - Store files directly in `assets_src/svg/`; do not create one directory per

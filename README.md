@@ -183,6 +183,7 @@ Detailed instructions:
 
 - [Adding icons](docs/adding_icons.md)
 - [SVG requirements](docs/svg_requirements.md)
+- [Source structure and the tools that maintain it](docs/source_structure.md)
 - [Architecture and generated files](docs/architecture.md)
 - [Testing and CI](docs/testing_and_ci.md)
 - [Release process](docs/release_process.md)

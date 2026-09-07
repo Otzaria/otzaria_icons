@@ -4,6 +4,7 @@ analyzer:
   exclude:
     - example/**
     - test_apps/**
+    - build/**
 
 linter:
   rules:

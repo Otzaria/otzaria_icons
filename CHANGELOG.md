@@ -2,6 +2,42 @@
 
 ## Unreleased
 
+- Restructured every source in `assets_src/svg/` into one canonical written
+  form, with **no change to what any icon draws**. The files had been produced
+  by several different editors and patched by hand over years: each was a single
+  unbroken line, coordinates carried up to sixteen decimals of float noise
+  (a corner meant to sit at `22` was written `21.999998`), absolute and relative
+  commands and arcs and smooth-curve shorthands were mixed arbitrarily, and
+  repeated edits had left zero-length segments and duplicated points behind.
+  Sources are now absolute-only, one contour per line, `H`/`V` for axis-aligned
+  edges, free of degenerate geometry, and rounded to a decimal precision chosen
+  per file - the coarsest that provably does not move that file's outline (three
+  decimals for 131 of 137 sources). Source size dropped from 819 KB to 575 KB.
+  See [docs/source_structure.md](docs/source_structure.md).
+
+- Gave shared artwork one spelling across each family: 94 contours in 36 files.
+  The same book cover had existed in six different spellings of the same shape
+  and the same document body in nine, so changing a shared part meant finding
+  and editing every copy by hand. The book cover is now one identical contour
+  across 32 icons. Only contours that were already the same shape were touched,
+  so nothing was redrawn.
+
+- The font, catalog, gallery and golden were regenerated from the restructured
+  sources. Every icon is graphically unchanged: the resolved outline moves at
+  most 0.002 canvas units anywhere (0.002 px at 24 px), verified two independent
+  ways - an exact vector-region comparison and an Inkscape pixel comparison at
+  16, 20, 24, 32 and 48 px, whose worst case is 9 of 576 pixels differing by at
+  most 7% of one grey level, the signature of a subpixel edge shift.
+
+- Added the tooling that produced and verifies all of the above:
+  `tool/format_svg.py` (canonical form), `tool/unify_shared_parts.py` (one
+  spelling per shared part), `tool/family_report.py` (what families share and
+  where they have drifted), `tool/audit_geometry.py` (specks, spikes, needles,
+  self-crossing contours, and features too thin to survive at 16 px),
+  `tool/region_diff.py` and `tool/raster_diff.py` (the two independent proofs
+  that a rewrite changed nothing). The rewriting tools refuse any change that
+  moves an outline and leave the file untouched.
+
 - Refined `book_open_tzurat_hadaf_24_{regular,filled}` further (same names
   and codepoints, visual-only): the glyph is ~1.2x larger, and the center
   block is now a portrait rectangle (taller than wide, like an actual page)
