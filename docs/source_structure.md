@@ -177,6 +177,55 @@ repaired. Those are not debris, they are how the icon was drawn, and widening a
 stroke or opening a gap is a redraw. They stay in the report for a person to
 decide on.
 
+## Changing a letterform's weight
+
+```console
+python3 tool/restroke_alef.py --check    # report, change nothing
+python3 tool/restroke_alef.py            # reweight the family
+```
+
+Unlike everything else here this tool *is* meant to change the artwork: it sets
+the alef lighter and shortens its upper-right leg. It is documented because the
+method generalises to any letterform in this set, and because four of its rules
+were each arrived at by getting the result visibly wrong first.
+
+**The outline is moved, never rebuilt.** Each node and handle travels along its
+own inward normal, so segment count, curve degrees and tangent continuity all
+survive. Rebuilding from a skeleton or re-fitting curves to an offset polyline
+replaces the designer's curves with the tool's, which is how a redraw picks up
+flat spots and lumps.
+
+**Use one factor for every stroke.** The temptation is to grade it - thin the
+heavy end of a stroke more than its fine end. Do not. The only available measure
+of local width is the inscribed circle, and along a tapering stroke that measure
+is not monotone: wherever the outline turns concave the circle collapses, so it
+reads 0.36, 0.87, 0.39, 0.82, 1.58, 0.47 down one leg of this alef. A factor
+keyed to it jumps, the displacement jumps with it, and a displacement that
+varies sharply along an edge *tilts* the edge rather than thinning it - smooth
+concave sweeps come out as straight chords with a corner at each end. Grading
+also flattens the letter's width contrast, which reads as a different design
+rather than a lighter one.
+
+**Hold the joins.** Taking a flat percentage off everything takes it off the
+joins too, and the joins are the thinnest ink in a letter - thinning them makes
+a join read as a gap. Every point's inward move is capped so the ink nowhere
+falls below the letter's own original minimum. Note the cap must be keyed to
+*clearance* - the distance straight across the ink - and not to the inscribed
+circle: beside a join the circle sits on the thick stroke, is large, and never
+notices that the join is narrowing from the other side.
+
+**Finish the outline, do not merely move it.** A digitised source carries a few
+degrees of kink at every join that was drawn smooth, and that scatter is what
+reads as wobble when an icon is enlarged. The finishing pass makes joins drawn
+smooth exactly smooth, eases node tremor within a bounded distance, and leaves
+every drawn corner at its drawn angle. Elevate quadratics to cubics before doing
+any of this: a quadratic's single control point governs the tangent at both ends
+of its segment, so correcting one end undoes the other and the curve stays
+faceted no matter how many passes are run.
+
+Every threshold has its measured justification in the constants at the top of
+the file.
+
 ## Proving that nothing changed
 
 Restructuring artwork is only safe if "nothing changed" can be demonstrated

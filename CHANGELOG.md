@@ -2,6 +2,57 @@
 
 ## Unreleased
 
+- **Set the alef letterform lighter** across the 16 icons that carry it (same
+  names and codepoints, visual change): every stroke is 15% thinner, the
+  upper-right leg is 0.6 units shorter, and the outline has had a finishing
+  pass. The letter is the same letter, in a regular weight instead of a bold
+  one.
+
+  Three rules do the work, and each replaced something that looked wrong:
+
+  * **One factor for every stroke.** Grading it - thinning a leg's thick end
+    more than its thin end - was tried twice and looked wrong both times. The
+    only available measure of local stroke width is the inscribed circle, and
+    along these legs it is not monotone (0.36, 0.87, 0.39, 0.82, 1.58, 0.47)
+    because the outline turns concave. A factor keyed to it jumps, and a
+    displacement that jumps along an edge tilts that edge instead of thinning
+    it: the concave sweep below the upper-right leg came out as a straight
+    chord with a corner at each end. The first attempt also flattened the legs'
+    width contrast from 6.6:1 to 2.1:1, which turns a calligraphic hand into a
+    nearly monolinear one - a different letter, not a lighter one.
+
+  * **Joins are held, not thinned.** A flat percentage takes ink off the joins
+    too, and the joins are the thinnest places in the letter: the lower-left
+    join dropped from 0.697 units of ink to 0.550 until it read as a gap. No
+    point may now move so far inward that the ink anywhere falls below the
+    letter's own original minimum of 0.70 units. The join measures 0.701 in the
+    result.
+
+  * **The outline is finished, not just moved.** Joins drawn smooth are made
+    exactly smooth, node tremor is eased out within a bounded 0.11 units, and
+    every corner the designer drew is kept at its drawn angle. The median kink
+    at a node is now 0.00 degrees against 0.74 as digitised, and three quarters
+    of all nodes are perfectly smooth, while the sharpest corners are unchanged
+    at 101.6 and 112.6 degrees.
+
+  Quadratic segments are elevated to cubics first. A quadratic's single control
+  point governs the tangent at both of its ends, so a correction at one end
+  undoes the other; that alone had capped smoothing at a 2.45-degree median.
+
+  Two icons keep a hairline artefact where the thinned letter pulled away from
+  a shape behind it: `alef_behind_alef_24_regular` (0.012 sq units) and
+  `alef_24_regular` (0.003 sq units, emergent from its counter pinching). Both
+  are far below one pixel at icon sizes.
+
+  `alef_stam` and `alef_rashi` are different letterforms and were excluded. The
+  reduced alef inside `book_alef_24_{regular,filled}` and the alef in
+  `text_alef_bet_list_24_regular` are separately drawn letters rather than
+  copies of this one - shape distance 0.139 and higher, where every icon above
+  matches at 0.000 - so they were left alone and need their own pass.
+
+- Added `tool/restroke_alef.py`, which performs the above and records why each
+  rule is there.
+
 - Restructured every source in `assets_src/svg/` into one canonical written
   form, with **no change to what any icon draws**. The files had been produced
   by several different editors and patched by hand over years: each was a single
