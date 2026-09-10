@@ -1,5 +1,50 @@
 # Changelog
 
+## Unreleased
+
+- Added nine icons (`U+E08A`-`U+E092`). The set now ships **147** icons over a
+  contiguous `U+E000`-`U+E092`.
+
+  * `beit_24_regular` - the beit as a letter icon in its own right. The
+    letterform is the one already drawn in `beit_near_alef_24_regular`, where it
+    stands beside a full-size alef at roughly half its height. Enlarged to a
+    19.20 unit height it carries far too much ink for the family, so every flank
+    of the outline is then eroded 0.45 units - one amount for every stroke,
+    never graded - which takes 0.90 off each stroke's width while leaving its
+    centre line, and so the letter's spine, exactly where it was. The result is
+    13.67 x 18.17, the tallest letter in the set after the alef (19.26) and the
+    lightest (mean stroke 2.45 units against alef's 2.61 and tet's 2.69).
+
+  * `document_html_24_{regular,filled}`, `document_md_24_{regular,filled}` and
+    `document_tet_24_{regular,filled}` - the `document_word` page, unchanged
+    down to the folded corner, with a new letter block. The single letters keep
+    the W's cap height and baseline (6.44 units tall, y 11.06-17.50); `MD` is
+    two letters, so it drops to 4.63 units to hold the same 1.5 unit margin from
+    the page's inner rule that the `book_*` letter blocks use. `MD` reuses the
+    letterforms from `book_md_24_regular` and the tet is the `tet_24_regular`
+    letter at 9.00 units, placed like the tet in `book_tet_24_regular`. Each
+    filled variant knocks its letters out of the solid page.
+
+  * `search_in_the_quote_24_regular` - the family's magnifier with a pair of
+    quote marks in the lens, scaled so their ink reaches 4.96 units from the
+    lens centre, within the 4.6-5.1 the rest of the family's lens content uses.
+    This is the package's first `modified_fluent` icon: the marks come from
+    Fluent's `text_quote_24_regular`, so `THIRD_PARTY_NOTICES.md` is no longer
+    empty.
+
+  * `alef_copy_24_regular` - the solid alef with a copy badge at the bottom
+    right, on the same badge in the same place as `alef_deletion_24_regular` and
+    `alef_with_information_24_regular`. Fluent draws copy as two outlined
+    sheets; at badge scale its 1.5-unit rings would fall to 0.4 and vanish, so
+    the sheets are cut out solid with 0.6 units of badge ink between them.
+
+- Doubled the line weight in `torah_scroll_24_regular` (same name and codepoint,
+  visual change). The ten lines of text went from 0.41 to 0.80 units and the
+  parchment's top and bottom rails from 0.42/0.46 to 0.80, thickened inwards so
+  the scroll's silhouette is untouched. At 0.41 the text was invisible below
+  32 px and read lighter than the rollers it sits between; 1.00 was tried and
+  closed the 1.64-unit line pitch into a barcode.
+
 ## 0.3.0 - 2026-09-08
 
 - Added `alef_alef_24_regular` (`U+E089`): two alefs of equal size side by side,

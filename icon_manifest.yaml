@@ -2070,3 +2070,138 @@ icons:
     author: Otzaria contributors
     license: GPL-3.0-only
     upstream_commit: null
+  - id: icon-0139
+    name: alef_copy_24_regular
+    source: assets_src/svg/alef_copy_24_regular.svg
+    codepoint: 0xe08a
+    variant: regular
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: custom
+    based_on: null
+    author: Otzaria contributors
+    license: GPL-3.0-only
+    upstream_commit: null
+  - id: icon-0140
+    name: beit_24_regular
+    source: assets_src/svg/beit_24_regular.svg
+    codepoint: 0xe08b
+    variant: regular
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: custom
+    based_on: null
+    author: Otzaria contributors
+    license: GPL-3.0-only
+    upstream_commit: null
+  - id: icon-0141
+    name: document_html_24_filled
+    source: assets_src/svg/document_html_24_filled.svg
+    codepoint: 0xe08c
+    variant: filled
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: custom
+    based_on: null
+    author: Otzaria contributors
+    license: GPL-3.0-only
+    upstream_commit: null
+  - id: icon-0142
+    name: document_html_24_regular
+    source: assets_src/svg/document_html_24_regular.svg
+    codepoint: 0xe08d
+    variant: regular
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: custom
+    based_on: null
+    author: Otzaria contributors
+    license: GPL-3.0-only
+    upstream_commit: null
+  - id: icon-0143
+    name: document_md_24_filled
+    source: assets_src/svg/document_md_24_filled.svg
+    codepoint: 0xe08e
+    variant: filled
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: custom
+    based_on: null
+    author: Otzaria contributors
+    license: GPL-3.0-only
+    upstream_commit: null
+  - id: icon-0144
+    name: document_md_24_regular
+    source: assets_src/svg/document_md_24_regular.svg
+    codepoint: 0xe08f
+    variant: regular
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: custom
+    based_on: null
+    author: Otzaria contributors
+    license: GPL-3.0-only
+    upstream_commit: null
+  - id: icon-0145
+    name: document_tet_24_filled
+    source: assets_src/svg/document_tet_24_filled.svg
+    codepoint: 0xe090
+    variant: filled
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: custom
+    based_on: null
+    author: Otzaria contributors
+    license: GPL-3.0-only
+    upstream_commit: null
+  - id: icon-0146
+    name: document_tet_24_regular
+    source: assets_src/svg/document_tet_24_regular.svg
+    codepoint: 0xe091
+    variant: regular
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: custom
+    based_on: null
+    author: Otzaria contributors
+    license: GPL-3.0-only
+    upstream_commit: null
+  - id: icon-0147
+    name: search_in_the_quote_24_regular
+    source: assets_src/svg/search_in_the_quote_24_regular.svg
+    codepoint: 0xe092
+    variant: regular
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: modified_fluent
+    based_on: 'microsoft/fluentui-system-icons: assets/Text Quote/SVG/ic_fluent_text_quote_24_regular.svg'
+    author: Otzaria contributors
+    license: MIT AND GPL-3.0-only
+    upstream_commit: e8dec25e0e78e54716e4a6156fc72eb0b021414f

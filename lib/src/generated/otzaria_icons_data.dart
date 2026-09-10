@@ -975,6 +975,69 @@ abstract final class OtzariaIcons {
     fontPackage: fontPackage,
   );
 
+  /// `alef_copy_24_regular.svg`
+  static const IconData alef_copy_24_regular = IconData(
+    0xe08a,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `beit_24_regular.svg`
+  static const IconData beit_24_regular = IconData(
+    0xe08b,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `document_html_24_filled.svg`
+  static const IconData document_html_24_filled = IconData(
+    0xe08c,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `document_html_24_regular.svg`
+  static const IconData document_html_24_regular = IconData(
+    0xe08d,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `document_md_24_filled.svg`
+  static const IconData document_md_24_filled = IconData(
+    0xe08e,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `document_md_24_regular.svg`
+  static const IconData document_md_24_regular = IconData(
+    0xe08f,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `document_tet_24_filled.svg`
+  static const IconData document_tet_24_filled = IconData(
+    0xe090,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `document_tet_24_regular.svg`
+  static const IconData document_tet_24_regular = IconData(
+    0xe091,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `search_in_the_quote_24_regular.svg`
+  static const IconData search_in_the_quote_24_regular = IconData(
+    0xe092,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
   /// Every icon in this library, keyed by its name.
   static const Map<String, IconData> allIcons = <String, IconData>{
     'book_24_filled': book_24_filled,
@@ -1115,5 +1178,14 @@ abstract final class OtzariaIcons {
     'book_md_24_filled': book_md_24_filled,
     'book_md_24_regular': book_md_24_regular,
     'alef_alef_24_regular': alef_alef_24_regular,
+    'alef_copy_24_regular': alef_copy_24_regular,
+    'beit_24_regular': beit_24_regular,
+    'document_html_24_filled': document_html_24_filled,
+    'document_html_24_regular': document_html_24_regular,
+    'document_md_24_filled': document_md_24_filled,
+    'document_md_24_regular': document_md_24_regular,
+    'document_tet_24_filled': document_tet_24_filled,
+    'document_tet_24_regular': document_tet_24_regular,
+    'search_in_the_quote_24_regular': search_in_the_quote_24_regular,
   };
 }

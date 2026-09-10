@@ -105,7 +105,7 @@ python3 tool/format_svg.py            # rewrite every source canonically
 python3 tool/format_svg.py --check    # report, change nothing
 ```
 
-Idempotent: running it on already-formatted sources reports 138 unchanged.
+Idempotent: running it on already-formatted sources reports 147 unchanged.
 
 ### Unifying shared parts
 

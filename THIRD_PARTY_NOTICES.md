@@ -2,6 +2,8 @@
 
 This file is generated from `icon_manifest.yaml` by `tool/generate.dart`.
 
-No third-party icon artwork is included in the current release.
+## Modified Fluent UI System Icons
 
-Every current icon is recorded as original artwork (`origin: custom`) and is released under GPL-3.0-only. See `LICENSE`.
+The following entries are derivative works and retain the provenance recorded in the manifest:
+
+- `search_in_the_quote_24_regular` — based on `microsoft/fluentui-system-icons: assets/Text Quote/SVG/ic_fluent_text_quote_24_regular.svg` at `e8dec25e0e78e54716e4a6156fc72eb0b021414f`; license: MIT AND GPL-3.0-only.
