@@ -75,6 +75,7 @@ described in [source_structure.md](source_structure.md):
 | `audit_geometry.py` | Reports specks, spikes, slivers, needles, self-crossing contours, and features too thin for 16 px. |
 | `repair_artifacts.py` | Removes that debris, one bounded pass per defect category. |
 | `restroke_alef.py` | Changes a letterform's stroke weights and length. |
+| `replace_alef.py` | Swaps a letterform for a new drawing everywhere it appears, finding its instances by shape rather than by bounding box. |
 | `region_diff.py` | Proves a rewrite did not change what an icon draws, by comparing exact vector regions. |
 | `raster_diff.py` | The same question answered independently, by rendering both versions and comparing pixels. |
 

@@ -45,6 +45,40 @@
   32 px and read lighter than the rollers it sits between; 1.00 was tried and
   closed the 1.64-unit line pitch into a barcode.
 
+- **Redrew the alef letterform** across the 21 icons that carry it (same names
+  and codepoints, visual change). The letter is no longer the one that has been
+  patched stroke by stroke since 0.3.0: it is traced from a drawing supplied by
+  the maintainer, so its curves are the drawing's curves rather than the
+  accumulated result of a dozen local corrections.
+
+  The trace reads the drawing's greyscale, not a thresholded bitmap: every
+  boundary point sits where the ink crosses half coverage, which is accurate to
+  a fraction of a pixel and leaves no staircase to smooth away afterwards. It is
+  refitted as **78 cubics over 5 corners** at a tolerance of 0.025 units.
+  Rendered back at the drawing's own resolution, 1.4% of the letter's pixels
+  differ from it, and every one of them is in a rim less than a pixel wide.
+
+  The letter is placed at the family's own alef height and centre: 14.85 x 19.20
+  units against 15.17 x 19.26 before, so its box narrows by 0.32 and its centre
+  does not move. Fitting it to the old box instead would have stretched it by
+  2% in one axis only.
+
+  `tool/replace_alef.py` found and swapped all 23 instances. It matches by shape
+  - a contour is an instance when, scaled and placed on the letterform's box, it
+  differs from it by under 5% of its area - because the family holds book
+  covers, document bodies and a tet whose boxes have the alef's proportions and
+  which a bounding-box test matches by the dozen. Four small alefs are not
+  copies of the letterform but separate, simpler drawings of it, 0.13 to 0.46
+  away; they are named explicitly in the tool and replaced too, because each one
+  shares an icon with a full-size alef and would otherwise have left the old
+  letterform standing beside the new one.
+
+  `alef_24_regular` is the letterform hollowed out rather than a copy of it, so
+  it is rebuilt as the new letterform minus its own 0.48-unit inset - the width
+  that reproduces the drawn outline to within 4% of its area.
+  `alef_stam_24_regular` and `alef_rashi_24_regular` are different letterforms
+  and are untouched.
+
 ## 0.3.0 - 2026-09-08
 
 - Added `alef_alef_24_regular` (`U+E089`): two alefs of equal size side by side,
