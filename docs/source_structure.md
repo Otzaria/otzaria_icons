@@ -105,7 +105,8 @@ python3 tool/format_svg.py            # rewrite every source canonically
 python3 tool/format_svg.py --check    # report, change nothing
 ```
 
-Idempotent: running it on already-formatted sources reports 147 unchanged.
+Idempotent: running it on already-formatted sources reports every one of them
+unchanged.
 
 ### Unifying shared parts
 
@@ -225,6 +226,116 @@ faceted no matter how many passes are run.
 
 Every threshold has its measured justification in the constants at the top of
 the file.
+
+## Composing an icon out of the artwork already here
+
+```console
+python3 tool/compose_sources.py --list     # what is composed
+python3 tool/compose_sources.py            # rebuild all of it
+python3 tool/compose_sources.py <name>     # rebuild one
+python3 tool/format_svg.py                 # then canonicalise the output
+```
+
+Most icons in this set are not drawn from nothing. They are an existing
+letterform, page or chain with a badge added, a letter swapped, or a weight
+changed. Copying a path into a new file by hand is what makes a family drift —
+the alef badge disc already exists in two slightly different spellings from
+exactly that, one of them 0.2 units off the other. So an icon of that kind is
+written as a **recipe against the committed sources**: the disc in a new badge
+icon is not a copy of the disc, it *is* the disc, read out of
+`alef_copy_24_regular.svg` at build time. When the alef is redrawn again — it
+has been twice — every composed icon that carries one picks the new letter up on
+the next run.
+
+`tool/icon_compose.py` is the toolkit the recipes are written in, and
+`tool/compose_sources.py` holds the recipes. Three things in it are worth
+knowing before writing another one.
+
+**Everything works on the resolved region.** An icon's ink is the union of its
+solid paths *minus* its `fill="white"` knockouts, which is what
+`repair_glyphs.py` builds the glyph from. Reading raw `<path>` elements instead
+treats a knockout as ink, and every filled letter icon comes back as a blob.
+`glyph(name)` resolves it; `silhouette(name)` fills the knockouts back in.
+
+**`grow` and `shrink` are real outline offsets**, built by stroking the region's
+own boundary and unioning or subtracting the band. That is what lets a filled
+variant be *derived* from a regular one rather than redrawn beside it:
+`book_open_medium_24_filled` is the regular icon's silhouette with a black ring
+taken out of its edge, a white band behind that, and the regular icon's own
+black lines knocked out of what is left — so the pair cannot drift apart or
+differ in optical size.
+
+**But the offset is not always trustworthy, and it does not announce it.** Skia's
+stroker returns wrong answers on hand-drawn outlines full of near-degenerate
+detail. Eroding the `otzaria_icon` cover — 351 square units — by 0.50 returns
+36; by 0.80 it returns 294; by 1.00 it fails outright. Three defences, in order
+of preference:
+
+- **Don't offset what you don't have to.** The filled `otzaria_icon` variants
+  take the white band's inner edge from the boundary the designer already drew,
+  and construct only the outer line, from a scaled copy of the cover. Exact
+  arithmetic cannot go wrong quietly.
+- **`deburr()` before offsetting.** An opening of 0.03 units — a thirtieth of a
+  pixel at 24 px — clears the doubled points and almost-touching edges that the
+  offset would otherwise amplify. It took the open books from 114 fragments to
+  one. Use `despeckle()` for whatever survives.
+- **Fail loudly.** `shrink` raises rather than returning an empty region when a
+  small erosion consumes everything, and `write()` refuses a source with under
+  one square unit of ink. Both exist because a silent collapse shipped a blank
+  glyph once.
+
+`round_corners(outer, inner)` eases a shape: an *opening* rounds the convex
+corners and can never spread the region, so it is safe at any radius the strokes
+can afford; a *closing* rounds the concave ones but bridges anything narrower
+than twice its radius, so `inner` must stay under half the smallest gap in the
+artwork. Both are idempotent in principle — which is why the letter recipes can
+be re-run — though in practice they are re-run on their own offset output, and
+skia refuses that, so they check first whether there is anything left to ease.
+
+**A recipe whose input is its own output is not idempotent.** Widening the Rashi
+alef reads `alef_rashi_24_regular` and writes it back, so a second run widens it
+twice. That one carries an explicit guard that refuses to run on a letter that
+is already wide; any future in-place recipe needs the same, because
+`compose_sources.py` with no arguments rebuilds everything.
+
+New sources are written with plain absolute path data and are expected to be run
+through `format_svg.py` afterwards, which canonicalises them and — because it
+checks every rewrite against `region_diff.py` — also proves the canonical form
+did not move what the composer produced.
+
+### Marks taken from Fluent
+
+Some of these icons put a small Fluent mark on Otzaria artwork — a highlighter,
+an eraser, a pair of scissors. Drawing those by hand does not work: they come
+out as *a* highlighter rather than *the* highlighter, and beside the rest of a
+Fluent toolbar they read as a different hand. The only way to match the line is
+to use the line.
+
+Fluent ships no SVG in its Dart package, but a glyph outline is the same
+artwork. `tool/fluent_art.py` reads a glyph out of `FluentSystemIcons-*.ttf` in
+the pub cache and maps it back onto the 24×24 canvas. Three things it settles:
+
+- **Take the mark from the *filled* font.** Fluent's regular style is an
+  outline drawn with 1.5-unit strokes for a 24-unit canvas. Reduced to a badge a
+  fifth that size those strokes land near 0.3 units — a third of a pixel at
+  24 px — and the mark comes out as a ring too fine to print.
+- **Put the weight back after scaling.** `weighted()` fits the mark by *reach*
+  (how far its ink gets from the centre, which is the right measure for a round
+  badge) and then offsets it outward until its mean stroke is back above
+  `BADGE_MIN_STROKE`. Fluent solves the same problem by redrawing the mark at
+  badge scale — `link_person`'s person is a plain solid head and body, not the
+  person icon shrunk — this keeps the drawing and restores the ink.
+- **Record it.** Anything built on Fluent is `modified_fluent` in the manifest
+  and must carry `based_on` and `upstream_commit`; `THIRD_PARTY_NOTICES.md` is
+  generated from those fields. `compose_sources.py --provenance` writes them
+  from what the recipes actually fetched, so the record cannot drift from the
+  artwork. It writes no source, so it is safe to run after `format_svg.py`.
+
+Fluent also badges its own `link`, with exactly the concept this set uses — a
+solid disc at the bottom right, the mark knocked out of it, the base cut back to
+clear it. `link_dismiss_24_regular` is taken apart and reassembled rather than
+imitated, so the `link_*` family here carries Fluent's own cut-back and Fluent's
+own circle in Fluent's own place.
 
 ## Proving that nothing changed
 

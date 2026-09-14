@@ -30,8 +30,11 @@ void main() {
     'book_upload_24_filled': OtzariaIcons.book_upload_24_filled,
     'book_pdf_24_filled': OtzariaIcons.book_pdf_24_filled,
     'book_search_24_filled': OtzariaIcons.book_search_24_filled,
-    'book_link_24_filled': OtzariaIcons.book_link_24_filled,
-    'book_hyperlink_24_regular': OtzariaIcons.book_hyperlink_24_regular,
+    // Renamed, not replaced: the chain-in-a-book is now book_links, and what
+    // was book_hyperlink is now book_link. Both entries still name the same
+    // two pieces of artwork this test has always covered.
+    'book_links_24_filled': OtzariaIcons.book_links_24_filled,
+    'book_link_24_regular': OtzariaIcons.book_link_24_regular,
     'bookshelf_24_regular': OtzariaIcons.bookshelf_24_regular,
     'book_open_large_search_24_filled':
         OtzariaIcons.book_open_large_search_24_filled,

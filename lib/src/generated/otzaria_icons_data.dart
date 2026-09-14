@@ -51,29 +51,29 @@ abstract final class OtzariaIcons {
     fontPackage: fontPackage,
   );
 
-  /// `book_hyperlink_24_filled.svg`
-  static const IconData book_hyperlink_24_filled = IconData(
-    0xe006,
-    fontFamily: fontFamily,
-    fontPackage: fontPackage,
-  );
-
-  /// `book_hyperlink_24_regular.svg`
-  static const IconData book_hyperlink_24_regular = IconData(
-    0xe007,
-    fontFamily: fontFamily,
-    fontPackage: fontPackage,
-  );
-
   /// `book_link_24_filled.svg`
   static const IconData book_link_24_filled = IconData(
-    0xe008,
+    0xe006,
     fontFamily: fontFamily,
     fontPackage: fontPackage,
   );
 
   /// `book_link_24_regular.svg`
   static const IconData book_link_24_regular = IconData(
+    0xe007,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `book_links_24_filled.svg`
+  static const IconData book_links_24_filled = IconData(
+    0xe008,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `book_links_24_regular.svg`
+  static const IconData book_links_24_regular = IconData(
     0xe009,
     fontFamily: fontFamily,
     fontPackage: fontPackage,
@@ -296,744 +296,891 @@ abstract final class OtzariaIcons {
     fontPackage: fontPackage,
   );
 
-  /// `hyperlink_24_regular.svg`
-  static const IconData hyperlink_24_regular = IconData(
+  /// `links_24_regular.svg`
+  static const IconData links_24_regular = IconData(
     0xe029,
-    fontFamily: fontFamily,
-    fontPackage: fontPackage,
-  );
-
-  /// `link_24_regular.svg`
-  static const IconData link_24_regular = IconData(
-    0xe02a,
     fontFamily: fontFamily,
     fontPackage: fontPackage,
   );
 
   /// `otzaria_icon_24_regular.svg`
   static const IconData otzaria_icon_24_regular = IconData(
-    0xe02b,
+    0xe02a,
     fontFamily: fontFamily,
     fontPackage: fontPackage,
   );
 
   /// `otzaria_icon_empty_24_regular.svg`
   static const IconData otzaria_icon_empty_24_regular = IconData(
-    0xe02c,
+    0xe02b,
     fontFamily: fontFamily,
     fontPackage: fontPackage,
   );
 
   /// `otzaria_icon_line_24_regular.svg`
   static const IconData otzaria_icon_line_24_regular = IconData(
-    0xe02d,
+    0xe02c,
     fontFamily: fontFamily,
     fontPackage: fontPackage,
   );
 
   /// `search_24_filled.svg`
   static const IconData search_24_filled = IconData(
-    0xe02e,
+    0xe02d,
     fontFamily: fontFamily,
     fontPackage: fontPackage,
   );
 
   /// `search_24_regular.svg`
   static const IconData search_24_regular = IconData(
-    0xe02f,
+    0xe02e,
     fontFamily: fontFamily,
     fontPackage: fontPackage,
   );
 
   /// `search_in_the_book_24_regular.svg`
   static const IconData search_in_the_book_24_regular = IconData(
-    0xe030,
+    0xe02f,
     fontFamily: fontFamily,
     fontPackage: fontPackage,
   );
 
   /// `search_in_the_library_24_regular.svg`
   static const IconData search_in_the_library_24_regular = IconData(
-    0xe031,
+    0xe030,
     fontFamily: fontFamily,
     fontPackage: fontPackage,
   );
 
   /// `search_not_found_24_filled.svg`
   static const IconData search_not_found_24_filled = IconData(
-    0xe032,
+    0xe031,
     fontFamily: fontFamily,
     fontPackage: fontPackage,
   );
 
   /// `search_not_found_24_regular.svg`
   static const IconData search_not_found_24_regular = IconData(
-    0xe033,
+    0xe032,
     fontFamily: fontFamily,
     fontPackage: fontPackage,
   );
 
   /// `apps_list_24_filled.svg`
   static const IconData apps_list_24_filled = IconData(
-    0xe034,
+    0xe033,
     fontFamily: fontFamily,
     fontPackage: fontPackage,
   );
 
   /// `apps_list_24_regular.svg`
   static const IconData apps_list_24_regular = IconData(
-    0xe035,
+    0xe034,
     fontFamily: fontFamily,
     fontPackage: fontPackage,
   );
 
   /// `apps_list_detail_24_filled.svg`
   static const IconData apps_list_detail_24_filled = IconData(
-    0xe036,
+    0xe035,
     fontFamily: fontFamily,
     fontPackage: fontPackage,
   );
 
   /// `apps_list_detail_24_regular.svg`
   static const IconData apps_list_detail_24_regular = IconData(
-    0xe037,
+    0xe036,
     fontFamily: fontFamily,
     fontPackage: fontPackage,
   );
 
   /// `document_bullet_list_24_filled.svg`
   static const IconData document_bullet_list_24_filled = IconData(
-    0xe038,
+    0xe037,
     fontFamily: fontFamily,
     fontPackage: fontPackage,
   );
 
   /// `document_bullet_list_24_regular.svg`
   static const IconData document_bullet_list_24_regular = IconData(
-    0xe039,
+    0xe038,
     fontFamily: fontFamily,
     fontPackage: fontPackage,
   );
 
   /// `group_list_24_filled.svg`
   static const IconData group_list_24_filled = IconData(
-    0xe03a,
+    0xe039,
     fontFamily: fontFamily,
     fontPackage: fontPackage,
   );
 
   /// `group_list_24_regular.svg`
   static const IconData group_list_24_regular = IconData(
-    0xe03b,
+    0xe03a,
     fontFamily: fontFamily,
     fontPackage: fontPackage,
   );
 
   /// `list_24_filled.svg`
   static const IconData list_24_filled = IconData(
-    0xe03c,
+    0xe03b,
     fontFamily: fontFamily,
     fontPackage: fontPackage,
   );
 
   /// `list_24_regular.svg`
   static const IconData list_24_regular = IconData(
-    0xe03d,
+    0xe03c,
     fontFamily: fontFamily,
     fontPackage: fontPackage,
   );
 
   /// `alef_24_filled.svg`
   static const IconData alef_24_filled = IconData(
-    0xe03e,
+    0xe03d,
     fontFamily: fontFamily,
     fontPackage: fontPackage,
   );
 
   /// `alef_24_regular.svg`
   static const IconData alef_24_regular = IconData(
-    0xe03f,
+    0xe03e,
     fontFamily: fontFamily,
     fontPackage: fontPackage,
   );
 
   /// `alef_behind_alef_24_regular.svg`
   static const IconData alef_behind_alef_24_regular = IconData(
-    0xe040,
+    0xe03f,
     fontFamily: fontFamily,
     fontPackage: fontPackage,
   );
 
   /// `alef_deletion_24_regular.svg`
   static const IconData alef_deletion_24_regular = IconData(
-    0xe041,
+    0xe040,
     fontFamily: fontFamily,
     fontPackage: fontPackage,
   );
 
   /// `alef_near_alef_24_regular.svg`
   static const IconData alef_near_alef_24_regular = IconData(
-    0xe042,
+    0xe041,
     fontFamily: fontFamily,
     fontPackage: fontPackage,
   );
 
   /// `alef_with_eraser_24_regular.svg`
   static const IconData alef_with_eraser_24_regular = IconData(
-    0xe043,
+    0xe042,
     fontFamily: fontFamily,
     fontPackage: fontPackage,
   );
 
   /// `alef_with_flavors_24_regular.svg`
   static const IconData alef_with_flavors_24_regular = IconData(
-    0xe044,
+    0xe043,
     fontFamily: fontFamily,
     fontPackage: fontPackage,
   );
 
   /// `alef_with_information_24_regular.svg`
   static const IconData alef_with_information_24_regular = IconData(
-    0xe045,
+    0xe044,
     fontFamily: fontFamily,
     fontPackage: fontPackage,
   );
 
   /// `alef_with_punctuation_24_regular.svg`
   static const IconData alef_with_punctuation_24_regular = IconData(
-    0xe046,
+    0xe045,
     fontFamily: fontFamily,
     fontPackage: fontPackage,
   );
 
   /// `alef_with_score_24_regular.svg`
   static const IconData alef_with_score_24_regular = IconData(
-    0xe047,
+    0xe046,
     fontFamily: fontFamily,
     fontPackage: fontPackage,
   );
 
   /// `beit_behind_alef_24_regular.svg`
   static const IconData beit_behind_alef_24_regular = IconData(
-    0xe048,
+    0xe047,
     fontFamily: fontFamily,
     fontPackage: fontPackage,
   );
 
   /// `beit_near_alef_24_regular.svg`
   static const IconData beit_near_alef_24_regular = IconData(
-    0xe049,
+    0xe048,
     fontFamily: fontFamily,
     fontPackage: fontPackage,
   );
 
   /// `booklet_24_regular.svg`
   static const IconData booklet_24_regular = IconData(
-    0xe04a,
+    0xe049,
     fontFamily: fontFamily,
     fontPackage: fontPackage,
   );
 
   /// `calendar_24_filled.svg`
   static const IconData calendar_24_filled = IconData(
-    0xe04b,
+    0xe04a,
     fontFamily: fontFamily,
     fontPackage: fontPackage,
   );
 
   /// `calendar_24_regular.svg`
   static const IconData calendar_24_regular = IconData(
-    0xe04c,
+    0xe04b,
     fontFamily: fontFamily,
     fontPackage: fontPackage,
   );
 
   /// `clipboard_task_list_24_filled.svg`
   static const IconData clipboard_task_list_24_filled = IconData(
-    0xe04d,
+    0xe04c,
     fontFamily: fontFamily,
     fontPackage: fontPackage,
   );
 
   /// `clipboard_task_list_24_regular.svg`
   static const IconData clipboard_task_list_24_regular = IconData(
-    0xe04e,
+    0xe04d,
     fontFamily: fontFamily,
     fontPackage: fontPackage,
   );
 
   /// `clipboard_text_24_filled.svg`
   static const IconData clipboard_text_24_filled = IconData(
-    0xe04f,
+    0xe04e,
     fontFamily: fontFamily,
     fontPackage: fontPackage,
   );
 
   /// `clipboard_text_rtl_24_regular.svg`
   static const IconData clipboard_text_rtl_24_regular = IconData(
-    0xe050,
+    0xe04f,
     fontFamily: fontFamily,
     fontPackage: fontPackage,
   );
 
   /// `icon_x_24_regular.svg`
   static const IconData icon_x_24_regular = IconData(
-    0xe051,
+    0xe050,
     fontFamily: fontFamily,
     fontPackage: fontPackage,
   );
 
   /// `otzaria_icon_2_page_24_regular.svg`
   static const IconData otzaria_icon_2_page_24_regular = IconData(
-    0xe052,
+    0xe051,
     fontFamily: fontFamily,
     fontPackage: fontPackage,
   );
 
   /// `otzaria_icon_2_page_line_24_regular.svg`
   static const IconData otzaria_icon_2_page_line_24_regular = IconData(
-    0xe053,
+    0xe052,
     fontFamily: fontFamily,
     fontPackage: fontPackage,
   );
 
   /// `person_24_filled.svg`
   static const IconData person_24_filled = IconData(
-    0xe054,
+    0xe053,
     fontFamily: fontFamily,
     fontPackage: fontPackage,
   );
 
   /// `person_24_regular.svg`
   static const IconData person_24_regular = IconData(
-    0xe055,
+    0xe054,
     fontFamily: fontFamily,
     fontPackage: fontPackage,
   );
 
   /// `search_in_the_document_24_regular.svg`
   static const IconData search_in_the_document_24_regular = IconData(
-    0xe056,
+    0xe055,
     fontFamily: fontFamily,
     fontPackage: fontPackage,
   );
 
   /// `stander_24_filled.svg`
   static const IconData stander_24_filled = IconData(
-    0xe057,
+    0xe056,
     fontFamily: fontFamily,
     fontPackage: fontPackage,
   );
 
   /// `stander_24_regular.svg`
   static const IconData stander_24_regular = IconData(
-    0xe058,
+    0xe057,
     fontFamily: fontFamily,
     fontPackage: fontPackage,
   );
 
   /// `task_list_24_filled.svg`
   static const IconData task_list_24_filled = IconData(
-    0xe059,
+    0xe058,
     fontFamily: fontFamily,
     fontPackage: fontPackage,
   );
 
   /// `task_list_24_regular.svg`
   static const IconData task_list_24_regular = IconData(
-    0xe05a,
+    0xe059,
     fontFamily: fontFamily,
     fontPackage: fontPackage,
   );
 
   /// `task_list_square_24_filled.svg`
   static const IconData task_list_square_24_filled = IconData(
-    0xe05b,
+    0xe05a,
     fontFamily: fontFamily,
     fontPackage: fontPackage,
   );
 
   /// `task_list_square_24_regular.svg`
   static const IconData task_list_square_24_regular = IconData(
-    0xe05c,
+    0xe05b,
     fontFamily: fontFamily,
     fontPackage: fontPackage,
   );
 
   /// `text_bullet_list_24_filled.svg`
   static const IconData text_bullet_list_24_filled = IconData(
-    0xe05d,
+    0xe05c,
     fontFamily: fontFamily,
     fontPackage: fontPackage,
   );
 
   /// `text_bullet_list_24_regular.svg`
   static const IconData text_bullet_list_24_regular = IconData(
-    0xe05e,
+    0xe05d,
     fontFamily: fontFamily,
     fontPackage: fontPackage,
   );
 
   /// `text_continuous_24_filled.svg`
   static const IconData text_continuous_24_filled = IconData(
-    0xe05f,
+    0xe05e,
     fontFamily: fontFamily,
     fontPackage: fontPackage,
   );
 
   /// `text_continuous_24_regular.svg`
   static const IconData text_continuous_24_regular = IconData(
-    0xe060,
+    0xe05f,
     fontFamily: fontFamily,
     fontPackage: fontPackage,
   );
 
   /// `text_number_list_24_filled.svg`
   static const IconData text_number_list_24_filled = IconData(
-    0xe061,
+    0xe060,
     fontFamily: fontFamily,
     fontPackage: fontPackage,
   );
 
   /// `text_number_list_24_regular.svg`
   static const IconData text_number_list_24_regular = IconData(
-    0xe062,
+    0xe061,
     fontFamily: fontFamily,
     fontPackage: fontPackage,
   );
 
   /// `torah_scroll_24_regular.svg`
   static const IconData torah_scroll_24_regular = IconData(
-    0xe063,
+    0xe062,
     fontFamily: fontFamily,
     fontPackage: fontPackage,
   );
 
   /// `alef_1_24_regular.svg`
   static const IconData alef_1_24_regular = IconData(
-    0xe064,
+    0xe063,
     fontFamily: fontFamily,
     fontPackage: fontPackage,
   );
 
   /// `alef_2_24_regular.svg`
   static const IconData alef_2_24_regular = IconData(
-    0xe065,
+    0xe064,
     fontFamily: fontFamily,
     fontPackage: fontPackage,
   );
 
   /// `alef_3_24_regular.svg`
   static const IconData alef_3_24_regular = IconData(
-    0xe066,
+    0xe065,
     fontFamily: fontFamily,
     fontPackage: fontPackage,
   );
 
   /// `alef_writing_24_regular.svg`
   static const IconData alef_writing_24_regular = IconData(
-    0xe067,
+    0xe066,
     fontFamily: fontFamily,
     fontPackage: fontPackage,
   );
 
   /// `book_alef_24_filled.svg`
   static const IconData book_alef_24_filled = IconData(
-    0xe068,
+    0xe067,
     fontFamily: fontFamily,
     fontPackage: fontPackage,
   );
 
   /// `book_alef_24_regular.svg`
   static const IconData book_alef_24_regular = IconData(
-    0xe069,
+    0xe068,
     fontFamily: fontFamily,
     fontPackage: fontPackage,
   );
 
   /// `book_open_tzurat_hadaf_24_filled.svg`
   static const IconData book_open_tzurat_hadaf_24_filled = IconData(
-    0xe06a,
+    0xe069,
     fontFamily: fontFamily,
     fontPackage: fontPackage,
   );
 
   /// `book_open_tzurat_hadaf_24_regular.svg`
   static const IconData book_open_tzurat_hadaf_24_regular = IconData(
-    0xe06b,
+    0xe06a,
     fontFamily: fontFamily,
     fontPackage: fontPackage,
   );
 
   /// `search_in_the_text_24_regular.svg`
   static const IconData search_in_the_text_24_regular = IconData(
-    0xe06c,
+    0xe06b,
     fontFamily: fontFamily,
     fontPackage: fontPackage,
   );
 
   /// `text_alef_bet_list_24_regular.svg`
   static const IconData text_alef_bet_list_24_regular = IconData(
-    0xe06d,
+    0xe06c,
     fontFamily: fontFamily,
     fontPackage: fontPackage,
   );
 
   /// `search_in_the_settings_24_regular.svg`
   static const IconData search_in_the_settings_24_regular = IconData(
-    0xe06e,
+    0xe06d,
     fontFamily: fontFamily,
     fontPackage: fontPackage,
   );
 
   /// `clock_add_24_regular.svg`
   static const IconData clock_add_24_regular = IconData(
-    0xe06f,
+    0xe06e,
     fontFamily: fontFamily,
     fontPackage: fontPackage,
   );
 
   /// `search_in_the_person_24_regular.svg`
   static const IconData search_in_the_person_24_regular = IconData(
-    0xe070,
+    0xe06f,
     fontFamily: fontFamily,
     fontPackage: fontPackage,
   );
 
   /// `book_information_24_filled.svg`
   static const IconData book_information_24_filled = IconData(
-    0xe071,
+    0xe070,
     fontFamily: fontFamily,
     fontPackage: fontPackage,
   );
 
   /// `book_information_24_regular.svg`
   static const IconData book_information_24_regular = IconData(
-    0xe072,
+    0xe071,
     fontFamily: fontFamily,
     fontPackage: fontPackage,
   );
 
   /// `yoma_deilula_24_regular.svg`
   static const IconData yoma_deilula_24_regular = IconData(
-    0xe073,
+    0xe072,
     fontFamily: fontFamily,
     fontPackage: fontPackage,
   );
 
   /// `alef_rashi_24_regular.svg`
   static const IconData alef_rashi_24_regular = IconData(
-    0xe074,
+    0xe073,
     fontFamily: fontFamily,
     fontPackage: fontPackage,
   );
 
   /// `alef_stam_24_regular.svg`
   static const IconData alef_stam_24_regular = IconData(
-    0xe075,
+    0xe074,
     fontFamily: fontFamily,
     fontPackage: fontPackage,
   );
 
   /// `book_alef_rashi_24_filled.svg`
   static const IconData book_alef_rashi_24_filled = IconData(
-    0xe076,
+    0xe075,
     fontFamily: fontFamily,
     fontPackage: fontPackage,
   );
 
   /// `book_alef_rashi_24_regular.svg`
   static const IconData book_alef_rashi_24_regular = IconData(
-    0xe077,
+    0xe076,
     fontFamily: fontFamily,
     fontPackage: fontPackage,
   );
 
   /// `book_number_24_filled.svg`
   static const IconData book_number_24_filled = IconData(
-    0xe078,
+    0xe077,
     fontFamily: fontFamily,
     fontPackage: fontPackage,
   );
 
   /// `book_number_24_regular.svg`
   static const IconData book_number_24_regular = IconData(
-    0xe079,
+    0xe078,
     fontFamily: fontFamily,
     fontPackage: fontPackage,
   );
 
   /// `book_tet_24_filled.svg`
   static const IconData book_tet_24_filled = IconData(
-    0xe07a,
+    0xe079,
     fontFamily: fontFamily,
     fontPackage: fontPackage,
   );
 
   /// `book_tet_24_regular.svg`
   static const IconData book_tet_24_regular = IconData(
-    0xe07b,
+    0xe07a,
     fontFamily: fontFamily,
     fontPackage: fontPackage,
   );
 
   /// `otzaria_icon_24_filled.svg`
   static const IconData otzaria_icon_24_filled = IconData(
-    0xe07c,
+    0xe07b,
     fontFamily: fontFamily,
     fontPackage: fontPackage,
   );
 
   /// `otzaria_icon_2_page_24_filled.svg`
   static const IconData otzaria_icon_2_page_24_filled = IconData(
-    0xe07d,
+    0xe07c,
     fontFamily: fontFamily,
     fontPackage: fontPackage,
   );
 
   /// `otzaria_icon_line_24_filled.svg`
   static const IconData otzaria_icon_line_24_filled = IconData(
-    0xe07e,
+    0xe07d,
     fontFamily: fontFamily,
     fontPackage: fontPackage,
   );
 
   /// `tet_24_regular.svg`
   static const IconData tet_24_regular = IconData(
-    0xe07f,
+    0xe07e,
     fontFamily: fontFamily,
     fontPackage: fontPackage,
   );
 
   /// `tet_behind_tet_24_regular.svg`
   static const IconData tet_behind_tet_24_regular = IconData(
-    0xe080,
+    0xe07f,
     fontFamily: fontFamily,
     fontPackage: fontPackage,
   );
 
   /// `tet_near_tet_24_regular.svg`
   static const IconData tet_near_tet_24_regular = IconData(
-    0xe081,
+    0xe080,
     fontFamily: fontFamily,
     fontPackage: fontPackage,
   );
 
   /// `tet_tet_24_regular.svg`
   static const IconData tet_tet_24_regular = IconData(
-    0xe082,
+    0xe081,
     fontFamily: fontFamily,
     fontPackage: fontPackage,
   );
 
   /// `search_in_numbered_list_24_regular.svg`
   static const IconData search_in_numbered_list_24_regular = IconData(
-    0xe083,
+    0xe082,
     fontFamily: fontFamily,
     fontPackage: fontPackage,
   );
 
   /// `search_in_titles_24_regular.svg`
   static const IconData search_in_titles_24_regular = IconData(
-    0xe084,
+    0xe083,
     fontFamily: fontFamily,
     fontPackage: fontPackage,
   );
 
   /// `book_star_24_filled.svg`
   static const IconData book_star_24_filled = IconData(
-    0xe085,
+    0xe084,
     fontFamily: fontFamily,
     fontPackage: fontPackage,
   );
 
   /// `book_star_24_regular.svg`
   static const IconData book_star_24_regular = IconData(
-    0xe086,
+    0xe085,
     fontFamily: fontFamily,
     fontPackage: fontPackage,
   );
 
   /// `book_md_24_filled.svg`
   static const IconData book_md_24_filled = IconData(
-    0xe087,
+    0xe086,
     fontFamily: fontFamily,
     fontPackage: fontPackage,
   );
 
   /// `book_md_24_regular.svg`
   static const IconData book_md_24_regular = IconData(
-    0xe088,
+    0xe087,
     fontFamily: fontFamily,
     fontPackage: fontPackage,
   );
 
   /// `alef_alef_24_regular.svg`
   static const IconData alef_alef_24_regular = IconData(
-    0xe089,
+    0xe088,
     fontFamily: fontFamily,
     fontPackage: fontPackage,
   );
 
   /// `alef_copy_24_regular.svg`
   static const IconData alef_copy_24_regular = IconData(
-    0xe08a,
+    0xe089,
     fontFamily: fontFamily,
     fontPackage: fontPackage,
   );
 
   /// `beit_24_regular.svg`
   static const IconData beit_24_regular = IconData(
-    0xe08b,
+    0xe08a,
     fontFamily: fontFamily,
     fontPackage: fontPackage,
   );
 
   /// `document_html_24_filled.svg`
   static const IconData document_html_24_filled = IconData(
-    0xe08c,
+    0xe08b,
     fontFamily: fontFamily,
     fontPackage: fontPackage,
   );
 
   /// `document_html_24_regular.svg`
   static const IconData document_html_24_regular = IconData(
-    0xe08d,
+    0xe08c,
     fontFamily: fontFamily,
     fontPackage: fontPackage,
   );
 
   /// `document_md_24_filled.svg`
   static const IconData document_md_24_filled = IconData(
-    0xe08e,
+    0xe08d,
     fontFamily: fontFamily,
     fontPackage: fontPackage,
   );
 
   /// `document_md_24_regular.svg`
   static const IconData document_md_24_regular = IconData(
-    0xe08f,
+    0xe08e,
     fontFamily: fontFamily,
     fontPackage: fontPackage,
   );
 
   /// `document_tet_24_filled.svg`
   static const IconData document_tet_24_filled = IconData(
-    0xe090,
+    0xe08f,
     fontFamily: fontFamily,
     fontPackage: fontPackage,
   );
 
   /// `document_tet_24_regular.svg`
   static const IconData document_tet_24_regular = IconData(
-    0xe091,
+    0xe090,
     fontFamily: fontFamily,
     fontPackage: fontPackage,
   );
 
   /// `search_in_the_quote_24_regular.svg`
   static const IconData search_in_the_quote_24_regular = IconData(
+    0xe091,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `alef_addition_24_regular.svg`
+  static const IconData alef_addition_24_regular = IconData(
     0xe092,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `alef_eye_24_regular.svg`
+  static const IconData alef_eye_24_regular = IconData(
+    0xe093,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `alef_half_filled_24_regular.svg`
+  static const IconData alef_half_filled_24_regular = IconData(
+    0xe094,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `alef_lips_24_regular.svg`
+  static const IconData alef_lips_24_regular = IconData(
+    0xe095,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `alef_marker_24_regular.svg`
+  static const IconData alef_marker_24_regular = IconData(
+    0xe096,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `alef_scissors_24_regular.svg`
+  static const IconData alef_scissors_24_regular = IconData(
+    0xe097,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `alef_with_exclamation_24_regular.svg`
+  static const IconData alef_with_exclamation_24_regular = IconData(
+    0xe098,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `book_open_medium_24_filled.svg`
+  static const IconData book_open_medium_24_filled = IconData(
+    0xe099,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `book_open_medium_line_24_filled.svg`
+  static const IconData book_open_medium_line_24_filled = IconData(
+    0xe09a,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `document_alef_24_filled.svg`
+  static const IconData document_alef_24_filled = IconData(
+    0xe09b,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `document_alef_24_regular.svg`
+  static const IconData document_alef_24_regular = IconData(
+    0xe09c,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `document_download_24_filled.svg`
+  static const IconData document_download_24_filled = IconData(
+    0xe09d,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `document_download_24_regular.svg`
+  static const IconData document_download_24_regular = IconData(
+    0xe09e,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `link_copy_24_regular.svg`
+  static const IconData link_copy_24_regular = IconData(
+    0xe09f,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `link_quote_24_regular.svg`
+  static const IconData link_quote_24_regular = IconData(
+    0xe0a0,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `link_marker_24_regular.svg`
+  static const IconData link_marker_24_regular = IconData(
+    0xe0a1,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `link_with_eraser_24_regular.svg`
+  static const IconData link_with_eraser_24_regular = IconData(
+    0xe0a2,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `link_with_information_24_regular.svg`
+  static const IconData link_with_information_24_regular = IconData(
+    0xe0a3,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `link_deletion_24_regular.svg`
+  static const IconData link_deletion_24_regular = IconData(
+    0xe0a4,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `link_document_24_regular.svg`
+  static const IconData link_document_24_regular = IconData(
+    0xe0a5,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `link_eye_24_regular.svg`
+  static const IconData link_eye_24_regular = IconData(
+    0xe0a6,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `link_scissors_24_regular.svg`
+  static const IconData link_scissors_24_regular = IconData(
+    0xe0a7,
     fontFamily: fontFamily,
     fontPackage: fontPackage,
   );
@@ -1046,10 +1193,10 @@ abstract final class OtzariaIcons {
     'book_download_24_regular': book_download_24_regular,
     'book_empty_24_filled': book_empty_24_filled,
     'book_empty_24_regular': book_empty_24_regular,
-    'book_hyperlink_24_filled': book_hyperlink_24_filled,
-    'book_hyperlink_24_regular': book_hyperlink_24_regular,
     'book_link_24_filled': book_link_24_filled,
     'book_link_24_regular': book_link_24_regular,
+    'book_links_24_filled': book_links_24_filled,
+    'book_links_24_regular': book_links_24_regular,
     'book_open_large_24_filled': book_open_large_24_filled,
     'book_open_large_24_regular': book_open_large_24_regular,
     'book_open_large_lines_24_filled': book_open_large_lines_24_filled,
@@ -1081,8 +1228,7 @@ abstract final class OtzariaIcons {
     'document_column_24_regular': document_column_24_regular,
     'document_word_24_filled': document_word_24_filled,
     'document_word_24_regular': document_word_24_regular,
-    'hyperlink_24_regular': hyperlink_24_regular,
-    'link_24_regular': link_24_regular,
+    'links_24_regular': links_24_regular,
     'otzaria_icon_24_regular': otzaria_icon_24_regular,
     'otzaria_icon_empty_24_regular': otzaria_icon_empty_24_regular,
     'otzaria_icon_line_24_regular': otzaria_icon_line_24_regular,
@@ -1187,5 +1333,27 @@ abstract final class OtzariaIcons {
     'document_tet_24_filled': document_tet_24_filled,
     'document_tet_24_regular': document_tet_24_regular,
     'search_in_the_quote_24_regular': search_in_the_quote_24_regular,
+    'alef_addition_24_regular': alef_addition_24_regular,
+    'alef_eye_24_regular': alef_eye_24_regular,
+    'alef_half_filled_24_regular': alef_half_filled_24_regular,
+    'alef_lips_24_regular': alef_lips_24_regular,
+    'alef_marker_24_regular': alef_marker_24_regular,
+    'alef_scissors_24_regular': alef_scissors_24_regular,
+    'alef_with_exclamation_24_regular': alef_with_exclamation_24_regular,
+    'book_open_medium_24_filled': book_open_medium_24_filled,
+    'book_open_medium_line_24_filled': book_open_medium_line_24_filled,
+    'document_alef_24_filled': document_alef_24_filled,
+    'document_alef_24_regular': document_alef_24_regular,
+    'document_download_24_filled': document_download_24_filled,
+    'document_download_24_regular': document_download_24_regular,
+    'link_copy_24_regular': link_copy_24_regular,
+    'link_quote_24_regular': link_quote_24_regular,
+    'link_marker_24_regular': link_marker_24_regular,
+    'link_with_eraser_24_regular': link_with_eraser_24_regular,
+    'link_with_information_24_regular': link_with_information_24_regular,
+    'link_deletion_24_regular': link_deletion_24_regular,
+    'link_document_24_regular': link_document_24_regular,
+    'link_eye_24_regular': link_eye_24_regular,
+    'link_scissors_24_regular': link_scissors_24_regular,
   };
 }

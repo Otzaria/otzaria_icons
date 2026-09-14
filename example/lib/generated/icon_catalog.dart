@@ -19,12 +19,10 @@ const iconCatalog = <GalleryIcon>[
       'book_download_24_regular', OtzariaIcons.book_download_24_regular),
   GalleryIcon('book_empty_24_filled', OtzariaIcons.book_empty_24_filled),
   GalleryIcon('book_empty_24_regular', OtzariaIcons.book_empty_24_regular),
-  GalleryIcon(
-      'book_hyperlink_24_filled', OtzariaIcons.book_hyperlink_24_filled),
-  GalleryIcon(
-      'book_hyperlink_24_regular', OtzariaIcons.book_hyperlink_24_regular),
   GalleryIcon('book_link_24_filled', OtzariaIcons.book_link_24_filled),
   GalleryIcon('book_link_24_regular', OtzariaIcons.book_link_24_regular),
+  GalleryIcon('book_links_24_filled', OtzariaIcons.book_links_24_filled),
+  GalleryIcon('book_links_24_regular', OtzariaIcons.book_links_24_regular),
   GalleryIcon(
       'book_open_large_24_filled', OtzariaIcons.book_open_large_24_filled),
   GalleryIcon(
@@ -74,8 +72,7 @@ const iconCatalog = <GalleryIcon>[
   GalleryIcon('document_word_24_filled', OtzariaIcons.document_word_24_filled),
   GalleryIcon(
       'document_word_24_regular', OtzariaIcons.document_word_24_regular),
-  GalleryIcon('hyperlink_24_regular', OtzariaIcons.hyperlink_24_regular),
-  GalleryIcon('link_24_regular', OtzariaIcons.link_24_regular),
+  GalleryIcon('links_24_regular', OtzariaIcons.links_24_regular),
   GalleryIcon('otzaria_icon_24_regular', OtzariaIcons.otzaria_icon_24_regular),
   GalleryIcon('otzaria_icon_empty_24_regular',
       OtzariaIcons.otzaria_icon_empty_24_regular),
@@ -232,4 +229,40 @@ const iconCatalog = <GalleryIcon>[
   GalleryIcon('document_tet_24_regular', OtzariaIcons.document_tet_24_regular),
   GalleryIcon('search_in_the_quote_24_regular',
       OtzariaIcons.search_in_the_quote_24_regular),
+  GalleryIcon(
+      'alef_addition_24_regular', OtzariaIcons.alef_addition_24_regular),
+  GalleryIcon('alef_eye_24_regular', OtzariaIcons.alef_eye_24_regular),
+  GalleryIcon(
+      'alef_half_filled_24_regular', OtzariaIcons.alef_half_filled_24_regular),
+  GalleryIcon('alef_lips_24_regular', OtzariaIcons.alef_lips_24_regular),
+  GalleryIcon('alef_marker_24_regular', OtzariaIcons.alef_marker_24_regular),
+  GalleryIcon(
+      'alef_scissors_24_regular', OtzariaIcons.alef_scissors_24_regular),
+  GalleryIcon('alef_with_exclamation_24_regular',
+      OtzariaIcons.alef_with_exclamation_24_regular),
+  GalleryIcon(
+      'book_open_medium_24_filled', OtzariaIcons.book_open_medium_24_filled),
+  GalleryIcon('book_open_medium_line_24_filled',
+      OtzariaIcons.book_open_medium_line_24_filled),
+  GalleryIcon('document_alef_24_filled', OtzariaIcons.document_alef_24_filled),
+  GalleryIcon(
+      'document_alef_24_regular', OtzariaIcons.document_alef_24_regular),
+  GalleryIcon(
+      'document_download_24_filled', OtzariaIcons.document_download_24_filled),
+  GalleryIcon('document_download_24_regular',
+      OtzariaIcons.document_download_24_regular),
+  GalleryIcon('link_copy_24_regular', OtzariaIcons.link_copy_24_regular),
+  GalleryIcon('link_quote_24_regular', OtzariaIcons.link_quote_24_regular),
+  GalleryIcon('link_marker_24_regular', OtzariaIcons.link_marker_24_regular),
+  GalleryIcon(
+      'link_with_eraser_24_regular', OtzariaIcons.link_with_eraser_24_regular),
+  GalleryIcon('link_with_information_24_regular',
+      OtzariaIcons.link_with_information_24_regular),
+  GalleryIcon(
+      'link_deletion_24_regular', OtzariaIcons.link_deletion_24_regular),
+  GalleryIcon(
+      'link_document_24_regular', OtzariaIcons.link_document_24_regular),
+  GalleryIcon('link_eye_24_regular', OtzariaIcons.link_eye_24_regular),
+  GalleryIcon(
+      'link_scissors_24_regular', OtzariaIcons.link_scissors_24_regular),
 ];

@@ -91,8 +91,8 @@ icons:
     license: GPL-3.0-only
     upstream_commit: null
   - id: icon-0007
-    name: book_hyperlink_24_filled
-    source: assets_src/svg/book_hyperlink_24_filled.svg
+    name: book_link_24_filled
+    source: assets_src/svg/book_link_24_filled.svg
     codepoint: 0xe006
     variant: filled
     size: 24
@@ -106,8 +106,8 @@ icons:
     license: GPL-3.0-only
     upstream_commit: null
   - id: icon-0008
-    name: book_hyperlink_24_regular
-    source: assets_src/svg/book_hyperlink_24_regular.svg
+    name: book_link_24_regular
+    source: assets_src/svg/book_link_24_regular.svg
     codepoint: 0xe007
     variant: regular
     size: 24
@@ -121,8 +121,8 @@ icons:
     license: GPL-3.0-only
     upstream_commit: null
   - id: icon-0009
-    name: book_link_24_filled
-    source: assets_src/svg/book_link_24_filled.svg
+    name: book_links_24_filled
+    source: assets_src/svg/book_links_24_filled.svg
     codepoint: 0xe008
     variant: filled
     size: 24
@@ -136,8 +136,8 @@ icons:
     license: GPL-3.0-only
     upstream_commit: null
   - id: icon-0010
-    name: book_link_24_regular
-    source: assets_src/svg/book_link_24_regular.svg
+    name: book_links_24_regular
+    source: assets_src/svg/book_links_24_regular.svg
     codepoint: 0xe009
     variant: regular
     size: 24
@@ -615,25 +615,10 @@ icons:
     author: Otzaria contributors
     license: GPL-3.0-only
     upstream_commit: null
-  - id: icon-0042
-    name: hyperlink_24_regular
-    source: assets_src/svg/hyperlink_24_regular.svg
-    codepoint: 0xe029
-    variant: regular
-    size: 24
-    match_text_direction: false
-    deprecated: false
-    upstream_status: missing
-    upstream_equivalent: null
-    origin: custom
-    based_on: null
-    author: Otzaria contributors
-    license: GPL-3.0-only
-    upstream_commit: null
   - id: icon-0043
-    name: link_24_regular
-    source: assets_src/svg/link_24_regular.svg
-    codepoint: 0xe02a
+    name: links_24_regular
+    source: assets_src/svg/links_24_regular.svg
+    codepoint: 0xe029
     variant: regular
     size: 24
     match_text_direction: false
@@ -648,7 +633,7 @@ icons:
   - id: icon-0044
     name: otzaria_icon_24_regular
     source: assets_src/svg/otzaria_icon_24_regular.svg
-    codepoint: 0xe02b
+    codepoint: 0xe02a
     variant: regular
     size: 24
     match_text_direction: false
@@ -663,7 +648,7 @@ icons:
   - id: icon-0045
     name: otzaria_icon_empty_24_regular
     source: assets_src/svg/otzaria_icon_empty_24_regular.svg
-    codepoint: 0xe02c
+    codepoint: 0xe02b
     variant: regular
     size: 24
     match_text_direction: false
@@ -678,7 +663,7 @@ icons:
   - id: icon-0046
     name: otzaria_icon_line_24_regular
     source: assets_src/svg/otzaria_icon_line_24_regular.svg
-    codepoint: 0xe02d
+    codepoint: 0xe02c
     variant: regular
     size: 24
     match_text_direction: false
@@ -693,7 +678,7 @@ icons:
   - id: icon-0047
     name: search_24_filled
     source: assets_src/svg/search_24_filled.svg
-    codepoint: 0xe02e
+    codepoint: 0xe02d
     variant: filled
     size: 24
     match_text_direction: false
@@ -708,7 +693,7 @@ icons:
   - id: icon-0048
     name: search_24_regular
     source: assets_src/svg/search_24_regular.svg
-    codepoint: 0xe02f
+    codepoint: 0xe02e
     variant: regular
     size: 24
     match_text_direction: false
@@ -723,7 +708,7 @@ icons:
   - id: icon-0049
     name: search_in_the_book_24_regular
     source: assets_src/svg/search_in_the_book_24_regular.svg
-    codepoint: 0xe030
+    codepoint: 0xe02f
     variant: regular
     size: 24
     match_text_direction: false
@@ -738,7 +723,7 @@ icons:
   - id: icon-0050
     name: search_in_the_library_24_regular
     source: assets_src/svg/search_in_the_library_24_regular.svg
-    codepoint: 0xe031
+    codepoint: 0xe030
     variant: regular
     size: 24
     match_text_direction: false
@@ -753,7 +738,7 @@ icons:
   - id: icon-0051
     name: search_not_found_24_filled
     source: assets_src/svg/search_not_found_24_filled.svg
-    codepoint: 0xe032
+    codepoint: 0xe031
     variant: filled
     size: 24
     match_text_direction: false
@@ -768,7 +753,7 @@ icons:
   - id: icon-0052
     name: search_not_found_24_regular
     source: assets_src/svg/search_not_found_24_regular.svg
-    codepoint: 0xe033
+    codepoint: 0xe032
     variant: regular
     size: 24
     match_text_direction: false
@@ -783,7 +768,7 @@ icons:
   - id: icon-0053
     name: apps_list_24_filled
     source: assets_src/svg/apps_list_24_filled.svg
-    codepoint: 0xe034
+    codepoint: 0xe033
     variant: filled
     size: 24
     match_text_direction: false
@@ -798,7 +783,7 @@ icons:
   - id: icon-0054
     name: apps_list_24_regular
     source: assets_src/svg/apps_list_24_regular.svg
-    codepoint: 0xe035
+    codepoint: 0xe034
     variant: regular
     size: 24
     match_text_direction: false
@@ -813,7 +798,7 @@ icons:
   - id: icon-0055
     name: apps_list_detail_24_filled
     source: assets_src/svg/apps_list_detail_24_filled.svg
-    codepoint: 0xe036
+    codepoint: 0xe035
     variant: filled
     size: 24
     match_text_direction: false
@@ -828,7 +813,7 @@ icons:
   - id: icon-0056
     name: apps_list_detail_24_regular
     source: assets_src/svg/apps_list_detail_24_regular.svg
-    codepoint: 0xe037
+    codepoint: 0xe036
     variant: regular
     size: 24
     match_text_direction: false
@@ -843,7 +828,7 @@ icons:
   - id: icon-0057
     name: document_bullet_list_24_filled
     source: assets_src/svg/document_bullet_list_24_filled.svg
-    codepoint: 0xe038
+    codepoint: 0xe037
     variant: filled
     size: 24
     match_text_direction: false
@@ -858,7 +843,7 @@ icons:
   - id: icon-0058
     name: document_bullet_list_24_regular
     source: assets_src/svg/document_bullet_list_24_regular.svg
-    codepoint: 0xe039
+    codepoint: 0xe038
     variant: regular
     size: 24
     match_text_direction: false
@@ -873,7 +858,7 @@ icons:
   - id: icon-0059
     name: group_list_24_filled
     source: assets_src/svg/group_list_24_filled.svg
-    codepoint: 0xe03a
+    codepoint: 0xe039
     variant: filled
     size: 24
     match_text_direction: false
@@ -888,7 +873,7 @@ icons:
   - id: icon-0060
     name: group_list_24_regular
     source: assets_src/svg/group_list_24_regular.svg
-    codepoint: 0xe03b
+    codepoint: 0xe03a
     variant: regular
     size: 24
     match_text_direction: false
@@ -903,7 +888,7 @@ icons:
   - id: icon-0061
     name: list_24_filled
     source: assets_src/svg/list_24_filled.svg
-    codepoint: 0xe03c
+    codepoint: 0xe03b
     variant: filled
     size: 24
     match_text_direction: false
@@ -918,7 +903,7 @@ icons:
   - id: icon-0062
     name: list_24_regular
     source: assets_src/svg/list_24_regular.svg
-    codepoint: 0xe03d
+    codepoint: 0xe03c
     variant: regular
     size: 24
     match_text_direction: false
@@ -933,7 +918,7 @@ icons:
   - id: icon-0063
     name: alef_24_filled
     source: assets_src/svg/alef_24_filled.svg
-    codepoint: 0xe03e
+    codepoint: 0xe03d
     variant: filled
     size: 24
     match_text_direction: false
@@ -948,7 +933,7 @@ icons:
   - id: icon-0064
     name: alef_24_regular
     source: assets_src/svg/alef_24_regular.svg
-    codepoint: 0xe03f
+    codepoint: 0xe03e
     variant: regular
     size: 24
     match_text_direction: false
@@ -963,7 +948,7 @@ icons:
   - id: icon-0065
     name: alef_behind_alef_24_regular
     source: assets_src/svg/alef_behind_alef_24_regular.svg
-    codepoint: 0xe040
+    codepoint: 0xe03f
     variant: regular
     size: 24
     match_text_direction: false
@@ -978,7 +963,7 @@ icons:
   - id: icon-0066
     name: alef_deletion_24_regular
     source: assets_src/svg/alef_deletion_24_regular.svg
-    codepoint: 0xe041
+    codepoint: 0xe040
     variant: regular
     size: 24
     match_text_direction: false
@@ -993,7 +978,7 @@ icons:
   - id: icon-0067
     name: alef_near_alef_24_regular
     source: assets_src/svg/alef_near_alef_24_regular.svg
-    codepoint: 0xe042
+    codepoint: 0xe041
     variant: regular
     size: 24
     match_text_direction: false
@@ -1008,22 +993,22 @@ icons:
   - id: icon-0068
     name: alef_with_eraser_24_regular
     source: assets_src/svg/alef_with_eraser_24_regular.svg
-    codepoint: 0xe043
+    codepoint: 0xe042
     variant: regular
     size: 24
     match_text_direction: false
     deprecated: false
     upstream_status: missing
     upstream_equivalent: null
-    origin: custom
-    based_on: null
+    origin: modified_fluent
+    based_on: 'microsoft/fluentui-system-icons: eraser_24_filled (fluentui_system_icons 1.1.273)'
     author: Otzaria contributors
-    license: GPL-3.0-only
-    upstream_commit: null
+    license: MIT AND GPL-3.0-only
+    upstream_commit: pub:fluentui_system_icons@1.1.273
   - id: icon-0069
     name: alef_with_flavors_24_regular
     source: assets_src/svg/alef_with_flavors_24_regular.svg
-    codepoint: 0xe044
+    codepoint: 0xe043
     variant: regular
     size: 24
     match_text_direction: false
@@ -1038,7 +1023,7 @@ icons:
   - id: icon-0070
     name: alef_with_information_24_regular
     source: assets_src/svg/alef_with_information_24_regular.svg
-    codepoint: 0xe045
+    codepoint: 0xe044
     variant: regular
     size: 24
     match_text_direction: false
@@ -1053,7 +1038,7 @@ icons:
   - id: icon-0071
     name: alef_with_punctuation_24_regular
     source: assets_src/svg/alef_with_punctuation_24_regular.svg
-    codepoint: 0xe046
+    codepoint: 0xe045
     variant: regular
     size: 24
     match_text_direction: false
@@ -1068,7 +1053,7 @@ icons:
   - id: icon-0072
     name: alef_with_score_24_regular
     source: assets_src/svg/alef_with_score_24_regular.svg
-    codepoint: 0xe047
+    codepoint: 0xe046
     variant: regular
     size: 24
     match_text_direction: false
@@ -1083,7 +1068,7 @@ icons:
   - id: icon-0073
     name: beit_behind_alef_24_regular
     source: assets_src/svg/beit_behind_alef_24_regular.svg
-    codepoint: 0xe048
+    codepoint: 0xe047
     variant: regular
     size: 24
     match_text_direction: false
@@ -1098,7 +1083,7 @@ icons:
   - id: icon-0074
     name: beit_near_alef_24_regular
     source: assets_src/svg/beit_near_alef_24_regular.svg
-    codepoint: 0xe049
+    codepoint: 0xe048
     variant: regular
     size: 24
     match_text_direction: false
@@ -1113,7 +1098,7 @@ icons:
   - id: icon-0075
     name: booklet_24_regular
     source: assets_src/svg/booklet_24_regular.svg
-    codepoint: 0xe04a
+    codepoint: 0xe049
     variant: regular
     size: 24
     match_text_direction: false
@@ -1128,7 +1113,7 @@ icons:
   - id: icon-0076
     name: calendar_24_filled
     source: assets_src/svg/calendar_24_filled.svg
-    codepoint: 0xe04b
+    codepoint: 0xe04a
     variant: filled
     size: 24
     match_text_direction: false
@@ -1143,7 +1128,7 @@ icons:
   - id: icon-0077
     name: calendar_24_regular
     source: assets_src/svg/calendar_24_regular.svg
-    codepoint: 0xe04c
+    codepoint: 0xe04b
     variant: regular
     size: 24
     match_text_direction: false
@@ -1158,7 +1143,7 @@ icons:
   - id: icon-0078
     name: clipboard_task_list_24_filled
     source: assets_src/svg/clipboard_task_list_24_filled.svg
-    codepoint: 0xe04d
+    codepoint: 0xe04c
     variant: filled
     size: 24
     match_text_direction: false
@@ -1173,7 +1158,7 @@ icons:
   - id: icon-0079
     name: clipboard_task_list_24_regular
     source: assets_src/svg/clipboard_task_list_24_regular.svg
-    codepoint: 0xe04e
+    codepoint: 0xe04d
     variant: regular
     size: 24
     match_text_direction: false
@@ -1188,7 +1173,7 @@ icons:
   - id: icon-0080
     name: clipboard_text_24_filled
     source: assets_src/svg/clipboard_text_24_filled.svg
-    codepoint: 0xe04f
+    codepoint: 0xe04e
     variant: filled
     size: 24
     match_text_direction: false
@@ -1203,7 +1188,7 @@ icons:
   - id: icon-0081
     name: clipboard_text_rtl_24_regular
     source: assets_src/svg/clipboard_text_rtl_24_regular.svg
-    codepoint: 0xe050
+    codepoint: 0xe04f
     variant: regular
     size: 24
     match_text_direction: false
@@ -1218,7 +1203,7 @@ icons:
   - id: icon-0082
     name: icon_x_24_regular
     source: assets_src/svg/icon_x_24_regular.svg
-    codepoint: 0xe051
+    codepoint: 0xe050
     variant: regular
     size: 24
     match_text_direction: false
@@ -1233,7 +1218,7 @@ icons:
   - id: icon-0083
     name: otzaria_icon_2_page_24_regular
     source: assets_src/svg/otzaria_icon_2_page_24_regular.svg
-    codepoint: 0xe052
+    codepoint: 0xe051
     variant: regular
     size: 24
     match_text_direction: false
@@ -1248,7 +1233,7 @@ icons:
   - id: icon-0084
     name: otzaria_icon_2_page_line_24_regular
     source: assets_src/svg/otzaria_icon_2_page_line_24_regular.svg
-    codepoint: 0xe053
+    codepoint: 0xe052
     variant: regular
     size: 24
     match_text_direction: false
@@ -1263,7 +1248,7 @@ icons:
   - id: icon-0085
     name: person_24_filled
     source: assets_src/svg/person_24_filled.svg
-    codepoint: 0xe054
+    codepoint: 0xe053
     variant: filled
     size: 24
     match_text_direction: false
@@ -1278,7 +1263,7 @@ icons:
   - id: icon-0086
     name: person_24_regular
     source: assets_src/svg/person_24_regular.svg
-    codepoint: 0xe055
+    codepoint: 0xe054
     variant: regular
     size: 24
     match_text_direction: false
@@ -1293,7 +1278,7 @@ icons:
   - id: icon-0087
     name: search_in_the_document_24_regular
     source: assets_src/svg/search_in_the_document_24_regular.svg
-    codepoint: 0xe056
+    codepoint: 0xe055
     variant: regular
     size: 24
     match_text_direction: false
@@ -1308,7 +1293,7 @@ icons:
   - id: icon-0088
     name: stander_24_filled
     source: assets_src/svg/stander_24_filled.svg
-    codepoint: 0xe057
+    codepoint: 0xe056
     variant: filled
     size: 24
     match_text_direction: false
@@ -1323,7 +1308,7 @@ icons:
   - id: icon-0089
     name: stander_24_regular
     source: assets_src/svg/stander_24_regular.svg
-    codepoint: 0xe058
+    codepoint: 0xe057
     variant: regular
     size: 24
     match_text_direction: false
@@ -1338,7 +1323,7 @@ icons:
   - id: icon-0090
     name: task_list_24_filled
     source: assets_src/svg/task_list_24_filled.svg
-    codepoint: 0xe059
+    codepoint: 0xe058
     variant: filled
     size: 24
     match_text_direction: false
@@ -1353,7 +1338,7 @@ icons:
   - id: icon-0091
     name: task_list_24_regular
     source: assets_src/svg/task_list_24_regular.svg
-    codepoint: 0xe05a
+    codepoint: 0xe059
     variant: regular
     size: 24
     match_text_direction: false
@@ -1368,7 +1353,7 @@ icons:
   - id: icon-0092
     name: task_list_square_24_filled
     source: assets_src/svg/task_list_square_24_filled.svg
-    codepoint: 0xe05b
+    codepoint: 0xe05a
     variant: filled
     size: 24
     match_text_direction: false
@@ -1383,7 +1368,7 @@ icons:
   - id: icon-0093
     name: task_list_square_24_regular
     source: assets_src/svg/task_list_square_24_regular.svg
-    codepoint: 0xe05c
+    codepoint: 0xe05b
     variant: regular
     size: 24
     match_text_direction: false
@@ -1398,7 +1383,7 @@ icons:
   - id: icon-0094
     name: text_bullet_list_24_filled
     source: assets_src/svg/text_bullet_list_24_filled.svg
-    codepoint: 0xe05d
+    codepoint: 0xe05c
     variant: filled
     size: 24
     match_text_direction: false
@@ -1413,7 +1398,7 @@ icons:
   - id: icon-0095
     name: text_bullet_list_24_regular
     source: assets_src/svg/text_bullet_list_24_regular.svg
-    codepoint: 0xe05e
+    codepoint: 0xe05d
     variant: regular
     size: 24
     match_text_direction: false
@@ -1428,7 +1413,7 @@ icons:
   - id: icon-0096
     name: text_continuous_24_filled
     source: assets_src/svg/text_continuous_24_filled.svg
-    codepoint: 0xe05f
+    codepoint: 0xe05e
     variant: filled
     size: 24
     match_text_direction: false
@@ -1443,7 +1428,7 @@ icons:
   - id: icon-0097
     name: text_continuous_24_regular
     source: assets_src/svg/text_continuous_24_regular.svg
-    codepoint: 0xe060
+    codepoint: 0xe05f
     variant: regular
     size: 24
     match_text_direction: false
@@ -1458,7 +1443,7 @@ icons:
   - id: icon-0098
     name: text_number_list_24_filled
     source: assets_src/svg/text_number_list_24_filled.svg
-    codepoint: 0xe061
+    codepoint: 0xe060
     variant: filled
     size: 24
     match_text_direction: false
@@ -1473,7 +1458,7 @@ icons:
   - id: icon-0099
     name: text_number_list_24_regular
     source: assets_src/svg/text_number_list_24_regular.svg
-    codepoint: 0xe062
+    codepoint: 0xe061
     variant: regular
     size: 24
     match_text_direction: false
@@ -1488,7 +1473,7 @@ icons:
   - id: icon-0100
     name: torah_scroll_24_regular
     source: assets_src/svg/torah_scroll_24_regular.svg
-    codepoint: 0xe063
+    codepoint: 0xe062
     variant: regular
     size: 24
     match_text_direction: false
@@ -1503,7 +1488,7 @@ icons:
   - id: icon-0101
     name: alef_1_24_regular
     source: assets_src/svg/alef_1_24_regular.svg
-    codepoint: 0xe064
+    codepoint: 0xe063
     variant: regular
     size: 24
     match_text_direction: false
@@ -1518,7 +1503,7 @@ icons:
   - id: icon-0102
     name: alef_2_24_regular
     source: assets_src/svg/alef_2_24_regular.svg
-    codepoint: 0xe065
+    codepoint: 0xe064
     variant: regular
     size: 24
     match_text_direction: false
@@ -1533,7 +1518,7 @@ icons:
   - id: icon-0103
     name: alef_3_24_regular
     source: assets_src/svg/alef_3_24_regular.svg
-    codepoint: 0xe066
+    codepoint: 0xe065
     variant: regular
     size: 24
     match_text_direction: false
@@ -1548,7 +1533,7 @@ icons:
   - id: icon-0104
     name: alef_writing_24_regular
     source: assets_src/svg/alef_writing_24_regular.svg
-    codepoint: 0xe067
+    codepoint: 0xe066
     variant: regular
     size: 24
     match_text_direction: false
@@ -1563,7 +1548,7 @@ icons:
   - id: icon-0105
     name: book_alef_24_filled
     source: assets_src/svg/book_alef_24_filled.svg
-    codepoint: 0xe068
+    codepoint: 0xe067
     variant: filled
     size: 24
     match_text_direction: false
@@ -1578,7 +1563,7 @@ icons:
   - id: icon-0106
     name: book_alef_24_regular
     source: assets_src/svg/book_alef_24_regular.svg
-    codepoint: 0xe069
+    codepoint: 0xe068
     variant: regular
     size: 24
     match_text_direction: false
@@ -1593,7 +1578,7 @@ icons:
   - id: icon-0107
     name: book_open_tzurat_hadaf_24_filled
     source: assets_src/svg/book_open_tzurat_hadaf_24_filled.svg
-    codepoint: 0xe06a
+    codepoint: 0xe069
     variant: filled
     size: 24
     match_text_direction: false
@@ -1608,7 +1593,7 @@ icons:
   - id: icon-0108
     name: book_open_tzurat_hadaf_24_regular
     source: assets_src/svg/book_open_tzurat_hadaf_24_regular.svg
-    codepoint: 0xe06b
+    codepoint: 0xe06a
     variant: regular
     size: 24
     match_text_direction: false
@@ -1623,7 +1608,7 @@ icons:
   - id: icon-0109
     name: search_in_the_text_24_regular
     source: assets_src/svg/search_in_the_text_24_regular.svg
-    codepoint: 0xe06c
+    codepoint: 0xe06b
     variant: regular
     size: 24
     match_text_direction: false
@@ -1638,7 +1623,7 @@ icons:
   - id: icon-0110
     name: text_alef_bet_list_24_regular
     source: assets_src/svg/text_alef_bet_list_24_regular.svg
-    codepoint: 0xe06d
+    codepoint: 0xe06c
     variant: regular
     size: 24
     match_text_direction: false
@@ -1653,7 +1638,7 @@ icons:
   - id: icon-0111
     name: search_in_the_settings_24_regular
     source: assets_src/svg/search_in_the_settings_24_regular.svg
-    codepoint: 0xe06e
+    codepoint: 0xe06d
     variant: regular
     size: 24
     match_text_direction: false
@@ -1668,7 +1653,7 @@ icons:
   - id: icon-0112
     name: clock_add_24_regular
     source: assets_src/svg/clock_add_24_regular.svg
-    codepoint: 0xe06f
+    codepoint: 0xe06e
     variant: regular
     size: 24
     match_text_direction: false
@@ -1683,7 +1668,7 @@ icons:
   - id: icon-0113
     name: search_in_the_person_24_regular
     source: assets_src/svg/search_in_the_person_24_regular.svg
-    codepoint: 0xe070
+    codepoint: 0xe06f
     variant: regular
     size: 24
     match_text_direction: false
@@ -1698,7 +1683,7 @@ icons:
   - id: icon-0114
     name: book_information_24_filled
     source: assets_src/svg/book_information_24_filled.svg
-    codepoint: 0xe071
+    codepoint: 0xe070
     variant: filled
     size: 24
     match_text_direction: false
@@ -1713,7 +1698,7 @@ icons:
   - id: icon-0115
     name: book_information_24_regular
     source: assets_src/svg/book_information_24_regular.svg
-    codepoint: 0xe072
+    codepoint: 0xe071
     variant: regular
     size: 24
     match_text_direction: false
@@ -1728,7 +1713,7 @@ icons:
   - id: icon-0116
     name: yoma_deilula_24_regular
     source: assets_src/svg/yoma_deilula_24_regular.svg
-    codepoint: 0xe073
+    codepoint: 0xe072
     variant: regular
     size: 24
     match_text_direction: false
@@ -1743,7 +1728,7 @@ icons:
   - id: icon-0117
     name: alef_rashi_24_regular
     source: assets_src/svg/alef_rashi_24_regular.svg
-    codepoint: 0xe074
+    codepoint: 0xe073
     variant: regular
     size: 24
     match_text_direction: false
@@ -1758,7 +1743,7 @@ icons:
   - id: icon-0118
     name: alef_stam_24_regular
     source: assets_src/svg/alef_stam_24_regular.svg
-    codepoint: 0xe075
+    codepoint: 0xe074
     variant: regular
     size: 24
     match_text_direction: false
@@ -1773,7 +1758,7 @@ icons:
   - id: icon-0119
     name: book_alef_rashi_24_filled
     source: assets_src/svg/book_alef_rashi_24_filled.svg
-    codepoint: 0xe076
+    codepoint: 0xe075
     variant: filled
     size: 24
     match_text_direction: false
@@ -1788,7 +1773,7 @@ icons:
   - id: icon-0120
     name: book_alef_rashi_24_regular
     source: assets_src/svg/book_alef_rashi_24_regular.svg
-    codepoint: 0xe077
+    codepoint: 0xe076
     variant: regular
     size: 24
     match_text_direction: false
@@ -1803,7 +1788,7 @@ icons:
   - id: icon-0121
     name: book_number_24_filled
     source: assets_src/svg/book_number_24_filled.svg
-    codepoint: 0xe078
+    codepoint: 0xe077
     variant: filled
     size: 24
     match_text_direction: false
@@ -1818,7 +1803,7 @@ icons:
   - id: icon-0122
     name: book_number_24_regular
     source: assets_src/svg/book_number_24_regular.svg
-    codepoint: 0xe079
+    codepoint: 0xe078
     variant: regular
     size: 24
     match_text_direction: false
@@ -1833,7 +1818,7 @@ icons:
   - id: icon-0123
     name: book_tet_24_filled
     source: assets_src/svg/book_tet_24_filled.svg
-    codepoint: 0xe07a
+    codepoint: 0xe079
     variant: filled
     size: 24
     match_text_direction: false
@@ -1848,7 +1833,7 @@ icons:
   - id: icon-0124
     name: book_tet_24_regular
     source: assets_src/svg/book_tet_24_regular.svg
-    codepoint: 0xe07b
+    codepoint: 0xe07a
     variant: regular
     size: 24
     match_text_direction: false
@@ -1863,7 +1848,7 @@ icons:
   - id: icon-0125
     name: otzaria_icon_24_filled
     source: assets_src/svg/otzaria_icon_24_filled.svg
-    codepoint: 0xe07c
+    codepoint: 0xe07b
     variant: filled
     size: 24
     match_text_direction: false
@@ -1878,7 +1863,7 @@ icons:
   - id: icon-0126
     name: otzaria_icon_2_page_24_filled
     source: assets_src/svg/otzaria_icon_2_page_24_filled.svg
-    codepoint: 0xe07d
+    codepoint: 0xe07c
     variant: filled
     size: 24
     match_text_direction: false
@@ -1893,7 +1878,7 @@ icons:
   - id: icon-0127
     name: otzaria_icon_line_24_filled
     source: assets_src/svg/otzaria_icon_line_24_filled.svg
-    codepoint: 0xe07e
+    codepoint: 0xe07d
     variant: filled
     size: 24
     match_text_direction: false
@@ -1908,7 +1893,7 @@ icons:
   - id: icon-0128
     name: tet_24_regular
     source: assets_src/svg/tet_24_regular.svg
-    codepoint: 0xe07f
+    codepoint: 0xe07e
     variant: regular
     size: 24
     match_text_direction: false
@@ -1923,7 +1908,7 @@ icons:
   - id: icon-0129
     name: tet_behind_tet_24_regular
     source: assets_src/svg/tet_behind_tet_24_regular.svg
-    codepoint: 0xe080
+    codepoint: 0xe07f
     variant: regular
     size: 24
     match_text_direction: false
@@ -1938,7 +1923,7 @@ icons:
   - id: icon-0130
     name: tet_near_tet_24_regular
     source: assets_src/svg/tet_near_tet_24_regular.svg
-    codepoint: 0xe081
+    codepoint: 0xe080
     variant: regular
     size: 24
     match_text_direction: false
@@ -1953,7 +1938,7 @@ icons:
   - id: icon-0131
     name: tet_tet_24_regular
     source: assets_src/svg/tet_tet_24_regular.svg
-    codepoint: 0xe082
+    codepoint: 0xe081
     variant: regular
     size: 24
     match_text_direction: false
@@ -1968,7 +1953,7 @@ icons:
   - id: icon-0132
     name: search_in_numbered_list_24_regular
     source: assets_src/svg/search_in_numbered_list_24_regular.svg
-    codepoint: 0xe083
+    codepoint: 0xe082
     variant: regular
     size: 24
     match_text_direction: false
@@ -1983,7 +1968,7 @@ icons:
   - id: icon-0133
     name: search_in_titles_24_regular
     source: assets_src/svg/search_in_titles_24_regular.svg
-    codepoint: 0xe084
+    codepoint: 0xe083
     variant: regular
     size: 24
     match_text_direction: false
@@ -1998,7 +1983,7 @@ icons:
   - id: icon-0134
     name: book_star_24_filled
     source: assets_src/svg/book_star_24_filled.svg
-    codepoint: 0xe085
+    codepoint: 0xe084
     variant: filled
     size: 24
     match_text_direction: false
@@ -2013,7 +1998,7 @@ icons:
   - id: icon-0135
     name: book_star_24_regular
     source: assets_src/svg/book_star_24_regular.svg
-    codepoint: 0xe086
+    codepoint: 0xe085
     variant: regular
     size: 24
     match_text_direction: false
@@ -2028,7 +2013,7 @@ icons:
   - id: icon-0136
     name: book_md_24_filled
     source: assets_src/svg/book_md_24_filled.svg
-    codepoint: 0xe087
+    codepoint: 0xe086
     variant: filled
     size: 24
     match_text_direction: false
@@ -2043,7 +2028,7 @@ icons:
   - id: icon-0137
     name: book_md_24_regular
     source: assets_src/svg/book_md_24_regular.svg
-    codepoint: 0xe088
+    codepoint: 0xe087
     variant: regular
     size: 24
     match_text_direction: false
@@ -2058,7 +2043,7 @@ icons:
   - id: icon-0138
     name: alef_alef_24_regular
     source: assets_src/svg/alef_alef_24_regular.svg
-    codepoint: 0xe089
+    codepoint: 0xe088
     variant: regular
     size: 24
     match_text_direction: false
@@ -2073,7 +2058,7 @@ icons:
   - id: icon-0139
     name: alef_copy_24_regular
     source: assets_src/svg/alef_copy_24_regular.svg
-    codepoint: 0xe08a
+    codepoint: 0xe089
     variant: regular
     size: 24
     match_text_direction: false
@@ -2088,7 +2073,7 @@ icons:
   - id: icon-0140
     name: beit_24_regular
     source: assets_src/svg/beit_24_regular.svg
-    codepoint: 0xe08b
+    codepoint: 0xe08a
     variant: regular
     size: 24
     match_text_direction: false
@@ -2103,7 +2088,7 @@ icons:
   - id: icon-0141
     name: document_html_24_filled
     source: assets_src/svg/document_html_24_filled.svg
-    codepoint: 0xe08c
+    codepoint: 0xe08b
     variant: filled
     size: 24
     match_text_direction: false
@@ -2118,7 +2103,7 @@ icons:
   - id: icon-0142
     name: document_html_24_regular
     source: assets_src/svg/document_html_24_regular.svg
-    codepoint: 0xe08d
+    codepoint: 0xe08c
     variant: regular
     size: 24
     match_text_direction: false
@@ -2133,7 +2118,7 @@ icons:
   - id: icon-0143
     name: document_md_24_filled
     source: assets_src/svg/document_md_24_filled.svg
-    codepoint: 0xe08e
+    codepoint: 0xe08d
     variant: filled
     size: 24
     match_text_direction: false
@@ -2148,7 +2133,7 @@ icons:
   - id: icon-0144
     name: document_md_24_regular
     source: assets_src/svg/document_md_24_regular.svg
-    codepoint: 0xe08f
+    codepoint: 0xe08e
     variant: regular
     size: 24
     match_text_direction: false
@@ -2163,7 +2148,7 @@ icons:
   - id: icon-0145
     name: document_tet_24_filled
     source: assets_src/svg/document_tet_24_filled.svg
-    codepoint: 0xe090
+    codepoint: 0xe08f
     variant: filled
     size: 24
     match_text_direction: false
@@ -2178,7 +2163,7 @@ icons:
   - id: icon-0146
     name: document_tet_24_regular
     source: assets_src/svg/document_tet_24_regular.svg
-    codepoint: 0xe091
+    codepoint: 0xe090
     variant: regular
     size: 24
     match_text_direction: false
@@ -2193,7 +2178,7 @@ icons:
   - id: icon-0147
     name: search_in_the_quote_24_regular
     source: assets_src/svg/search_in_the_quote_24_regular.svg
-    codepoint: 0xe092
+    codepoint: 0xe091
     variant: regular
     size: 24
     match_text_direction: false
@@ -2205,3 +2190,333 @@ icons:
     author: Otzaria contributors
     license: MIT AND GPL-3.0-only
     upstream_commit: e8dec25e0e78e54716e4a6156fc72eb0b021414f
+  - id: icon-0148
+    name: alef_addition_24_regular
+    source: assets_src/svg/alef_addition_24_regular.svg
+    codepoint: 0xe092
+    variant: regular
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: custom
+    based_on: null
+    author: Otzaria contributors
+    license: GPL-3.0-only
+    upstream_commit: null
+  - id: icon-0149
+    name: alef_eye_24_regular
+    source: assets_src/svg/alef_eye_24_regular.svg
+    codepoint: 0xe093
+    variant: regular
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: modified_fluent
+    based_on: 'microsoft/fluentui-system-icons: eye_24_filled (fluentui_system_icons 1.1.273)'
+    author: Otzaria contributors
+    license: MIT AND GPL-3.0-only
+    upstream_commit: pub:fluentui_system_icons@1.1.273
+  - id: icon-0150
+    name: alef_half_filled_24_regular
+    source: assets_src/svg/alef_half_filled_24_regular.svg
+    codepoint: 0xe094
+    variant: regular
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: custom
+    based_on: null
+    author: Otzaria contributors
+    license: GPL-3.0-only
+    upstream_commit: null
+  - id: icon-0151
+    name: alef_lips_24_regular
+    source: assets_src/svg/alef_lips_24_regular.svg
+    codepoint: 0xe095
+    variant: regular
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: custom
+    based_on: null
+    author: Otzaria contributors
+    license: GPL-3.0-only
+    upstream_commit: null
+  - id: icon-0152
+    name: alef_marker_24_regular
+    source: assets_src/svg/alef_marker_24_regular.svg
+    codepoint: 0xe096
+    variant: regular
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: modified_fluent
+    based_on: 'microsoft/fluentui-system-icons: highlight_24_filled (fluentui_system_icons 1.1.273)'
+    author: Otzaria contributors
+    license: MIT AND GPL-3.0-only
+    upstream_commit: pub:fluentui_system_icons@1.1.273
+  - id: icon-0153
+    name: alef_scissors_24_regular
+    source: assets_src/svg/alef_scissors_24_regular.svg
+    codepoint: 0xe097
+    variant: regular
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: modified_fluent
+    based_on: 'microsoft/fluentui-system-icons: cut_24_filled (fluentui_system_icons 1.1.273)'
+    author: Otzaria contributors
+    license: MIT AND GPL-3.0-only
+    upstream_commit: pub:fluentui_system_icons@1.1.273
+  - id: icon-0154
+    name: alef_with_exclamation_24_regular
+    source: assets_src/svg/alef_with_exclamation_24_regular.svg
+    codepoint: 0xe098
+    variant: regular
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: custom
+    based_on: null
+    author: Otzaria contributors
+    license: GPL-3.0-only
+    upstream_commit: null
+  - id: icon-0155
+    name: book_open_medium_24_filled
+    source: assets_src/svg/book_open_medium_24_filled.svg
+    codepoint: 0xe099
+    variant: filled
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: custom
+    based_on: null
+    author: Otzaria contributors
+    license: GPL-3.0-only
+    upstream_commit: null
+  - id: icon-0156
+    name: book_open_medium_line_24_filled
+    source: assets_src/svg/book_open_medium_line_24_filled.svg
+    codepoint: 0xe09a
+    variant: filled
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: custom
+    based_on: null
+    author: Otzaria contributors
+    license: GPL-3.0-only
+    upstream_commit: null
+  - id: icon-0157
+    name: document_alef_24_filled
+    source: assets_src/svg/document_alef_24_filled.svg
+    codepoint: 0xe09b
+    variant: filled
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: custom
+    based_on: null
+    author: Otzaria contributors
+    license: GPL-3.0-only
+    upstream_commit: null
+  - id: icon-0158
+    name: document_alef_24_regular
+    source: assets_src/svg/document_alef_24_regular.svg
+    codepoint: 0xe09c
+    variant: regular
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: custom
+    based_on: null
+    author: Otzaria contributors
+    license: GPL-3.0-only
+    upstream_commit: null
+  - id: icon-0159
+    name: document_download_24_filled
+    source: assets_src/svg/document_download_24_filled.svg
+    codepoint: 0xe09d
+    variant: filled
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: custom
+    based_on: null
+    author: Otzaria contributors
+    license: GPL-3.0-only
+    upstream_commit: null
+  - id: icon-0160
+    name: document_download_24_regular
+    source: assets_src/svg/document_download_24_regular.svg
+    codepoint: 0xe09e
+    variant: regular
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: custom
+    based_on: null
+    author: Otzaria contributors
+    license: GPL-3.0-only
+    upstream_commit: null
+  - id: icon-0161
+    name: link_copy_24_regular
+    source: assets_src/svg/link_copy_24_regular.svg
+    codepoint: 0xe09f
+    variant: regular
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: modified_fluent
+    based_on: 'microsoft/fluentui-system-icons: link_dismiss_24_regular (fluentui_system_icons 1.1.273)'
+    author: Otzaria contributors
+    license: MIT AND GPL-3.0-only
+    upstream_commit: pub:fluentui_system_icons@1.1.273
+  - id: icon-0162
+    name: link_quote_24_regular
+    source: assets_src/svg/link_quote_24_regular.svg
+    codepoint: 0xe0a0
+    variant: regular
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: modified_fluent
+    based_on: 'microsoft/fluentui-system-icons: link_dismiss_24_regular, text_quote_24_filled (fluentui_system_icons 1.1.273)'
+    author: Otzaria contributors
+    license: MIT AND GPL-3.0-only
+    upstream_commit: pub:fluentui_system_icons@1.1.273
+  - id: icon-0163
+    name: link_marker_24_regular
+    source: assets_src/svg/link_marker_24_regular.svg
+    codepoint: 0xe0a1
+    variant: regular
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: modified_fluent
+    based_on: 'microsoft/fluentui-system-icons: link_dismiss_24_regular, highlight_24_filled (fluentui_system_icons 1.1.273)'
+    author: Otzaria contributors
+    license: MIT AND GPL-3.0-only
+    upstream_commit: pub:fluentui_system_icons@1.1.273
+  - id: icon-0164
+    name: link_with_eraser_24_regular
+    source: assets_src/svg/link_with_eraser_24_regular.svg
+    codepoint: 0xe0a2
+    variant: regular
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: modified_fluent
+    based_on: 'microsoft/fluentui-system-icons: link_dismiss_24_regular, eraser_24_filled (fluentui_system_icons 1.1.273)'
+    author: Otzaria contributors
+    license: MIT AND GPL-3.0-only
+    upstream_commit: pub:fluentui_system_icons@1.1.273
+  - id: icon-0165
+    name: link_with_information_24_regular
+    source: assets_src/svg/link_with_information_24_regular.svg
+    codepoint: 0xe0a3
+    variant: regular
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: modified_fluent
+    based_on: 'microsoft/fluentui-system-icons: link_dismiss_24_regular, info_24_filled (fluentui_system_icons 1.1.273)'
+    author: Otzaria contributors
+    license: MIT AND GPL-3.0-only
+    upstream_commit: pub:fluentui_system_icons@1.1.273
+  - id: icon-0166
+    name: link_deletion_24_regular
+    source: assets_src/svg/link_deletion_24_regular.svg
+    codepoint: 0xe0a4
+    variant: regular
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: modified_fluent
+    based_on: 'microsoft/fluentui-system-icons: link_dismiss_24_regular (fluentui_system_icons 1.1.273)'
+    author: Otzaria contributors
+    license: MIT AND GPL-3.0-only
+    upstream_commit: pub:fluentui_system_icons@1.1.273
+  - id: icon-0167
+    name: link_document_24_regular
+    source: assets_src/svg/link_document_24_regular.svg
+    codepoint: 0xe0a5
+    variant: regular
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: modified_fluent
+    based_on: 'microsoft/fluentui-system-icons: link_dismiss_24_regular, document_24_filled (fluentui_system_icons 1.1.273)'
+    author: Otzaria contributors
+    license: MIT AND GPL-3.0-only
+    upstream_commit: pub:fluentui_system_icons@1.1.273
+  - id: icon-0168
+    name: link_eye_24_regular
+    source: assets_src/svg/link_eye_24_regular.svg
+    codepoint: 0xe0a6
+    variant: regular
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: modified_fluent
+    based_on: 'microsoft/fluentui-system-icons: link_dismiss_24_regular, eye_24_filled (fluentui_system_icons 1.1.273)'
+    author: Otzaria contributors
+    license: MIT AND GPL-3.0-only
+    upstream_commit: pub:fluentui_system_icons@1.1.273
+  - id: icon-0169
+    name: link_scissors_24_regular
+    source: assets_src/svg/link_scissors_24_regular.svg
+    codepoint: 0xe0a7
+    variant: regular
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: modified_fluent
+    based_on: 'microsoft/fluentui-system-icons: link_dismiss_24_regular, cut_24_filled (fluentui_system_icons 1.1.273)'
+    author: Otzaria contributors
+    license: MIT AND GPL-3.0-only
+    upstream_commit: pub:fluentui_system_icons@1.1.273

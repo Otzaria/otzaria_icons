@@ -76,6 +76,9 @@ described in [source_structure.md](source_structure.md):
 | `repair_artifacts.py` | Removes that debris, one bounded pass per defect category. |
 | `restroke_alef.py` | Changes a letterform's stroke weights and length. |
 | `replace_alef.py` | Swaps a letterform for a new drawing everywhere it appears, finding its instances by shape rather than by bounding box. |
+| `icon_compose.py` | The geometry toolkit composed icons are written against: boolean ops, affine placement, a real outline offset, and the primitives a badge symbol needs. Not run directly. |
+| `fluent_art.py` | Reads a Fluent icon's outline out of `FluentSystemIcons-*.ttf` in the pub cache, mapped back onto the 24×24 canvas, and states the provenance anything built on it must carry. Not run directly. |
+| `compose_sources.py` | Every icon that is an operation on existing artwork - a badge added, a letter swapped, a filled variant derived from a regular one - stated as a recipe and rebuilt from the committed sources. `--provenance` records which of them drew on Fluent. |
 | `region_diff.py` | Proves a rewrite did not change what an icon draws, by comparing exact vector regions. |
 | `raster_diff.py` | The same question answered independently, by rendering both versions and comparing pixels. |
 

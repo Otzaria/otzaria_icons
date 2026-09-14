@@ -1008,14 +1008,37 @@ String _serializeManifest(IconManifest manifest) {
       )
       ..writeln('    origin: ${icon.origin}')
       ..writeln('    based_on: ${_yamlNullable(icon.basedOn)}')
-      ..writeln('    author: ${icon.author}')
-      ..writeln('    license: ${icon.license}')
+      ..writeln('    author: ${_yamlScalar(icon.author)}')
+      ..writeln('    license: ${_yamlScalar(icon.license)}')
       ..writeln('    upstream_commit: ${_yamlNullable(icon.upstreamCommit)}');
   }
   return buffer.toString();
 }
 
-String _yamlNullable(String? value) => value ?? 'null';
+String _yamlNullable(String? value) =>
+    value == null ? 'null' : _yamlScalar(value);
+
+/// Writes a provenance string as YAML, quoting it when writing it bare would
+/// not read back as the same string.
+///
+/// Provenance is free text, and one field already contains `": "` — the
+/// `based_on` of `search_in_the_quote_24_regular` names a path inside the
+/// Fluent repository. Emitted bare, that turns the value into a nested mapping
+/// key and the manifest stops parsing, which only shows up the next time an
+/// icon is appended after it.
+String _yamlScalar(String value) {
+  final plain = value.isNotEmpty &&
+      !value.contains(': ') &&
+      !value.contains(' #') &&
+      !value.contains('\n') &&
+      value.trim() == value &&
+      !value.endsWith(':') &&
+      !RegExp(r'''^[-?:,\[\]{}#&*!|>'"%@`]''').hasMatch(value) &&
+      !const {'null', 'true', 'false', '~', 'yes', 'no', 'on', 'off'}
+          .contains(value.toLowerCase()) &&
+      double.tryParse(value) == null;
+  return plain ? value : "'${value.replaceAll("'", "''")}'";
+}
 
 String _nextId(List<ManifestIcon> icons) {
   final numbers = icons
