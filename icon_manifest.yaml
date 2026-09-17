@@ -496,10 +496,10 @@ icons:
     license: GPL-3.0-only
     upstream_commit: null
   - id: icon-0034
-    name: books_stacked_low_24_regular
-    source: assets_src/svg/books_stacked_low_24_regular.svg
+    name: books_stacked_low_24_filled
+    source: assets_src/svg/books_stacked_low_24_filled.svg
     codepoint: 0xe021
-    variant: regular
+    variant: filled
     size: 24
     match_text_direction: false
     deprecated: false
@@ -2685,3 +2685,18 @@ icons:
     author: Otzaria contributors
     license: MIT AND GPL-3.0-only
     upstream_commit: pub:fluentui_system_icons@1.1.273
+  - id: icon-0181
+    name: books_stacked_low_24_regular
+    source: assets_src/svg/books_stacked_low_24_regular.svg
+    codepoint: 0xe0b3
+    variant: regular
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: custom
+    based_on: null
+    author: Otzaria contributors
+    license: GPL-3.0-only
+    upstream_commit: null

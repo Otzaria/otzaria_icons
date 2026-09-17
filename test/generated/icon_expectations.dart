@@ -45,7 +45,7 @@ const generatedIconExpectations = <String, IconData>{
   'book_zim_24_regular': OtzariaIcons.book_zim_24_regular,
   'booklet_empty_24_regular': OtzariaIcons.booklet_empty_24_regular,
   'books_stacked_high_24_regular': OtzariaIcons.books_stacked_high_24_regular,
-  'books_stacked_low_24_regular': OtzariaIcons.books_stacked_low_24_regular,
+  'books_stacked_low_24_filled': OtzariaIcons.books_stacked_low_24_filled,
   'bookshelf_24_filled': OtzariaIcons.bookshelf_24_filled,
   'bookshelf_24_regular': OtzariaIcons.bookshelf_24_regular,
   'dependent_library_24_regular': OtzariaIcons.dependent_library_24_regular,
@@ -208,4 +208,5 @@ const generatedIconExpectations = <String, IconData>{
       OtzariaIcons.alef_near_alef_rashi_24_regular,
   'alef_near_alef_stam_24_regular': OtzariaIcons.alef_near_alef_stam_24_regular,
   'link_alef_24_regular': OtzariaIcons.link_alef_24_regular,
+  'books_stacked_low_24_regular': OtzariaIcons.books_stacked_low_24_regular,
 };

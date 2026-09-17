@@ -947,6 +947,25 @@ def _beit():
                              BEIT_RESTORE, BEIT_EASE), [], False
 
 
+# The line weight the outlined book stack is drawn at. One unit is what the
+# reference the owner gave draws it at, and it is also as heavy as this stack
+# will take: the three books sit against one another, so a line much over this
+# closes the paper between two covers and the stack reads as a solid block
+# again - which is the icon it was made from.
+BOOKS_LOW_LINE = 1.00
+
+
+@recipe("books_stacked_low_24_regular")
+def _books_low():
+    """The low stack as an outline drawing, from the solid one.
+
+    The solid is three closed contours, one per book, each already cut where
+    the book above it covers it - so outlining them one at a time draws exactly
+    the lines a reader would see and none of the hidden ones.
+    """
+    return glyph("books_stacked_low_24_filled").outlined(BOOKS_LOW_LINE), [], False
+
+
 @recipe("bookshelf_24_regular")
 def _bookshelf():
     """Thinned 15%, and nothing else.

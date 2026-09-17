@@ -240,8 +240,8 @@ abstract final class OtzariaIcons {
     fontPackage: fontPackage,
   );
 
-  /// `books_stacked_low_24_regular.svg`
-  static const IconData books_stacked_low_24_regular = IconData(
+  /// `books_stacked_low_24_filled.svg`
+  static const IconData books_stacked_low_24_filled = IconData(
     0xe021,
     fontFamily: fontFamily,
     fontPackage: fontPackage,
@@ -1262,6 +1262,13 @@ abstract final class OtzariaIcons {
     fontPackage: fontPackage,
   );
 
+  /// `books_stacked_low_24_regular.svg`
+  static const IconData books_stacked_low_24_regular = IconData(
+    0xe0b3,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
   /// Every icon in this library, keyed by its name.
   static const Map<String, IconData> allIcons = <String, IconData>{
     'book_24_filled': book_24_filled,
@@ -1297,7 +1304,7 @@ abstract final class OtzariaIcons {
     'book_zim_24_regular': book_zim_24_regular,
     'booklet_empty_24_regular': booklet_empty_24_regular,
     'books_stacked_high_24_regular': books_stacked_high_24_regular,
-    'books_stacked_low_24_regular': books_stacked_low_24_regular,
+    'books_stacked_low_24_filled': books_stacked_low_24_filled,
     'bookshelf_24_filled': bookshelf_24_filled,
     'bookshelf_24_regular': bookshelf_24_regular,
     'dependent_library_24_regular': dependent_library_24_regular,
@@ -1443,5 +1450,6 @@ abstract final class OtzariaIcons {
     'alef_near_alef_rashi_24_regular': alef_near_alef_rashi_24_regular,
     'alef_near_alef_stam_24_regular': alef_near_alef_stam_24_regular,
     'link_alef_24_regular': link_alef_24_regular,
+    'books_stacked_low_24_regular': books_stacked_low_24_regular,
   };
 }

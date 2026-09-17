@@ -59,8 +59,8 @@ const iconCatalog = <GalleryIcon>[
       'booklet_empty_24_regular', OtzariaIcons.booklet_empty_24_regular),
   GalleryIcon('books_stacked_high_24_regular',
       OtzariaIcons.books_stacked_high_24_regular),
-  GalleryIcon('books_stacked_low_24_regular',
-      OtzariaIcons.books_stacked_low_24_regular),
+  GalleryIcon(
+      'books_stacked_low_24_filled', OtzariaIcons.books_stacked_low_24_filled),
   GalleryIcon('bookshelf_24_filled', OtzariaIcons.bookshelf_24_filled),
   GalleryIcon('bookshelf_24_regular', OtzariaIcons.bookshelf_24_regular),
   GalleryIcon('dependent_library_24_regular',
@@ -284,4 +284,6 @@ const iconCatalog = <GalleryIcon>[
   GalleryIcon('alef_near_alef_stam_24_regular',
       OtzariaIcons.alef_near_alef_stam_24_regular),
   GalleryIcon('link_alef_24_regular', OtzariaIcons.link_alef_24_regular),
+  GalleryIcon('books_stacked_low_24_regular',
+      OtzariaIcons.books_stacked_low_24_regular),
 ];

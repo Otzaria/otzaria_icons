@@ -339,6 +339,22 @@ class Art:
                 for i in range(len(ys) - 1, -1, -1)]
         return (self | polygon(pts)).despeckle(0.02).fill_holes(0.02)
 
+    def outlined(self, width):
+        """The region's own boundary drawn as a line `width` across, centred on
+        it - a solid drawing turned into an outline one.
+
+        Deliberately not `self - self.shrink(width)`, which is the same picture
+        in principle. An inward offset of a hand-drawn silhouette is the one
+        thing skia's stroker gets wrong here, and on the middle book of
+        `books_stacked_low` it gets it wrong loudly: eroding 21 x 9 units of ink
+        by 1.1 comes back empty. Stroking the boundary asks the same stroker for
+        the thing it is reliable at, and every contour keeps its own shape.
+        """
+        out = Art()
+        for c in contours(self):
+            out = out | _band(c.p, width)
+        return out
+
     def deburr(self, delta=0.03):
         """Remove the micro-defects a hand-drawn outline carries, so that
         offsetting it does not amplify them.
