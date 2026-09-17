@@ -51,8 +51,11 @@ BADGE_CX, BADGE_CY = 16.415, 17.667
 # box-fitting leaves a wide flat mark - an eye, a pair of lips - visibly
 # undersized beside a compact one. Set from what is already on these discs:
 # Fluent's cross reaches 3.56 of its disc's 5.495, and this set's copy badge
-# 3.2 of 4.19.
-SYMBOL_REACH = 0.68
+# 3.2 of 4.19 - and then pushed past both, because at 16 px the badge is 5.6
+# pixels across and a mark using two thirds of that is three. At 0.80 the ring
+# of badge ink is still 0.85 units, which is what keeps the disc reading as a
+# disc.
+SYMBOL_REACH = 0.80
 
 # What a mark's ink must not fall below once it is badge-sized. Fluent's marks
 # are drawn with 1.5-unit strokes for a 24-unit canvas; scaled into a badge a
@@ -71,7 +74,7 @@ SYMBOL_REACH = 0.68
 # period of 1.7 units where Fluent uses 3.0, which is a mark reaching 5.7 units
 # inside a disc whose radius is 4.19. So the gap is given priority - it is what
 # disappears first at 16 px - and the stroke is only brought up to here.
-BADGE_MIN_STROKE = 0.85
+BADGE_MIN_STROKE = 1.00
 
 # An enclosed hole below this area is filled instead of kept. At badge scale the
 # eyes of the scissors' handles land at about a third of a unit across, which
@@ -178,10 +181,10 @@ FLUENT_SYMBOLS = {
     # the handles sit behind them, which is the silhouette that says scissors.
     "scissors": ("cut_24_filled", -95),
     "eraser": ("eraser_24_filled", 0),
-    # Fluent draws the highlighter head-on and upright. A pen held upright in a
-    # badge reads as a bottle; on the diagonal it reads as a pen, and it is also
-    # the angle the eraser beside it already sits at.
-    "marker": ("highlight_24_filled", 140),
+    # Fluent draws the highlighter head-on and upright, where it reads as a
+    # bottle. Turned 45 degrees clockwise the nib goes to the lower left and the
+    # barrel up to the right - the angle a pen is actually held at.
+    "marker": ("highlight_24_filled", 45),
     "eye": ("eye_24_filled", 0),
     "quote": ("text_quote_24_filled", 0),
     "document": ("document_24_filled", 0),
@@ -222,7 +225,7 @@ def sym_information(reach):
     be set far larger, and the whole badge reads as one mark.
     """
     letter = use_fluent("info_24_filled").holes()
-    return weighted(letter, reach * 1.25, weight=1.15)
+    return weighted(letter, reach, weight=1.15)
 
 
 def sym_eye(reach):
@@ -235,7 +238,7 @@ def sym_eye(reach):
     parameter the arc's is not: taking a little off it opens the gap back up
     without touching the shape that carries the reading.
     """
-    art = weighted(use_fluent("eye_24_filled"), reach)
+    art = weighted(use_fluent("eye_24_filled"), reach * 0.92)
     parts = ic.contours(art)
     pupil = min(parts, key=lambda c: c.area)
     lid = Art()
@@ -305,7 +308,9 @@ DRAWN_SYMBOLS = {
 def symbol(kind, reach):
     """The mark for `kind`, centred on the origin, reaching `reach` units."""
     if kind in DRAWN_SYMBOLS:
-        return DRAWN_SYMBOLS[kind]().centred_on(0, 0)
+        # Drawn at badge scale, so they need no re-weighting - but they are
+        # still fitted, or they would stay at whatever size the disc used to be.
+        return DRAWN_SYMBOLS[kind]().fit_radius(reach).centred_on(0, 0)
     if kind == "copy":
         # Already at badge weight; it only needs the disc it is going on.
         return sym_copy().fit_radius(reach).centred_on(0, 0)
