@@ -278,4 +278,10 @@ const iconCatalog = <GalleryIcon>[
       OtzariaIcons.otzaria_icon_2_page_line_24_filled),
   GalleryIcon('otzaria_icon_empty_24_filled',
       OtzariaIcons.otzaria_icon_empty_24_filled),
+  GalleryIcon('alef_lock_24_regular', OtzariaIcons.alef_lock_24_regular),
+  GalleryIcon('alef_near_alef_rashi_24_regular',
+      OtzariaIcons.alef_near_alef_rashi_24_regular),
+  GalleryIcon('alef_near_alef_stam_24_regular',
+      OtzariaIcons.alef_near_alef_stam_24_regular),
+  GalleryIcon('link_alef_24_regular', OtzariaIcons.link_alef_24_regular),
 ];

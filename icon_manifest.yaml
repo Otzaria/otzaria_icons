@@ -2625,3 +2625,63 @@ icons:
     author: Otzaria contributors
     license: GPL-3.0-only
     upstream_commit: null
+  - id: icon-0177
+    name: alef_lock_24_regular
+    source: assets_src/svg/alef_lock_24_regular.svg
+    codepoint: 0xe0af
+    variant: regular
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: modified_fluent
+    based_on: 'microsoft/fluentui-system-icons: lock_closed_24_filled (fluentui_system_icons 1.1.273)'
+    author: Otzaria contributors
+    license: MIT AND GPL-3.0-only
+    upstream_commit: pub:fluentui_system_icons@1.1.273
+  - id: icon-0178
+    name: alef_near_alef_rashi_24_regular
+    source: assets_src/svg/alef_near_alef_rashi_24_regular.svg
+    codepoint: 0xe0b0
+    variant: regular
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: custom
+    based_on: null
+    author: Otzaria contributors
+    license: GPL-3.0-only
+    upstream_commit: null
+  - id: icon-0179
+    name: alef_near_alef_stam_24_regular
+    source: assets_src/svg/alef_near_alef_stam_24_regular.svg
+    codepoint: 0xe0b1
+    variant: regular
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: custom
+    based_on: null
+    author: Otzaria contributors
+    license: GPL-3.0-only
+    upstream_commit: null
+  - id: icon-0180
+    name: link_alef_24_regular
+    source: assets_src/svg/link_alef_24_regular.svg
+    codepoint: 0xe0b2
+    variant: regular
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: modified_fluent
+    based_on: 'microsoft/fluentui-system-icons: link_dismiss_24_regular (fluentui_system_icons 1.1.273)'
+    author: Otzaria contributors
+    license: MIT AND GPL-3.0-only
+    upstream_commit: pub:fluentui_system_icons@1.1.273

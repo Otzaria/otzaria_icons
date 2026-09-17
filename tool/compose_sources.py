@@ -188,6 +188,7 @@ FLUENT_SYMBOLS = {
     "eye": ("eye_24_filled", 0),
     "quote": ("text_quote_24_filled", 0),
     "document": ("document_24_filled", 0),
+    "lock": ("lock_closed_24_filled", 0),
     # Fluent's info "i" is a fine stroke inside a disc; on a badge it needs more
     # weight than the marks that are shapes rather than letters.
     "information": ("info_24_filled", 0),
@@ -246,6 +247,16 @@ def sym_eye(reach):
         if c is not pupil:
             lid = lid | c
     return (lid | pupil.shrink(0.20)).centred_on(0, 0)
+
+
+def sym_alef():
+    """The alef itself, as a badge mark.
+
+    It goes on the link's disc, which is the larger of the two, and it is a
+    letter rather than an object - so like the information "i" it is set to the
+    full reach and given a letter's weight rather than an object's.
+    """
+    return alef_solid()
 
 
 def sym_copy():
@@ -322,6 +333,8 @@ def symbol(kind, reach):
         return sym_eye(reach)
     if kind == "information":
         return sym_information(reach)
+    if kind == "alef":
+        return weighted(sym_alef(), reach, weight=1.15)
     return sym_fluent(kind, reach)
 
 
@@ -702,6 +715,18 @@ def _ink_across(art, y, x0, x1):
     return sum(c.bounds[2] - c.bounds[0] for c in ic.contours(strip))
 
 
+@recipe("alef_near_alef_stam_24_regular")
+def _alef_near_stam():
+    """The square alef facing the STA"M one."""
+    return pair(glyph("alef_24_filled"), glyph("alef_stam_24_regular")), [], False
+
+
+@recipe("alef_near_alef_rashi_24_regular")
+def _alef_near_rashi():
+    """The square alef facing the Rashi one."""
+    return pair(glyph("alef_24_filled"), glyph("alef_rashi_24_regular")), [], False
+
+
 @recipe("alef_latin_a_24_regular")
 def _alef_latin_a():
     """The alef facing a Latin A."""
@@ -867,7 +892,8 @@ for _kind, _name in [("scissors", "alef_scissors_24_regular"),
                      ("eye", "alef_eye_24_regular"),
                      ("eraser", "alef_with_eraser_24_regular"),
                      ("exclamation", "alef_with_exclamation_24_regular"),
-                     ("plus", "alef_addition_24_regular")]:
+                     ("plus", "alef_addition_24_regular"),
+                     ("lock", "alef_lock_24_regular")]:
     RECIPES[_name] = alef_badge(_kind)
 
 for _kind, _name in [("copy", "link_copy_24_regular"),
@@ -878,7 +904,8 @@ for _kind, _name in [("copy", "link_copy_24_regular"),
                      ("document", "link_document_24_regular"),
                      ("scissors", "link_scissors_24_regular"),
                      ("cross", "link_deletion_24_regular"),
-                     ("eye", "link_eye_24_regular")]:
+                     ("eye", "link_eye_24_regular"),
+                     ("alef", "link_alef_24_regular")]:
     RECIPES[_name] = link_badge(_kind)
 
 

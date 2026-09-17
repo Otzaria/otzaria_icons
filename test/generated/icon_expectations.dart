@@ -203,4 +203,9 @@ const generatedIconExpectations = <String, IconData>{
   'otzaria_icon_2_page_line_24_filled':
       OtzariaIcons.otzaria_icon_2_page_line_24_filled,
   'otzaria_icon_empty_24_filled': OtzariaIcons.otzaria_icon_empty_24_filled,
+  'alef_lock_24_regular': OtzariaIcons.alef_lock_24_regular,
+  'alef_near_alef_rashi_24_regular':
+      OtzariaIcons.alef_near_alef_rashi_24_regular,
+  'alef_near_alef_stam_24_regular': OtzariaIcons.alef_near_alef_stam_24_regular,
+  'link_alef_24_regular': OtzariaIcons.link_alef_24_regular,
 };
