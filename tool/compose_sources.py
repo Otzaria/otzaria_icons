@@ -454,54 +454,41 @@ def mark_download():
 
 
 # --------------------------------------------------------------------------
-# A filled book from an open one
+# A filled icon from an outline one
 # --------------------------------------------------------------------------
-# The black line round the outside, and the white band behind it. Both are taken
-# *out of* the existing silhouette rather than added around it, so a filled
-# variant occupies exactly the space its regular twin does; a pair that differed
-# in optical size would not sit together in a toolbar. The white band is the
-# wider of the two because it is the one that has to survive: at 16 px a 1.0
-# unit band is two thirds of a pixel, and it was disappearing.
-BOOK_OUTER, BOOK_WHITE = 0.95, 1.00
-
-# How far a knocked-out rule must stay clear of the white band. Without it a
-# rule that runs close to the edge opens into the band and the two merge into
-# one white shape, which reads as a hole in the book rather than as a line on it.
-BOOK_RULE_MARGIN = 0.55
-
-# Anything below this is debris from the offsetting, not artwork. Offsetting the
-# otzaria_icon cover leaves forty-odd fragments none of them a thirtieth of a
-# square unit, against a smallest real feature - one text rule - of 5.5. There
-# is three orders of magnitude between the two, so the threshold does not need
-# to be delicate; it needs to be well clear of the debris, which at 0.01 it was
-# not.
-SPECK = 0.5
+# Stated as a rule rather than derived by offsetting, which is what the earlier
+# attempts got wrong:
+#
+#   every white area inside the icon, except the big one outside it, turns
+#   black; every black line turns white; and a thin black line is added
+#   around the outermost white lines.
+#
+# Read literally, that needs *no offset of the artwork at all*. The white lines
+# of the filled icon are the black lines of the regular one, exactly where the
+# designer drew them - same widths, same curves, same corners - so the pair
+# cannot differ in the ways the offset versions did, least of all at the top of
+# a cover where the outline turns most sharply. The only constructed part is the
+# thin black line, and that is a *grow* of the silhouette, which unlike a shrink
+# cannot collapse or fold.
+FILLED_EDGE = 0.55
 
 
-def book_open_filled(base, outer=BOOK_OUTER, white=BOOK_WHITE):
-    """Turn an open book inside out.
-
-    The regular icon is a black frame around white pages. The filled one
-    inverts that reading without changing the silhouette: a black line runs
-    round the outside, the frame behind it is now white, the pages behind that
-    are solid, and every line that used to be black - the gutter, and the text
-    rules in a *_line variant - is knocked out of them.
-    """
+def inverted(base, edge=FILLED_EDGE):
+    """The regular icon turned inside out, by the rule above."""
     art = glyph(base)
-    body = ic.contours(art)[0]          # the silhouette, holes filled
-    # Regularise the outline before offsetting it: these covers were drawn by
-    # hand, and offsetting amplifies micro-defects far too small to see.
-    body = body.deburr()
-    ring = (body - body.shrink(outer)).despeckle(SPECK)
-    core = body.shrink(outer + white).despeckle(SPECK)
-    # The two bands are disjoint by construction, but an offset of a hand-drawn
-    # cover can pinch the band shut where the outline turns sharply - and two
-    # contours that merely touch are what the font merges into one shape and
-    # what normalize_svg_overlaps.py refuses to resolve. Holding them apart
-    # explicitly costs a twentieth of a unit and removes the whole class.
-    core = (core - ring.grow(0.05)).despeckle(SPECK)
-    rules = art & core.shrink(BOOK_RULE_MARGIN).despeckle(SPECK)
-    return (ring | (core - rules)).despeckle(SPECK), []
+    body = ic.contours(art)[0]              # the silhouette, holes filled
+    # The interior is cut with the exact silhouette, so the white lines land
+    # exactly where the black ones were. Only the outer line is grown, and only
+    # from a deburred copy: these covers are hand-drawn, and growing one raw
+    # sheds slivers that end up welded to the artwork.
+    ring = body.deburr().grow(edge) - body
+    out = (body - art) | ring
+    return out.despeckle(SPECK).fill_holes(SPECK).prune(0.002), []
+
+
+# Anything below this is debris, not artwork: three orders of magnitude under
+# the smallest real feature in these icons, which is one text rule at 5.5.
+SPECK = 0.5
 
 
 # --------------------------------------------------------------------------
@@ -612,65 +599,23 @@ def scroll_bars(art):
 
 
 # --------------------------------------------------------------------------
-# A filled otzaria_icon, built without offsetting its cover
+# Two letters side by side
 # --------------------------------------------------------------------------
-# The same construction as the open book above, by a different route, because
-# this cover's outline cannot be offset. Skia's stroker does not merely fail on
-# it - it returns wrong answers without saying so: eroding the 351-unit cover by
-# 0.50 gives back 36 units, by 0.80 gives 294, and by 1.00 fails outright. The
-# outline is hand-drawn and full of near-degenerate detail, and there is no
-# amount of deburring that makes an offset of it trustworthy.
-#
-# So nothing here is offset. The white band's inner edge is the boundary the
-# designer already drew - the regular icon's own inner contour - and only the
-# outer black line needs constructing, from a scaled copy of the cover. A scaled
-# inset is not a true offset, so the line varies a little in width across a
-# shape this tall, but it is exact arithmetic and cannot go wrong quietly.
-OTZARIA_OUTER = 0.95
-
-
-def _depth_one(contours, outer):
-    """The contours immediately inside `outer`: the icon's interior regions,
-    skipping anything nested deeper (a counter, a detail inside a page)."""
-    out = []
-    for c in contours:
-        if c is outer:
-            continue
-        if (c & outer).area < 0.95 * c.area:
-            continue
-        if any(o is not c and o is not outer
-               and (c & o).area > 0.95 * c.area for o in contours):
-            continue
-        out.append(c)
-    return out
-
-
-def otzaria_filled(base):
-    art = glyph(base)
-    cs = ic.contours(art)
-    cover = cs[0]
-    inner = _depth_one(cs, cover)
-    if not inner:
-        raise Restated("%s: no interior contour to build a filled variant from"
-                       % base)
-    core = Art()
-    for c in inner:
-        core = core | c
-
-    x0, y0, x1, y1 = cover.bounds
-    k = 1 - 2 * OTZARIA_OUTER / max(x1 - x0, y1 - y0)
-    line = cover - cover.scale(k, about=((x0 + x1) / 2, (y0 + y1) / 2))
-    return (line | (core - art)).despeckle(SPECK), []
-
-
-# --------------------------------------------------------------------------
-# A Latin A beside the alef
-# --------------------------------------------------------------------------
-# The layout is `alef_alef_24_regular`'s exactly - two letters 10.80 units wide
-# at x 0.95 and x 12.25 - so the pair sits at the same size and rhythm as the
-# rest of the two-letter icons. The alef is on the right, where a Hebrew reader
-# starts.
+# `alef_alef_24_regular`'s layout exactly - two letters 10.80 units wide at
+# x 0.95 and x 12.25 - so every pair in the set sits at the same size and
+# rhythm. The Hebrew letter goes on the right, where a Hebrew reader starts.
 PAIR_LEFT, PAIR_RIGHT, PAIR_WIDTH = 0.95, 12.25, 10.80
+
+
+def pair(right, left):
+    """Two letters laid out on that grid, each fitted to the same band so they
+    share a baseline and a cap line rather than merely sitting side by side."""
+    x0, y0, x1, y1 = right.bounds
+    band = (0, y0, PAIR_WIDTH, y1)
+    r = right.fit(band)
+    l = left.fit(band)
+    return (l.translate(PAIR_LEFT - l.bounds[0], 0)
+            | r.translate(PAIR_RIGHT - r.bounds[0], 0))
 
 
 def latin_a():
@@ -678,7 +623,8 @@ def latin_a():
 
     That icon is an A beside a Korean syllable; the A is its largest contour
     with its counter inside, and the two are told apart by containment rather
-    than by index."""
+    than by index.
+    """
     art = use_fluent("local_language_24_filled")
     cs = ic.contours(art)
     body = max(cs, key=lambda c: c.area)
@@ -687,40 +633,6 @@ def latin_a():
         if c is not body and (c & body).area > 0.95 * c.area:
             out = out - c
     return out
-
-
-# --------------------------------------------------------------------------
-# A filled stack of books
-# --------------------------------------------------------------------------
-# An outline icon of solid objects turns filled by flooding the silhouette and
-# keeping only the lines that separate one object from the next - which is how
-# Fluent fills its own stacked and layered icons. The rule that finds those
-# lines is depth: ink further than this from the silhouette's edge is a
-# separator, ink at the edge is the outline that the flood replaces.
-STACK_DEPTH = 1.00
-
-# A white separator has to survive on black, where it goes before black-on-white
-# ink of the same width does, so each one is widened by this on both sides.
-STACK_SEPARATOR = 0.18
-
-# An interior shorter than this is not a book but a page rule drawn inside one,
-# and the strokes around it are detail rather than structure. They are left
-# filled: six books' worth of hatching reads as a texture, not as a stack.
-STACK_PAGE_RULE = 2.40
-
-
-def stack_filled(base, depth=STACK_DEPTH):
-    art = glyph(base)
-    body = ic.contours(art)[0].deburr()
-    pages = Art()
-    for c in ic.contours(body - art):
-        x0, y0, x1, y1 = c.bounds
-        if c.area > 0.5 and y1 - y0 < STACK_PAGE_RULE:
-            pages = pages | c
-    separators = art & body.shrink(depth)
-    if not pages.is_empty:
-        separators = separators - pages.grow(0.7)
-    return (body - separators.grow(STACK_SEPARATOR)).despeckle(SPECK), []
 
 
 class Restated(Exception):
@@ -787,24 +699,8 @@ def _ink_across(art, y, x0, x1):
 
 @recipe("alef_latin_a_24_regular")
 def _alef_latin_a():
-    """The alef facing a Latin A, laid out as `alef_alef_24_regular`.
-
-    The A is set to the alef's own height rather than to the box, so the two
-    letters share a baseline and a cap line and read as a pair rather than as
-    two icons that happen to be adjacent.
-    """
-    alef = glyph("alef_24_filled")
-    _, ay0, _, ay1 = alef.bounds
-    a = latin_a().fit((0, ay0, PAIR_WIDTH, ay1))
-    alef = alef.fit((0, ay0, PAIR_WIDTH, ay1))
-    return (a.translate(PAIR_LEFT - a.bounds[0], 0)
-            | alef.translate(PAIR_RIGHT - alef.bounds[0], 0)), [], False
-
-
-@recipe("books_stacked_high_24_filled")
-def _books_stacked_high_filled():
-    solid, cuts = stack_filled("books_stacked_high_24_regular")
-    return solid, cuts, False
+    """The alef facing a Latin A."""
+    return pair(glyph("alef_24_filled"), latin_a()), [], False
 
 
 @recipe("beit_24_regular")
@@ -930,44 +826,25 @@ def _doc_dl_f():
     return solid, cuts, False
 
 
-@recipe("book_open_medium_24_filled")
-def _bom_f():
-    solid, cuts = book_open_filled("book_open_medium_24_regular")
-    return solid, cuts, False
-
-
-@recipe("book_open_medium_line_24_filled")
-def _boml_f():
-    solid, cuts = book_open_filled("book_open_medium_line_24_regular")
-    return solid, cuts, False
-
-
-# The otzaria_icon family is the same construction and was drawn with the same
-# intent, but by hand and far too tight: its white band measured about half a
-# unit, a third of a pixel at 24 px, and `otzaria_icon_2_page_24_filled` had
-# collapsed altogether - 21.6 units of ink against its regular twin's 200, so it
-# shipped as a hairline outline rather than as a filled icon. Deriving all three
-# from their regular twins by the rule above fixes both at once and keeps the
-# two families reading alike.
-for _name in ["book_open_small_24_filled",
+# Every filled variant in the set, by the one rule in `inverted`. They all get
+# the same treatment because the rule is the same for all of them - which is
+# what makes a filled icon look like its regular twin, and what the earlier
+# per-family derivations, each offsetting its own cover, could not do.
+for _name in ["book_open_medium_24_filled",
+              "book_open_medium_line_24_filled",
+              "book_open_medium_search_24_filled",
+              "book_open_small_24_filled",
               "book_open_small_line_24_filled",
-              "book_open_medium_search_24_filled"]:
-    def _bof(base=_name.replace("_filled", "_regular")):
-        solid, cuts = book_open_filled(base)
-        return solid, cuts, False
-    RECIPES[_name] = _bof
-
-
-# The otzaria cover, whose outline cannot be offset - see `otzaria_filled`.
-for _name in ["otzaria_icon_24_filled",
+              "otzaria_icon_24_filled",
               "otzaria_icon_line_24_filled",
               "otzaria_icon_2_page_24_filled",
               "otzaria_icon_2_page_line_24_filled",
-              "otzaria_icon_empty_24_filled"]:
-    def _otz(base=_name.replace("_filled", "_regular")):
-        solid, cuts = otzaria_filled(base)
+              "otzaria_icon_empty_24_filled",
+              "books_stacked_high_24_filled"]:
+    def _inv(base=_name.replace("_filled", "_regular")):
+        solid, cuts = inverted(base)
         return solid, cuts, False
-    RECIPES[_name] = _otz
+    RECIPES[_name] = _inv
 
 
 for _name in RESTRIPE:

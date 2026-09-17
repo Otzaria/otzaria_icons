@@ -295,6 +295,55 @@ class Art:
         """
         return self.shrink(delta).grow(delta)
 
+    def prune(self, eps=1e-6):
+        """Drop contours that enclose nothing, keeping every other one exactly.
+
+        An offset can leave a contour that traces out and straight back: it
+        encloses no area, so it paints nothing and `despeckle` cannot remove it
+        - subtracting an empty region is a no-op. It is still geometry, though,
+        and `normalize_svg_overlaps.py` counts it as a contour welded to its
+        neighbour and refuses the source. This rewrites the path without them,
+        which cannot change what the icon draws.
+
+        Done on the raw path rather than through `contours()`, so that a real
+        hole keeps its own winding instead of being re-unioned as ink.
+        """
+        out, cur, area, start, prev = pathops.Path(), [], 0.0, None, None
+        kept = []
+        for verb, pts in segments(self.p):
+            if verb == "moveTo":
+                cur, start, prev = [(verb, pts)], pts[0], pts[0]
+                area = 0.0
+                continue
+            if cur is None:
+                continue
+            cur.append((verb, pts))
+            if verb == "closePath":
+                area += (prev[0] * start[1] - start[0] * prev[1]) / 2
+                if abs(area) > eps:
+                    kept.append(cur)
+                cur = None
+            else:
+                for q in (pts if verb != "qCurveTo" else
+                          [e for _, e in _quads(pts)]):
+                    if q:
+                        area += (prev[0] * q[1] - q[0] * prev[1]) / 2
+                        prev = q
+        for contour in kept:
+            for verb, pts in contour:
+                if verb == "moveTo":
+                    out.moveTo(*pts[0])
+                elif verb == "lineTo":
+                    out.lineTo(*pts[0])
+                elif verb == "curveTo":
+                    out.cubicTo(*[c for q in pts for c in q])
+                elif verb == "qCurveTo":
+                    for c, e in _quads(pts):
+                        out.quadTo(c[0], c[1], e[0], e[1])
+                elif verb == "closePath":
+                    out.close()
+        return Art(out)
+
     def despeckle(self, min_area=0.01):
         """Drop ink too small to be design.
 
