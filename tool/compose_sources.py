@@ -554,8 +554,6 @@ SPECK = 0.5
 # have). The width is absolute rather than an amount to trim, so that a second
 # run draws the same rules instead of trimming them again.
 RESTRIPE = {
-    "otzaria_icon_line_24_regular":       (4, 1.00, 2.30, None),
-    "otzaria_icon_2_page_line_24_regular": (4, 1.00, 2.30, None),
     "book_open_large_lines_24_regular":   (4, 1.00, 2.30, None),
     "book_open_large_search_24_regular":  (4, 1.00, 2.30, None),
     "book_open_small_line_24_regular":    (4, 0.95, 2.25, None),
@@ -622,6 +620,74 @@ def restripe(name):
     # the rules already there. Comparing the regions rather than counting them
     # is what makes that reliable: two of these icons already had the right
     # number of rules and still needed their ends pulling in.
+    if (old - text).area + (text - old).area < 0.05:
+        raise Restated("%s already carries these rules" % name)
+    return (art - old) | text, []
+
+
+# --------------------------------------------------------------------------
+# Text spread over the page instead of set as a block
+# --------------------------------------------------------------------------
+# The two `otzaria_icon` line variants set their text in the top two thirds of
+# the page and left the bottom third empty, which reads as a page that was cut
+# short rather than as a page of text. Here the page itself is the block: five
+# rules, with the same gap above the first, between each pair and below the
+# last, measured from the frame lines the page is drawn between.
+#
+# (rows, gap as a multiple of the rule's own height). Stating the gap as a
+# ratio rather than a pitch is what makes this survive the icon being scaled:
+# the rule height is solved from the opening, so enlarging the drawing enlarges
+# the text with it and a second run finds the layout it would have drawn.
+RESPREAD = {
+    "otzaria_icon_line_24_regular":        (5, 1.55),
+    "otzaria_icon_2_page_line_24_regular": (5, 1.55),
+}
+
+
+def column_opening(art, mid, probe=0.3):
+    """(top, bottom) of the white band a column of text sits in.
+
+    Measured on the column's own centre line, through artwork the rules have
+    already been taken out of, so what is found is the gap between the frame
+    line above the text and the one below it - whatever shape the page is.
+    """
+    runs = sorted((c.bounds[1], c.bounds[3]) for c in
+                  ic.contours(art & ic.rect(mid - probe, 0, mid + probe, 24)))
+    gaps = [(runs[i][1], runs[i + 1][0]) for i in range(len(runs) - 1)]
+    if not gaps:
+        raise Restated("no opening found on the column at x=%.2f" % mid)
+    return max(gaps, key=lambda g: g[1] - g[0])
+
+
+def respread(name):
+    """Spread an icon's text rules evenly over the page they sit on."""
+    art = glyph(name)
+    rules = find_rules(art)
+    rows, ratio = RESPREAD[name]
+
+    columns = {}
+    for c in rules:
+        x0, _, x1, _ = c.bounds
+        key = round(x0, 1)
+        lo, hi = columns.get(key, (x0, x1))
+        columns[key] = (min(lo, x0), max(hi, x1))
+
+    old = Art()
+    for c in rules:
+        old = old | c
+    bare = art - old
+
+    text = Art()
+    for x0, x1 in columns.values():
+        mid = (x0 + x1) / 2
+        top, bottom = column_opening(bare, mid)
+        # rows*h + (rows+1)*ratio*h fills the opening exactly.
+        height = (bottom - top) / (rows + (rows + 1) * ratio)
+        gap = height * ratio
+        for r in range(rows):
+            y = top + gap + r * (height + gap)
+            text = text | round_rect(x0, y, x1, y + height, height / 2)
+
     if (old - text).area + (text - old).area < 0.05:
         raise Restated("%s already carries these rules" % name)
     return (art - old) | text, []
@@ -926,6 +992,13 @@ for _name in RESTRIPE:
         solid, cuts = restripe(n)
         return solid, cuts, False
     RECIPES[_name] = _stripe
+
+
+for _name in RESPREAD:
+    def _spread(n=_name):
+        solid, cuts = respread(n)
+        return solid, cuts, False
+    RECIPES[_name] = _spread
 
 
 
