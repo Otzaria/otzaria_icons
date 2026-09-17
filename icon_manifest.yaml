@@ -2635,11 +2635,11 @@ icons:
     deprecated: false
     upstream_status: missing
     upstream_equivalent: null
-    origin: modified_fluent
-    based_on: 'microsoft/fluentui-system-icons: lock_closed_24_filled (fluentui_system_icons 1.1.273)'
+    origin: custom
+    based_on: null
     author: Otzaria contributors
-    license: MIT AND GPL-3.0-only
-    upstream_commit: pub:fluentui_system_icons@1.1.273
+    license: GPL-3.0-only
+    upstream_commit: null
   - id: icon-0178
     name: alef_near_alef_rashi_24_regular
     source: assets_src/svg/alef_near_alef_rashi_24_regular.svg

@@ -188,7 +188,6 @@ FLUENT_SYMBOLS = {
     "eye": ("eye_24_filled", 0),
     "quote": ("text_quote_24_filled", 0),
     "document": ("document_24_filled", 0),
-    "lock": ("lock_closed_24_filled", 0),
     # Fluent's info "i" is a fine stroke inside a disc; on a badge it needs more
     # weight than the marks that are shapes rather than letters.
     "information": ("info_24_filled", 0),
@@ -308,11 +307,43 @@ def sym_lips(reach):
     return weighted(outer - mouth, reach)
 
 
+def sym_lock():
+    """A padlock drawn at badge scale, not Fluent's padlock reduced to it.
+
+    Reducing `lock_closed_24_filled` is the one adaptation that cannot work
+    here. Its shackle is a 1.5-unit ring around a 3-unit opening; at the 0.29
+    a badge mark is scaled to, the opening falls to under a unit and closes as
+    soon as the stroke is put back, and what is left is a rounded blob with a
+    dot in it. The blob is the body, so the mark loses the only feature that
+    says lock.
+
+    Fluent's own answer to this is to redraw, not to reduce - `lock_shield`
+    carries a lock two units tall that shares no outline with the full-size
+    one - and that is what this is: a body as wide as the disc will take, and
+    above it a shackle whose opening is deliberately the largest thing in the
+    mark rather than the smallest. There is no keyhole. At 16 px the badge is
+    5.6 px across, so a keyhole would be a fifth of a pixel of black inside a
+    three-pixel white mark, and all it would do is grey the mark down.
+    """
+    body = round_rect(-2.05, -0.30, 2.05, 2.85, 0.75)
+    # The shackle: a thick arch, clipped to its upper half, with straight legs
+    # carried down far enough to clear the body's own rounded top corners. The
+    # body is kept narrow on purpose - its bottom corners are the farthest ink
+    # from the mark's centre, so they are what `fit_radius` scales against, and
+    # every tenth taken off them is a tenth the opening above can have.
+    arch = (circle(0, -0.30, 1.75) - circle(0, -0.30, 0.95)) & ic.rect(
+        -1.75, -2.25, 1.75, -0.30)
+    legs = (ic.rect(-1.75, -0.30, -0.95, 0.50)
+            | ic.rect(0.95, -0.30, 1.75, 0.50))
+    return body | arch | legs
+
+
 # Marks already drawn at badge scale for the alef's disc, which is the only disc
 # they go on: they take neither scaling nor re-weighting.
 DRAWN_SYMBOLS = {
     "plus": sym_plus,
     "exclamation": sym_exclamation,
+    "lock": sym_lock,
 }
 
 
