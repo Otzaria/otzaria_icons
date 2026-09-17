@@ -8,6 +8,10 @@
 - Keep geometry within the visual safe area; use optical centering.
 - Geometry may exceed the nominal 2-unit margin only when required for optical
   balance and after visual review at small sizes.
+- Some families are deliberately drawn to a 23-unit box centred on the canvas -
+  `book_open_large`, `otzaria_icon`, `books_stacked` and `torah_scroll` - where
+  the drawing is meant to *be* the icon rather than sit inside it. Half a unit
+  of air is the minimum: less and a round terminal looks cropped at 16 px.
 
 ## Weight and shape
 
@@ -27,8 +31,15 @@
 ## Regular and filled relationship
 
 - A filled variant is added only when the product needs a selected/active state.
-- Filled icons must preserve the same silhouette, optical center, and semantic
-  details as regular icons.
+- A filled variant is an **inversion of its regular twin, not a redrawing of
+  it**: every white area inside the icon except the one outside it turns black,
+  every black line turns white, and a thin black line is added around the
+  outermost white lines. Stated that way it needs no offset of the artwork, so
+  the two cannot drift apart. `compose_sources.inverted()` is the one
+  implementation; do not derive a filled icon any other way.
+- The outer black line is 0.55 units, or 1.10 on the two `book_open` families
+  whose covers are heavy enough that a finer line reads as a hairline. It is
+  added outward only.
 - Interior negative space may be simplified in filled variants, but the icon
   must remain recognizable at 16 px.
 

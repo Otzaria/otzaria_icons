@@ -279,6 +279,12 @@ of preference:
   pixel at 24 px — clears the doubled points and almost-touching edges that the
   offset would otherwise amplify. It took the open books from 114 fragments to
   one. Use `despeckle()` for whatever survives.
+- **Offset in steps.** `grow` splits anything over 0.55 units into equal steps.
+  The stroker comes apart once the width approaches the size of the features it
+  is tracing: growing `book_open_large_lines`'s cover by 1.10 in one call
+  returns eleven fragments with a whole flank missing, and the same offset in
+  two halves returns the one contour it should, to within four hundredths of a
+  square unit.
 - **Fail loudly.** `shrink` raises rather than returning an empty region when a
   small erosion consumes everything, and `write()` refuses a source with under
   one square unit of ink. Both exist because a silent collapse shipped a blank
@@ -295,19 +301,49 @@ which is what makes those last two work: a contour that was a hole in the
 original is still wound the other way, and unioning it cancels instead of
 covering.
 
-`round_corners(outer, inner)` eases a shape: an *opening* rounds the convex
-corners and can never spread the region, so it is safe at any radius the strokes
-can afford; a *closing* rounds the concave ones but bridges anything narrower
-than twice its radius, so `inner` must stay under half the smallest gap in the
-artwork. Both are idempotent in principle — which is why the letter recipes can
-be re-run — though in practice they are re-run on their own offset output, and
-skia refuses that, so they check first whether there is anything left to ease.
+**To round a corner, fillet the path — do not erode the region.**
+`fillet(distance)` walks the outline, and where two straight segments meet at
+more than 25 degrees it trims `distance` off each and bridges the gap with a
+curve through the point they used to meet at. Nothing but the corner moves, so
+no stroke can be thinned and none can be erased however fine it is, and the
+operation is exactly idempotent: a filleted corner is a curve, and a curve is
+not a corner.
+
+`round_corners(outer, inner)` is the morphological alternative — an *opening*
+to round the convex corners, a *closing* for the concave ones — and it is the
+wrong tool for this job, twice proven. It cannot tell a sharp corner from a
+thin stroke, because the same erosion removes both: it erased part of the W in
+`document_word` at a radius of 0.30 where the safe one was 0.09, and on
+`book_open_large` it takes 99 square units off at 0.25 and fails outright at
+0.35. Keep it for easing a *solid* shape, where there is no thin stroke to lose.
+
+`outlined(width)` turns a solid drawing into an outline one by stroking each
+contour's boundary. Also deliberately not `self - self.shrink(width)`: an
+inward offset of a hand-drawn silhouette is exactly what skia gets wrong, and on
+the middle book of `books_stacked_low` eroding 21 × 9 units of ink by 1.1 comes
+back empty.
 
 **A recipe whose input is its own output is not idempotent.** Widening the Rashi
 alef reads `alef_rashi_24_regular` and writes it back, so a second run widens it
-twice. That one carries an explicit guard that refuses to run on a letter that
-is already wide; any future in-place recipe needs the same, because
-`compose_sources.py` with no arguments rebuilds everything.
+twice. Every such recipe carries a guard that recognises its own output and
+raises `Restated`, because `compose_sources.py` with no arguments rebuilds
+everything. **Guard on the defect, not on a proxy**: counting rules and asking
+"is there any thin ink left" both gave wrong answers here — the beit's base
+tapers to a point, so thin ink always exists, and two icons had the right rule
+*count* and the wrong rule *length*.
+
+`in_place(name, *steps)` composes those guarded edits. An icon's recipe is a
+chain — redraw the text, ease the corners, fill the canvas — each step able to
+stand down on its own, and the icon is reported unchanged only when every one of
+them has. `fill_canvas` is the last step for the three families that are scaled
+to `CANVAS_BOX`; `sized()` is the unguarded form, for artwork that is derived
+rather than edited in place.
+
+**Declare what a recipe reads.** A filled icon is built from its regular's
+*file*, and several regulars rewrite their own file, so in plain alphabetical
+order (`_filled` sorts before `_regular`) every filled icon was built from the
+previous run's regular. `DEPENDS[name] = source` puts them in dependency order
+and one run is enough.
 
 New sources are written with plain absolute path data and are expected to be run
 through `format_svg.py` afterwards, which canonicalises them and — because it

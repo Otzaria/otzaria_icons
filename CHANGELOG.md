@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 0.4.0 - 2026-09-17
 
 - **Breaking: `hyperlink` is gone and the `link` names have been reassigned,**
   with no deprecated aliases and no compatibility entries, as requested. The
@@ -12,6 +12,14 @@
   | `link_24_regular` | `links_24_regular` | the 45-degree chain |
   | `book_link_24_{regular,filled}` | `book_links_24_{regular,filled}` | the chain on a book |
   | `book_hyperlink_24_{regular,filled}` | `book_link_24_{regular,filled}` | the single link on a book |
+  | `books_stacked_low_24_regular` | `books_stacked_low_24_filled` | the solid low stack |
+
+  The last of those is a correction rather than a redesign: that icon was drawn
+  solid and had been the family's only "regular". It keeps its codepoint under
+  the name its artwork always deserved, and the name it vacates is taken by the
+  outline drawing described below - so an application that asks for
+  `books_stacked_low_24_regular` still compiles and now gets an outline icon
+  where it used to get a solid one.
 
   Renaming is not reallocation - each of those keeps the codepoint its artwork
   already had, so nothing downstream shifts for them. **Removing** one does
@@ -21,8 +29,14 @@
   stored a codepoint rather than a constant must be rebuilt against this
   version.
 
-- Added **thirty-three** icons (`U+E092`-`U+E0B2`). The set now ships **179**
-  icons over a contiguous `U+E000`-`U+E0B2`.
+- Added **thirty-four** icons (`U+E092`-`U+E0B3`). The set now ships **180**
+  icons over a contiguous `U+E000`-`U+E0B3`.
+
+  * `books_stacked_low_24_regular` - the low stack as an outline drawing, so
+    that family has a pair like every other. It is not a second drawing: each
+    of the solid's three closed contours is its own book, already cut where the
+    book above covers it, so stroking them one at a time with a 0.75-unit line
+    draws exactly the lines a reader would see and none of the hidden ones.
 
   * Three pairs of letters, all on `alef_alef_24_regular`'s grid - two letters
     10.80 units wide at x 0.95 and x 12.25, the Hebrew one on the right, each
@@ -32,7 +46,20 @@
     `local_language_24_filled`.
 
   * `link_alef_24_regular` and `alef_lock_24_regular` - the alef on the link's
-    disc, and Fluent's closed lock on the alef's.
+    disc, and a padlock on the alef's.
+
+    The padlock is the one badge mark in the set that is drawn rather than
+    taken from Fluent, and it is drawn because reducing Fluent's cannot work:
+    `lock_closed_24_filled` is a 1.5-unit shackle around a 3-unit opening, and
+    at the 0.29 a badge mark is scaled to, that opening falls under a unit and
+    closes as soon as the stroke is put back. What is left is a rounded blob
+    with a dot in it - the body, without the one feature that says lock. So the
+    mark is drawn at badge size, as Fluent itself does for `lock_shield`: a
+    narrow body, because its bottom corners are the farthest ink from the
+    centre and so are what the fitting scales against, and above it a shackle
+    whose opening is deliberately the largest thing in the mark. There is no
+    keyhole: at 16 px it would be a fifth of a pixel of black inside a
+    three-pixel white mark, and all it would do is grey the mark down.
 
   * Six more filled icons: `book_open_small_24_filled`,
     `book_open_small_line_24_filled`, `book_open_medium_search_24_filled`,
@@ -109,12 +136,31 @@
   bands of ink and paper almost equal in width, which below 24 px close into a
   grey slab, and which go first in the filled variants where they are white on
   black. `book_open_medium_line` already had it right: three rules at 1.25 with
-  1.75 of paper between them, a gap 1.4 times the ink. All of them now carry
-  **four rules at that ratio** (three on the medium), centred on the block the
-  originals occupied so the text stays where the designer put it, each a
-  stadium with ends rounded to exactly half its height. The two medium icons
-  keep their rules and only lose 0.60 of length, so that the filled variants'
-  knockouts clear the white band instead of running into it.
+  1.75 of paper between them, a gap 1.4 times the ink. Every rule in the set is
+  now a stadium with ends rounded to exactly half its height, and they are laid
+  out one of two ways.
+
+  `book_open_large_lines` and `book_open_large_search` carry **four rules** at
+  that ratio, centred on the block the originals occupied so the text stays
+  where the designer put it. The two `book_open_medium` icons keep their three
+  and are only **shortened, to 4.40** - a rule 3.5 times its own height, so its
+  round ends are a third of it and read as ends. At the 5.75 they were drawn at
+  the filled variant's knockouts ran into its white band; at 5.15 they cleared
+  it but still read as cut rectangles.
+
+  The other three set their text over the **whole page** rather than as a block
+  in the top of it. `otzaria_icon_line` and `otzaria_icon_2_page_line` carry
+  five rules and `book_open_small_line` four, in each case with the same gap
+  above the first, between each pair and below the last, measured from the
+  frame lines the page is actually drawn between rather than from the canvas.
+  `book_open_small_line`'s are also narrowed to 4.00 and centred on the paper:
+  at 4.80 in a page 5.52 across they left a quarter of a unit beside them and
+  read as running into the book's own uprights.
+
+  The gap is stated as a ratio of the rule's own height rather than as a pitch,
+  and the height is solved from the opening. That is what lets these icons be
+  scaled afterwards without the text falling out of step with the drawing - and
+  three of them are scaled, below.
 
 - **Restored the back of `beit_24_regular`** (same name and codepoint, visual
   change). The letter was made by scaling the small beit inside
@@ -125,13 +171,42 @@
   alef nor the tet has ink under 0.9 anywhere.
 
   Exactly the 0.90 the erosion took is given back, which puts the back on the
-  letterform's own proportions - 1.40 at mid-height, 1.12 at its narrowest -
-  rather than on a width picked by eye. It is added by moving that one stroke's
-  left edge, not by growing the letter: a grow moves every edge, and restricted
-  to a box it leaves a step where the box ends. The edge is traced, smoothed
-  with a moving average so the sampling grid leaves no staircase, and pushed out
-  along a curve that eases to nothing over 1.2 units at each end, so the new
-  edge meets the old one with a matching tangent.
+  letterform's own proportions - 1.25 at mid-height - rather than on a width
+  picked by eye. It is added by moving that one stroke's left edge, not by
+  growing the letter: a grow moves every edge, and restricted to a box it
+  leaves a step where the box ends.
+
+  The new edge is a **fitted curve**, not a smoothed copy of the old one. That
+  distinction is the whole repair. The letterform is hand-drawn and carries
+  small nicks along that edge, and a traced edge - even averaged - carries every
+  one of them into the result, which is what the first version of this shipped:
+  a back with tremors in it, and a hook where the padding eased off into the
+  base. A degree-5 polynomial has nothing to carry: it is smooth by
+  construction, it cannot reproduce a defect in its input, and over the length
+  of one stroke it still follows the drawing to a few hundredths. The padding
+  eases in over 1.6 units under the bar and does **not** ease out at the foot,
+  because the foot is a junction with the base rather than a free end.
+
+- **Three families now fill the canvas** (same names and codepoints, visual
+  change to twenty icons): every `book_open_large`, every `otzaria_icon` and
+  every `books_stacked`, regular and filled alike, is scaled about its own
+  centre until its longer side is 23 units and then centred on the canvas. Half
+  a unit of air on each side is enough that a round terminal does not look
+  cropped at 16 px and close enough to the box that the drawing is the icon
+  rather than a drawing inside it. `otzaria_icon` gains the most - it was 19.73
+  across - and the Torah scroll was already brought to the same 23, so the
+  number is now shared rather than restated in two places.
+
+  A derived filled icon is scaled *after* its outer line is added, so the pair
+  fills the same box rather than the filled one standing half a line proud of
+  its twin.
+
+- **`otzaria_icon_24_filled` is a derived icon again.** It was briefly restored
+  to the drawing it had been, to get back the wider paper gap the drawing
+  carries between its outer line and the cover. The cost of that is the reason
+  it did not stay: a drawing does not follow its regular. Every other icon in
+  the set is redrawn by re-running the composer, and that one would have had to
+  be redrawn by hand every time the regular moved.
 
 - **Thinned `bookshelf_24_regular` by 15%** (same name and codepoint, visual
   change), and nothing else: a uniform inward offset moves every point of the
@@ -140,7 +215,7 @@
   0.843.
 
 - **Every filled variant is now derived by one rule, stated rather than
-  inferred** (same names and codepoints, visual change to all eleven):
+  inferred** (same names and codepoints, visual change to all fifteen):
 
   > every white area inside the icon, except the big one outside it, turns
   > black; every black line turns white; and a thin black line is added around
@@ -150,8 +225,15 @@
   lines of a filled icon are the black lines of its regular twin, exactly where
   the designer drew them - same widths, same curves, same corners - so the pair
   cannot differ in the ways the earlier versions did. The only constructed part
-  is the 0.55-unit black line, and that is a *grow* of the silhouette, which
-  unlike a shrink cannot collapse or fold.
+  is the outer black line, and that is a *grow* of the silhouette, which unlike
+  a shrink cannot collapse or fold. It is 0.55 units everywhere except on
+  `book_open_medium` and `book_open_large`, whose covers are the heaviest
+  drawings in the set and against which a line that fine read as a hairline;
+  there it is **1.10, added outward only**, so nothing inside the icon moves.
+
+  `book_open_large`'s three filled icons join the rule here. They had been
+  drawings of their own, and the drawings had never picked up a change their
+  regular twins did: they were still showing six text rules against four.
 
   Three separate derivations, each offsetting its own cover, are replaced by
   that one function. They were the cause of every complaint about this family:
@@ -165,20 +247,39 @@
   of ink against its regular twin's 113, so it was shipping as a hairline
   outline rather than as a filled icon at all.
 
-  Worth recording for the next person: **skia's offset is not reliable on the
-  otzaria cover, and does not say so** - eroding its 351 units by 0.50 returns
-  36, by 0.80 returns 294, and by 1.00 fails outright. The rule above avoids the
-  question entirely.
+  Worth recording for the next person: **skia's offset is not reliable on these
+  covers, and does not say so.** Eroding the otzaria cover's 351 units by 0.50
+  returns 36, by 0.80 returns 294, and by 1.00 fails outright. Growing
+  `book_open_large_lines`'s cover by 1.10 in one call returned **eleven
+  fragments with a whole flank of the icon missing** - which shipped, briefly,
+  as a filled book with no right-hand cover. The same offset taken in two
+  halves returns the single contour it should, to within four hundredths of a
+  square unit, so `grow` now takes any offset over 0.55 in steps. The erosion
+  has carried a loud guard since the first time it collapsed silently.
 
-- Reverted an attempt at easing the corners of the Latin letters on
-  `document_word`, `document_html`, `document_md`, `book_word`, `book_md`,
-  `book_pdf`, `book_zim` and `book_number`. It was built on a morphological
-  opening, which is the wrong tool: it cannot tell a sharp corner that should be
-  rounded from a thin stroke that should be kept. The W's strokes are 0.50
-  units, so the safe radius was 0.09 and the one used was 0.30 - and part of the
-  letter was erased. All sixteen icons are back as they were. The right tool is
-  filleting the path's own vertices, which cuts a small arc at a corner and
-  never touches a stroke.
+- **Eased the square corners of `book_open_large`** (same names and codepoints,
+  visual change to all six). That family draws its cover as a stepped frame and
+  cut every step square, which beside the rest of the set - and beside Fluent,
+  where nothing is square - reads as a spike. Each corner now has 0.85 cut off
+  each of its edges, bridged by a curve through the point they used to meet at.
+
+  This is the operation an earlier attempt at the same thing needed and did not
+  have. That attempt - on the Latin letters of `document_word`, `document_html`,
+  `document_md`, `book_word`, `book_md`, `book_pdf`, `book_zim` and
+  `book_number` - was built on a morphological opening, which cannot tell a
+  sharp corner that should be rounded from a thin stroke that should be kept:
+  the W's strokes are 0.50 units, the safe radius was 0.09, the one used was
+  0.30, and part of the letter was erased. All sixteen of those icons were put
+  back as they were and are unchanged in this release.
+
+  The measurements say the same thing about the books. A morphological rounding
+  of `book_open_large` at 0.25 units already takes 99 square units off it, and
+  at 0.35 skia refuses the operation outright. Filleting works on the path
+  instead: where two straight segments meet at more than 25 degrees, each is
+  trimmed and the gap bridged, and nothing but the corner moves. No stroke can
+  be thinned and none can be erased, however fine it is. It is also exactly
+  idempotent - a filleted corner is a curve, and a curve is not a corner - which
+  is what lets a recipe that rewrites its own source recognise its own output.
 
 - **Redrew the text on `torah_scroll_24_regular`** (same name and codepoint,
   visual change). At five rows the 1.64-unit pitch left 0.84 units of parchment
@@ -252,15 +353,17 @@
   glyph - which can then be set far larger, and the whole badge reads as one
   mark.
 
-  The thirteen icons that do this are `modified_fluent` in the manifest and are
+  The sixteen icons that do this are `modified_fluent` in the manifest and are
   listed in `THIRD_PARTY_NOTICES.md`. `compose_sources.py --provenance` writes
   those fields from what the recipes actually fetched, so the record cannot
   drift from the artwork.
 
-  `alef_lips_24_regular` is the exception: Fluent has no lips icon, so it is
-  drawn - but to Fluent's rules, as one stroke of Fluent's weight with rounded
-  ends and no taper, and put through the same fitting and re-weighting every
-  Fluent mark here takes. It stays `custom`.
+  Two marks are the exception and stay `custom`. Fluent has no lips icon, so
+  `alef_lips_24_regular` is drawn - but to Fluent's rules, as one stroke of
+  Fluent's weight with rounded ends and no taper, and put through the same
+  fitting and re-weighting every Fluent mark here takes. And
+  `alef_lock_24_regular`'s padlock is drawn because Fluent's cannot survive the
+  reduction, for the reason given above.
 
 - **Checked whether this set's existing link artwork was Fluent's, and it is
   not.** Worth knowing, because it is a licensing claim: `links_24_regular` was
@@ -300,6 +403,16 @@
   are hand-drawn and their radii scatter between 0.16 and 0.74 within a single
   icon, and one corner of the top rule in `list_24_filled` is 1.066 where its
   other three are 1.000.
+
+- **The composer builds in dependency order, and treatments compose.** A filled
+  icon is built from its regular's *file*, and several regulars are recipes that
+  rewrite their own file - so in plain alphabetical order every filled icon was
+  built from the previous run's regular and caught up only on the run after.
+  Recipes now declare what they read and are ordered by it, so one run is
+  enough. An icon's recipe is likewise a chain of steps rather than one
+  function: redraw the text, ease the corners, fill the canvas. Each step knows
+  how to recognise its own output and stand down, and the icon is reported
+  unchanged only when every step has.
 
 - Added the composition tooling: `tool/icon_compose.py`, the geometry toolkit,
   `tool/fluent_art.py`, which reads a Fluent glyph out of the pub cache's font,
