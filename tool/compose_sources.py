@@ -521,9 +521,26 @@ def mark_download():
 # cannot collapse or fold.
 FILLED_EDGE = 0.55
 
+# Two families carry it at twice that, on the owner's ear: their covers are the
+# heaviest drawings in the set, and against them a line this fine read as a
+# hairline rather than as an edge. The extra goes outward only - the artwork
+# inside is untouched, which is the whole point of the rule.
+FILLED_EDGE_BY = {
+    "book_open_medium": 1.10,
+    "book_open_large": 1.10,
+}
 
-def inverted(base, edge=FILLED_EDGE):
+
+def filled_edge(base):
+    for prefix, edge in FILLED_EDGE_BY.items():
+        if base.startswith(prefix):
+            return edge
+    return FILLED_EDGE
+
+
+def inverted(base, edge=None):
     """The regular icon turned inside out, by the rule above."""
+    edge = filled_edge(base) if edge is None else edge
     art = glyph(base)
     body = ic.contours(art)[0]              # the silhouette, holes filled
     # The interior is cut with the exact silhouette, so the white lines land
@@ -974,6 +991,12 @@ def _doc_dl_f():
 for _name in ["book_open_medium_24_filled",
               "book_open_medium_line_24_filled",
               "book_open_medium_search_24_filled",
+              # These three were drawn, not derived, and the drawing never
+              # picked up the text change its regular twin had: six rules
+              # against four. Deriving them keeps the two in step from here on.
+              "book_open_large_24_filled",
+              "book_open_large_lines_24_filled",
+              "book_open_large_search_24_filled",
               "book_open_small_24_filled",
               "book_open_small_line_24_filled",
               "otzaria_icon_line_24_filled",
@@ -1102,6 +1125,12 @@ def main(argv):
         return 0
     if not names:
         names = sorted(RECIPES)
+    # Regulars first. A filled variant is derived from its regular by reading
+    # the regular's *file*, and several regulars are recipes that rewrite their
+    # own file - so in plain alphabetical order ("_filled" < "_regular") every
+    # filled icon would be built from the previous run's regular and would only
+    # catch up on the run after. Sorting by suffix makes one run enough.
+    names.sort(key=lambda n: (0 if n.endswith("_regular") else 1, n))
     unknown = [n for n in names if n not in RECIPES]
     if unknown:
         print("no recipe for: %s" % ", ".join(unknown), file=sys.stderr)
