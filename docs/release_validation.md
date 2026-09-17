@@ -20,7 +20,8 @@
 | Web release (minimal) | Passed | built; see the note below |
 | `check_font_subset.dart` | Passed | 131740 → 125844 bytes |
 | Manifest audit | Passed | 180 records, codepoints `U+E000`-`U+E0B3` dense and unique, no duplicate names, every record authored and licensed, 16 `modified_fluent` matching `THIRD_PARTY_NOTICES.md` |
-| Android / Windows / Linux / macOS release builds | Not run | GitHub workflows |
+| CI on `main` (`96b4a9c`) | Passed | all seven jobs: package, consumer on Flutter 3.16.9, generated-files check, example gallery, minimal app + web release, Android release, Windows release |
+| Release validation on `v0.4.0` | Passed | package integrity, Linux release, macOS release |
 
 **Open finding — icon tree-shaking removes no glyphs.** The minimal application
 references exactly one icon, and the font Flutter ships with it still contains
