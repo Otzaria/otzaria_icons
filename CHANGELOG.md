@@ -35,8 +35,16 @@
   * `books_stacked_low_24_regular` - the low stack as an outline drawing, so
     that family has a pair like every other. It is not a second drawing: each
     of the solid's three closed contours is its own book, already cut where the
-    book above covers it, so stroking them one at a time with a 0.75-unit line
-    draws exactly the lines a reader would see and none of the hidden ones.
+    book above covers it, so stroking them one at a time draws exactly the
+    lines a reader would see and none of the hidden ones.
+
+    The line is half a unit and is drawn **inside** each book rather than
+    straddling its outline. The books sit only 0.70 apart, and a line that
+    straddles spends half its width on each side of that gap: at 1.00 the paper
+    between the covers closed completely and the stack read as one black block,
+    and at 0.75 it was still a hairline. Inside, every gap survives at the width
+    it was drawn, the silhouette is untouched - so the outline and the solid are
+    the same size - and the weight is free to be what the drawing wants.
 
   * Three pairs of letters, all on `alef_alef_24_regular`'s grid - two letters
     10.80 units wide at x 0.95 and x 12.25, the Hebrew one on the right, each
@@ -161,6 +169,16 @@
   and the height is solved from the opening. That is what lets these icons be
   scaled afterwards without the text falling out of step with the drawing - and
   three of them are scaled, below.
+
+  `otzaria_icon_24_regular` keeps its three rules where they are, and only has
+  their **ends rounded**. It was the one icon in the set that drew a text rule
+  as a plain rectangle - two of its three, with the third eased and the other
+  two not - so each is replaced by a stadium on its own bounding box: same
+  length, same weight, same place. A sweep of all 180 icons for rules whose area
+  matches their bounding box found no others, though it did flag three shapes
+  that are not text rules and were left alone: the line inside `book_24`, the
+  one inside `search_in_the_book_24_regular`, and the spine in
+  `dependent_library_24_regular`.
 
 - **Restored the back of `beit_24_regular`** (same name and codepoint, visual
   change). The letter was made by scaling the small beit inside

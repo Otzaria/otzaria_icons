@@ -445,9 +445,18 @@ class Art:
                 out.close()
         return Art(pathops.simplify(out))
 
-    def outlined(self, width):
-        """The region's own boundary drawn as a line `width` across, centred on
-        it - a solid drawing turned into an outline one.
+    def outlined(self, width, inside=False):
+        """The region's own boundary drawn as a line `width` across - a solid
+        drawing turned into an outline one.
+
+        `inside` keeps the line within the shape instead of straddling its
+        boundary, and that is the setting a drawing of several touching shapes
+        needs. Straddling costs half a line of white on *each* side of every
+        gap: the books in `books_stacked_low` are drawn 0.70 apart, so a 0.75
+        line centred on their outlines closes the paper between them entirely
+        and the stack reads as one black block. Kept inside, every gap survives
+        at exactly the width it was drawn, and the silhouette is untouched, so
+        the outline icon and the solid one are the same size.
 
         Deliberately not `self - self.shrink(width)`, which is the same picture
         in principle. An inward offset of a hand-drawn silhouette is the one
@@ -458,7 +467,8 @@ class Art:
         """
         out = Art()
         for c in contours(self):
-            out = out | _band(c.p, width)
+            band = _band(c.p, width * 2 if inside else width)
+            out = out | (band & c if inside else band)
         return out
 
     def deburr(self, delta=0.03):

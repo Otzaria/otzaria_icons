@@ -685,6 +685,28 @@ def column_opening(art, mid, probe=0.3):
     return max(gaps, key=lambda g: g[1] - g[0])
 
 
+def round_rule_ends(name, art):
+    """Give an icon's text rules the round ends the rest of the set has.
+
+    `otzaria_icon` is the one place that drew them as plain rectangles - two of
+    its three, with the third eased and the other two not - which is what the
+    owner saw as ends that are not round. Every other rule in the set is a
+    stadium, and the design spec asks for Fluent's rounded terminals, so this
+    replaces each square-ended rule with a stadium on its own bounding box:
+    same length, same weight, same place.
+    """
+    out, done = art, 0
+    for c in find_rules(art):
+        x0, y0, x1, y1 = c.bounds
+        if c.area < (x1 - x0) * (y1 - y0) - 0.05:
+            continue                     # already eased
+        out = (out - c) | round_rect(x0, y0, x1, y1, (y1 - y0) / 2)
+        done += 1
+    if not done:
+        raise Restated("%s's rules already have round ends" % name)
+    return out, []
+
+
 def row_opening(art, y, x, probe=0.15):
     """(left, right) of the white band at height `y` that contains `x`.
 
@@ -1005,12 +1027,14 @@ def _beit():
                              BEIT_RESTORE, BEIT_EASE), [], False
 
 
-# The line weight the outlined book stack is drawn at. It started at one unit,
-# which put more ink on the page than the reference drawing has: at that weight
-# the paper between two covers closes up and the three books read as one dark
-# block rather than as a stack. Three quarters of a unit is the weight of the
-# set's other outline drawings and is what the reference reads as.
-BOOKS_LOW_LINE = 0.75
+# The line weight the outlined book stack is drawn at, and it is drawn *inside*
+# the solid. The books are only 0.70 apart, so a line straddling their outlines
+# spends half its width on each side of that gap and closes it: at 1.00 the
+# stack came out as one black block, and at 0.75 the paper between two covers
+# was still a hairline. Kept inside, the gaps survive whole and the weight is
+# free to be what the drawing wants - half a unit, which also leaves the 1.20
+# arms of the middle books a visible core.
+BOOKS_LOW_LINE = 0.50
 
 DEPENDS["books_stacked_low_24_regular"] = "books_stacked_low_24_filled"
 
@@ -1021,12 +1045,13 @@ def _books_low():
 
     The solid is three closed contours, one per book, each already cut where
     the book above it covers it - so outlining them one at a time draws exactly
-    the lines a reader would see and none of the hidden ones. The line straddles
-    the silhouette, so the outline reaches half a line further out than the
-    solid does and is brought back to the canvas box afterwards.
+    the lines a reader would see and none of the hidden ones. The line is kept
+    inside each book, which is what leaves the paper between them; see
+    `Art.outlined`. That also means the outline and the solid share a
+    silhouette, so this needs no resizing of its own.
     """
-    art = glyph("books_stacked_low_24_filled").outlined(BOOKS_LOW_LINE)
-    return sized(art), [], False
+    return glyph("books_stacked_low_24_filled").outlined(
+        BOOKS_LOW_LINE, inside=True), [], False
 
 
 @recipe("bookshelf_24_regular")
@@ -1193,12 +1218,14 @@ for _name in RESPREAD:
 # filled ones that are derived are already covered above; `books_stacked_low`'s
 # filled is here because it is the drawing its own regular is outlined from.
 for _name in ["book_open_large_24_regular",
-              "otzaria_icon_24_regular",
               "otzaria_icon_2_page_24_regular",
               "otzaria_icon_empty_24_regular",
               "books_stacked_high_24_regular",
               "books_stacked_low_24_filled"]:
     RECIPES[_name] = steps_for(_name)
+
+RECIPES["otzaria_icon_24_regular"] = steps_for("otzaria_icon_24_regular",
+                                               round_rule_ends)
 
 
 
