@@ -573,11 +573,13 @@ SPECK = 0.5
 RESTRIPE = {
     "book_open_large_lines_24_regular":   (4, 1.00, 2.30, None),
     "book_open_large_search_24_regular":  (4, 1.00, 2.30, None),
-    "book_open_small_line_24_regular":    (4, 0.95, 2.25, None),
-    # Already at the right weight; only shortened from 5.75, so that the filled
-    # variant's knockouts clear its white band instead of running into it.
-    "book_open_medium_line_24_regular":   (3, 1.25, 3.00, 5.15),
-    "book_open_medium_search_24_regular": (3, 1.25, 3.00, 5.15),
+    # Already at the right weight; only shortened - from 5.75, and then again to
+    # here. A rule this short is 3.5 times its own height, so the round ends are
+    # a third of it and they read as ends; at 5.15 they were a quarter and the
+    # bar read as a cut rectangle, which is what the owner saw in the filled
+    # variant, where the rule is white on black and its ends go first.
+    "book_open_medium_line_24_regular":   (3, 1.25, 3.00, 4.40),
+    "book_open_medium_search_24_regular": (3, 1.25, 3.00, 4.40),
 }
 
 
@@ -654,9 +656,17 @@ def restripe(name, art):
 # ratio rather than a pitch is what makes this survive the icon being scaled:
 # the rule height is solved from the opening, so enlarging the drawing enlarges
 # the text with it and a second run finds the layout it would have drawn.
+# (rows, gap as a multiple of the rule's own height, rule width - None keeps
+# the width the rules already have).
 RESPREAD = {
-    "otzaria_icon_line_24_regular":        (5, 1.55),
-    "otzaria_icon_2_page_line_24_regular": (5, 1.55),
+    "otzaria_icon_line_24_regular":        (5, 1.55, None),
+    "otzaria_icon_2_page_line_24_regular": (5, 1.55, None),
+    # Its rules were 4.80 wide in a page 5.52 across, which left a quarter of a
+    # unit of paper beside them - they read as running into the book's own
+    # uprights - and four rows at a 2.25 pitch sat in the top half of a page
+    # 13 units deep. Spread over the page and set to 4.00 they clear the
+    # uprights by three quarters of a unit on each side.
+    "book_open_small_line_24_regular":     (4, 1.75, 4.00),
 }
 
 
@@ -675,10 +685,26 @@ def column_opening(art, mid, probe=0.3):
     return max(gaps, key=lambda g: g[1] - g[0])
 
 
+def row_opening(art, y, x, probe=0.15):
+    """(left, right) of the white band at height `y` that contains `x`.
+
+    The horizontal counterpart of `column_opening`, and used for the same
+    reason: a rule that is given a width has to be centred on the paper it sits
+    on rather than on wherever the rules it replaces happened to start, or it
+    keeps whatever lean the old ones had.
+    """
+    runs = sorted((c.bounds[0], c.bounds[2]) for c in
+                  ic.contours(art & ic.rect(0, y - probe, 24, y + probe)))
+    for i in range(len(runs) - 1):
+        if runs[i][1] <= x <= runs[i + 1][0]:
+            return runs[i][1], runs[i + 1][0]
+    raise Restated("no paper found around x=%.2f at y=%.2f" % (x, y))
+
+
 def respread(name, art):
     """Spread an icon's text rules evenly over the page they sit on."""
     rules = find_rules(art)
-    rows, ratio = RESPREAD[name]
+    rows, ratio, width = RESPREAD[name]
 
     columns = {}
     for c in rules:
@@ -699,6 +725,10 @@ def respread(name, art):
         # rows*h + (rows+1)*ratio*h fills the opening exactly.
         height = (bottom - top) / (rows + (rows + 1) * ratio)
         gap = height * ratio
+        if width is not None:
+            lo, hi = row_opening(bare, (top + bottom) / 2, mid)
+            x0 = (lo + hi) / 2 - width / 2
+            x1 = x0 + width
         for r in range(rows):
             y = top + gap + r * (height + gap)
             text = text | round_rect(x0, y, x1, y + height, height / 2)
@@ -749,6 +779,27 @@ def sized(art):
     s = min(CANVAS_BOX / (x1 - x0), CANVAS_BOX / (y1 - y0))
     return (art.scale(s, about=((x0 + x1) / 2, (y0 + y1) / 2))
                .centred_on(12, 12))
+
+
+# How much is cut off each side of a sharp corner. `book_open_large` is drawn
+# with a stepped frame whose corners are square, which beside the rest of the
+# set - and beside Fluent, where nothing is square - reads as a spike. Cutting
+# 0.85 gives a corner about two thirds of a unit across: visible at 24 px,
+# and still well short of the 0.4 of an edge the fillet will ever take.
+BOOK_CORNER = 0.85
+
+
+def ease_corners(name, art):
+    """Round off an icon's square corners, on the path rather than by erosion.
+
+    The guard is the operation's own idempotence: filleting a corner leaves a
+    curve, and a curve is not a corner, so a second run finds nothing to cut
+    and returns the artwork unchanged to the last decimal.
+    """
+    out = art.fillet(BOOK_CORNER)
+    if (art - out).area + (out - art).area < 0.02:
+        raise Restated("%s has no square corners left" % name)
+    return out, []
 
 
 def in_place(name, *steps):
@@ -834,6 +885,13 @@ class Restated(Exception):
 
 
 RECIPES = {}
+
+# Which composed source a recipe reads, for the ones that read another icon's
+# file rather than their own. A recipe that rewrites its own source has to have
+# run before anything derived from it is built, or the derivation is one run
+# behind - and that is not a theoretical worry: every icon that fills the canvas
+# is resized in place, and its filled twin is built from the resized file.
+DEPENDS = {}
 
 
 def recipe(name):
@@ -947,12 +1005,14 @@ def _beit():
                              BEIT_RESTORE, BEIT_EASE), [], False
 
 
-# The line weight the outlined book stack is drawn at. One unit is what the
-# reference the owner gave draws it at, and it is also as heavy as this stack
-# will take: the three books sit against one another, so a line much over this
-# closes the paper between two covers and the stack reads as a solid block
-# again - which is the icon it was made from.
-BOOKS_LOW_LINE = 1.00
+# The line weight the outlined book stack is drawn at. It started at one unit,
+# which put more ink on the page than the reference drawing has: at that weight
+# the paper between two covers closes up and the three books read as one dark
+# block rather than as a stack. Three quarters of a unit is the weight of the
+# set's other outline drawings and is what the reference reads as.
+BOOKS_LOW_LINE = 0.75
+
+DEPENDS["books_stacked_low_24_regular"] = "books_stacked_low_24_filled"
 
 
 @recipe("books_stacked_low_24_regular")
@@ -961,9 +1021,12 @@ def _books_low():
 
     The solid is three closed contours, one per book, each already cut where
     the book above it covers it - so outlining them one at a time draws exactly
-    the lines a reader would see and none of the hidden ones.
+    the lines a reader would see and none of the hidden ones. The line straddles
+    the silhouette, so the outline reaches half a line further out than the
+    solid does and is brought back to the canvas box afterwards.
     """
-    return glyph("books_stacked_low_24_filled").outlined(BOOKS_LOW_LINE), [], False
+    art = glyph("books_stacked_low_24_filled").outlined(BOOKS_LOW_LINE)
+    return sized(art), [], False
 
 
 @recipe("bookshelf_24_regular")
@@ -1059,11 +1122,11 @@ def _doc_dl_f():
 # what makes a filled icon look like its regular twin, and what the earlier
 # per-family derivations, each offsetting its own cover, could not do.
 #
-# `otzaria_icon_24_filled` is deliberately absent. It is the set's own mark and
-# it was drawn, not derived; the drawing carries a wider paper gap between the
-# outer line and the cover than the rule produces, and that is the difference
-# the owner asked to have back. Deriving it again would overwrite it, so the
-# recipe is gone rather than merely unused.
+# `otzaria_icon_24_filled` is back on this list. It was briefly a drawing of its
+# own again, to get the wider paper gap the original had, and the cost of that
+# was the thing the owner weighed it against: a drawing does not follow its
+# regular. Every other icon in the set is redrawn by re-running this; that one
+# would have had to be redrawn by hand every time.
 for _name in ["book_open_medium_24_filled",
               "book_open_medium_line_24_filled",
               "book_open_medium_search_24_filled",
@@ -1075,11 +1138,14 @@ for _name in ["book_open_medium_24_filled",
               "book_open_large_search_24_filled",
               "book_open_small_24_filled",
               "book_open_small_line_24_filled",
+              "otzaria_icon_24_filled",
               "otzaria_icon_line_24_filled",
               "otzaria_icon_2_page_24_filled",
               "otzaria_icon_2_page_line_24_filled",
               "otzaria_icon_empty_24_filled",
               "books_stacked_high_24_filled"]:
+    DEPENDS[_name] = _name.replace("_filled", "_regular")
+
     def _inv(base=_name.replace("_filled", "_regular"), name=_name):
         solid, cuts = inverted(base)
         # A derived filled icon inherits its regular's size, and then the rule
@@ -1091,34 +1157,48 @@ for _name in ["book_open_medium_24_filled",
     RECIPES[_name] = _inv
 
 
-# The two families the owner asked to have as large as the canvas will take,
+# The families the owner asked to have as large as the canvas will take,
 # regular and filled alike.
-CANVAS_FAMILIES = ("book_open_large", "otzaria_icon")
+CANVAS_FAMILIES = ("book_open_large", "otzaria_icon", "books_stacked")
+
+# The icons whose corners are cut square rather than eased. Only this family
+# draws them that way; everything else in the set already turns its corners.
+SQUARE_CORNERS = ("book_open_large",)
 
 
 def fills_canvas(name):
     return name.startswith(CANVAS_FAMILIES)
 
 
+def steps_for(name, *first):
+    """The in-place chain for one icon: whatever redraws it, then the two
+    treatments a whole family can carry."""
+    steps = list(first)
+    if name.startswith(SQUARE_CORNERS):
+        steps.append(ease_corners)
+    if fills_canvas(name):
+        steps.append(fill_canvas)
+    return in_place(name, *steps)
+
+
 for _name in RESTRIPE:
-    RECIPES[_name] = (in_place(_name, restripe, fill_canvas)
-                      if fills_canvas(_name) else in_place(_name, restripe))
+    RECIPES[_name] = steps_for(_name, restripe)
 
 
 for _name in RESPREAD:
-    RECIPES[_name] = (in_place(_name, respread, fill_canvas)
-                      if fills_canvas(_name) else in_place(_name, respread))
+    RECIPES[_name] = steps_for(_name, respread)
 
 
-# The rest of those two families: nothing to redraw, only the size. The filled
-# ones that are derived are already covered above; `otzaria_icon_24_filled` is
-# here because it is drawn rather than derived.
+# The rest of those families: nothing to redraw, only the treatments. The
+# filled ones that are derived are already covered above; `books_stacked_low`'s
+# filled is here because it is the drawing its own regular is outlined from.
 for _name in ["book_open_large_24_regular",
               "otzaria_icon_24_regular",
-              "otzaria_icon_24_filled",
               "otzaria_icon_2_page_24_regular",
-              "otzaria_icon_empty_24_regular"]:
-    RECIPES[_name] = in_place(_name, fill_canvas)
+              "otzaria_icon_empty_24_regular",
+              "books_stacked_high_24_regular",
+              "books_stacked_low_24_filled"]:
+    RECIPES[_name] = steps_for(_name)
 
 
 
@@ -1213,6 +1293,31 @@ def _write_provenance(used):
     return changed
 
 
+def _in_dependency_order(names):
+    """`names`, alphabetical, except that whatever a recipe reads comes first.
+
+    One run then builds everything from what this run produced, rather than one
+    icon per run catching up with the last.
+    """
+    wanted, seen, out = set(names), set(), []
+
+    def visit(n, stack=()):
+        if n in seen:
+            return
+        if n in stack:
+            raise ValueError("recipes depend on each other: %s"
+                             % " -> ".join(stack + (n,)))
+        dep = DEPENDS.get(n)
+        if dep and dep in wanted:
+            visit(dep, stack + (n,))
+        seen.add(n)
+        out.append(n)
+
+    for n in sorted(names):
+        visit(n)
+    return out
+
+
 def main(argv):
     names = [a for a in argv if not a.startswith("-")]
     if "--list" in argv:
@@ -1221,12 +1326,7 @@ def main(argv):
         return 0
     if not names:
         names = sorted(RECIPES)
-    # Regulars first. A filled variant is derived from its regular by reading
-    # the regular's *file*, and several regulars are recipes that rewrite their
-    # own file - so in plain alphabetical order ("_filled" < "_regular") every
-    # filled icon would be built from the previous run's regular and would only
-    # catch up on the run after. Sorting by suffix makes one run enough.
-    names.sort(key=lambda n: (0 if n.endswith("_regular") else 1, n))
+    names = _in_dependency_order(names)
     unknown = [n for n in names if n not in RECIPES]
     if unknown:
         print("no recipe for: %s" % ", ".join(unknown), file=sys.stderr)

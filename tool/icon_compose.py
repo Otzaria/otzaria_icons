@@ -356,6 +356,95 @@ class Art:
                 for i in range(len(ys) - 1, -1, -1)]
         return (self | polygon(pts)).despeckle(0.02).fill_holes(0.02)
 
+    def fillet(self, distance, min_turn=25.0, max_share=0.4):
+        """Ease the sharp corners of the outline, by cutting each one.
+
+        The right tool for this, and the second one tried. A morphological
+        rounding - `round_corners` - cannot tell a corner from a thin stroke,
+        because both disappear under the same erosion: at 0.25 units it already
+        takes 99 square units off `book_open_large`, and at 0.35 skia refuses
+        the operation outright. This works on the path instead. Where two
+        straight segments meet at more than `min_turn` degrees, `distance` is
+        trimmed off each of them and the gap is bridged by a quadratic through
+        the old corner. Nothing but the corner moves, so no stroke can be
+        thinned and none can be erased, however fine it is.
+
+        A corner is only eased as far as its own edges allow: the trim is capped
+        at `max_share` of the shorter of the two, so a short segment between two
+        corners keeps its middle. Curved joins are left alone - they are already
+        round - which also means a second run finds almost nothing to do.
+        """
+        out = pathops.Path()
+        turn = math.cos(math.radians(180.0 - min_turn))
+        # Walked straight off this path rather than through `contours`, because
+        # that normalises each contour's winding and a hole rebuilt clockwise
+        # fills itself in. Here every contour keeps the direction it was drawn.
+        runs, cur = [], None
+        for verb, pts in segments(self.p):
+            if verb == "moveTo":
+                cur = [pts[0], [], False]
+                runs.append(cur)
+            elif cur is None:
+                continue
+            elif verb == "closePath":
+                cur[2] = True
+            else:
+                cur[1].append([verb, list(pts)])
+        for start, segs, closed in runs:
+            if start is None or not segs:
+                continue
+            if closed and segs[-1][1][-1] != start:
+                segs.append(["lineTo", [start]])
+            ends = [s[1][-1] for s in segs]
+            befores = [start] + ends[:-1]
+            n = len(segs)
+
+            def trim_at(i):
+                """How far back from vertex i each of its two edges is cut."""
+                nxt = (i + 1) % n
+                if not closed and i == n - 1:
+                    return 0.0
+                if segs[i][0] != "lineTo" or segs[nxt][0] != "lineTo":
+                    return 0.0
+                v, a, b = ends[i], befores[i], ends[nxt]
+                ua, ub = (a[0] - v[0], a[1] - v[1]), (b[0] - v[0], b[1] - v[1])
+                la = math.hypot(*ua)
+                lb = math.hypot(*ub)
+                if la < 1e-9 or lb < 1e-9:
+                    return 0.0
+                cos = (ua[0] * ub[0] + ua[1] * ub[1]) / (la * lb)
+                if cos < turn:              # too nearly straight to be a corner
+                    return 0.0
+                return min(distance, max_share * la, max_share * lb)
+
+            cut = [trim_at(i) for i in range(n)]
+
+            def along(frm, to, d):
+                dx, dy = to[0] - frm[0], to[1] - frm[1]
+                l = math.hypot(dx, dy)
+                return (frm[0] + dx / l * d, frm[1] + dy / l * d)
+
+            # Each line is drawn from where the previous corner released it to
+            # where its own corner takes it back; every eased corner then adds
+            # one quadratic through the point the two lines used to meet at.
+            first = (along(start, ends[0], cut[-1]) if closed and cut[-1]
+                     else start)
+            out.moveTo(*first)
+            for i, (verb, pts) in enumerate(segs):
+                v = ends[i]
+                if verb == "lineTo":
+                    out.lineTo(*(along(v, befores[i], cut[i]) if cut[i] else v))
+                elif verb == "curveTo":
+                    out.cubicTo(*[k for p in pts for k in p])
+                elif verb == "qCurveTo":
+                    for ctrl, end in _quads(pts):
+                        out.quadTo(*ctrl, *end)
+                if cut[i]:
+                    out.quadTo(*v, *along(v, ends[(i + 1) % n], cut[i]))
+            if closed:
+                out.close()
+        return Art(pathops.simplify(out))
+
     def outlined(self, width):
         """The region's own boundary drawn as a line `width` across, centred on
         it - a solid drawing turned into an outline one.
