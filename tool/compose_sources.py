@@ -593,7 +593,7 @@ def find_rules(art):
     return out
 
 
-def restripe(name):
+def restripe(name, art):
     """Replace an icon's text rules with fewer, heavier, evenly spaced ones.
 
     The replacements are centred on the block the originals occupied, not on the
@@ -601,7 +601,6 @@ def restripe(name):
     them is drawn. Columns are recovered from the originals' own left edges, and
     every rule is a stadium - round ends, radius exactly half the height.
     """
-    art = glyph(name)
     rules = find_rules(art)
     rows, height, pitch, width = RESTRIPE[name]
 
@@ -676,9 +675,8 @@ def column_opening(art, mid, probe=0.3):
     return max(gaps, key=lambda g: g[1] - g[0])
 
 
-def respread(name):
+def respread(name, art):
     """Spread an icon's text rules evenly over the page they sit on."""
-    art = glyph(name)
     rules = find_rules(art)
     rows, ratio = RESPREAD[name]
 
@@ -694,7 +692,7 @@ def respread(name):
         old = old | c
     bare = art - old
 
-    text = Art()
+    text, drawn = Art(), []
     for x0, x1 in columns.values():
         mid = (x0 + x1) / 2
         top, bottom = column_opening(bare, mid)
@@ -704,10 +702,74 @@ def respread(name):
         for r in range(rows):
             y = top + gap + r * (height + gap)
             text = text | round_rect(x0, y, x1, y + height, height / 2)
+            drawn.append((x0, y, x1, y + height))
 
-    if (old - text).area + (text - old).area < 0.05:
+    # The guard compares the rules themselves rather than the two regions, as
+    # `restripe` does. Region arithmetic is the more thorough test but it is not
+    # a reliable one here: on `otzaria_icon_2_page_line` the difference of two
+    # regions that draw the same ten rules comes back as eleven square units of
+    # contour that encloses nothing, and a guard that cannot recognise its own
+    # output is a guard that rewrites the file on every run. Ten boxes to a
+    # fiftieth of a unit says the same thing and says it exactly.
+    def boxes(bs):
+        return sorted(tuple(round(v, 2) for v in b) for b in bs)
+
+    if boxes(drawn) == boxes(c.bounds for c in rules):
         raise Restated("%s already carries these rules" % name)
     return (art - old) | text, []
+
+
+# --------------------------------------------------------------------------
+# Filling the canvas
+# --------------------------------------------------------------------------
+# What "as large as the icon will take" means here. Half a unit of air on each
+# side: enough that a round terminal does not look cropped at 16 px, and close
+# enough to the box that the drawing is the icon rather than a drawing inside
+# it. The Torah scroll was already brought up to this, so the number is shared
+# rather than restated.
+CANVAS_BOX = 23.0
+
+
+def fill_canvas(name, art):
+    """Scale an icon about its own centre until it fills the canvas box, then
+    centre it there."""
+    x0, y0, x1, y1 = art.bounds
+    if max(x1 - x0, y1 - y0) >= CANVAS_BOX - 0.05:
+        raise Restated("%s already measures %.2f x %.2f"
+                       % (name, x1 - x0, y1 - y0))
+    s = min(CANVAS_BOX / (x1 - x0), CANVAS_BOX / (y1 - y0))
+    return (art.scale(s, about=((x0 + x1) / 2, (y0 + y1) / 2))
+               .centred_on(12, 12)), []
+
+
+def sized(art):
+    """`fill_canvas` for artwork that is derived rather than edited in place -
+    no guard, because nothing here is read back from a file it just wrote."""
+    x0, y0, x1, y1 = art.bounds
+    s = min(CANVAS_BOX / (x1 - x0), CANVAS_BOX / (y1 - y0))
+    return (art.scale(s, about=((x0 + x1) / 2, (y0 + y1) / 2))
+               .centred_on(12, 12))
+
+
+def in_place(name, *steps):
+    """A recipe that applies a chain of edits to an icon's own source.
+
+    Every step here rewrites the file it read, so every one of them has to be
+    able to recognise its own output and refuse; this runs the ones that still
+    have work to do and reports the icon unchanged only when none of them has.
+    """
+    def build():
+        art, cuts, done, last = glyph(name), [], 0, None
+        for step in steps:
+            try:
+                art, cuts = step(name, art)
+                done += 1
+            except Restated as e:
+                last = e
+        if not done:
+            raise last
+        return art, cuts, False
+    return build
 
 
 # --------------------------------------------------------------------------
@@ -946,12 +1008,7 @@ def _torah_scroll():
         for x in columns:
             text = text | round_rect(x, y, x + width, y + height, height / 2)
 
-    scroll = (art - bars) | text
-    bx0, by0, bx1, by1 = scroll.bounds
-    s = min(23.0 / (bx1 - bx0), 23.0 / (by1 - by0))
-    scroll = scroll.scale(s, about=((bx0 + bx1) / 2, (by0 + by1) / 2))
-    scroll = scroll.centred_on(12, 12).grow(SCROLL_GROW)
-    return scroll, [], False
+    return sized((art - bars) | text).grow(SCROLL_GROW), [], False
 
 
 @recipe("document_alef_24_regular")
@@ -1004,25 +1061,45 @@ for _name in ["book_open_medium_24_filled",
               "otzaria_icon_2_page_line_24_filled",
               "otzaria_icon_empty_24_filled",
               "books_stacked_high_24_filled"]:
-    def _inv(base=_name.replace("_filled", "_regular")):
+    def _inv(base=_name.replace("_filled", "_regular"), name=_name):
         solid, cuts = inverted(base)
-        return solid, cuts, False
+        # A derived filled icon inherits its regular's size, and then the rule
+        # adds its outer line outside that - so in the two families that fill
+        # the canvas the derivation would push the drawing off it. Bringing the
+        # result back to the box is a uniform scale of the whole icon: the pair
+        # still shares every line, and both of them fill the canvas.
+        return (sized(solid) if fills_canvas(name) else solid), cuts, False
     RECIPES[_name] = _inv
 
 
+# The two families the owner asked to have as large as the canvas will take,
+# regular and filled alike.
+CANVAS_FAMILIES = ("book_open_large", "otzaria_icon")
+
+
+def fills_canvas(name):
+    return name.startswith(CANVAS_FAMILIES)
+
+
 for _name in RESTRIPE:
-    def _stripe(n=_name):
-        solid, cuts = restripe(n)
-        return solid, cuts, False
-    RECIPES[_name] = _stripe
+    RECIPES[_name] = (in_place(_name, restripe, fill_canvas)
+                      if fills_canvas(_name) else in_place(_name, restripe))
 
 
 for _name in RESPREAD:
-    def _spread(n=_name):
-        solid, cuts = respread(n)
-        return solid, cuts, False
-    RECIPES[_name] = _spread
+    RECIPES[_name] = (in_place(_name, respread, fill_canvas)
+                      if fills_canvas(_name) else in_place(_name, respread))
 
+
+# The rest of those two families: nothing to redraw, only the size. The filled
+# ones that are derived are already covered above; `otzaria_icon_24_filled` is
+# here because it is drawn rather than derived.
+for _name in ["book_open_large_24_regular",
+              "otzaria_icon_24_regular",
+              "otzaria_icon_24_filled",
+              "otzaria_icon_2_page_24_regular",
+              "otzaria_icon_empty_24_regular"]:
+    RECIPES[_name] = in_place(_name, fill_canvas)
 
 
 
