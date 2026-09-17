@@ -24,6 +24,7 @@ have been formatted without undoing that.
 
 Requires: skia-pathops, fonttools.
 """
+import glob
 import sys
 import os
 
@@ -1184,7 +1185,12 @@ for _name in ["book_open_medium_24_filled",
 
 # The families the owner asked to have as large as the canvas will take,
 # regular and filled alike.
-CANVAS_FAMILIES = ("book_open_large", "otzaria_icon", "books_stacked")
+CANVAS_FAMILIES = ("book_open_large", "otzaria_icon", "books_stacked",
+                   # The magnifiers. The two plain ones very nearly filled the
+                   # box already, but every `search_in_*` was drawn inside a
+                   # 19-unit square - a fifth smaller than the icons it sits
+                   # beside in a toolbar, which is exactly what it looked like.
+                   "search")
 
 # The icons whose corners are cut square rather than eased. Only this family
 # draws them that way; everything else in the set already turns its corners.
@@ -1222,6 +1228,14 @@ for _name in ["book_open_large_24_regular",
               "otzaria_icon_empty_24_regular",
               "books_stacked_high_24_regular",
               "books_stacked_low_24_filled"]:
+    RECIPES[_name] = steps_for(_name)
+
+
+# The search family, all of it. Nothing here is derived or redrawn - each one
+# is its own drawing and the only treatment it takes is the canvas fill, so the
+# list is just the names on disk.
+for _name in sorted(os.path.basename(p)[:-4]
+                    for p in glob.glob(os.path.join(ic.SVG_DIR, "search*.svg"))):
     RECIPES[_name] = steps_for(_name)
 
 RECIPES["otzaria_icon_24_regular"] = steps_for("otzaria_icon_24_regular",
