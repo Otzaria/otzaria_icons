@@ -860,12 +860,17 @@ def _doc_dl_f():
 # the same treatment because the rule is the same for all of them - which is
 # what makes a filled icon look like its regular twin, and what the earlier
 # per-family derivations, each offsetting its own cover, could not do.
+#
+# `otzaria_icon_24_filled` is deliberately absent. It is the set's own mark and
+# it was drawn, not derived; the drawing carries a wider paper gap between the
+# outer line and the cover than the rule produces, and that is the difference
+# the owner asked to have back. Deriving it again would overwrite it, so the
+# recipe is gone rather than merely unused.
 for _name in ["book_open_medium_24_filled",
               "book_open_medium_line_24_filled",
               "book_open_medium_search_24_filled",
               "book_open_small_24_filled",
               "book_open_small_line_24_filled",
-              "otzaria_icon_24_filled",
               "otzaria_icon_line_24_filled",
               "otzaria_icon_2_page_24_filled",
               "otzaria_icon_2_page_line_24_filled",
