@@ -706,7 +706,13 @@ def _alef_half():
 # exactly the 0.90 the erosion took puts the back back on the letterform's own
 # proportions - 1.40 at mid-height, 1.12 at its narrowest - rather than on a
 # width picked by eye.
-BEIT_RESTORE, BEIT_TOP, BEIT_FOOT, BEIT_EASE = 0.90, 8.0, 17.2, 1.2
+#
+# The padding runs from the corner under the bar all the way into the base,
+# with no easing at the foot: the foot is a junction, not a free end, and
+# easing the padding off inside it turned the new edge back outward just as
+# the letter's own flare turned inward - the hook that showed at the bottom of
+# the back.
+BEIT_RESTORE, BEIT_TOP, BEIT_FOOT, BEIT_EASE = 0.90, 8.0, 17.35, 1.6
 
 
 def _ink_across(art, y, x0, x1):
@@ -735,20 +741,22 @@ def _alef_latin_a():
 
 @recipe("beit_24_regular")
 def _beit():
-    """Give the beit's right stem its weight back, and ease its terminals.
+    """Give the beit's back its weight back, and nothing else.
 
     The letter was made by eroding `beit_near_alef`'s letterform 0.45 units on
-    every flank, which took 0.90 off every stroke. The stem could not afford it:
+    every flank, which took 0.90 off every stroke. The back could not afford it:
     it measured 1.53 units at the shoulder but tapered to **0.397** at
     mid-height - under half a pixel at 24 px - so the letter read as a top and a
     base joined by a hair, which is nothing like the alef or the tet, neither of
     which has ink under 0.9 anywhere.
 
-    Only the thin ink is grown, not a box around it, and that is what keeps the
-    repair from showing: the region narrower than the target *is* the taper, so
-    growing it adds weight where the stroke is starved and nothing where it is
-    already full. The small nicks the same test picks up elsewhere are left
-    alone - below half a square unit they are outline noise, not strokes.
+    Only the back's own left edge moves, and it moves to a *fitted* curve
+    rather than to a smoothed copy of itself. The letterform is hand-drawn and
+    carries small nicks along that edge; a traced or averaged edge carries them
+    straight into the repair, which is what the owner saw as tremors in the
+    lower back. A polynomial cannot carry them: it is smooth by construction,
+    so what lands on the letter is one clean stroke edge from the corner under
+    the bar down into the base.
     """
     art = glyph("beit_24_regular")
     # Guard on the defect itself - the ink across the back at mid-height -

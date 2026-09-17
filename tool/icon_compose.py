@@ -45,6 +45,35 @@ SVG_DIR = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__)
                        "assets_src", "svg")
 
 
+def _polyfit(xs, ys, degree):
+    """Least squares coefficients of y = c0 + c1 x + ... + cn x^n.
+
+    Solved through the normal equations by Gaussian elimination with partial
+    pivoting - a dependency-free numpy.polyfit for the one place that needs it.
+    The caller centres its samples, which is what keeps a Vandermonde system
+    this small well conditioned.
+    """
+    n = degree + 1
+    a = [[sum(x ** (i + j) for x in xs) for j in range(n)] for i in range(n)]
+    b = [sum(y * x ** i for x, y in zip(xs, ys)) for i in range(n)]
+    for i in range(n):
+        p = max(range(i, n), key=lambda r: abs(a[r][i]))
+        a[i], a[p] = a[p], a[i]
+        b[i], b[p] = b[p], b[i]
+        if not a[i][i]:
+            raise ArithmeticError("polyfit: singular system at row %d" % i)
+        for r in range(i + 1, n):
+            f = a[r][i] / a[i][i]
+            for c in range(i, n):
+                a[r][c] -= f * a[i][c]
+            b[r] -= f * b[i]
+    out = [0.0] * n
+    for i in range(n - 1, -1, -1):
+        out[i] = (b[i] - sum(a[i][j] * out[j]
+                             for j in range(i + 1, n))) / a[i][i]
+    return out
+
+
 # --------------------------------------------------------------------------
 # Art: a filled region you can transform and combine
 # --------------------------------------------------------------------------
@@ -239,47 +268,75 @@ class Art:
             art = art.grow(inner).shrink(inner)
         return art
 
-    def pad_left_edge(self, y0, y1, xlo, xhi, amount, ease=1.2, step=0.08):
-        """Move the left edge of one stroke outward, smoothly.
+    def pad_left_edge(self, y0, y1, xlo, xhi, amount, ease=1.6, ease_end=0.0,
+                      degree=5, step=0.04):
+        """Move the left edge of one stroke outward, along a fitted curve.
 
         For thickening a single stroke of a letter without touching the rest.
         `grow` cannot do it - it moves every edge, and restricted to a box it
         leaves a step where the box ends. Here the stroke's own left edge is
-        traced between y0 and y1 (the only ink inside `xlo`..`xhi`), pushed out
-        by `amount`, and the push is eased to nothing over `ease` units at each
-        end, so the new edge meets the old one with a matching tangent instead
-        of a corner.
+        traced between y0 and y1 (the rightmost run of ink inside `xlo`..`xhi`),
+        pushed out by `amount`, eased in over `ease` units at the top and
+        `ease_end` at the bottom, and then *replaced by a polynomial least
+        squares fit of that target*.
+
+        The fit is the point. A traced edge is a staircase - it is sampled on a
+        fixed grid - and a staircase unioned into an outline is a tremor; a
+        moving average over it is still a polyline that inherits every wobble
+        of a hand-drawn outline, which is what the first version of this shipped.
+        A degree-5 polynomial has no wobble to inherit: it is smooth everywhere
+        by construction, it cannot reproduce a defect in its input, and over the
+        length of one stroke it still follows the drawing to a few hundredths.
+
+        `ease_end` defaults to 0 because the usual bottom end is not a free
+        edge at all but a junction with another stroke, and easing the padding
+        off into a junction is what produced a hook there: the fitted edge
+        turned back out while the letter's own flare turned in.
+
+        The polygon's other side follows the traced edge inward by a quarter
+        unit, but never past the stroke's own right edge - so it can neither
+        leave a gap the union would show as a notch nor spill out of the letter
+        where the stroke is thinner than the inset.
         """
         def smootherstep(t):
             t = min(1.0, max(0.0, t))
             return t * t * t * (t * (t * 6 - 15) + 10)
 
-        # Trace the stroke's left edge. Where the probe crosses more than one
-        # run of ink - near the top, where this stroke passes the letter's own
-        # bar - the stroke wanted is the rightmost, so that is the run measured.
-        ys, edge = [], []
+        # Trace the stroke. Where the probe crosses more than one run of ink -
+        # near the top, where this stroke passes the letter's own bar - the
+        # stroke wanted is the rightmost, so that is the run measured.
+        ys, lo, hi = [], [], []
         y = y0
         while y <= y1 + 1e-9:
             runs = sorted((c.bounds[0], c.bounds[2])
                           for c in contours(self & rect(xlo, y, xhi, y + step)))
             if runs:
                 ys.append(y + step / 2)
-                edge.append(runs[-1][0])
+                lo.append(runs[-1][0])
+                hi.append(runs[-1][1])
             y += step
-        if len(ys) < 5:
+        if len(ys) < degree + 2:
             return self
-        # Smooth the trace before using it. Sampling a curve on a fixed grid
-        # gives a staircase, and a staircase unioned into an outline is the
-        # tremor this is meant to avoid.
-        span = 4
-        smooth = []
-        for i in range(len(edge)):
-            lo, hi = max(0, i - span), min(len(edge), i + span + 1)
-            smooth.append(sum(edge[lo:hi]) / (hi - lo))
-        pts = [(smooth[i] - amount * min(smootherstep((ys[i] - y0) / ease),
-                                         smootherstep((y1 - ys[i]) / ease)),
-                ys[i]) for i in range(len(ys))]
-        pts += [(edge[i] + 0.05, ys[i]) for i in range(len(ys) - 1, -1, -1)]
+
+        target = [lo[i] - amount * min(smootherstep((ys[i] - y0) / ease),
+                                       smootherstep((y1 - ys[i]) / ease_end)
+                                       if ease_end else 1.0)
+                  for i in range(len(ys))]
+        # Fit about the middle of the span rather than about y=0, so the powers
+        # stay near 1 and the normal equations stay well conditioned.
+        mid = (ys[0] + ys[-1]) / 2
+        coeffs = _polyfit([y - mid for y in ys], target, degree)
+
+        def fitted(y):
+            t, out = 1.0, 0.0
+            for c in coeffs:
+                out += c * t
+                t *= (y - mid)
+            return out
+
+        pts = [(fitted(y), y) for y in ys]
+        pts += [(min(lo[i] + 0.25, hi[i] - 0.02), ys[i])
+                for i in range(len(ys) - 1, -1, -1)]
         return (self | polygon(pts)).despeckle(0.02).fill_holes(0.02)
 
     def deburr(self, delta=0.03):
