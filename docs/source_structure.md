@@ -271,10 +271,10 @@ detail. Eroding the `otzaria_icon` cover — 351 square units — by 0.50 return
 36; by 0.80 it returns 294; by 1.00 it fails outright. Three defences, in order
 of preference:
 
-- **Don't offset what you don't have to.** The filled `otzaria_icon` variants
-  take the white band's inner edge from the boundary the designer already drew,
-  and construct only the outer line, from a scaled copy of the cover. Exact
-  arithmetic cannot go wrong quietly.
+- **Don't offset what you don't have to.** Every filled variant in this set is
+  built without offsetting the artwork at all: its white lines *are* its regular
+  twin's black lines, and only the thin outer edge is grown. That is the whole
+  reason the pairs match.
 - **`deburr()` before offsetting.** An opening of 0.03 units — a thirtieth of a
   pixel at 24 px — clears the doubled points and almost-touching edges that the
   offset would otherwise amplify. It took the open books from 114 fragments to

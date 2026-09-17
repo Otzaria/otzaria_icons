@@ -21,24 +21,24 @@
   stored a codepoint rather than a constant must be rebuilt against this
   version.
 
-- Added **twenty-nine** icons (`U+E092`-`U+E0AE`). The set now ships **175**
-  icons over a contiguous `U+E000`-`U+E0AE`.
+- Added **thirty-three** icons (`U+E092`-`U+E0B2`). The set now ships **179**
+  icons over a contiguous `U+E000`-`U+E0B2`.
 
-  * `alef_latin_a_24_regular` - the alef facing a Latin A, laid out exactly as
-    `alef_alef_24_regular`: two letters 10.80 units wide at x 0.95 and x 12.25,
-    the alef on the right where a Hebrew reader starts. The A is Fluent's,
-    lifted out of `local_language_24_filled`, and set to the alef's own height
-    so the two share a baseline and a cap line.
+  * Three pairs of letters, all on `alef_alef_24_regular`'s grid - two letters
+    10.80 units wide at x 0.95 and x 12.25, the Hebrew one on the right, each
+    fitted to the same vertical band so the pair shares a baseline and a cap
+    line: `alef_near_alef_stam_24_regular`, `alef_near_alef_rashi_24_regular`
+    and `alef_latin_a_24_regular`. The Latin A is Fluent's, lifted out of
+    `local_language_24_filled`.
 
-  * Five more filled books: `book_open_small_24_filled`,
+  * `link_alef_24_regular` and `alef_lock_24_regular` - the alef on the link's
+    disc, and Fluent's closed lock on the alef's.
+
+  * Six more filled icons: `book_open_small_24_filled`,
     `book_open_small_line_24_filled`, `book_open_medium_search_24_filled`,
-    `otzaria_icon_2_page_line_24_filled` and `otzaria_icon_empty_24_filled`,
-    each derived from its regular twin by the rules below.
-
-  * `books_stacked_high_24_filled` - the stack flooded solid, with only the
-    lines that separate one book from the next kept white and widened 0.18 so
-    they survive on black. The page rules drawn *inside* a book are left filled:
-    six books' worth of hatching reads as a texture rather than as a stack.
+    `otzaria_icon_2_page_line_24_filled`, `otzaria_icon_empty_24_filled` and
+    `books_stacked_high_24_filled`, each turned inside out from its regular twin
+    by the one rule described below.
 
   * Seven more badged alefs, on the same disc in the same place as
     `alef_copy` and `alef_with_information`: `alef_scissors_24_regular`,
@@ -76,17 +76,8 @@
     `book_download`'s own arrow at the same height. Each filled variant knocks
     its mark out of the solid page.
 
-  * `book_open_medium_24_filled` and `book_open_medium_line_24_filled` - the
-    open book turned inside out. A 0.95-unit black line runs round the outside,
-    the 1.00-unit frame behind it is now white, the pages behind that are solid,
-    and every line that used to be black - the gutter, and the six text rules in
-    the `_line` variant - is knocked out of them. Both bands are taken **out
-    of** the existing silhouette rather than added around it, so the filled
-    variant occupies exactly the space the regular one does; a pair that
-    differed in optical size would not sit together in a toolbar. A knocked-out
-    rule is held 0.55 units clear of the white band, because a rule that runs
-    into it merges with it and reads as a hole in the book rather than a line on
-    it.
+  * `book_open_medium_24_filled` and `book_open_medium_line_24_filled`, by the
+    same rule as the rest.
 
   * Nine badged links: `link_copy_24_regular`, `link_with_eraser_24_regular`,
     `link_marker_24_regular`, `link_with_information_24_regular`,
@@ -125,18 +116,22 @@
   keep their rules and only lose 0.60 of length, so that the filled variants'
   knockouts clear the white band instead of running into it.
 
-- **Repaired the stem of `beit_24_regular`** (same name and codepoint, visual
-  change). The letter was made by eroding `beit_near_alef`'s letterform 0.45
-  units on every flank, which takes 0.90 off every stroke - and the right stem
-  could not afford it. It measured 1.53 units at the shoulder but tapered to
-  **0.397** at mid-height, under half a pixel at 24 px, so the letter read as a
-  top and a base joined by a hair. Neither the alef nor the tet has ink under
-  0.9 anywhere. The stem is brought to 1.60 and the terminals eased 0.26.
+- **Restored the back of `beit_24_regular`** (same name and codepoint, visual
+  change). The letter was made by scaling the small beit inside
+  `beit_near_alef_24_regular` up to letter size and eroding it 0.45 units on
+  every flank - 0.90 off every stroke - and the back could not afford it. It
+  measured 2.95 at the shoulder but **0.22** at y=16, a fifth of a pixel at
+  24 px, so the letter read as a top and a base joined by a hair. Neither the
+  alef nor the tet has ink under 0.9 anywhere.
 
-  Only the thin ink is grown, not a box around it, and that is what keeps the
-  repair from showing: the region narrower than the target *is* the taper, so
-  the weight goes where the stroke is starved and nowhere else. The stem now
-  measures 2.02 at mid-height, against the letter's own 2.31 mean.
+  Exactly the 0.90 the erosion took is given back, which puts the back on the
+  letterform's own proportions - 1.40 at mid-height, 1.12 at its narrowest -
+  rather than on a width picked by eye. It is added by moving that one stroke's
+  left edge, not by growing the letter: a grow moves every edge, and restricted
+  to a box it leaves a step where the box ends. The edge is traced, smoothed
+  with a moving average so the sampling grid leaves no staircase, and pushed out
+  along a curve that eases to nothing over 1.2 units at each end, so the new
+  edge meets the old one with a matching tangent.
 
 - **Thinned `bookshelf_24_regular` by 15%** (same name and codepoint, visual
   change), and nothing else: a uniform inward offset moves every point of the
@@ -144,41 +139,46 @@
   are untouched and only the weight changes. The mean stroke goes from 1.042 to
   0.843.
 
-- **Rebuilt the three `otzaria_icon_*_filled` icons from their regular twins,
-  and fixed one that had collapsed** (same names and codepoints, visual
-  change). Their white frame measured about half a unit - a third of a pixel at
-  24 px - and disappeared at every size the icons are used at. Every filled book
-  in the set now carries the same two bands: a 0.95-unit black line round the
-  outside and a 1.00-unit white one behind it.
+- **Every filled variant is now derived by one rule, stated rather than
+  inferred** (same names and codepoints, visual change to all eleven):
 
-  `otzaria_icon_2_page_24_filled` was worse than thin: it had 21.6 square units
+  > every white area inside the icon, except the big one outside it, turns
+  > black; every black line turns white; and a thin black line is added around
+  > the outermost white lines.
+
+  Read literally, that needs **no offset of the artwork at all**. The white
+  lines of a filled icon are the black lines of its regular twin, exactly where
+  the designer drew them - same widths, same curves, same corners - so the pair
+  cannot differ in the ways the earlier versions did. The only constructed part
+  is the 0.55-unit black line, and that is a *grow* of the silhouette, which
+  unlike a shrink cannot collapse or fold.
+
+  Three separate derivations, each offsetting its own cover, are replaced by
+  that one function. They were the cause of every complaint about this family:
+  a black line cutting across the white gutter of `book_open_medium`, tops that
+  did not match the regular in `book_open_small` and `otzaria_icon`, and a
+  `books_stacked_high` that read as a texture. It also means the text-rule
+  changes below reach the filled variants on their own, because a filled icon
+  now reads its regular twin.
+
+  `otzaria_icon_2_page_24_filled` was worse than wrong: it had 21.6 square units
   of ink against its regular twin's 113, so it was shipping as a hairline
-  outline rather than as a filled icon at all. The same rebuild fixes it.
+  outline rather than as a filled icon at all.
 
-  They are built without offsetting the cover, and that is the point of the
-  separate recipe. **Skia's offset is not reliable on this outline, and does not
-  say so**: eroding the 351-unit cover by 0.50 units returns 36, by 0.80 returns
-  294, and by 1.00 fails outright. The outline is hand-drawn and full of
-  near-degenerate detail. So the white band's inner edge is the boundary the
-  designer already drew - the regular icon's own inner contour - and only the
-  outer line is constructed, from a scaled copy of the cover. A scaled inset is
-  not a true offset, so that line varies slightly in width across a shape this
-  tall, but it is exact arithmetic and cannot go wrong quietly.
+  Worth recording for the next person: **skia's offset is not reliable on the
+  otzaria cover, and does not say so** - eroding its 351 units by 0.50 returns
+  36, by 0.80 returns 294, and by 1.00 fails outright. The rule above avoids the
+  question entirely.
 
-- **Eased the corners of the Latin letters** on `document_word`,
-  `document_html`, `document_md`, `book_word`, `book_md`, `book_pdf`,
-  `book_zim` and `book_number`, both variants of each (same names and
-  codepoints, visual change). W, H, MD, PDF, ZIM and the hash were drawn with
-  square corners and square terminals, which is not the hand the rest of the set
-  is in: every rule, badge and page corner here is eased, and so is every
-  terminal in Fluent. The convex corners are rounded to 0.30 and the concave
-  ones to 0.14 - the inner radius has to stay under half the smallest gap in the
-  artwork, or the M and the D of a pair weld together.
-
-  The three ways these icons spell their letters all had to be handled
-  separately: on a page they are ink, on a filled page a `fill="white"` layer,
-  and on a filled book neither - a hole in one merged path. Treating the last as
-  ink eases the *cover* around the letters and welds them shut.
+- Reverted an attempt at easing the corners of the Latin letters on
+  `document_word`, `document_html`, `document_md`, `book_word`, `book_md`,
+  `book_pdf`, `book_zim` and `book_number`. It was built on a morphological
+  opening, which is the wrong tool: it cannot tell a sharp corner that should be
+  rounded from a thin stroke that should be kept. The W's strokes are 0.50
+  units, so the safe radius was 0.09 and the one used was 0.30 - and part of the
+  letter was erased. All sixteen icons are back as they were. The right tool is
+  filleting the path's own vertices, which cuts a small arc at a corner and
+  never touches a stroke.
 
 - **Redrew the text on `torah_scroll_24_regular`** (same name and codepoint,
   visual change). At five rows the 1.64-unit pitch left 0.84 units of parchment
@@ -230,10 +230,16 @@
   size is a free parameter its lid's is not, and the lips' mouth is cut at 2.60
   rather than a Fluent stroke, being the one line the whole mark reads by.
 
+  The mark takes 80% of the disc's radius, not the 68% it started at: at 16 px
+  the badge is 5.6 pixels across, and a mark using two thirds of that is three.
+  At 80% the ring of badge ink is still 0.85 units, which is what keeps the disc
+  reading as a disc, and the minimum stroke goes to 1.00 with it.
+
   The marks that are objects rather than letters are turned: the highlighter
-  sits on the diagonal at 140 degrees, where it reads as a pen rather than as a
-  bottle, and the scissors lie almost flat at -95, where the blades lead and the
-  handles sit behind them. Upright, their two rings stack under the blades and
+  sits at 45 degrees clockwise, nib to the lower left and barrel up to the
+  right, which is the angle a pen is actually held at - upright it reads as a
+  bottle - and the scissors lie almost flat at -95, where the blades lead and
+  the handles sit behind them. Upright, their two rings stack under the blades and
   the mark reads as a keyhole. The scissors are also the one mark left *below*
   the default weight, at 0.62: Fluent's cut is already the heaviest mark here -
   a 1.88 mean stroke against the others' 1.0 to 1.5 - and bringing it up to the
