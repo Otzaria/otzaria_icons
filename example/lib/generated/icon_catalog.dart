@@ -265,4 +265,17 @@ const iconCatalog = <GalleryIcon>[
   GalleryIcon('link_eye_24_regular', OtzariaIcons.link_eye_24_regular),
   GalleryIcon(
       'link_scissors_24_regular', OtzariaIcons.link_scissors_24_regular),
+  GalleryIcon('alef_latin_a_24_regular', OtzariaIcons.alef_latin_a_24_regular),
+  GalleryIcon('book_open_medium_search_24_filled',
+      OtzariaIcons.book_open_medium_search_24_filled),
+  GalleryIcon(
+      'book_open_small_24_filled', OtzariaIcons.book_open_small_24_filled),
+  GalleryIcon('book_open_small_line_24_filled',
+      OtzariaIcons.book_open_small_line_24_filled),
+  GalleryIcon('books_stacked_high_24_filled',
+      OtzariaIcons.books_stacked_high_24_filled),
+  GalleryIcon('otzaria_icon_2_page_line_24_filled',
+      OtzariaIcons.otzaria_icon_2_page_line_24_filled),
+  GalleryIcon('otzaria_icon_empty_24_filled',
+      OtzariaIcons.otzaria_icon_empty_24_filled),
 ];

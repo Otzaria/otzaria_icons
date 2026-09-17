@@ -284,6 +284,17 @@ of preference:
   one square unit of ink. Both exist because a silent collapse shipped a blank
   glyph once.
 
+Three more operations exist for the same reason — they do one thing to a whole
+region, and the recipes state *what* rather than *how*. `fill_holes(max_area)`
+closes an enclosed hole too small to print; `despeckle(min_area)` drops ink too
+small to be design, by **subtracting** the small contours rather than rebuilding
+the region from the large ones — a speck sits inside the area a large contour
+encloses, so a rebuild puts it straight back; and `filled()` / `holes()` separate
+a region from what it encloses. `contours()` simplifies each contour on its own,
+which is what makes those last two work: a contour that was a hole in the
+original is still wound the other way, and unioning it cancels instead of
+covering.
+
 `round_corners(outer, inner)` eases a shape: an *opening* rounds the convex
 corners and can never spread the region, so it is safe at any radius the strokes
 can afford; a *closing* rounds the concave ones but bridges anything narrower

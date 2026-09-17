@@ -20,3 +20,4 @@ The following entries are derivative works and retain the provenance recorded in
 - `link_document_24_regular` — based on `microsoft/fluentui-system-icons: link_dismiss_24_regular, document_24_filled (fluentui_system_icons 1.1.273)` at `pub:fluentui_system_icons@1.1.273`; license: MIT AND GPL-3.0-only.
 - `link_eye_24_regular` — based on `microsoft/fluentui-system-icons: link_dismiss_24_regular, eye_24_filled (fluentui_system_icons 1.1.273)` at `pub:fluentui_system_icons@1.1.273`; license: MIT AND GPL-3.0-only.
 - `link_scissors_24_regular` — based on `microsoft/fluentui-system-icons: link_dismiss_24_regular, cut_24_filled (fluentui_system_icons 1.1.273)` at `pub:fluentui_system_icons@1.1.273`; license: MIT AND GPL-3.0-only.
+- `alef_latin_a_24_regular` — based on `microsoft/fluentui-system-icons: local_language_24_filled (fluentui_system_icons 1.1.273)` at `pub:fluentui_system_icons@1.1.273`; license: MIT AND GPL-3.0-only.

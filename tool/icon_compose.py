@@ -239,6 +239,49 @@ class Art:
             art = art.grow(inner).shrink(inner)
         return art
 
+    def pad_left_edge(self, y0, y1, xlo, xhi, amount, ease=1.2, step=0.08):
+        """Move the left edge of one stroke outward, smoothly.
+
+        For thickening a single stroke of a letter without touching the rest.
+        `grow` cannot do it - it moves every edge, and restricted to a box it
+        leaves a step where the box ends. Here the stroke's own left edge is
+        traced between y0 and y1 (the only ink inside `xlo`..`xhi`), pushed out
+        by `amount`, and the push is eased to nothing over `ease` units at each
+        end, so the new edge meets the old one with a matching tangent instead
+        of a corner.
+        """
+        def smootherstep(t):
+            t = min(1.0, max(0.0, t))
+            return t * t * t * (t * (t * 6 - 15) + 10)
+
+        # Trace the stroke's left edge. Where the probe crosses more than one
+        # run of ink - near the top, where this stroke passes the letter's own
+        # bar - the stroke wanted is the rightmost, so that is the run measured.
+        ys, edge = [], []
+        y = y0
+        while y <= y1 + 1e-9:
+            runs = sorted((c.bounds[0], c.bounds[2])
+                          for c in contours(self & rect(xlo, y, xhi, y + step)))
+            if runs:
+                ys.append(y + step / 2)
+                edge.append(runs[-1][0])
+            y += step
+        if len(ys) < 5:
+            return self
+        # Smooth the trace before using it. Sampling a curve on a fixed grid
+        # gives a staircase, and a staircase unioned into an outline is the
+        # tremor this is meant to avoid.
+        span = 4
+        smooth = []
+        for i in range(len(edge)):
+            lo, hi = max(0, i - span), min(len(edge), i + span + 1)
+            smooth.append(sum(edge[lo:hi]) / (hi - lo))
+        pts = [(smooth[i] - amount * min(smootherstep((ys[i] - y0) / ease),
+                                         smootherstep((y1 - ys[i]) / ease)),
+                ys[i]) for i in range(len(ys))]
+        pts += [(edge[i] + 0.05, ys[i]) for i in range(len(ys) - 1, -1, -1)]
+        return (self | polygon(pts)).despeckle(0.02).fill_holes(0.02)
+
     def deburr(self, delta=0.03):
         """Remove the micro-defects a hand-drawn outline carries, so that
         offsetting it does not amplify them.

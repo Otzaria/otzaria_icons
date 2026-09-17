@@ -21,8 +21,24 @@
   stored a codepoint rather than a constant must be rebuilt against this
   version.
 
-- Added **twenty-two** icons (`U+E092`-`U+E0A7`). The set now ships **168**
-  icons over a contiguous `U+E000`-`U+E0A7`.
+- Added **twenty-nine** icons (`U+E092`-`U+E0AE`). The set now ships **175**
+  icons over a contiguous `U+E000`-`U+E0AE`.
+
+  * `alef_latin_a_24_regular` - the alef facing a Latin A, laid out exactly as
+    `alef_alef_24_regular`: two letters 10.80 units wide at x 0.95 and x 12.25,
+    the alef on the right where a Hebrew reader starts. The A is Fluent's,
+    lifted out of `local_language_24_filled`, and set to the alef's own height
+    so the two share a baseline and a cap line.
+
+  * Five more filled books: `book_open_small_24_filled`,
+    `book_open_small_line_24_filled`, `book_open_medium_search_24_filled`,
+    `otzaria_icon_2_page_line_24_filled` and `otzaria_icon_empty_24_filled`,
+    each derived from its regular twin by the rules below.
+
+  * `books_stacked_high_24_filled` - the stack flooded solid, with only the
+    lines that separate one book from the next kept white and widened 0.18 so
+    they survive on black. The page rules drawn *inside* a book are left filled:
+    six books' worth of hatching reads as a texture rather than as a stack.
 
   * Seven more badged alefs, on the same disc in the same place as
     `alef_copy` and `alef_with_information`: `alef_scissors_24_regular`,
@@ -61,8 +77,8 @@
     its mark out of the solid page.
 
   * `book_open_medium_24_filled` and `book_open_medium_line_24_filled` - the
-    open book turned inside out. A 0.80-unit black line runs round the outside,
-    the 1.45-unit frame behind it is now white, the pages behind that are solid,
+    open book turned inside out. A 0.95-unit black line runs round the outside,
+    the 1.00-unit frame behind it is now white, the pages behind that are solid,
     and every line that used to be black - the gutter, and the six text rules in
     the `_line` variant - is knocked out of them. Both bands are taken **out
     of** the existing silhouette rather than added around it, so the filled
@@ -95,11 +111,45 @@
     gershayim, which is what `search_in_the_quote_24_regular` already uses, so
     the two agree.
 
+- **Redrew the text rules on seven open books** (same names and codepoints,
+  visual change). `otzaria_icon_line`, `otzaria_icon_2_page_line`,
+  `book_open_large_lines`, `book_open_large_search` and `book_open_small_line`
+  showed their text as six or seven rules half a unit thick and 1.5 apart -
+  bands of ink and paper almost equal in width, which below 24 px close into a
+  grey slab, and which go first in the filled variants where they are white on
+  black. `book_open_medium_line` already had it right: three rules at 1.25 with
+  1.75 of paper between them, a gap 1.4 times the ink. All of them now carry
+  **four rules at that ratio** (three on the medium), centred on the block the
+  originals occupied so the text stays where the designer put it, each a
+  stadium with ends rounded to exactly half its height. The two medium icons
+  keep their rules and only lose 0.60 of length, so that the filled variants'
+  knockouts clear the white band instead of running into it.
+
+- **Repaired the stem of `beit_24_regular`** (same name and codepoint, visual
+  change). The letter was made by eroding `beit_near_alef`'s letterform 0.45
+  units on every flank, which takes 0.90 off every stroke - and the right stem
+  could not afford it. It measured 1.53 units at the shoulder but tapered to
+  **0.397** at mid-height, under half a pixel at 24 px, so the letter read as a
+  top and a base joined by a hair. Neither the alef nor the tet has ink under
+  0.9 anywhere. The stem is brought to 1.60 and the terminals eased 0.26.
+
+  Only the thin ink is grown, not a box around it, and that is what keeps the
+  repair from showing: the region narrower than the target *is* the taper, so
+  the weight goes where the stroke is starved and nowhere else. The stem now
+  measures 2.02 at mid-height, against the letter's own 2.31 mean.
+
+- **Thinned `bookshelf_24_regular` by 15%** (same name and codepoint, visual
+  change), and nothing else: a uniform inward offset moves every point of the
+  outline along its own normal, so the books' widths, their lean and the shelf
+  are untouched and only the weight changes. The mean stroke goes from 1.042 to
+  0.843.
+
 - **Rebuilt the three `otzaria_icon_*_filled` icons from their regular twins,
   and fixed one that had collapsed** (same names and codepoints, visual
   change). Their white frame measured about half a unit - a third of a pixel at
-  24 px - and disappeared at every size the icons are used at. They now carry
-  the same 0.80 black line and wider white band the open books above do.
+  24 px - and disappeared at every size the icons are used at. Every filled book
+  in the set now carries the same two bands: a 0.95-unit black line round the
+  outside and a 1.00-unit white one behind it.
 
   `otzaria_icon_2_page_24_filled` was worse than thin: it had 21.6 square units
   of ink against its regular twin's 113, so it was shipping as a hairline
@@ -181,10 +231,20 @@
   rather than a Fluent stroke, being the one line the whole mark reads by.
 
   The marks that are objects rather than letters are turned: the highlighter
-  sits on the diagonal at -40 degrees, where it reads as a pen rather than as a
-  bottle and matches the eraser beside it, and the scissors lie at -75, where
-  the blades lead and the handles sit behind them. Upright, their two rings
-  stack under the blades and the mark reads as a keyhole.
+  sits on the diagonal at 140 degrees, where it reads as a pen rather than as a
+  bottle, and the scissors lie almost flat at -95, where the blades lead and the
+  handles sit behind them. Upright, their two rings stack under the blades and
+  the mark reads as a keyhole. The scissors are also the one mark left *below*
+  the default weight, at 0.62: Fluent's cut is already the heaviest mark here -
+  a 1.88 mean stroke against the others' 1.0 to 1.5 - and bringing it up to the
+  default fattened the blades into each other and cost the mark its point.
+
+  The information badge is the one place Fluent's glyph could not be used
+  whole. `info_24_filled` is a disc with the letter knocked out of it, so on a
+  badge that is already a disc it produced a ring with a dark letter lost in the
+  middle. What such a badge needs is the letter alone - the hole in Fluent's
+  glyph - which can then be set far larger, and the whole badge reads as one
+  mark.
 
   The thirteen icons that do this are `modified_fluent` in the manifest and are
   listed in `THIRD_PARTY_NOTICES.md`. `compose_sources.py --provenance` writes

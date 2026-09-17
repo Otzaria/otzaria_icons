@@ -1185,6 +1185,55 @@ abstract final class OtzariaIcons {
     fontPackage: fontPackage,
   );
 
+  /// `alef_latin_a_24_regular.svg`
+  static const IconData alef_latin_a_24_regular = IconData(
+    0xe0a8,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `book_open_medium_search_24_filled.svg`
+  static const IconData book_open_medium_search_24_filled = IconData(
+    0xe0a9,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `book_open_small_24_filled.svg`
+  static const IconData book_open_small_24_filled = IconData(
+    0xe0aa,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `book_open_small_line_24_filled.svg`
+  static const IconData book_open_small_line_24_filled = IconData(
+    0xe0ab,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `books_stacked_high_24_filled.svg`
+  static const IconData books_stacked_high_24_filled = IconData(
+    0xe0ac,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `otzaria_icon_2_page_line_24_filled.svg`
+  static const IconData otzaria_icon_2_page_line_24_filled = IconData(
+    0xe0ad,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `otzaria_icon_empty_24_filled.svg`
+  static const IconData otzaria_icon_empty_24_filled = IconData(
+    0xe0ae,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
   /// Every icon in this library, keyed by its name.
   static const Map<String, IconData> allIcons = <String, IconData>{
     'book_24_filled': book_24_filled,
@@ -1355,5 +1404,12 @@ abstract final class OtzariaIcons {
     'link_document_24_regular': link_document_24_regular,
     'link_eye_24_regular': link_eye_24_regular,
     'link_scissors_24_regular': link_scissors_24_regular,
+    'alef_latin_a_24_regular': alef_latin_a_24_regular,
+    'book_open_medium_search_24_filled': book_open_medium_search_24_filled,
+    'book_open_small_24_filled': book_open_small_24_filled,
+    'book_open_small_line_24_filled': book_open_small_line_24_filled,
+    'books_stacked_high_24_filled': books_stacked_high_24_filled,
+    'otzaria_icon_2_page_line_24_filled': otzaria_icon_2_page_line_24_filled,
+    'otzaria_icon_empty_24_filled': otzaria_icon_empty_24_filled,
   };
 }

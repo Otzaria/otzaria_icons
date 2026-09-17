@@ -176,12 +176,12 @@ FLUENT_SYMBOLS = {
     # handles down; upright inside a badge the two rings stack under the blades
     # and the mark reads as a keyhole. Turned this far the blades lead left and
     # the handles sit behind them, which is the silhouette that says scissors.
-    "scissors": ("cut_24_filled", -75),
+    "scissors": ("cut_24_filled", -95),
     "eraser": ("eraser_24_filled", 0),
     # Fluent draws the highlighter head-on and upright. A pen held upright in a
     # badge reads as a bottle; on the diagonal it reads as a pen, and it is also
     # the angle the eraser beside it already sits at.
-    "marker": ("highlight_24_filled", -40),
+    "marker": ("highlight_24_filled", 140),
     "eye": ("eye_24_filled", 0),
     "quote": ("text_quote_24_filled", 0),
     "document": ("document_24_filled", 0),
@@ -190,9 +190,15 @@ FLUENT_SYMBOLS = {
     "information": ("info_24_filled", 0),
 }
 
-# Marks that want a heavier stroke than the default, because they are letters or
-# fine rules rather than solid shapes.
-SYMBOL_WEIGHT = {"information": 1.25}
+# Per-mark stroke weights, where the default does not suit.
+SYMBOL_WEIGHT = {
+    # Fluent's cut is already the heaviest mark here - a 1.88 mean stroke
+    # against the others' 1.0 to 1.5 - so it arrives at badge scale needing no
+    # help. Bringing it up to the default anyway fattened the blades into each
+    # other and cost the mark its point, which is the one thing that says
+    # scissors.
+    "scissors": 0.62,
+}
 
 
 def sym_fluent(kind, reach):
@@ -203,6 +209,20 @@ def sym_fluent(kind, reach):
     if turn:
         art = art.rotate(turn, about=art.centre)
     return weighted(art, reach, SYMBOL_WEIGHT.get(kind, BADGE_MIN_STROKE))
+
+
+def sym_information(reach):
+    """Fluent's "i", not Fluent's info icon.
+
+    `info_24_filled` is a disc with the letter knocked out of it, so using it
+    whole put a disc inside a disc: the badge came out as a black ring with a
+    dark letter in the middle of it, and the letter ended up the smallest thing
+    on the icon. The badge already *is* the disc, so what it needs is the letter
+    alone - which is exactly the hole in Fluent's glyph. Taken that way it can
+    be set far larger, and the whole badge reads as one mark.
+    """
+    letter = use_fluent("info_24_filled").holes()
+    return weighted(letter, reach * 1.25, weight=1.15)
 
 
 def sym_eye(reach):
@@ -295,6 +315,8 @@ def symbol(kind, reach):
         return weighted(sym_cross_mark(), reach)
     if kind == "eye":
         return sym_eye(reach)
+    if kind == "information":
+        return sym_information(reach)
     return sym_fluent(kind, reach)
 
 
@@ -440,7 +462,7 @@ def mark_download():
 # in optical size would not sit together in a toolbar. The white band is the
 # wider of the two because it is the one that has to survive: at 16 px a 1.0
 # unit band is two thirds of a pixel, and it was disappearing.
-BOOK_OUTER, BOOK_WHITE = 0.80, 1.45
+BOOK_OUTER, BOOK_WHITE = 0.95, 1.00
 
 # How far a knocked-out rule must stay clear of the white band. Without it a
 # rule that runs close to the edge opens into the band and the two merge into
@@ -483,105 +505,90 @@ def book_open_filled(base, outer=BOOK_OUTER, white=BOOK_WHITE):
 
 
 # --------------------------------------------------------------------------
-# The Latin letters on a document or a book
+# Text rules on an open book
 # --------------------------------------------------------------------------
-# W, H, MD, PDF, ZIM and the hash were drawn with square corners and square
-# terminals, which is not the hand the rest of the set is in: every rule, badge
-# and page corner here is eased, and so is every terminal in Fluent. These are
-# the two radii that put the letters in the same hand.
-LETTER_OUTER, LETTER_INNER = 0.30, 0.14
+# Five of these icons showed their text as six or seven rules half a unit thick,
+# 1.5 apart - bands of ink and paper almost equal in width. Below 24 px that
+# closes into a grey slab, and it is worse in the filled variants, where the
+# rules are white on black and go first. `book_open_medium_line` had it right
+# already: three rules at 1.25 with 1.75 of paper between them, a gap 1.4 times
+# the ink. Every family below is brought to four rules at that ratio.
+#
+# (rows, height, pitch, rule width - None keeps the width the rules already
+# have). The width is absolute rather than an amount to trim, so that a second
+# run draws the same rules instead of trimming them again.
+RESTRIPE = {
+    "otzaria_icon_line_24_regular":       (4, 1.00, 2.30, None),
+    "otzaria_icon_2_page_line_24_regular": (4, 1.00, 2.30, None),
+    "book_open_large_lines_24_regular":   (4, 1.00, 2.30, None),
+    "book_open_large_search_24_regular":  (4, 1.00, 2.30, None),
+    "book_open_small_line_24_regular":    (4, 0.95, 2.25, None),
+    # Already at the right weight; only shortened from 5.75, so that the filled
+    # variant's knockouts clear its white band instead of running into it.
+    "book_open_medium_line_24_regular":   (3, 1.25, 3.00, 5.15),
+    "book_open_medium_search_24_regular": (3, 1.25, 3.00, 5.15),
+}
 
-# The letter block is found from the artwork, but a document's folded corner is
-# also a small shape clear of the frame, so on a page the search starts below
-# the fold.
-LETTER_FLOOR = {"document": 9.0}
+
+def find_rules(art):
+    """The text rules in an icon, told apart from its structure by shape: wide,
+    short, and much wider than they are tall."""
+    out = []
+    for c in ic.contours(art):
+        x0, y0, x1, y1 = c.bounds
+        w, h = x1 - x0, y1 - y0
+        if w > 2.5 and 0.3 < h < 1.8 and w / h > 2.2:
+            out.append(c)
+    return out
 
 
-def letter_box(name, region):
-    """The box the letters occupy, drawn round their own contours.
+def restripe(name):
+    """Replace an icon's text rules with fewer, heavier, evenly spaced ones.
 
-    The letters are isolated by a box rather than by collecting their contours,
-    because a letter's counters - the bowl of a D, the openings of a hash - are
-    contours too, and unioning those would fill them in.
+    The replacements are centred on the block the originals occupied, not on the
+    page, so they stay where the designer put the text however the book around
+    them is drawn. Columns are recovered from the originals' own left edges, and
+    every rule is a stadium - round ends, radius exactly half the height.
     """
-    gx0, gy0, gx1, gy1 = glyph(name).bounds
-    floor = gy0 + 1.4
-    for prefix, y in LETTER_FLOOR.items():
-        if name.startswith(prefix):
-            floor = max(floor, y)
-    marks = [c for c in ic.contours(region)
-             if c.area < 60
-             and c.bounds[0] > gx0 + 1.4 and c.bounds[1] > floor
-             and c.bounds[2] < gx1 - 1.4 and c.bounds[3] < gy1 - 1.4]
-    if not marks:
-        return None
-    pad = 0.35
-    return ic.rect(min(c.bounds[0] for c in marks) - pad,
-                   min(c.bounds[1] for c in marks) - pad,
-                   max(c.bounds[2] for c in marks) + pad,
-                   max(c.bounds[3] for c in marks) + pad)
+    art = glyph(name)
+    rules = find_rules(art)
+    rows, height, pitch, width = RESTRIPE[name]
 
+    # Group the rules into columns by their left edge, rounded only for the
+    # grouping - the extents kept are the real ones, because rounding is a
+    # tenth of a unit and re-running on a rounded extent would walk the rules
+    # sideways a little every time.
+    columns = {}
+    for c in rules:
+        x0, _, x1, _ = c.bounds
+        key = round(x0, 1)
+        lo, hi = columns.get(key, (x0, x1))
+        columns[key] = (min(lo, x0), max(hi, x1))
+    tops = [c.bounds[1] for c in rules]
+    bottoms = [c.bounds[3] for c in rules]
+    middle = (min(tops) + max(bottoms)) / 2
 
-def polish_letters(name):
-    """Ease the corners of the letters, leaving the page or cover alone.
+    block = (rows - 1) * pitch + height
+    top = middle - block / 2
+    text = Art()
+    for r in range(rows):
+        y = top + r * pitch
+        for x0, x1 in columns.values():
+            mid = (x0 + x1) / 2
+            half = (x1 - x0 if width is None else width) / 2
+            text = text | round_rect(mid - half, y, mid + half, y + height,
+                                     height / 2)
 
-    A lettered icon spells its letters one of three ways, and all three have to
-    be handled or the wrong thing gets eased: on a page they are ink; on a
-    filled page they are a `fill="white"` layer; on a filled book they are
-    neither, but a hole in one merged path. The last is the one that bites -
-    treated as ink it eases the *cover* around the letters and welds them shut.
-
-    This rewrites its own source, so it checks first whether there is anything
-    left to ease. An opening is idempotent in principle, so a second pass
-    *should* be a no-op - but it is run on the offset output of the first, and
-    skia's stroker fails outright on geometry like that. The test is the
-    opening itself: on a square-cornered letter it takes 0.05 to 0.35 square
-    units off, and on an eased one it takes nothing measurable.
-    """
-    solids, cuts = ic.layers(name)
-    if cuts:
-        body = Art()
-        for layer in solids:
-            body = body | layer
-        cut = Art()
-        for layer in cuts:
-            cut = cut | layer
-        _require_square(name, cut)
-        return body, [cut.round_corners(LETTER_OUTER, LETTER_INNER)]
-
-    g = glyph(name)
-    hollow = g.holes()
-    if name.endswith("_filled") and not hollow.is_empty:
-        box = letter_box(name, hollow)
-        if box is None:
-            raise Restated("%s: no letter block found to ease" % name)
-        letters = hollow & box
-        _require_square(name, letters)
-        return (g | letters) - letters.round_corners(LETTER_OUTER,
-                                                     LETTER_INNER), []
-
-    box = letter_box(name, g)
-    if box is None:
-        raise Restated("%s: no letter block found to ease" % name)
-    letters = g & box
-    _require_square(name, letters)
-    return (g - box) | letters.round_corners(LETTER_OUTER, LETTER_INNER), []
-
-
-def _require_square(name, letters):
-    """Refuse to ease letters that have already been eased.
-
-    The offset the test itself needs is the one that fails on already-offset
-    geometry, so a failure here answers the question as surely as a zero does:
-    either way there is nothing left to do.
-    """
-    try:
-        opened = letters.shrink(LETTER_OUTER).grow(LETTER_OUTER)
-    except Exception as exc:            # skia refuses an already-offset outline
-        raise Restated("%s: the letters are already eased (%s)"
-                       % (name, type(exc).__name__))
-    if abs(letters.area - opened.area) < 0.01:
-        raise Restated("%s: the letters are already eased" % name)
+    old = Art()
+    for c in rules:
+        old = old | c
+    # This rewrites its own source, so it stops when the rules it would draw are
+    # the rules already there. Comparing the regions rather than counting them
+    # is what makes that reliable: two of these icons already had the right
+    # number of rules and still needed their ends pulling in.
+    if (old - text).area + (text - old).area < 0.05:
+        raise Restated("%s already carries these rules" % name)
+    return (art - old) | text, []
 
 
 # --------------------------------------------------------------------------
@@ -619,7 +626,7 @@ def scroll_bars(art):
 # outer black line needs constructing, from a scaled copy of the cover. A scaled
 # inset is not a true offset, so the line varies a little in width across a
 # shape this tall, but it is exact arithmetic and cannot go wrong quietly.
-OTZARIA_OUTER = 0.80
+OTZARIA_OUTER = 0.95
 
 
 def _depth_one(contours, outer):
@@ -654,6 +661,66 @@ def otzaria_filled(base):
     k = 1 - 2 * OTZARIA_OUTER / max(x1 - x0, y1 - y0)
     line = cover - cover.scale(k, about=((x0 + x1) / 2, (y0 + y1) / 2))
     return (line | (core - art)).despeckle(SPECK), []
+
+
+# --------------------------------------------------------------------------
+# A Latin A beside the alef
+# --------------------------------------------------------------------------
+# The layout is `alef_alef_24_regular`'s exactly - two letters 10.80 units wide
+# at x 0.95 and x 12.25 - so the pair sits at the same size and rhythm as the
+# rest of the two-letter icons. The alef is on the right, where a Hebrew reader
+# starts.
+PAIR_LEFT, PAIR_RIGHT, PAIR_WIDTH = 0.95, 12.25, 10.80
+
+
+def latin_a():
+    """Fluent's capital A, lifted out of `local_language_24_filled`.
+
+    That icon is an A beside a Korean syllable; the A is its largest contour
+    with its counter inside, and the two are told apart by containment rather
+    than by index."""
+    art = use_fluent("local_language_24_filled")
+    cs = ic.contours(art)
+    body = max(cs, key=lambda c: c.area)
+    out = body
+    for c in cs:
+        if c is not body and (c & body).area > 0.95 * c.area:
+            out = out - c
+    return out
+
+
+# --------------------------------------------------------------------------
+# A filled stack of books
+# --------------------------------------------------------------------------
+# An outline icon of solid objects turns filled by flooding the silhouette and
+# keeping only the lines that separate one object from the next - which is how
+# Fluent fills its own stacked and layered icons. The rule that finds those
+# lines is depth: ink further than this from the silhouette's edge is a
+# separator, ink at the edge is the outline that the flood replaces.
+STACK_DEPTH = 1.00
+
+# A white separator has to survive on black, where it goes before black-on-white
+# ink of the same width does, so each one is widened by this on both sides.
+STACK_SEPARATOR = 0.18
+
+# An interior shorter than this is not a book but a page rule drawn inside one,
+# and the strokes around it are detail rather than structure. They are left
+# filled: six books' worth of hatching reads as a texture, not as a stack.
+STACK_PAGE_RULE = 2.40
+
+
+def stack_filled(base, depth=STACK_DEPTH):
+    art = glyph(base)
+    body = ic.contours(art)[0].deburr()
+    pages = Art()
+    for c in ic.contours(body - art):
+        x0, y0, x1, y1 = c.bounds
+        if c.area > 0.5 and y1 - y0 < STACK_PAGE_RULE:
+            pages = pages | c
+    separators = art & body.shrink(depth)
+    if not pages.is_empty:
+        separators = separators - pages.grow(0.7)
+    return (body - separators.grow(STACK_SEPARATOR)).despeckle(SPECK), []
 
 
 class Restated(Exception):
@@ -697,6 +764,96 @@ def _alef_rashi():
 @recipe("alef_half_filled_24_regular")
 def _alef_half():
     return alef_half(), [], False
+
+
+# How much of the erosion is given back to the beit's back, over what span, and
+# how far the giving-back is eased in at each end.
+#
+# `beit_24_regular` was made by scaling the small beit inside
+# `beit_near_alef_24_regular` up to letter size and eroding it 0.45 units on
+# every flank - 0.90 off every stroke. The back could not afford it: it measured
+# 2.95 at the shoulder but 0.22 at y=16, a fifth of a pixel at 24 px. Restoring
+# exactly the 0.90 the erosion took puts the back back on the letterform's own
+# proportions - 1.40 at mid-height, 1.12 at its narrowest - rather than on a
+# width picked by eye.
+BEIT_RESTORE, BEIT_TOP, BEIT_FOOT, BEIT_EASE = 0.90, 8.0, 17.2, 1.2
+
+
+def _ink_across(art, y, x0, x1):
+    """How much ink a horizontal slice at `y` crosses between x0 and x1."""
+    strip = art & ic.rect(x0, y, x1, y + 0.2)
+    return sum(c.bounds[2] - c.bounds[0] for c in ic.contours(strip))
+
+
+@recipe("alef_latin_a_24_regular")
+def _alef_latin_a():
+    """The alef facing a Latin A, laid out as `alef_alef_24_regular`.
+
+    The A is set to the alef's own height rather than to the box, so the two
+    letters share a baseline and a cap line and read as a pair rather than as
+    two icons that happen to be adjacent.
+    """
+    alef = glyph("alef_24_filled")
+    _, ay0, _, ay1 = alef.bounds
+    a = latin_a().fit((0, ay0, PAIR_WIDTH, ay1))
+    alef = alef.fit((0, ay0, PAIR_WIDTH, ay1))
+    return (a.translate(PAIR_LEFT - a.bounds[0], 0)
+            | alef.translate(PAIR_RIGHT - alef.bounds[0], 0)), [], False
+
+
+@recipe("books_stacked_high_24_filled")
+def _books_stacked_high_filled():
+    solid, cuts = stack_filled("books_stacked_high_24_regular")
+    return solid, cuts, False
+
+
+@recipe("beit_24_regular")
+def _beit():
+    """Give the beit's right stem its weight back, and ease its terminals.
+
+    The letter was made by eroding `beit_near_alef`'s letterform 0.45 units on
+    every flank, which took 0.90 off every stroke. The stem could not afford it:
+    it measured 1.53 units at the shoulder but tapered to **0.397** at
+    mid-height - under half a pixel at 24 px - so the letter read as a top and a
+    base joined by a hair, which is nothing like the alef or the tet, neither of
+    which has ink under 0.9 anywhere.
+
+    Only the thin ink is grown, not a box around it, and that is what keeps the
+    repair from showing: the region narrower than the target *is* the taper, so
+    growing it adds weight where the stroke is starved and nothing where it is
+    already full. The small nicks the same test picks up elsewhere are left
+    alone - below half a square unit they are outline noise, not strokes.
+    """
+    art = glyph("beit_24_regular")
+    # Guard on the defect itself - the ink across the back at mid-height -
+    # rather than on "is there any thin ink left". There always is: the base's
+    # terminals are cut on a slant, so they taper to a point and answer that
+    # question yes however often this is run.
+    waist = _ink_across(art, 15.0, 14.0, 20.0)
+    if waist > 1.00:
+        raise Restated("beit_24_regular's back already measures %.2f units at "
+                       "mid-height" % waist)
+    return art.pad_left_edge(BEIT_TOP, BEIT_FOOT, 14.0, 20.0,
+                             BEIT_RESTORE, BEIT_EASE), [], False
+
+
+@recipe("bookshelf_24_regular")
+def _bookshelf():
+    """Thinned 15%, and nothing else.
+
+    A uniform inward offset is exactly that: every point of the outline travels
+    along its own normal, so the drawing - the books' widths, their lean, the
+    shelf - is untouched and only the weight changes. Half of 15% of the mean
+    stroke is what takes 15% off the stroke, since an offset takes it off both
+    sides.
+    """
+    art = glyph("bookshelf_24_regular")
+    before = art.mean_stroke()
+    if before < 0.95:
+        raise Restated("bookshelf_24_regular is already at a %.3f mean stroke; "
+                       "thinning again would take it under three quarters of a "
+                       "pixel at 24 px" % before)
+    return art.shrink(before * 0.15 / 2), [], False
 
 
 @recipe("torah_scroll_24_regular")
@@ -792,31 +949,34 @@ def _boml_f():
 # shipped as a hairline outline rather than as a filled icon. Deriving all three
 # from their regular twins by the rule above fixes both at once and keeps the
 # two families reading alike.
+for _name in ["book_open_small_24_filled",
+              "book_open_small_line_24_filled",
+              "book_open_medium_search_24_filled"]:
+    def _bof(base=_name.replace("_filled", "_regular")):
+        solid, cuts = book_open_filled(base)
+        return solid, cuts, False
+    RECIPES[_name] = _bof
+
+
+# The otzaria cover, whose outline cannot be offset - see `otzaria_filled`.
 for _name in ["otzaria_icon_24_filled",
               "otzaria_icon_line_24_filled",
-              "otzaria_icon_2_page_24_filled"]:
+              "otzaria_icon_2_page_24_filled",
+              "otzaria_icon_2_page_line_24_filled",
+              "otzaria_icon_empty_24_filled"]:
     def _otz(base=_name.replace("_filled", "_regular")):
         solid, cuts = otzaria_filled(base)
         return solid, cuts, False
     RECIPES[_name] = _otz
 
 
-# The lettered document and book icons. These rewrite their own sources, which
-# would normally need the guard the Rashi alef carries - but a morphological
-# opening and a closing are both idempotent, so easing a corner that is already
-# eased does nothing, and a second run is a no-op rather than a second rounding.
-for _name in ["document_word_24_regular", "document_word_24_filled",
-              "document_html_24_regular", "document_html_24_filled",
-              "document_md_24_regular", "document_md_24_filled",
-              "book_word_24_regular", "book_word_24_filled",
-              "book_md_24_regular", "book_md_24_filled",
-              "book_pdf_24_regular", "book_pdf_24_filled",
-              "book_zim_24_regular", "book_zim_24_filled",
-              "book_number_24_regular", "book_number_24_filled"]:
-    def _letters(n=_name):
-        solid, cuts = polish_letters(n)
+for _name in RESTRIPE:
+    def _stripe(n=_name):
+        solid, cuts = restripe(n)
         return solid, cuts, False
-    RECIPES[_name] = _letters
+    RECIPES[_name] = _stripe
+
+
 
 
 for _kind, _name in [("scissors", "alef_scissors_24_regular"),

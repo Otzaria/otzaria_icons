@@ -2520,3 +2520,108 @@ icons:
     author: Otzaria contributors
     license: MIT AND GPL-3.0-only
     upstream_commit: pub:fluentui_system_icons@1.1.273
+  - id: icon-0170
+    name: alef_latin_a_24_regular
+    source: assets_src/svg/alef_latin_a_24_regular.svg
+    codepoint: 0xe0a8
+    variant: regular
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: modified_fluent
+    based_on: 'microsoft/fluentui-system-icons: local_language_24_filled (fluentui_system_icons 1.1.273)'
+    author: Otzaria contributors
+    license: MIT AND GPL-3.0-only
+    upstream_commit: pub:fluentui_system_icons@1.1.273
+  - id: icon-0171
+    name: book_open_medium_search_24_filled
+    source: assets_src/svg/book_open_medium_search_24_filled.svg
+    codepoint: 0xe0a9
+    variant: filled
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: custom
+    based_on: null
+    author: Otzaria contributors
+    license: GPL-3.0-only
+    upstream_commit: null
+  - id: icon-0172
+    name: book_open_small_24_filled
+    source: assets_src/svg/book_open_small_24_filled.svg
+    codepoint: 0xe0aa
+    variant: filled
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: custom
+    based_on: null
+    author: Otzaria contributors
+    license: GPL-3.0-only
+    upstream_commit: null
+  - id: icon-0173
+    name: book_open_small_line_24_filled
+    source: assets_src/svg/book_open_small_line_24_filled.svg
+    codepoint: 0xe0ab
+    variant: filled
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: custom
+    based_on: null
+    author: Otzaria contributors
+    license: GPL-3.0-only
+    upstream_commit: null
+  - id: icon-0174
+    name: books_stacked_high_24_filled
+    source: assets_src/svg/books_stacked_high_24_filled.svg
+    codepoint: 0xe0ac
+    variant: filled
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: custom
+    based_on: null
+    author: Otzaria contributors
+    license: GPL-3.0-only
+    upstream_commit: null
+  - id: icon-0175
+    name: otzaria_icon_2_page_line_24_filled
+    source: assets_src/svg/otzaria_icon_2_page_line_24_filled.svg
+    codepoint: 0xe0ad
+    variant: filled
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: custom
+    based_on: null
+    author: Otzaria contributors
+    license: GPL-3.0-only
+    upstream_commit: null
+  - id: icon-0176
+    name: otzaria_icon_empty_24_filled
+    source: assets_src/svg/otzaria_icon_empty_24_filled.svg
+    codepoint: 0xe0ae
+    variant: filled
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: custom
+    based_on: null
+    author: Otzaria contributors
+    license: GPL-3.0-only
+    upstream_commit: null
