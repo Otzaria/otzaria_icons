@@ -40,6 +40,10 @@ import pathops
 
 from glyph_geometry import simplified, is_knockout_index
 
+# The widest single outward offset `grow` will ask skia's stroker for; see the
+# note there.
+GROW_STEP = 0.55
+
 SVG_NS = "http://www.w3.org/2000/svg"
 SVG_DIR = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
                        "assets_src", "svg")
@@ -224,10 +228,23 @@ class Art:
     def grow(self, delta):
         """Offset the outline outward by `delta`, everywhere, by unioning the
         region with a band stroked along its own boundary. Round joins, so a
-        corner grows into a fillet instead of a spike."""
+        corner grows into a fillet instead of a spike.
+
+        Wide offsets are taken in steps, because skia's stroker comes apart on
+        a hand-drawn outline once the width gets near the size of the features
+        it is tracing: growing `book_open_large_lines`'s cover by 1.1 in one go
+        returned eleven fragments with a whole flank missing, and the same
+        offset in two halves returns the one contour it should, to within four
+        hundredths of a square unit. The step is the widest that has been seen
+        to hold on this artwork.
+        """
         if delta <= 0:
             return self.shrink(-delta) if delta < 0 else self
-        return self | _band(self.p, delta * 2)
+        steps = int(math.ceil(delta / GROW_STEP))
+        out, part = self, delta / steps
+        for _ in range(steps):
+            out = out | _band(out.p, part * 2)
+        return out
 
     def shrink(self, delta):
         """The inverse: erode the outline inward by `delta`.
