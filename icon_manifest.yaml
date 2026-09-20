@@ -2185,11 +2185,11 @@ icons:
     deprecated: false
     upstream_status: missing
     upstream_equivalent: null
-    origin: modified_fluent
-    based_on: 'microsoft/fluentui-system-icons: assets/Text Quote/SVG/ic_fluent_text_quote_24_regular.svg'
+    origin: custom
+    based_on: null
     author: Otzaria contributors
-    license: MIT AND GPL-3.0-only
-    upstream_commit: e8dec25e0e78e54716e4a6156fc72eb0b021414f
+    license: GPL-3.0-only
+    upstream_commit: null
   - id: icon-0148
     name: alef_addition_24_regular
     source: assets_src/svg/alef_addition_24_regular.svg
@@ -2689,6 +2689,321 @@ icons:
     name: books_stacked_low_24_regular
     source: assets_src/svg/books_stacked_low_24_regular.svg
     codepoint: 0xe0b3
+    variant: regular
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: custom
+    based_on: null
+    author: Otzaria contributors
+    license: GPL-3.0-only
+    upstream_commit: null
+  - id: icon-0182
+    name: alef_crown_24_regular
+    source: assets_src/svg/alef_crown_24_regular.svg
+    codepoint: 0xe0b4
+    variant: regular
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: custom
+    based_on: null
+    author: Otzaria contributors
+    license: GPL-3.0-only
+    upstream_commit: null
+  - id: icon-0183
+    name: link_24_regular
+    source: assets_src/svg/link_24_regular.svg
+    codepoint: 0xe0b5
+    variant: regular
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: modified_fluent
+    based_on: 'microsoft/fluentui-system-icons: link_24_regular (fluentui_system_icons 1.1.273)'
+    author: Otzaria contributors
+    license: MIT AND GPL-3.0-only
+    upstream_commit: pub:fluentui_system_icons@1.1.273
+  - id: icon-0184
+    name: link_add_24_regular
+    source: assets_src/svg/link_add_24_regular.svg
+    codepoint: 0xe0b6
+    variant: regular
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: modified_fluent
+    based_on: 'microsoft/fluentui-system-icons: link_dismiss_24_regular (fluentui_system_icons 1.1.273)'
+    author: Otzaria contributors
+    license: MIT AND GPL-3.0-only
+    upstream_commit: pub:fluentui_system_icons@1.1.273
+  - id: icon-0185
+    name: link_book_empty_24_regular
+    source: assets_src/svg/link_book_empty_24_regular.svg
+    codepoint: 0xe0b7
+    variant: regular
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: modified_fluent
+    based_on: 'microsoft/fluentui-system-icons: link_dismiss_24_regular (fluentui_system_icons 1.1.273)'
+    author: Otzaria contributors
+    license: MIT AND GPL-3.0-only
+    upstream_commit: pub:fluentui_system_icons@1.1.273
+  - id: icon-0186
+    name: link_book_exclamation_24_regular
+    source: assets_src/svg/link_book_exclamation_24_regular.svg
+    codepoint: 0xe0b8
+    variant: regular
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: modified_fluent
+    based_on: 'microsoft/fluentui-system-icons: link_dismiss_24_regular (fluentui_system_icons 1.1.273)'
+    author: Otzaria contributors
+    license: MIT AND GPL-3.0-only
+    upstream_commit: pub:fluentui_system_icons@1.1.273
+  - id: icon-0187
+    name: links_24_filled
+    source: assets_src/svg/links_24_filled.svg
+    codepoint: 0xe0b9
+    variant: filled
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: custom
+    based_on: null
+    author: Otzaria contributors
+    license: GPL-3.0-only
+    upstream_commit: null
+  - id: icon-0188
+    name: book_fanned_24_filled
+    source: assets_src/svg/book_fanned_24_filled.svg
+    codepoint: 0xe0ba
+    variant: filled
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: custom
+    based_on: null
+    author: Otzaria contributors
+    license: GPL-3.0-only
+    upstream_commit: null
+  - id: icon-0189
+    name: book_fanned_24_regular
+    source: assets_src/svg/book_fanned_24_regular.svg
+    codepoint: 0xe0bb
+    variant: regular
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: custom
+    based_on: null
+    author: Otzaria contributors
+    license: GPL-3.0-only
+    upstream_commit: null
+  - id: icon-0190
+    name: search_in_numbered_list_24_filled
+    source: assets_src/svg/search_in_numbered_list_24_filled.svg
+    codepoint: 0xe0bc
+    variant: filled
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: custom
+    based_on: null
+    author: Otzaria contributors
+    license: GPL-3.0-only
+    upstream_commit: null
+  - id: icon-0191
+    name: search_in_the_book_24_filled
+    source: assets_src/svg/search_in_the_book_24_filled.svg
+    codepoint: 0xe0bd
+    variant: filled
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: custom
+    based_on: null
+    author: Otzaria contributors
+    license: GPL-3.0-only
+    upstream_commit: null
+  - id: icon-0192
+    name: search_in_the_document_24_filled
+    source: assets_src/svg/search_in_the_document_24_filled.svg
+    codepoint: 0xe0be
+    variant: filled
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: custom
+    based_on: null
+    author: Otzaria contributors
+    license: GPL-3.0-only
+    upstream_commit: null
+  - id: icon-0193
+    name: search_in_the_library_24_filled
+    source: assets_src/svg/search_in_the_library_24_filled.svg
+    codepoint: 0xe0bf
+    variant: filled
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: custom
+    based_on: null
+    author: Otzaria contributors
+    license: GPL-3.0-only
+    upstream_commit: null
+  - id: icon-0194
+    name: search_in_the_person_24_filled
+    source: assets_src/svg/search_in_the_person_24_filled.svg
+    codepoint: 0xe0c0
+    variant: filled
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: custom
+    based_on: null
+    author: Otzaria contributors
+    license: GPL-3.0-only
+    upstream_commit: null
+  - id: icon-0195
+    name: search_in_the_quote_24_filled
+    source: assets_src/svg/search_in_the_quote_24_filled.svg
+    codepoint: 0xe0c1
+    variant: filled
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: custom
+    based_on: null
+    author: Otzaria contributors
+    license: GPL-3.0-only
+    upstream_commit: null
+  - id: icon-0196
+    name: search_in_the_settings_24_filled
+    source: assets_src/svg/search_in_the_settings_24_filled.svg
+    codepoint: 0xe0c2
+    variant: filled
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: custom
+    based_on: null
+    author: Otzaria contributors
+    license: GPL-3.0-only
+    upstream_commit: null
+  - id: icon-0197
+    name: search_in_the_text_24_filled
+    source: assets_src/svg/search_in_the_text_24_filled.svg
+    codepoint: 0xe0c3
+    variant: filled
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: custom
+    based_on: null
+    author: Otzaria contributors
+    license: GPL-3.0-only
+    upstream_commit: null
+  - id: icon-0198
+    name: search_in_titles_24_filled
+    source: assets_src/svg/search_in_titles_24_filled.svg
+    codepoint: 0xe0c4
+    variant: filled
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: custom
+    based_on: null
+    author: Otzaria contributors
+    license: GPL-3.0-only
+    upstream_commit: null
+  - id: icon-0199
+    name: book_add_24_filled
+    source: assets_src/svg/book_add_24_filled.svg
+    codepoint: 0xe0c5
+    variant: filled
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: custom
+    based_on: null
+    author: Otzaria contributors
+    license: GPL-3.0-only
+    upstream_commit: null
+  - id: icon-0200
+    name: book_add_24_regular
+    source: assets_src/svg/book_add_24_regular.svg
+    codepoint: 0xe0c6
+    variant: regular
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: custom
+    based_on: null
+    author: Otzaria contributors
+    license: GPL-3.0-only
+    upstream_commit: null
+  - id: icon-0201
+    name: book_exclamation_24_filled
+    source: assets_src/svg/book_exclamation_24_filled.svg
+    codepoint: 0xe0c7
+    variant: filled
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: custom
+    based_on: null
+    author: Otzaria contributors
+    license: GPL-3.0-only
+    upstream_commit: null
+  - id: icon-0202
+    name: book_exclamation_24_regular
+    source: assets_src/svg/book_exclamation_24_regular.svg
+    codepoint: 0xe0c8
     variant: regular
     size: 24
     match_text_direction: false

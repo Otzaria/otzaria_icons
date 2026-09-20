@@ -209,4 +209,30 @@ const generatedIconExpectations = <String, IconData>{
   'alef_near_alef_stam_24_regular': OtzariaIcons.alef_near_alef_stam_24_regular,
   'link_alef_24_regular': OtzariaIcons.link_alef_24_regular,
   'books_stacked_low_24_regular': OtzariaIcons.books_stacked_low_24_regular,
+  'alef_crown_24_regular': OtzariaIcons.alef_crown_24_regular,
+  'link_24_regular': OtzariaIcons.link_24_regular,
+  'link_add_24_regular': OtzariaIcons.link_add_24_regular,
+  'link_book_empty_24_regular': OtzariaIcons.link_book_empty_24_regular,
+  'link_book_exclamation_24_regular':
+      OtzariaIcons.link_book_exclamation_24_regular,
+  'links_24_filled': OtzariaIcons.links_24_filled,
+  'book_fanned_24_filled': OtzariaIcons.book_fanned_24_filled,
+  'book_fanned_24_regular': OtzariaIcons.book_fanned_24_regular,
+  'search_in_numbered_list_24_filled':
+      OtzariaIcons.search_in_numbered_list_24_filled,
+  'search_in_the_book_24_filled': OtzariaIcons.search_in_the_book_24_filled,
+  'search_in_the_document_24_filled':
+      OtzariaIcons.search_in_the_document_24_filled,
+  'search_in_the_library_24_filled':
+      OtzariaIcons.search_in_the_library_24_filled,
+  'search_in_the_person_24_filled': OtzariaIcons.search_in_the_person_24_filled,
+  'search_in_the_quote_24_filled': OtzariaIcons.search_in_the_quote_24_filled,
+  'search_in_the_settings_24_filled':
+      OtzariaIcons.search_in_the_settings_24_filled,
+  'search_in_the_text_24_filled': OtzariaIcons.search_in_the_text_24_filled,
+  'search_in_titles_24_filled': OtzariaIcons.search_in_titles_24_filled,
+  'book_add_24_filled': OtzariaIcons.book_add_24_filled,
+  'book_add_24_regular': OtzariaIcons.book_add_24_regular,
+  'book_exclamation_24_filled': OtzariaIcons.book_exclamation_24_filled,
+  'book_exclamation_24_regular': OtzariaIcons.book_exclamation_24_regular,
 };

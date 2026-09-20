@@ -1,5 +1,68 @@
 # Changelog
 
+## 0.5.0 - 2026-09-20
+
+- Added **twenty-one** icons. The set now ships **201** icons over a
+  contiguous `U+E000`-`U+E0C8`.
+
+  * `link_add_24_regular`, `link_book_empty_24_regular`,
+    `link_book_exclamation_24_regular` and `alef_crown_24_regular` - four new
+    badge marks on the link and alef discs (a plus, a closed book, an
+    exclamation mark and a crown), and `link_24_regular`, the plain link with
+    no badge, sized to fill the canvas like the rest of the set.
+
+    `link_book_empty`'s book is not a redrawing: it is
+    `search_in_the_book_24_regular`'s own content, read directly off that
+    icon's source and knocked out white with its cover-seam line kept as ink,
+    so the two stay the same book if either is ever redrawn.
+
+  * `links_24_filled` - `links_24_regular`'s two chain links at 1.5x the
+    stroke weight, matching the regular/filled relationship the rest of the
+    set uses.
+
+  * `book_fanned_24_regular` and `book_fanned_24_filled` - an open book lying
+    flat, its pages fanned from a small raised spine at centre. Traced from
+    reference vector art rather than drawn from parameters: the reference's
+    dense polyline export was simplified (Ramer-Douglas-Peucker) and rebuilt
+    honouring its own even-odd fill rule before being scaled into the
+    24-unit canvas.
+
+  * `book_add_24_regular`/`_filled` and `book_exclamation_24_regular`/
+    `_filled` - a book with a plus badge at the corner and one with an
+    exclamation mark centred on the cover, both carrying the title-bar
+    rectangle `book_24` draws on its cover (hollow-bordered ink for regular,
+    knocked white out of the solid cover for filled - not unioned in as more
+    solid ink, which is invisible on an already-solid cover).
+
+  * A `_filled` variant for every `search_in_*_24_regular` icon (nine of
+    them), in the same filled style as `search_24_filled`.
+
+- The alef badge family (`alef_addition`, `alef_copy`, `alef_deletion`,
+  `alef_eye`, `alef_lips`, `alef_lock`, `alef_marker`, `alef_scissors`,
+  `alef_with_eraser`, `alef_with_exclamation`, `alef_with_information`, and
+  the new `alef_crown`) has its disc enlarged 20% and moved - a little down,
+  noticeably right - to read more clearly at small sizes.
+
+- The link badge family (every `link_*_24_regular` badge icon, the four new
+  ones included) has its disc enlarged 15% and the whole icon - link and
+  badge together - rescaled to fill the canvas, matching the rest of the set.
+
+- `clock_add_24_regular` - badge enlarged 15%, the plus redrawn larger and at
+  a weight tuned to survive 16-20px, the whole icon filling the canvas.
+
+- The `search_in_*` family - all nine icons, regular and filled - has its
+  ring and handle replaced with `search_24_regular`'s own (translated and
+  uniformly scaled to each icon's own lens, never stretched, so the handle's
+  angle, length and stroke weight match exactly), the ring thickened 20%
+  outward without touching the lens opening, and every filled ring brought
+  to `search_24_filled`'s own outer-ring weight. `search_not_found_24_regular`
+  /`_filled` take the same ring treatment and a redesigned "not found" mark:
+  a corner badge - a disc with an X knocked out, the same construction
+  `alef_deletion`/`link_deletion` already use - rather than a mark confined
+  to the lens opening, enlarged 2.2x as one unit once drawn (3x pushed the
+  badge past the canvas edge and over the ring; 2.2x is the largest that
+  keeps the ring legibly a ring).
+
 ## 0.4.0 - 2026-09-17
 
 - **Breaking: `hyperlink` is gone and the `link` names have been reassigned,**

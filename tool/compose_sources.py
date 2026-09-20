@@ -25,8 +25,11 @@ have been formatted without undoing that.
 Requires: skia-pathops, fonttools.
 """
 import glob
+import math
 import sys
 import os
+
+import pathops
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
@@ -84,6 +87,44 @@ BADGE_MIN_STROKE = 1.00
 BADGE_MIN_HOLE = 0.55
 
 
+# How much bigger the alef family's badge disc (+ its knockout mark) is drawn
+# than the disc `alef_copy_24_regular` carries, and the link family's own disc
+# taken from Fluent's template. Both are scaled as one unit - the disc and the
+# mark inside it together - about the canvas corner the badge sits nearest, so
+# the badge grows toward the centre of the icon instead of drifting toward, or
+# past, the edge it is anchored to.
+ALEF_BADGE_SCALE = 1.20
+LINK_BADGE_SCALE = 1.15
+
+
+def _anchor_corner(bounds):
+    """The canvas corner (0 or 24 on each axis) nearest a badge's own centre."""
+    x0, y0, x1, y1 = bounds
+    cx, cy = (x0 + x1) / 2, (y0 + y1) / 2
+    return (24.0 if cx > 12 else 0.0, 24.0 if cy > 12 else 0.0)
+
+
+def fill_canvas_pair(solid, cuts):
+    """`fill_canvas`, but for a (solid, [cut, ...]) pair built in memory rather
+    than read back from a file: both are scaled and translated by the same
+    transform, measured on their union, so a cut stays exactly registered on
+    the solid it is knocked out of."""
+    combo = solid
+    for c in cuts:
+        combo = combo | c
+    x0, y0, x1, y1 = combo.bounds
+    s = min(CANVAS_BOX / (x1 - x0), CANVAS_BOX / (y1 - y0))
+    about = ((x0 + x1) / 2, (y0 + y1) / 2)
+    solid2 = solid.scale(s, about=about)
+    cuts2 = [c.scale(s, about=about) for c in cuts]
+    combo2 = solid2
+    for c in cuts2:
+        combo2 = combo2 | c
+    cx0, cy0, cx1, cy1 = combo2.bounds
+    dx, dy = 12 - (cx0 + cx1) / 2, 12 - (cy0 + cy1) / 2
+    return solid2.translate(dx, dy), [c.translate(dx, dy) for c in cuts2]
+
+
 def badge():
     return part(*BADGE_SOURCE)
 
@@ -135,8 +176,18 @@ def fluent(name, reach, weight=BADGE_MIN_STROKE):
 # Badge symbols, drawn about the origin
 # --------------------------------------------------------------------------
 def sym_cross():
-    """The deletion cross, recentred from its own slightly-offset disc."""
-    return part("alef_deletion_24_regular", 2)
+    """The deletion cross, recentred from its own slightly-offset disc.
+
+    Read as "whichever solid the file marks as the knockout" rather than by a
+    fixed path index: `alef_deletion_24_regular` is a hand-authored source
+    (letter, disc, cut), but its badge has since been enlarged in place by
+    unioning the letter and the disc into one path, which shifts the cut from
+    index 2 to index 1. `ic.layers` finds the same cut by its fill="white"
+    marker instead, so it is not tied to how many separate solids the file
+    happens to carry.
+    """
+    _, cuts = ic.layers("alef_deletion_24_regular")
+    return cuts[0]
 
 
 def sym_plus():
@@ -339,12 +390,52 @@ def sym_lock():
     return body | arch | legs
 
 
+def sym_crown():
+    """A plain three-point crown, drawn at badge scale.
+
+    Built the way `sym_plus` and `sym_exclamation` are: a base band and three
+    points solved as simple shapes rather than borrowed from Fluent, since
+    Fluent has no crown small enough to read at badge size without redrawing.
+    Kept to three points and no jewels - a badge this small can carry a
+    silhouette, not ornament, and a crown with detail cut into it just goes
+    grey at 16 px.
+    """
+    band = round_rect(-2.30, 0.95, 2.30, 1.95, 0.45)
+    body = polygon([(-2.30, 0.95), (-2.30, -0.75), (-1.15, 0.55),
+                    (0, -1.65), (1.15, 0.55), (2.30, -0.75), (2.30, 0.95)])
+    balls = (circle(-2.30, -0.75, 0.42) | circle(0, -1.65, 0.48)
+             | circle(2.30, -0.75, 0.42))
+    return (band | body | balls).centred_on(0, 0)
+
+
+def sym_book_empty():
+    """The literal book `search_in_the_book_24_regular` already draws inside
+    its own lens - not a redrawn approximation of it - read straight from
+    that icon's own source the same way `sym_copy` reuses `alef_copy`'s
+    sheets: `_search_split` returns exactly the region the font fills for
+    that icon's content (its cover, its title bar cut as a hole, its base
+    seam cut as a hole), and reusing that Art object directly means a later
+    redraw of that book updates this badge too, instead of the two silently
+    drifting apart the way a hand-copied approximation would.
+
+    Two earlier versions redrew this by hand: one reused
+    `book_empty_24_regular`'s own outline, which collapsed into a cusp once
+    `weighted`'s regrowth pass tried to put stroke weight back onto its thin
+    ribbon-tab detail; the other approximated the same "solid white cover,
+    black seam line" construction with two round rects, which read fine but
+    was still a second drawing of a book this set already has one of.
+    """
+    _, _, content = _search_split("search_in_the_book_24_regular")
+    return content
+
+
 # Marks already drawn at badge scale for the alef's disc, which is the only disc
 # they go on: they take neither scaling nor re-weighting.
 DRAWN_SYMBOLS = {
     "plus": sym_plus,
     "exclamation": sym_exclamation,
     "lock": sym_lock,
+    "crown": sym_crown,
 }
 
 
@@ -367,19 +458,46 @@ def symbol(kind, reach):
         return sym_information(reach)
     if kind == "alef":
         return weighted(sym_alef(), reach, weight=1.15)
+    if kind == "book_empty":
+        return weighted(sym_book_empty(), reach)
     return sym_fluent(kind, reach)
 
 
-def badged(base, kind):
-    """base + the alef family's disc, with `kind` knocked out of the disc."""
+def badged(base, kind, badge_scale=1.0):
+    """base + the alef family's disc, with `kind` knocked out of the disc.
+
+    `badge_scale` enlarges the disc and its mark together, as one unit, about
+    the canvas corner the disc sits nearest - so the badge reads better at
+    small sizes without drifting off its corner or being stretched out of
+    round.
+    """
     disc = badge()
-    return base | disc, [place(symbol(kind, disc.radius() * SYMBOL_REACH))]
+    # Centred on the disc's own actual centre, not the fixed BADGE_CX/BADGE_CY
+    # `place` used: those constants recorded where the disc used to sit before
+    # its own source (alef_copy_24_regular) was enlarged 20% in place, and the
+    # corner-anchored scale that enlarged it also moved its centre - reading
+    # the disc's current centre keeps the mark and the disc registered on each
+    # other however the disc is drawn.
+    mark = symbol(kind, disc.radius() * SYMBOL_REACH).centred_on(*disc.centre)
+    if badge_scale != 1.0:
+        corner = _anchor_corner(disc.bounds)
+        disc = disc.scale(badge_scale, about=corner)
+        mark = mark.scale(badge_scale, about=corner)
+    return base | disc, [mark]
 
 
 # --------------------------------------------------------------------------
 # Recipes
 # --------------------------------------------------------------------------
 def alef_badge(kind):
+    """The alef, badged.
+
+    No `badge_scale` here: `alef_copy_24_regular` - the file `badge()` reads
+    the canonical disc from - already carries it enlarged 20% in its own
+    source (it is one of the icons the owner asked to have a bigger badge,
+    same as every other alef badge). Applying `ALEF_BADGE_SCALE` again here
+    on top of that would compound to 44%.
+    """
     def build():
         solid, cuts = badged(alef_solid(), kind)
         return solid, cuts, True
@@ -421,13 +539,23 @@ def link_plate():
 
 
 def link_badge(kind):
-    """Fluent's link, cut back, with `kind` knocked out of Fluent's disc."""
+    """Fluent's link, cut back, with `kind` knocked out of Fluent's disc.
+
+    The disc and its mark are enlarged 15% as one unit, anchored to the corner
+    the disc already sits in, and the whole assembly - link and enlarged badge
+    together - is then scaled to fill the canvas the way every other icon in
+    the set that is drawn as large as it will go is: see `fill_canvas`.
+    """
     def build():
         link, disc, _ = link_plate()
         x0, y0, x1, y1 = disc.bounds
         mark = symbol(kind, disc.radius() * SYMBOL_REACH).centred_on(
             (x0 + x1) / 2, (y0 + y1) / 2)
-        return link | disc, [mark], True
+        corner = _anchor_corner(disc.bounds)
+        disc = disc.scale(LINK_BADGE_SCALE, about=corner)
+        mark = mark.scale(LINK_BADGE_SCALE, about=corner)
+        solid, cuts = fill_canvas_pair(link | disc, [mark])
+        return solid, cuts, True
     return build
 
 
@@ -924,6 +1052,23 @@ def recipe(name):
     return deco
 
 
+# --------------------------------------------------------------------------
+# book_fanned: traced from the reviewer's own reference vector art
+# --------------------------------------------------------------------------
+# Two earlier attempts built this from hand-picked or pixel-percentage
+# parameters and both missed the reference. The reviewer then supplied the
+# actual reference SVGs (dense M/L/Z polyline exports, fill-rule evenodd),
+# which are transcribed directly rather than re-derived a third time: each
+# subpath's point list is simplified (Ramer-Douglas-Peucker, since the
+# exports are far denser than this canvas needs), rebuilt honouring evenodd,
+# and scaled/centred into the 24-unit canvas - see the session's transcription
+# script. book_fanned_24_filled and book_fanned_24_regular are therefore
+# static sources, like most hand-drawn icons in this set, not recipes: the
+# reference files live outside this repo, so nothing here could rebuild them
+# from scratch, and a stale recipe left in place under these names would
+# silently overwrite the traced result if compose_sources.py were ever run
+# for them again.
+
 @recipe("alef_rashi_24_regular")
 def _alef_rashi():
     """Widened and given a little more weight.
@@ -1119,6 +1264,257 @@ def _torah_scroll():
     return sized((art - bars) | text).grow(SCROLL_GROW), [], False
 
 
+@recipe("links_24_filled")
+def _links_filled():
+    """links_24_regular, every stroke 1.5x thicker.
+
+    `inverted()` - the "invert every white area, add a thin outer line" rule
+    the rest of the set's filled variants take - is built for a single closed
+    silhouette (a book cover, a letter): it works from `contours(art)[0]`, the
+    *largest* contour, on the assumption that it is the one silhouette the
+    whole icon is drawn on. `links_24_regular` is two nearly-equal chain rings
+    side by side (64.84 and 64.83 square units - neither "the" largest), so
+    that rule keeps one ring and drops the other. A stroke icon like this one
+    does not need inverting at all: its regular *is* the drawing, and Fluent's
+    own filled/regular pairs for stroke icons are literally the same stroke
+    thickened, which is exactly what the owner asked for here. `grow` offsets
+    every edge outward by the same amount on both sides of each stroke, so it
+    thickens without altering the drawing - not a re-render, the same path,
+    heavier.
+    """
+    art = glyph("links_24_regular")
+    before = art.mean_stroke()
+    target = before * 1.5
+    return art.grow((target - before) / 2), [], False
+
+
+@recipe("link_24_regular")
+def _link_plain():
+    """Fluent's own plain link, sized to fill the canvas like every other icon
+    in the set that is drawn as large as it will go.
+
+    Taken from Fluent rather than drawn free-hand, for the same reason every
+    badged link in this set is: it is the same chain the badge icons already
+    carry (`link_dismiss_24_regular`'s own link is Fluent's chain with a
+    corner cut for a disc), so the plain link and the badged ones read as the
+    same drawing rather than as two different chains.
+    """
+    return sized(use_fluent("link_24_regular")), [], False
+
+
+# --------------------------------------------------------------------------
+# clock_add: canvas fill, a larger badge, and a plus that survives small sizes
+# --------------------------------------------------------------------------
+# How much larger the plus is set inside the enlarged disc, on top of the
+# family's usual SYMBOL_REACH - the owner asked for it "noticeably larger",
+# not merely along for the disc's own 15%.
+CLOCK_ADD_PLUS_REACH = 1.12
+
+# How much extra weight the plus is grown by after being fitted, so it reads
+# at 16-20 px. `sym_plus`'s own stroke already carries the family's usual
+# BADGE_MIN_STROKE; this is on top of that, same idea as `weighted`'s
+# regrowth but pushed further because a plus is the one badge mark with
+# nothing else to lose to a thicker stroke - no gap between two strokes to
+# close, no counter to fill.
+#
+# First set to 0.30 (mean stroke 3.67), which the owner reviewed as too
+# thick. A negative `grow` shrinks - see `Art.grow` - and -0.15 here lands the
+# mean stroke at 2.4: comfortably more than 25% under 3.67, and still over
+# twice the original icon's own 1.13, which was reviewed as too thin to read
+# at small sizes.
+CLOCK_ADD_PLUS_GROW = -0.15
+
+
+@recipe("clock_add_24_regular")
+def _clock_add():
+    """Enlarge the badge disc 15% (this family's own rule, matching the link
+    badges), and redraw the plus larger and heavier so it still reads at a
+    small rendered size, then fill the canvas.
+
+    Rebuilt from the file's own three raw paths rather than through `glyph`,
+    because the two knockout paths (badge disc, then the plus knocked out of
+    it) are told apart by position here, not by `fill="white"` - this source
+    predates that convention (it is one of `LEGACY_INFERRED_KNOCKOUTS` in
+    `repair_glyphs.py`) - and the plus is being replaced outright, not kept.
+    `write` marks the new cut explicitly, so the source no longer needs the
+    legacy inference to render correctly.
+    """
+    clock = part("clock_add_24_regular", 0)
+    disc = part("clock_add_24_regular", 1)
+    x0, y0, x1, y1 = (clock | disc).bounds
+    if max(x1 - x0, y1 - y0) >= CANVAS_BOX - 0.05:
+        raise Restated("clock_add_24_regular already measures %.2f x %.2f "
+                       "units; rebuilding it would enlarge it again"
+                       % (x1 - x0, y1 - y0))
+    corner = _anchor_corner(disc.bounds)
+    disc2 = disc.scale(1.15, about=corner)
+    # An earlier version of this recipe clipped the clock's hand (both its
+    # upright stroke and its horizontal arm, drawn as one bent shape - the
+    # smallest of the clock's three contours) back from the enlarged disc's
+    # edge, meaning to trim only the small spur where the hand's corner poked
+    # a notch into the union's silhouette. The clip line fell to the left of
+    # most of the arm instead and cut the whole arm away, leaving what looked
+    # like a clock with one hand. The two are simply unioned here instead:
+    # the arm's own length already falls almost entirely inside the enlarged
+    # disc's own footprint, so it is covered by solid badge ink there rather
+    # than sticking out past it, and nothing needs trimming.
+    plus = sym_plus().fit_radius(disc2.radius() * SYMBOL_REACH
+                                 * CLOCK_ADD_PLUS_REACH)
+    plus = plus.grow(CLOCK_ADD_PLUS_GROW).centred_on(*disc2.centre)
+    solid, cuts = fill_canvas_pair(clock | disc2, [plus])
+    return solid, cuts, True
+
+
+# --------------------------------------------------------------------------
+# book_add / book_exclamation: the same closed-book cover the other book_*
+# icons carry a centred mark on (book_download, book_star, book_search, ...),
+# with a new mark centred the way `book_download`'s own arrow is.
+#
+# The reviewer asked for these brought in from Fluent's own `book_add`,
+# `book_star` and `book_exclamation_mark`, mirrored to match this set's own
+# orientation. Two things changed that plan on inspection rather than by
+# guess, and both are worth recording for whoever reads this next:
+#
+#   - `book_star_24_regular/_filled` already exist in this set, and already
+#     carry a star centred on the cover - not a Fluent corner badge, but
+#     Fluent's own `book_star_24_regular` isn't a corner badge either: only
+#     `book_add` puts its mark in a disc, and Fluent's own `book_star` and
+#     `book_exclamation_mark` centre theirs on the cover exactly the way this
+#     set's `book_download`/`book_search`/etc. already do. So the existing
+#     `book_star` is left untouched rather than replaced or duplicated under
+#     another name, and `book_add`/`book_exclamation` are drawn to match it
+#     and the rest of the centred-mark family, not to match `book_add`'s own
+#     one Fluent badge.
+#   - The mirror itself did not hold up against the file it was to be
+#     checked against: `books_stacked_low_24_regular` - rendered and read
+#     directly rather than assumed - draws each book's spine on the *left*,
+#     the same side Fluent draws it, not the right. `book_download`'s own
+#     cover, the shape these two are built from, is left-right symmetric (no
+#     spine drawn at all), so there is nothing in it to mirror one way or the
+#     other. Between a symmetric shared cover and a spine side the one
+#     asymmetric file in the set draws the same way Fluent does, no mirror is
+#     applied here; this is flagged in the session report for the reviewer to
+#     re-check against whatever reference image prompted the request.
+def _book_cover():
+    """(outer cover silhouette, its own interior cut) from
+    `book_download_24_regular`'s single merged path: contour 0 is the cover's
+    own outer ribbon shape, contour 1 the cut that hollows it to a stroke
+    width, and contour 2 its own arrow mark, which is not wanted here."""
+    full = part("book_download_24_regular", 0)
+    cs = ic.contours(full)
+    return cs[0], cs[1]
+
+
+def _book_marked(mark, filled):
+    """A closed-book cover with `mark` on it, matching how
+    book_download/book_star/etc. already pair a cover with a mark.
+
+    The two variants place the mark oppositely, not just the cover
+    differently. A *regular* cover is hollowed to its own stroke width first
+    (`outer - inner`), leaving a white interior, and the mark is drawn on top
+    of that as solid ink - `book_download_24_regular`'s own arrow is a third
+    solid contour, unioned in. A *filled* cover is solid all the way through,
+    so adding the same mark as more solid ink would vanish into it - and
+    `book_download_24_filled` does not do that: its arrow is *knocked out* of
+    the solid cover instead, white on black. `write` always marks a cut with
+    `fill="white"`, so a filled icon here needs the mark passed back as a
+    `cuts` list, not unioned into the solid.
+    """
+    outer, inner = _book_cover()
+    if filled:
+        return outer, [mark]
+    return (outer - inner) | mark, []
+
+
+# The block book_download's own arrow occupies - x 7.5 to 16.5, y 6 to 16.5 -
+# reused as the block a new centred mark sits in, so every centred-mark book
+# in the set shares one placement rather than each guessing its own. Only
+# `book_exclamation` uses this now - see the note above `_book_cover` for why
+# `book_add` does not.
+BOOK_MARK_BLOCK = (7.5, 6.0, 16.5, 16.5)
+
+
+def _book_exclamation_mark():
+    x0, y0, x1, y1 = BOOK_MARK_BLOCK
+    cx, _, _, y1 = (x0 + x1) / 2, y0, x1, y1
+    bar = round_rect(cx - 1.1, y0 + 0.5, cx + 1.1, y1 - 3.5, 1.1)
+    dot = circle(cx, y1 - 1.5, 1.6)
+    return bar | dot
+
+
+# book_add: a corner badge, not a centred mark - checked against Fluent's own
+# book_add_24_regular (its badge sits at roughly x 12-23, y 12-23 on a 24-unit
+# canvas: bottom right, overlapping the cover's own corner) and against this
+# set's own alef/link badges (a solid disc, a knocked-out mark, radius 4.5-5.5
+# in the same corner), which the two turn out to agree on. Centre kept where
+# it was against book_download's cover; radius enlarged 10% on review (5.06,
+# from 4.6).
+BOOK_ADD_BADGE = (17.3, 18.85, 4.6 * 1.10)
+
+
+def _book_add_badge():
+    cx, cy, r = BOOK_ADD_BADGE
+    disc = circle(cx, cy, r)
+    mark = sym_plus().fit_radius(r * SYMBOL_REACH).centred_on(cx, cy)
+    return disc, mark
+
+
+def _book_title_bar():
+    """The title-bar rectangle `book_24_regular`/`_filled` carry on their
+    cover, which `book_download`'s own cover (what `_book_cover` reads) does
+    not have: its own mark sits where the title bar would, and book_add's
+    badge sits at the corner instead, leaving that spot bare. Read the same
+    way `_book_cover` reads book_download's: by contour, from book_24's own
+    single merged path.
+
+    The two are not the same kind of shape. `book_24_regular`'s bar is a
+    hollow-bordered *solid* - `reg_cs[2] - reg_cs[3]`, ink drawn on the
+    interior's own white - because the interior is already white there. But
+    `book_24_filled`'s cover is solid black straight through, so its bar
+    (`fil_cs[1]`) is a *hole* cut into it - `fil_cs[0].area - fil_cs[1].area`
+    equals `full.area` exactly, confirming it - the same way `book_download`
+    and `book_add`'s own marks are knocked out of a filled cover rather than
+    drawn on top of one. A first version of this unioned the filled bar in as
+    more solid ink instead, which put it on top of an already-solid cover and
+    made it invisible - the same bug the very first version of book_add's own
+    plus mark had, and the same fix: return it for the caller to knock out,
+    not union in.
+    """
+    reg_cs = ic.contours(part("book_24_regular", 0))
+    fil_cs = ic.contours(part("book_24_filled", 0))
+    bar_regular = reg_cs[2] - reg_cs[3]
+    bar_filled_cut = fil_cs[1]
+    return bar_regular, bar_filled_cut
+
+
+@recipe("book_add_24_regular")
+def _book_add_r():
+    outer, inner = _book_cover()
+    disc, mark = _book_add_badge()
+    bar_regular, _ = _book_title_bar()
+    return (outer - inner) | disc | bar_regular, [mark], True
+
+
+@recipe("book_add_24_filled")
+def _book_add_f():
+    outer, inner = _book_cover()
+    disc, mark = _book_add_badge()
+    _, bar_filled_cut = _book_title_bar()
+    return outer | disc, [mark, bar_filled_cut], True
+
+
+@recipe("book_exclamation_24_regular")
+def _book_exclamation_r():
+    solid, cuts = _book_marked(_book_exclamation_mark(), filled=False)
+    return solid, cuts, False
+
+
+@recipe("book_exclamation_24_filled")
+def _book_exclamation_f():
+    solid, cuts = _book_marked(_book_exclamation_mark(), filled=True)
+    return solid, cuts, True
+
+
 @recipe("document_alef_24_regular")
 def _doc_alef_r():
     solid, cuts = document(mark_alef(), filled=False)
@@ -1238,6 +1634,213 @@ for _name in sorted(os.path.basename(p)[:-4]
                     for p in glob.glob(os.path.join(ic.SVG_DIR, "search*.svg"))):
     RECIPES[_name] = steps_for(_name)
 
+
+# --------------------------------------------------------------------------
+# search_in_*: the magnifier redrawn from search_24_regular's own, thickened
+# --------------------------------------------------------------------------
+# Every `search_in_*_24_regular` source is one merged path - ring, handle and
+# inner content already resolved into a single nonzero-wound outline, the
+# same shape `search_24_regular` itself is stored as (see `write`, which
+# marks a *knockout* icon with `data-preserve-overlap`; a plain union like
+# these needs no such marker). Split by contour containment rather than by
+# raw path index, so it does not matter how many sub-paths a given icon's own
+# content happens to carry:
+#   contours(icon)[0]  - the largest contour - is the ring+handle's own outer
+#                        silhouette, since the ring necessarily encloses
+#                        everything else the icon draws;
+#   contours(icon)[1]  - the second largest - is the lens opening, since the
+#                        content sits inside it and so can never be larger;
+#   icon & lens         - the content itself, whatever shape it takes, found
+#                        by intersecting the icon with its own lens opening
+#                        rather than enumerated, so no per-icon content list
+#                        has to be kept in step with what each one draws.
+def _search_ring_template():
+    """(outer silhouette, lens opening) of search_24_regular's own ring, the
+    two contours every search_in_* icon's ring is replaced with."""
+    full = part("search_24_regular", 0)
+    cs = ic.contours(full)
+    return cs[0], cs[1]
+
+
+# The radius, from the lens's own centre, that separates the ring band from
+# the handle in search_24_regular's outer contour. Sampled: the ring band's
+# own points cluster tightly between 8.34 and 8.50 units from that centre,
+# while the handle reaches out to 19.58 - so a circle at 9.0 keeps the whole
+# ring band and excludes the whole handle. Needed because thickening only the
+# ring (see `_search_redraw_split`) means growing the ring band and the
+# handle separately: growing the two as one fused contour, which is what the
+# first version of this recipe did, thickens the handle right along with the
+# ring, and the reviewer's own measurement is that the handle should come out
+# identical to search_24's - same angle, length and weight, only uniformly
+# scaled - not thickened.
+SEARCH_RING_BAND_RADIUS = 9.0
+
+
+def _search_ring_and_handle(outer, lens, scale):
+    """Split a placed (outer, lens) pair into (ring band alone, handle
+    alone), by distance from the lens's own centre rather than by any
+    property of the contour itself, since the two are one fused shape.
+    `scale` is the same factor `place()` scaled the template by, so the
+    band/handle boundary radius - measured on the unscaled template - grows
+    or shrinks along with everything else instead of cutting the ring band
+    off short (or eating into the handle) on an icon fitted to a larger or
+    smaller lens.
+    """
+    disc = circle(*lens.centre, SEARCH_RING_BAND_RADIUS * scale)
+    return outer & disc, outer - disc
+
+
+def _search_split(name):
+    """(outer silhouette, lens opening, content) of one search_in_* icon."""
+    full = part(name, 0)
+    cs = ic.contours(full)
+    outer, lens = cs[0], cs[1]
+    return outer, lens, full & lens
+
+
+def _search_not_found_badge():
+    """search_24_regular's own ring+handle, empty lens, with a small corner
+    badge - a disc with the alef family's own X knocked out of it - added
+    opposite the handle.
+
+    Replaces the earlier design, which confined an X to the lens opening by
+    dividing it into four petal-shaped gaps: it read as a target reticle
+    more than a "not found" mark, and the petal-splitting it needed was
+    fragile geometry unique to this one icon. A corner badge is what this
+    set already uses for exactly this reading - `alef_deletion`,
+    `link_deletion` - proven to read clearly at small sizes, and reusing
+    `sym_cross` (the same X, not a redrawn one) keeps that reading
+    consistent rather than adding a second "not found" mark to the set.
+    """
+    t_outer, t_lens = _search_ring_template()
+    lcx, lcy = t_lens.centre
+    lr = t_lens.radius()
+    bx, by = lcx - lr * 0.72, lcy + lr * 0.72
+    badge_r = lr * 0.44
+
+    # The reviewer's actual ask was the badge *unit* - disc and X together -
+    # scaled up as one group, anchored at a corner, the same operation the
+    # alef/link badge families already take (there at 15-20%; here asked for
+    # 3x). `_anchor_corner` - anchor at whichever canvas corner (0 or 24 on
+    # each axis) the shape's own centre is nearest - is the wrong anchor for
+    # this particular badge: it sits at roughly the ring's own 8-o'clock edge,
+    # not near any actual canvas corner, so scaling about a canvas corner from
+    # there swings the badge wildly off-canvas well before 3x (checked: past
+    # y=0 by 2x). Anchored instead at the disc's own outer tangent point - on
+    # the line from the lens centre through the badge centre, at the disc's
+    # far edge, the point already sitting against the ring - growing the
+    # badge stays docked there and grows inward, the way the alef/link badges
+    # stay docked on their own canvas corner while growing inward. At the
+    # full 3x this reviewer asked for, the badge (diameter ~18) swallows most
+    # of the lens (diameter ~13.6) and clips half a unit past the canvas edge;
+    # 2.2x is the largest factor that keeps the whole badge on-canvas and
+    # leaves the ring/handle still legible as a ring - confirmed on review.
+    dx, dy = bx - lcx, by - lcy
+    dist = math.hypot(dx, dy)
+    anchor = (bx + badge_r * dx / dist, by + badge_r * dy / dist)
+    group_scale = 2.2
+    # Nudged down a little on review, after the size itself was confirmed -
+    # a plain translate of the already-scaled, already-docked group, so the
+    # docking and the scale factor above are both untouched.
+    shift_down = 0.6
+
+    badge = (circle(bx, by, badge_r).scale(group_scale, about=anchor)
+            .translate(0, shift_down))
+    mark = (sym_cross().fit_radius(badge_r * 0.88).deburr(0.05)
+            .centred_on(bx, by).scale(group_scale, about=anchor)
+            .translate(0, shift_down))
+    ring = (t_outer - t_lens) | badge
+    return sized(ring), [mark]
+
+
+# How much the ring's own band is thickened, outward only - the lens opening
+# that is matched to the icon's own (see `_search_redraw`) is left exactly as
+# it was, so the content inside it keeps the room it was drawn for.
+SEARCH_RING_GROW_FRACTION = 0.20
+
+
+def _search_redraw_split(name, split):
+    """Replace the ring+handle `split` finds in `name`'s own source with
+    search_24_regular's, fitted to the same icon's own lens opening so its
+    content keeps its size and place, thickened 20% outward, then the whole
+    icon scaled to fill the canvas.
+    """
+    t_outer, t_lens = _search_ring_template()
+    i_outer, i_lens, content = split()
+
+    tcx, tcy = t_lens.centre
+    icx, icy = i_lens.centre
+    scale = i_lens.radius() / t_lens.radius()
+
+    def place(art):
+        return art.scale(scale, about=(tcx, tcy)).translate(icx - tcx, icy - tcy)
+
+    new_outer = place(t_outer)
+    new_lens = place(t_lens)                 # coincides with i_lens
+    ring_band, handle = _search_ring_and_handle(new_outer, new_lens, scale)
+    band_width = (ring_band - new_lens).mean_stroke()
+    grown_band = ring_band.grow(band_width * SEARCH_RING_GROW_FRACTION)
+
+    # Idempotency guard: once this has run, the icon's own outer silhouette
+    # already *is* the grown, placed template (ring band thickened, handle
+    # not), so a second run would grow the ring band again on top of that.
+    grown_outer = grown_band | handle
+    diff = (grown_outer - i_outer).area + (i_outer - grown_outer).area
+    if diff < max(1.0, i_outer.area * 0.03):
+        raise Restated("%s's ring already looks redrawn from the template "
+                       "and thickened" % name)
+
+    ring = (grown_band - new_lens) | handle
+    return sized(ring | content), [], False
+
+
+def _search_redraw(name):
+    return _search_redraw_split(name, lambda: _search_split(name))
+
+
+SEARCH_IN_NAMES = [os.path.basename(p)[:-4] for p in
+                  sorted(glob.glob(os.path.join(ic.SVG_DIR, "search_in_*.svg")))]
+
+for _name in SEARCH_IN_NAMES:
+    def _search_redraw_recipe(name=_name):
+        return _search_redraw(name)
+    RECIPES[_name] = _search_redraw_recipe
+
+
+# `inverted`'s default FILLED_EDGE (0.55) is tuned for a cover silhouette, and
+# on these rings it comes out at a 0.52 mean stroke - about half of
+# `search_24_filled`'s own outer ring, measured at 0.91 (`outer - second`,
+# the same two contours `inverted` itself builds from). 1.00 lands the
+# derived ring at 0.91, matching it.
+SEARCH_FILLED_EDGE = 1.00
+
+for _name in SEARCH_IN_NAMES:
+    _filled_name = _name.replace("_24_regular", "_24_filled")
+    DEPENDS[_filled_name] = _name
+
+    def _search_filled_recipe(base=_name, name=_filled_name):
+        solid, cuts = inverted(base, edge=SEARCH_FILLED_EDGE)
+        return sized(solid), cuts, False
+    RECIPES[_filled_name] = _search_filled_recipe
+
+# `search_not_found_24_regular/_filled` don't match the `search_in_*` glob
+# the family loop above targets, so they were missed the first time.
+def _search_not_found_r():
+    solid, cuts = _search_not_found_badge()
+    return solid, cuts, True
+
+
+RECIPES["search_not_found_24_regular"] = _search_not_found_r
+DEPENDS["search_not_found_24_filled"] = "search_not_found_24_regular"
+
+
+def _search_not_found_filled_recipe():
+    solid, cuts = inverted("search_not_found_24_regular", edge=SEARCH_FILLED_EDGE)
+    return sized(solid), cuts, False
+
+
+RECIPES["search_not_found_24_filled"] = _search_not_found_filled_recipe
+
 RECIPES["otzaria_icon_24_regular"] = steps_for("otzaria_icon_24_regular",
                                                round_rule_ends)
 
@@ -1250,7 +1853,8 @@ for _kind, _name in [("scissors", "alef_scissors_24_regular"),
                      ("eraser", "alef_with_eraser_24_regular"),
                      ("exclamation", "alef_with_exclamation_24_regular"),
                      ("plus", "alef_addition_24_regular"),
-                     ("lock", "alef_lock_24_regular")]:
+                     ("lock", "alef_lock_24_regular"),
+                     ("crown", "alef_crown_24_regular")]:
     RECIPES[_name] = alef_badge(_kind)
 
 for _kind, _name in [("copy", "link_copy_24_regular"),
@@ -1262,7 +1866,10 @@ for _kind, _name in [("copy", "link_copy_24_regular"),
                      ("scissors", "link_scissors_24_regular"),
                      ("cross", "link_deletion_24_regular"),
                      ("eye", "link_eye_24_regular"),
-                     ("alef", "link_alef_24_regular")]:
+                     ("alef", "link_alef_24_regular"),
+                     ("plus", "link_add_24_regular"),
+                     ("book_empty", "link_book_empty_24_regular"),
+                     ("exclamation", "link_book_exclamation_24_regular")]:
     RECIPES[_name] = link_badge(_kind)
 
 
