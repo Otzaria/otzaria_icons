@@ -394,4 +394,5 @@ const iconCatalog = <GalleryIcon>[
   GalleryIcon('text_alef_bet_list_24_filled',
       OtzariaIcons.text_alef_bet_list_24_filled),
   GalleryIcon('icon_x_24_filled', OtzariaIcons.icon_x_24_filled),
+  GalleryIcon('yoma_deilula_24_filled', OtzariaIcons.yoma_deilula_24_filled),
 ];

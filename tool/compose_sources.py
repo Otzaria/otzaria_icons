@@ -1929,6 +1929,54 @@ for _base, _fit in [("booklet", False), ("booklet_empty", False),
     DEPENDS[_base + "_24_filled"] = _base + "_24_regular"
 
 
+# --------------------------------------------------------------------------
+# yoma_deilula: a candle in front of a calendar
+# --------------------------------------------------------------------------
+# `inverted` takes the icon's largest contour as *the* silhouette, and this
+# icon is two separate drawings - so it is applied to each of them in turn. The
+# candle's own outline is closed and inverts as it is. The calendar's is not:
+# the frame stops short where the candle stands in front of it, so there is no
+# closed silhouette to invert, and one is built - the page's rectangle, with the
+# candle's footprint cut out of it. The cut is deeper than the gap the regular
+# draws, because the filled icon puts a line of its own outside each shape and
+# the two lines have to leave the same air between them that the regular does.
+#
+# Two things are kept as the regular draws them rather than inverted: the
+# binder rings (an inverted ring is a 0.6-unit sliver inside a 0.8-unit band,
+# which is nothing at 24 px) and the slits through them. The nine date cells
+# come out as plain white squares.
+YOMA_PAGE = (7.6, 3.2, 23.8, 20.9)
+YOMA_PAGE_CORNER = 1.6
+YOMA_CUT = 1.9
+
+
+@recipe("yoma_deilula_24_filled")
+def _yoma_filled():
+    art = glyph("yoma_deilula_24_regular")
+    cl = ic.contours(art)
+    frame, candle = cl[0], cl[1]
+    slits = [c for c in cl if 1.3 < c.area < 1.5]
+    cells = [c for c in cl if 6.0 < c.area < 8.0 and c.bounds[0] > 9]
+    if len(slits) != 3 or len(cells) != 9:
+        raise Restated("yoma_deilula_24_regular no longer has the three "
+                       "binder slits and nine date cells this reads (%d, %d)"
+                       % (len(slits), len(cells)))
+    page = round_rect(*YOMA_PAGE, YOMA_PAGE_CORNER) - candle.grow(YOMA_CUT)
+    out = Art()
+    for body in (page, candle):
+        out = out | (body - art) | (body.deburr().grow(FILLED_EDGE) - body)
+    for cell in cells:
+        out = out - cell
+    out = out | (frame & ic.rect(0, 0, 24, 4.0))
+    for slit in slits:
+        out = out - slit
+    out = out.despeckle(SPECK).fill_holes(SPECK).prune(0.002)
+    return sized(out), [], False
+
+
+DEPENDS["yoma_deilula_24_filled"] = "yoma_deilula_24_regular"
+
+
 # A list whose rows are text rules and letters. The filled variants of the other
 # lists (`text_bullet_list`, `text_number_list`) keep every rule's length and
 # take it from 1.5 to 2.0 units tall, and the marks beside them get a little

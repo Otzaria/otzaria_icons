@@ -3840,3 +3840,18 @@ icons:
     author: Otzaria contributors
     license: GPL-3.0-only
     upstream_commit: null
+  - id: icon-0258
+    name: yoma_deilula_24_filled
+    source: assets_src/svg/yoma_deilula_24_filled.svg
+    codepoint: 0xe100
+    variant: filled
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: custom
+    based_on: null
+    author: Otzaria contributors
+    license: GPL-3.0-only
+    upstream_commit: null

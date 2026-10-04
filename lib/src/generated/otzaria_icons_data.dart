@@ -1801,6 +1801,13 @@ abstract final class OtzariaIcons {
     fontPackage: fontPackage,
   );
 
+  /// `yoma_deilula_24_filled.svg`
+  static const IconData yoma_deilula_24_filled = IconData(
+    0xe100,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
   /// Every icon in this library, keyed by its name.
   static const Map<String, IconData> allIcons = <String, IconData>{
     'book_24_filled': book_24_filled,
@@ -2059,5 +2066,6 @@ abstract final class OtzariaIcons {
     'torah_scroll_24_filled': torah_scroll_24_filled,
     'text_alef_bet_list_24_filled': text_alef_bet_list_24_filled,
     'icon_x_24_filled': icon_x_24_filled,
+    'yoma_deilula_24_filled': yoma_deilula_24_filled,
   };
 }
