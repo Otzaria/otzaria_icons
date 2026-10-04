@@ -385,4 +385,10 @@ const iconCatalog = <GalleryIcon>[
       'link_with_eraser_24_filled', OtzariaIcons.link_with_eraser_24_filled),
   GalleryIcon('link_with_information_24_filled',
       OtzariaIcons.link_with_information_24_filled),
+  GalleryIcon('booklet_24_filled', OtzariaIcons.booklet_24_filled),
+  GalleryIcon('booklet_empty_24_filled', OtzariaIcons.booklet_empty_24_filled),
+  GalleryIcon('clock_add_24_filled', OtzariaIcons.clock_add_24_filled),
+  GalleryIcon(
+      'dependent_library_24_filled', OtzariaIcons.dependent_library_24_filled),
+  GalleryIcon('torah_scroll_24_filled', OtzariaIcons.torah_scroll_24_filled),
 ];

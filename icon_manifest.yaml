@@ -3735,3 +3735,78 @@ icons:
     author: Otzaria contributors
     license: MIT AND GPL-3.0-only
     upstream_commit: pub:fluentui_system_icons@1.1.273
+  - id: icon-0251
+    name: booklet_24_filled
+    source: assets_src/svg/booklet_24_filled.svg
+    codepoint: 0xe0f9
+    variant: filled
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: custom
+    based_on: null
+    author: Otzaria contributors
+    license: GPL-3.0-only
+    upstream_commit: null
+  - id: icon-0252
+    name: booklet_empty_24_filled
+    source: assets_src/svg/booklet_empty_24_filled.svg
+    codepoint: 0xe0fa
+    variant: filled
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: custom
+    based_on: null
+    author: Otzaria contributors
+    license: GPL-3.0-only
+    upstream_commit: null
+  - id: icon-0253
+    name: clock_add_24_filled
+    source: assets_src/svg/clock_add_24_filled.svg
+    codepoint: 0xe0fb
+    variant: filled
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: custom
+    based_on: null
+    author: Otzaria contributors
+    license: GPL-3.0-only
+    upstream_commit: null
+  - id: icon-0254
+    name: dependent_library_24_filled
+    source: assets_src/svg/dependent_library_24_filled.svg
+    codepoint: 0xe0fc
+    variant: filled
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: custom
+    based_on: null
+    author: Otzaria contributors
+    license: GPL-3.0-only
+    upstream_commit: null
+  - id: icon-0255
+    name: torah_scroll_24_filled
+    source: assets_src/svg/torah_scroll_24_filled.svg
+    codepoint: 0xe0fd
+    variant: filled
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: custom
+    based_on: null
+    author: Otzaria contributors
+    license: GPL-3.0-only
+    upstream_commit: null

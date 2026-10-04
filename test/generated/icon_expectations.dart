@@ -288,4 +288,9 @@ const generatedIconExpectations = <String, IconData>{
   'link_with_eraser_24_filled': OtzariaIcons.link_with_eraser_24_filled,
   'link_with_information_24_filled':
       OtzariaIcons.link_with_information_24_filled,
+  'booklet_24_filled': OtzariaIcons.booklet_24_filled,
+  'booklet_empty_24_filled': OtzariaIcons.booklet_empty_24_filled,
+  'clock_add_24_filled': OtzariaIcons.clock_add_24_filled,
+  'dependent_library_24_filled': OtzariaIcons.dependent_library_24_filled,
+  'torah_scroll_24_filled': OtzariaIcons.torah_scroll_24_filled,
 };

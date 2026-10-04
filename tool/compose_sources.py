@@ -1904,6 +1904,32 @@ def _link_plain_filled():
 
 
 # --------------------------------------------------------------------------
+# Filled twins that were simply missing
+# --------------------------------------------------------------------------
+# Icons that shipped with a regular and nothing to select with. Each filled one
+# is the one rule in `inverted` applied to its regular, so it follows the
+# regular from here on - the same as every other derived filled icon above.
+# The rule adds a line outside the silhouette, and these drawings already reach
+# the edge of the canvas box, so the result is brought back to the box as one
+# uniform scale (as for the families that fill the canvas).
+def _inverted_recipe(regular, fit=False):
+    def build():
+        solid, cuts = inverted(regular)
+        x0, y0, x1, y1 = solid.bounds
+        if fit and (min(x0, y0) < 0.5 or max(x1, y1) > 23.5):
+            solid = sized(solid)
+        return solid, cuts, False
+    return build
+
+
+for _base, _fit in [("booklet", False), ("booklet_empty", False),
+                    ("clock_add", True), ("dependent_library", True),
+                    ("torah_scroll", True)]:
+    RECIPES[_base + "_24_filled"] = _inverted_recipe(_base + "_24_regular", _fit)
+    DEPENDS[_base + "_24_filled"] = _base + "_24_regular"
+
+
+# --------------------------------------------------------------------------
 # The letters: a solid `_filled` and an outlined `_regular`
 # --------------------------------------------------------------------------
 # Every letter icon was drawn as a solid body and filed as `_regular`, so the

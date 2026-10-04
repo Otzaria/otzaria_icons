@@ -1752,6 +1752,41 @@ abstract final class OtzariaIcons {
     fontPackage: fontPackage,
   );
 
+  /// `booklet_24_filled.svg`
+  static const IconData booklet_24_filled = IconData(
+    0xe0f9,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `booklet_empty_24_filled.svg`
+  static const IconData booklet_empty_24_filled = IconData(
+    0xe0fa,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `clock_add_24_filled.svg`
+  static const IconData clock_add_24_filled = IconData(
+    0xe0fb,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `dependent_library_24_filled.svg`
+  static const IconData dependent_library_24_filled = IconData(
+    0xe0fc,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `torah_scroll_24_filled.svg`
+  static const IconData torah_scroll_24_filled = IconData(
+    0xe0fd,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
   /// Every icon in this library, keyed by its name.
   static const Map<String, IconData> allIcons = <String, IconData>{
     'book_24_filled': book_24_filled,
@@ -2003,5 +2038,10 @@ abstract final class OtzariaIcons {
     'link_scissors_24_filled': link_scissors_24_filled,
     'link_with_eraser_24_filled': link_with_eraser_24_filled,
     'link_with_information_24_filled': link_with_information_24_filled,
+    'booklet_24_filled': booklet_24_filled,
+    'booklet_empty_24_filled': booklet_empty_24_filled,
+    'clock_add_24_filled': clock_add_24_filled,
+    'dependent_library_24_filled': dependent_library_24_filled,
+    'torah_scroll_24_filled': torah_scroll_24_filled,
   };
 }
