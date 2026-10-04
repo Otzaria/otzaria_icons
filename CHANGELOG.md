@@ -2,10 +2,10 @@
 
 ## Unreleased
 
-- Every icon now has both a `_regular` and a `_filled` variant, except
-  `alef_half_filled`, which is half of each by design. The set grows from 201
-  to **257** icons over a contiguous `U+E000`-`U+E100`. Codepoints of existing
-  icons are unchanged.
+- Every icon now has both a `_regular` and a `_filled` variant. The set grows
+  from 201 to **258** icons over a contiguous `U+E000`-`U+E101`. Existing
+  icons keep their codepoints, except those after the removed `book_md`
+  family, which move down by two.
 
   * **Behaviour change: the letter icons.** All 34 `alef_*`, `beit*` and
     `tet*` icons (except `alef_24` and `alef_half_filled`, which already had
@@ -29,6 +29,24 @@
   * **Behaviour change: `icon_x`.** The 3.3-unit cross is a filled weight, so
     it moves to `icon_x_24_filled` unchanged, and `icon_x_24_regular` is now
     Fluent's `dismiss` at the same extent.
+  * **Letter outlines refined.** The line is 0.56 (0.46 on small letters and
+    numerals; dots, marks and the pen stay solid), the ring on a badge 1.0, and
+    every outline is smoothed first so the traced wobble no longer shows as a
+    shaky line. Where a letter touches another (`alef_behind_alef`,
+    `beit_behind_alef`, `tet_behind_tet`, the numerals, the vowel marks) the big
+    letter keeps its whole boundary instead of losing its foot.
+  * `book_md_24_regular`/`_filled` are **removed**, without aliases; the
+    codepoints stay a dense run, so everything after them moved down by two.
+  * **Breaking name changes:** `text_continuous_*` becomes `text_continuous_rtl_*`
+    (the set's own drawing, a mirror of Fluent's), and Fluent's original is added
+    as `text_continuous_ltr_*`. `alef_half_filled_24_regular` becomes
+    `alef_mix_24_regular`, with a new `alef_mix_24_filled` that swaps which
+    half is solid.
+  * `booklet` and `booklet_empty` are smoothed and their regular line is 5%
+    heavier; `book_fanned` is stretched vertically (x1.9) to be squarer with
+    heavier lines; `document_column` has equal gaps (1.5) above, between and
+    below its rows; every `search_in_*` icon now shares one cleanly built ring
+    and handle, so the neck joins the ring identically in all of them.
   * `alef_near_alef` was drawn 0.86 units past the left edge of the canvas; it
     is back inside the 0.95 margin the other two-letter icons keep.
 
