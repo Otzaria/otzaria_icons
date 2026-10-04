@@ -2010,40 +2010,10 @@ icons:
     author: Otzaria contributors
     license: GPL-3.0-only
     upstream_commit: null
-  - id: icon-0136
-    name: book_md_24_filled
-    source: assets_src/svg/book_md_24_filled.svg
-    codepoint: 0xe086
-    variant: filled
-    size: 24
-    match_text_direction: false
-    deprecated: false
-    upstream_status: missing
-    upstream_equivalent: null
-    origin: custom
-    based_on: null
-    author: Otzaria contributors
-    license: GPL-3.0-only
-    upstream_commit: null
-  - id: icon-0137
-    name: book_md_24_regular
-    source: assets_src/svg/book_md_24_regular.svg
-    codepoint: 0xe087
-    variant: regular
-    size: 24
-    match_text_direction: false
-    deprecated: false
-    upstream_status: missing
-    upstream_equivalent: null
-    origin: custom
-    based_on: null
-    author: Otzaria contributors
-    license: GPL-3.0-only
-    upstream_commit: null
   - id: icon-0138
     name: alef_alef_24_regular
     source: assets_src/svg/alef_alef_24_regular.svg
-    codepoint: 0xe088
+    codepoint: 0xe086
     variant: regular
     size: 24
     match_text_direction: false
@@ -2058,7 +2028,7 @@ icons:
   - id: icon-0139
     name: alef_copy_24_regular
     source: assets_src/svg/alef_copy_24_regular.svg
-    codepoint: 0xe089
+    codepoint: 0xe087
     variant: regular
     size: 24
     match_text_direction: false
@@ -2073,7 +2043,7 @@ icons:
   - id: icon-0140
     name: beit_24_regular
     source: assets_src/svg/beit_24_regular.svg
-    codepoint: 0xe08a
+    codepoint: 0xe088
     variant: regular
     size: 24
     match_text_direction: false
@@ -2088,7 +2058,7 @@ icons:
   - id: icon-0141
     name: document_html_24_filled
     source: assets_src/svg/document_html_24_filled.svg
-    codepoint: 0xe08b
+    codepoint: 0xe089
     variant: filled
     size: 24
     match_text_direction: false
@@ -2103,7 +2073,7 @@ icons:
   - id: icon-0142
     name: document_html_24_regular
     source: assets_src/svg/document_html_24_regular.svg
-    codepoint: 0xe08c
+    codepoint: 0xe08a
     variant: regular
     size: 24
     match_text_direction: false
@@ -2118,7 +2088,7 @@ icons:
   - id: icon-0143
     name: document_md_24_filled
     source: assets_src/svg/document_md_24_filled.svg
-    codepoint: 0xe08d
+    codepoint: 0xe08b
     variant: filled
     size: 24
     match_text_direction: false
@@ -2133,7 +2103,7 @@ icons:
   - id: icon-0144
     name: document_md_24_regular
     source: assets_src/svg/document_md_24_regular.svg
-    codepoint: 0xe08e
+    codepoint: 0xe08c
     variant: regular
     size: 24
     match_text_direction: false
@@ -2148,7 +2118,7 @@ icons:
   - id: icon-0145
     name: document_tet_24_filled
     source: assets_src/svg/document_tet_24_filled.svg
-    codepoint: 0xe08f
+    codepoint: 0xe08d
     variant: filled
     size: 24
     match_text_direction: false
@@ -2163,7 +2133,7 @@ icons:
   - id: icon-0146
     name: document_tet_24_regular
     source: assets_src/svg/document_tet_24_regular.svg
-    codepoint: 0xe090
+    codepoint: 0xe08e
     variant: regular
     size: 24
     match_text_direction: false
@@ -2178,7 +2148,7 @@ icons:
   - id: icon-0147
     name: search_in_the_quote_24_regular
     source: assets_src/svg/search_in_the_quote_24_regular.svg
-    codepoint: 0xe091
+    codepoint: 0xe08f
     variant: regular
     size: 24
     match_text_direction: false
@@ -2193,7 +2163,7 @@ icons:
   - id: icon-0148
     name: alef_addition_24_regular
     source: assets_src/svg/alef_addition_24_regular.svg
-    codepoint: 0xe092
+    codepoint: 0xe090
     variant: regular
     size: 24
     match_text_direction: false
@@ -2208,7 +2178,7 @@ icons:
   - id: icon-0149
     name: alef_eye_24_regular
     source: assets_src/svg/alef_eye_24_regular.svg
-    codepoint: 0xe093
+    codepoint: 0xe091
     variant: regular
     size: 24
     match_text_direction: false
@@ -2223,7 +2193,7 @@ icons:
   - id: icon-0150
     name: alef_half_filled_24_regular
     source: assets_src/svg/alef_half_filled_24_regular.svg
-    codepoint: 0xe094
+    codepoint: 0xe092
     variant: regular
     size: 24
     match_text_direction: false
@@ -2238,7 +2208,7 @@ icons:
   - id: icon-0151
     name: alef_lips_24_regular
     source: assets_src/svg/alef_lips_24_regular.svg
-    codepoint: 0xe095
+    codepoint: 0xe093
     variant: regular
     size: 24
     match_text_direction: false
@@ -2253,7 +2223,7 @@ icons:
   - id: icon-0152
     name: alef_marker_24_regular
     source: assets_src/svg/alef_marker_24_regular.svg
-    codepoint: 0xe096
+    codepoint: 0xe094
     variant: regular
     size: 24
     match_text_direction: false
@@ -2268,7 +2238,7 @@ icons:
   - id: icon-0153
     name: alef_scissors_24_regular
     source: assets_src/svg/alef_scissors_24_regular.svg
-    codepoint: 0xe097
+    codepoint: 0xe095
     variant: regular
     size: 24
     match_text_direction: false
@@ -2283,7 +2253,7 @@ icons:
   - id: icon-0154
     name: alef_with_exclamation_24_regular
     source: assets_src/svg/alef_with_exclamation_24_regular.svg
-    codepoint: 0xe098
+    codepoint: 0xe096
     variant: regular
     size: 24
     match_text_direction: false
@@ -2298,7 +2268,7 @@ icons:
   - id: icon-0155
     name: book_open_medium_24_filled
     source: assets_src/svg/book_open_medium_24_filled.svg
-    codepoint: 0xe099
+    codepoint: 0xe097
     variant: filled
     size: 24
     match_text_direction: false
@@ -2313,7 +2283,7 @@ icons:
   - id: icon-0156
     name: book_open_medium_line_24_filled
     source: assets_src/svg/book_open_medium_line_24_filled.svg
-    codepoint: 0xe09a
+    codepoint: 0xe098
     variant: filled
     size: 24
     match_text_direction: false
@@ -2328,7 +2298,7 @@ icons:
   - id: icon-0157
     name: document_alef_24_filled
     source: assets_src/svg/document_alef_24_filled.svg
-    codepoint: 0xe09b
+    codepoint: 0xe099
     variant: filled
     size: 24
     match_text_direction: false
@@ -2343,7 +2313,7 @@ icons:
   - id: icon-0158
     name: document_alef_24_regular
     source: assets_src/svg/document_alef_24_regular.svg
-    codepoint: 0xe09c
+    codepoint: 0xe09a
     variant: regular
     size: 24
     match_text_direction: false
@@ -2358,7 +2328,7 @@ icons:
   - id: icon-0159
     name: document_download_24_filled
     source: assets_src/svg/document_download_24_filled.svg
-    codepoint: 0xe09d
+    codepoint: 0xe09b
     variant: filled
     size: 24
     match_text_direction: false
@@ -2373,7 +2343,7 @@ icons:
   - id: icon-0160
     name: document_download_24_regular
     source: assets_src/svg/document_download_24_regular.svg
-    codepoint: 0xe09e
+    codepoint: 0xe09c
     variant: regular
     size: 24
     match_text_direction: false
@@ -2388,7 +2358,7 @@ icons:
   - id: icon-0161
     name: link_copy_24_regular
     source: assets_src/svg/link_copy_24_regular.svg
-    codepoint: 0xe09f
+    codepoint: 0xe09d
     variant: regular
     size: 24
     match_text_direction: false
@@ -2403,7 +2373,7 @@ icons:
   - id: icon-0162
     name: link_quote_24_regular
     source: assets_src/svg/link_quote_24_regular.svg
-    codepoint: 0xe0a0
+    codepoint: 0xe09e
     variant: regular
     size: 24
     match_text_direction: false
@@ -2418,7 +2388,7 @@ icons:
   - id: icon-0163
     name: link_marker_24_regular
     source: assets_src/svg/link_marker_24_regular.svg
-    codepoint: 0xe0a1
+    codepoint: 0xe09f
     variant: regular
     size: 24
     match_text_direction: false
@@ -2433,7 +2403,7 @@ icons:
   - id: icon-0164
     name: link_with_eraser_24_regular
     source: assets_src/svg/link_with_eraser_24_regular.svg
-    codepoint: 0xe0a2
+    codepoint: 0xe0a0
     variant: regular
     size: 24
     match_text_direction: false
@@ -2448,7 +2418,7 @@ icons:
   - id: icon-0165
     name: link_with_information_24_regular
     source: assets_src/svg/link_with_information_24_regular.svg
-    codepoint: 0xe0a3
+    codepoint: 0xe0a1
     variant: regular
     size: 24
     match_text_direction: false
@@ -2463,7 +2433,7 @@ icons:
   - id: icon-0166
     name: link_deletion_24_regular
     source: assets_src/svg/link_deletion_24_regular.svg
-    codepoint: 0xe0a4
+    codepoint: 0xe0a2
     variant: regular
     size: 24
     match_text_direction: false
@@ -2478,7 +2448,7 @@ icons:
   - id: icon-0167
     name: link_document_24_regular
     source: assets_src/svg/link_document_24_regular.svg
-    codepoint: 0xe0a5
+    codepoint: 0xe0a3
     variant: regular
     size: 24
     match_text_direction: false
@@ -2493,7 +2463,7 @@ icons:
   - id: icon-0168
     name: link_eye_24_regular
     source: assets_src/svg/link_eye_24_regular.svg
-    codepoint: 0xe0a6
+    codepoint: 0xe0a4
     variant: regular
     size: 24
     match_text_direction: false
@@ -2508,7 +2478,7 @@ icons:
   - id: icon-0169
     name: link_scissors_24_regular
     source: assets_src/svg/link_scissors_24_regular.svg
-    codepoint: 0xe0a7
+    codepoint: 0xe0a5
     variant: regular
     size: 24
     match_text_direction: false
@@ -2523,7 +2493,7 @@ icons:
   - id: icon-0170
     name: alef_latin_a_24_regular
     source: assets_src/svg/alef_latin_a_24_regular.svg
-    codepoint: 0xe0a8
+    codepoint: 0xe0a6
     variant: regular
     size: 24
     match_text_direction: false
@@ -2538,7 +2508,7 @@ icons:
   - id: icon-0171
     name: book_open_medium_search_24_filled
     source: assets_src/svg/book_open_medium_search_24_filled.svg
-    codepoint: 0xe0a9
+    codepoint: 0xe0a7
     variant: filled
     size: 24
     match_text_direction: false
@@ -2553,7 +2523,7 @@ icons:
   - id: icon-0172
     name: book_open_small_24_filled
     source: assets_src/svg/book_open_small_24_filled.svg
-    codepoint: 0xe0aa
+    codepoint: 0xe0a8
     variant: filled
     size: 24
     match_text_direction: false
@@ -2568,7 +2538,7 @@ icons:
   - id: icon-0173
     name: book_open_small_line_24_filled
     source: assets_src/svg/book_open_small_line_24_filled.svg
-    codepoint: 0xe0ab
+    codepoint: 0xe0a9
     variant: filled
     size: 24
     match_text_direction: false
@@ -2583,7 +2553,7 @@ icons:
   - id: icon-0174
     name: books_stacked_high_24_filled
     source: assets_src/svg/books_stacked_high_24_filled.svg
-    codepoint: 0xe0ac
+    codepoint: 0xe0aa
     variant: filled
     size: 24
     match_text_direction: false
@@ -2598,7 +2568,7 @@ icons:
   - id: icon-0175
     name: otzaria_icon_2_page_line_24_filled
     source: assets_src/svg/otzaria_icon_2_page_line_24_filled.svg
-    codepoint: 0xe0ad
+    codepoint: 0xe0ab
     variant: filled
     size: 24
     match_text_direction: false
@@ -2613,7 +2583,7 @@ icons:
   - id: icon-0176
     name: otzaria_icon_empty_24_filled
     source: assets_src/svg/otzaria_icon_empty_24_filled.svg
-    codepoint: 0xe0ae
+    codepoint: 0xe0ac
     variant: filled
     size: 24
     match_text_direction: false
@@ -2628,7 +2598,7 @@ icons:
   - id: icon-0177
     name: alef_lock_24_regular
     source: assets_src/svg/alef_lock_24_regular.svg
-    codepoint: 0xe0af
+    codepoint: 0xe0ad
     variant: regular
     size: 24
     match_text_direction: false
@@ -2643,7 +2613,7 @@ icons:
   - id: icon-0178
     name: alef_near_alef_rashi_24_regular
     source: assets_src/svg/alef_near_alef_rashi_24_regular.svg
-    codepoint: 0xe0b0
+    codepoint: 0xe0ae
     variant: regular
     size: 24
     match_text_direction: false
@@ -2658,7 +2628,7 @@ icons:
   - id: icon-0179
     name: alef_near_alef_stam_24_regular
     source: assets_src/svg/alef_near_alef_stam_24_regular.svg
-    codepoint: 0xe0b1
+    codepoint: 0xe0af
     variant: regular
     size: 24
     match_text_direction: false
@@ -2673,7 +2643,7 @@ icons:
   - id: icon-0180
     name: link_alef_24_regular
     source: assets_src/svg/link_alef_24_regular.svg
-    codepoint: 0xe0b2
+    codepoint: 0xe0b0
     variant: regular
     size: 24
     match_text_direction: false
@@ -2688,7 +2658,7 @@ icons:
   - id: icon-0181
     name: books_stacked_low_24_regular
     source: assets_src/svg/books_stacked_low_24_regular.svg
-    codepoint: 0xe0b3
+    codepoint: 0xe0b1
     variant: regular
     size: 24
     match_text_direction: false
@@ -2703,7 +2673,7 @@ icons:
   - id: icon-0182
     name: alef_crown_24_regular
     source: assets_src/svg/alef_crown_24_regular.svg
-    codepoint: 0xe0b4
+    codepoint: 0xe0b2
     variant: regular
     size: 24
     match_text_direction: false
@@ -2718,7 +2688,7 @@ icons:
   - id: icon-0183
     name: link_24_regular
     source: assets_src/svg/link_24_regular.svg
-    codepoint: 0xe0b5
+    codepoint: 0xe0b3
     variant: regular
     size: 24
     match_text_direction: false
@@ -2733,7 +2703,7 @@ icons:
   - id: icon-0184
     name: link_add_24_regular
     source: assets_src/svg/link_add_24_regular.svg
-    codepoint: 0xe0b6
+    codepoint: 0xe0b4
     variant: regular
     size: 24
     match_text_direction: false
@@ -2748,7 +2718,7 @@ icons:
   - id: icon-0185
     name: link_book_empty_24_regular
     source: assets_src/svg/link_book_empty_24_regular.svg
-    codepoint: 0xe0b7
+    codepoint: 0xe0b5
     variant: regular
     size: 24
     match_text_direction: false
@@ -2763,7 +2733,7 @@ icons:
   - id: icon-0186
     name: link_book_exclamation_24_regular
     source: assets_src/svg/link_book_exclamation_24_regular.svg
-    codepoint: 0xe0b8
+    codepoint: 0xe0b6
     variant: regular
     size: 24
     match_text_direction: false
@@ -2778,7 +2748,7 @@ icons:
   - id: icon-0187
     name: links_24_filled
     source: assets_src/svg/links_24_filled.svg
-    codepoint: 0xe0b9
+    codepoint: 0xe0b7
     variant: filled
     size: 24
     match_text_direction: false
@@ -2793,7 +2763,7 @@ icons:
   - id: icon-0188
     name: book_fanned_24_filled
     source: assets_src/svg/book_fanned_24_filled.svg
-    codepoint: 0xe0ba
+    codepoint: 0xe0b8
     variant: filled
     size: 24
     match_text_direction: false
@@ -2808,7 +2778,7 @@ icons:
   - id: icon-0189
     name: book_fanned_24_regular
     source: assets_src/svg/book_fanned_24_regular.svg
-    codepoint: 0xe0bb
+    codepoint: 0xe0b9
     variant: regular
     size: 24
     match_text_direction: false
@@ -2823,7 +2793,7 @@ icons:
   - id: icon-0190
     name: search_in_numbered_list_24_filled
     source: assets_src/svg/search_in_numbered_list_24_filled.svg
-    codepoint: 0xe0bc
+    codepoint: 0xe0ba
     variant: filled
     size: 24
     match_text_direction: false
@@ -2838,7 +2808,7 @@ icons:
   - id: icon-0191
     name: search_in_the_book_24_filled
     source: assets_src/svg/search_in_the_book_24_filled.svg
-    codepoint: 0xe0bd
+    codepoint: 0xe0bb
     variant: filled
     size: 24
     match_text_direction: false
@@ -2853,7 +2823,7 @@ icons:
   - id: icon-0192
     name: search_in_the_document_24_filled
     source: assets_src/svg/search_in_the_document_24_filled.svg
-    codepoint: 0xe0be
+    codepoint: 0xe0bc
     variant: filled
     size: 24
     match_text_direction: false
@@ -2868,7 +2838,7 @@ icons:
   - id: icon-0193
     name: search_in_the_library_24_filled
     source: assets_src/svg/search_in_the_library_24_filled.svg
-    codepoint: 0xe0bf
+    codepoint: 0xe0bd
     variant: filled
     size: 24
     match_text_direction: false
@@ -2883,7 +2853,7 @@ icons:
   - id: icon-0194
     name: search_in_the_person_24_filled
     source: assets_src/svg/search_in_the_person_24_filled.svg
-    codepoint: 0xe0c0
+    codepoint: 0xe0be
     variant: filled
     size: 24
     match_text_direction: false
@@ -2898,7 +2868,7 @@ icons:
   - id: icon-0195
     name: search_in_the_quote_24_filled
     source: assets_src/svg/search_in_the_quote_24_filled.svg
-    codepoint: 0xe0c1
+    codepoint: 0xe0bf
     variant: filled
     size: 24
     match_text_direction: false
@@ -2913,7 +2883,7 @@ icons:
   - id: icon-0196
     name: search_in_the_settings_24_filled
     source: assets_src/svg/search_in_the_settings_24_filled.svg
-    codepoint: 0xe0c2
+    codepoint: 0xe0c0
     variant: filled
     size: 24
     match_text_direction: false
@@ -2928,7 +2898,7 @@ icons:
   - id: icon-0197
     name: search_in_the_text_24_filled
     source: assets_src/svg/search_in_the_text_24_filled.svg
-    codepoint: 0xe0c3
+    codepoint: 0xe0c1
     variant: filled
     size: 24
     match_text_direction: false
@@ -2943,7 +2913,7 @@ icons:
   - id: icon-0198
     name: search_in_titles_24_filled
     source: assets_src/svg/search_in_titles_24_filled.svg
-    codepoint: 0xe0c4
+    codepoint: 0xe0c2
     variant: filled
     size: 24
     match_text_direction: false
@@ -2958,7 +2928,7 @@ icons:
   - id: icon-0199
     name: book_add_24_filled
     source: assets_src/svg/book_add_24_filled.svg
-    codepoint: 0xe0c5
+    codepoint: 0xe0c3
     variant: filled
     size: 24
     match_text_direction: false
@@ -2973,7 +2943,7 @@ icons:
   - id: icon-0200
     name: book_add_24_regular
     source: assets_src/svg/book_add_24_regular.svg
-    codepoint: 0xe0c6
+    codepoint: 0xe0c4
     variant: regular
     size: 24
     match_text_direction: false
@@ -2988,7 +2958,7 @@ icons:
   - id: icon-0201
     name: book_exclamation_24_filled
     source: assets_src/svg/book_exclamation_24_filled.svg
-    codepoint: 0xe0c7
+    codepoint: 0xe0c5
     variant: filled
     size: 24
     match_text_direction: false
@@ -3003,7 +2973,7 @@ icons:
   - id: icon-0202
     name: book_exclamation_24_regular
     source: assets_src/svg/book_exclamation_24_regular.svg
-    codepoint: 0xe0c8
+    codepoint: 0xe0c6
     variant: regular
     size: 24
     match_text_direction: false
@@ -3018,7 +2988,7 @@ icons:
   - id: icon-0203
     name: alef_1_24_filled
     source: assets_src/svg/alef_1_24_filled.svg
-    codepoint: 0xe0c9
+    codepoint: 0xe0c7
     variant: filled
     size: 24
     match_text_direction: false
@@ -3033,7 +3003,7 @@ icons:
   - id: icon-0204
     name: alef_2_24_filled
     source: assets_src/svg/alef_2_24_filled.svg
-    codepoint: 0xe0ca
+    codepoint: 0xe0c8
     variant: filled
     size: 24
     match_text_direction: false
@@ -3048,7 +3018,7 @@ icons:
   - id: icon-0205
     name: alef_3_24_filled
     source: assets_src/svg/alef_3_24_filled.svg
-    codepoint: 0xe0cb
+    codepoint: 0xe0c9
     variant: filled
     size: 24
     match_text_direction: false
@@ -3063,7 +3033,7 @@ icons:
   - id: icon-0206
     name: alef_addition_24_filled
     source: assets_src/svg/alef_addition_24_filled.svg
-    codepoint: 0xe0cc
+    codepoint: 0xe0ca
     variant: filled
     size: 24
     match_text_direction: false
@@ -3078,7 +3048,7 @@ icons:
   - id: icon-0207
     name: alef_alef_24_filled
     source: assets_src/svg/alef_alef_24_filled.svg
-    codepoint: 0xe0cd
+    codepoint: 0xe0cb
     variant: filled
     size: 24
     match_text_direction: false
@@ -3093,7 +3063,7 @@ icons:
   - id: icon-0208
     name: alef_behind_alef_24_filled
     source: assets_src/svg/alef_behind_alef_24_filled.svg
-    codepoint: 0xe0ce
+    codepoint: 0xe0cc
     variant: filled
     size: 24
     match_text_direction: false
@@ -3108,7 +3078,7 @@ icons:
   - id: icon-0209
     name: alef_copy_24_filled
     source: assets_src/svg/alef_copy_24_filled.svg
-    codepoint: 0xe0cf
+    codepoint: 0xe0cd
     variant: filled
     size: 24
     match_text_direction: false
@@ -3123,7 +3093,7 @@ icons:
   - id: icon-0210
     name: alef_crown_24_filled
     source: assets_src/svg/alef_crown_24_filled.svg
-    codepoint: 0xe0d0
+    codepoint: 0xe0ce
     variant: filled
     size: 24
     match_text_direction: false
@@ -3138,7 +3108,7 @@ icons:
   - id: icon-0211
     name: alef_deletion_24_filled
     source: assets_src/svg/alef_deletion_24_filled.svg
-    codepoint: 0xe0d1
+    codepoint: 0xe0cf
     variant: filled
     size: 24
     match_text_direction: false
@@ -3153,7 +3123,7 @@ icons:
   - id: icon-0212
     name: alef_eye_24_filled
     source: assets_src/svg/alef_eye_24_filled.svg
-    codepoint: 0xe0d2
+    codepoint: 0xe0d0
     variant: filled
     size: 24
     match_text_direction: false
@@ -3168,7 +3138,7 @@ icons:
   - id: icon-0213
     name: alef_latin_a_24_filled
     source: assets_src/svg/alef_latin_a_24_filled.svg
-    codepoint: 0xe0d3
+    codepoint: 0xe0d1
     variant: filled
     size: 24
     match_text_direction: false
@@ -3183,7 +3153,7 @@ icons:
   - id: icon-0214
     name: alef_lips_24_filled
     source: assets_src/svg/alef_lips_24_filled.svg
-    codepoint: 0xe0d4
+    codepoint: 0xe0d2
     variant: filled
     size: 24
     match_text_direction: false
@@ -3198,7 +3168,7 @@ icons:
   - id: icon-0215
     name: alef_lock_24_filled
     source: assets_src/svg/alef_lock_24_filled.svg
-    codepoint: 0xe0d5
+    codepoint: 0xe0d3
     variant: filled
     size: 24
     match_text_direction: false
@@ -3213,7 +3183,7 @@ icons:
   - id: icon-0216
     name: alef_marker_24_filled
     source: assets_src/svg/alef_marker_24_filled.svg
-    codepoint: 0xe0d6
+    codepoint: 0xe0d4
     variant: filled
     size: 24
     match_text_direction: false
@@ -3228,7 +3198,7 @@ icons:
   - id: icon-0217
     name: alef_near_alef_24_filled
     source: assets_src/svg/alef_near_alef_24_filled.svg
-    codepoint: 0xe0d7
+    codepoint: 0xe0d5
     variant: filled
     size: 24
     match_text_direction: false
@@ -3243,7 +3213,7 @@ icons:
   - id: icon-0218
     name: alef_near_alef_rashi_24_filled
     source: assets_src/svg/alef_near_alef_rashi_24_filled.svg
-    codepoint: 0xe0d8
+    codepoint: 0xe0d6
     variant: filled
     size: 24
     match_text_direction: false
@@ -3258,7 +3228,7 @@ icons:
   - id: icon-0219
     name: alef_near_alef_stam_24_filled
     source: assets_src/svg/alef_near_alef_stam_24_filled.svg
-    codepoint: 0xe0d9
+    codepoint: 0xe0d7
     variant: filled
     size: 24
     match_text_direction: false
@@ -3273,7 +3243,7 @@ icons:
   - id: icon-0220
     name: alef_rashi_24_filled
     source: assets_src/svg/alef_rashi_24_filled.svg
-    codepoint: 0xe0da
+    codepoint: 0xe0d8
     variant: filled
     size: 24
     match_text_direction: false
@@ -3288,7 +3258,7 @@ icons:
   - id: icon-0221
     name: alef_scissors_24_filled
     source: assets_src/svg/alef_scissors_24_filled.svg
-    codepoint: 0xe0db
+    codepoint: 0xe0d9
     variant: filled
     size: 24
     match_text_direction: false
@@ -3303,7 +3273,7 @@ icons:
   - id: icon-0222
     name: alef_stam_24_filled
     source: assets_src/svg/alef_stam_24_filled.svg
-    codepoint: 0xe0dc
+    codepoint: 0xe0da
     variant: filled
     size: 24
     match_text_direction: false
@@ -3318,7 +3288,7 @@ icons:
   - id: icon-0223
     name: alef_with_eraser_24_filled
     source: assets_src/svg/alef_with_eraser_24_filled.svg
-    codepoint: 0xe0dd
+    codepoint: 0xe0db
     variant: filled
     size: 24
     match_text_direction: false
@@ -3333,7 +3303,7 @@ icons:
   - id: icon-0224
     name: alef_with_exclamation_24_filled
     source: assets_src/svg/alef_with_exclamation_24_filled.svg
-    codepoint: 0xe0de
+    codepoint: 0xe0dc
     variant: filled
     size: 24
     match_text_direction: false
@@ -3348,7 +3318,7 @@ icons:
   - id: icon-0225
     name: alef_with_flavors_24_filled
     source: assets_src/svg/alef_with_flavors_24_filled.svg
-    codepoint: 0xe0df
+    codepoint: 0xe0dd
     variant: filled
     size: 24
     match_text_direction: false
@@ -3363,7 +3333,7 @@ icons:
   - id: icon-0226
     name: alef_with_information_24_filled
     source: assets_src/svg/alef_with_information_24_filled.svg
-    codepoint: 0xe0e0
+    codepoint: 0xe0de
     variant: filled
     size: 24
     match_text_direction: false
@@ -3378,7 +3348,7 @@ icons:
   - id: icon-0227
     name: alef_with_punctuation_24_filled
     source: assets_src/svg/alef_with_punctuation_24_filled.svg
-    codepoint: 0xe0e1
+    codepoint: 0xe0df
     variant: filled
     size: 24
     match_text_direction: false
@@ -3393,7 +3363,7 @@ icons:
   - id: icon-0228
     name: alef_with_score_24_filled
     source: assets_src/svg/alef_with_score_24_filled.svg
-    codepoint: 0xe0e2
+    codepoint: 0xe0e0
     variant: filled
     size: 24
     match_text_direction: false
@@ -3408,7 +3378,7 @@ icons:
   - id: icon-0229
     name: alef_writing_24_filled
     source: assets_src/svg/alef_writing_24_filled.svg
-    codepoint: 0xe0e3
+    codepoint: 0xe0e1
     variant: filled
     size: 24
     match_text_direction: false
@@ -3423,7 +3393,7 @@ icons:
   - id: icon-0230
     name: beit_24_filled
     source: assets_src/svg/beit_24_filled.svg
-    codepoint: 0xe0e4
+    codepoint: 0xe0e2
     variant: filled
     size: 24
     match_text_direction: false
@@ -3438,7 +3408,7 @@ icons:
   - id: icon-0231
     name: beit_behind_alef_24_filled
     source: assets_src/svg/beit_behind_alef_24_filled.svg
-    codepoint: 0xe0e5
+    codepoint: 0xe0e3
     variant: filled
     size: 24
     match_text_direction: false
@@ -3453,7 +3423,7 @@ icons:
   - id: icon-0232
     name: beit_near_alef_24_filled
     source: assets_src/svg/beit_near_alef_24_filled.svg
-    codepoint: 0xe0e6
+    codepoint: 0xe0e4
     variant: filled
     size: 24
     match_text_direction: false
@@ -3468,7 +3438,7 @@ icons:
   - id: icon-0233
     name: tet_24_filled
     source: assets_src/svg/tet_24_filled.svg
-    codepoint: 0xe0e7
+    codepoint: 0xe0e5
     variant: filled
     size: 24
     match_text_direction: false
@@ -3483,7 +3453,7 @@ icons:
   - id: icon-0234
     name: tet_behind_tet_24_filled
     source: assets_src/svg/tet_behind_tet_24_filled.svg
-    codepoint: 0xe0e8
+    codepoint: 0xe0e6
     variant: filled
     size: 24
     match_text_direction: false
@@ -3498,7 +3468,7 @@ icons:
   - id: icon-0235
     name: tet_near_tet_24_filled
     source: assets_src/svg/tet_near_tet_24_filled.svg
-    codepoint: 0xe0e9
+    codepoint: 0xe0e7
     variant: filled
     size: 24
     match_text_direction: false
@@ -3513,7 +3483,7 @@ icons:
   - id: icon-0236
     name: tet_tet_24_filled
     source: assets_src/svg/tet_tet_24_filled.svg
-    codepoint: 0xe0ea
+    codepoint: 0xe0e8
     variant: filled
     size: 24
     match_text_direction: false
@@ -3528,7 +3498,7 @@ icons:
   - id: icon-0237
     name: link_24_filled
     source: assets_src/svg/link_24_filled.svg
-    codepoint: 0xe0eb
+    codepoint: 0xe0e9
     variant: filled
     size: 24
     match_text_direction: false
@@ -3543,7 +3513,7 @@ icons:
   - id: icon-0238
     name: link_add_24_filled
     source: assets_src/svg/link_add_24_filled.svg
-    codepoint: 0xe0ec
+    codepoint: 0xe0ea
     variant: filled
     size: 24
     match_text_direction: false
@@ -3558,7 +3528,7 @@ icons:
   - id: icon-0239
     name: link_alef_24_filled
     source: assets_src/svg/link_alef_24_filled.svg
-    codepoint: 0xe0ed
+    codepoint: 0xe0eb
     variant: filled
     size: 24
     match_text_direction: false
@@ -3573,7 +3543,7 @@ icons:
   - id: icon-0240
     name: link_book_empty_24_filled
     source: assets_src/svg/link_book_empty_24_filled.svg
-    codepoint: 0xe0ee
+    codepoint: 0xe0ec
     variant: filled
     size: 24
     match_text_direction: false
@@ -3588,7 +3558,7 @@ icons:
   - id: icon-0241
     name: link_book_exclamation_24_filled
     source: assets_src/svg/link_book_exclamation_24_filled.svg
-    codepoint: 0xe0ef
+    codepoint: 0xe0ed
     variant: filled
     size: 24
     match_text_direction: false
@@ -3603,7 +3573,7 @@ icons:
   - id: icon-0242
     name: link_copy_24_filled
     source: assets_src/svg/link_copy_24_filled.svg
-    codepoint: 0xe0f0
+    codepoint: 0xe0ee
     variant: filled
     size: 24
     match_text_direction: false
@@ -3618,7 +3588,7 @@ icons:
   - id: icon-0243
     name: link_deletion_24_filled
     source: assets_src/svg/link_deletion_24_filled.svg
-    codepoint: 0xe0f1
+    codepoint: 0xe0ef
     variant: filled
     size: 24
     match_text_direction: false
@@ -3633,7 +3603,7 @@ icons:
   - id: icon-0244
     name: link_document_24_filled
     source: assets_src/svg/link_document_24_filled.svg
-    codepoint: 0xe0f2
+    codepoint: 0xe0f0
     variant: filled
     size: 24
     match_text_direction: false
@@ -3648,7 +3618,7 @@ icons:
   - id: icon-0245
     name: link_eye_24_filled
     source: assets_src/svg/link_eye_24_filled.svg
-    codepoint: 0xe0f3
+    codepoint: 0xe0f1
     variant: filled
     size: 24
     match_text_direction: false
@@ -3663,7 +3633,7 @@ icons:
   - id: icon-0246
     name: link_marker_24_filled
     source: assets_src/svg/link_marker_24_filled.svg
-    codepoint: 0xe0f4
+    codepoint: 0xe0f2
     variant: filled
     size: 24
     match_text_direction: false
@@ -3678,7 +3648,7 @@ icons:
   - id: icon-0247
     name: link_quote_24_filled
     source: assets_src/svg/link_quote_24_filled.svg
-    codepoint: 0xe0f5
+    codepoint: 0xe0f3
     variant: filled
     size: 24
     match_text_direction: false
@@ -3693,7 +3663,7 @@ icons:
   - id: icon-0248
     name: link_scissors_24_filled
     source: assets_src/svg/link_scissors_24_filled.svg
-    codepoint: 0xe0f6
+    codepoint: 0xe0f4
     variant: filled
     size: 24
     match_text_direction: false
@@ -3708,7 +3678,7 @@ icons:
   - id: icon-0249
     name: link_with_eraser_24_filled
     source: assets_src/svg/link_with_eraser_24_filled.svg
-    codepoint: 0xe0f7
+    codepoint: 0xe0f5
     variant: filled
     size: 24
     match_text_direction: false
@@ -3723,7 +3693,7 @@ icons:
   - id: icon-0250
     name: link_with_information_24_filled
     source: assets_src/svg/link_with_information_24_filled.svg
-    codepoint: 0xe0f8
+    codepoint: 0xe0f6
     variant: filled
     size: 24
     match_text_direction: false
@@ -3738,7 +3708,7 @@ icons:
   - id: icon-0251
     name: booklet_24_filled
     source: assets_src/svg/booklet_24_filled.svg
-    codepoint: 0xe0f9
+    codepoint: 0xe0f7
     variant: filled
     size: 24
     match_text_direction: false
@@ -3753,7 +3723,7 @@ icons:
   - id: icon-0252
     name: booklet_empty_24_filled
     source: assets_src/svg/booklet_empty_24_filled.svg
-    codepoint: 0xe0fa
+    codepoint: 0xe0f8
     variant: filled
     size: 24
     match_text_direction: false
@@ -3768,7 +3738,7 @@ icons:
   - id: icon-0253
     name: clock_add_24_filled
     source: assets_src/svg/clock_add_24_filled.svg
-    codepoint: 0xe0fb
+    codepoint: 0xe0f9
     variant: filled
     size: 24
     match_text_direction: false
@@ -3783,7 +3753,7 @@ icons:
   - id: icon-0254
     name: dependent_library_24_filled
     source: assets_src/svg/dependent_library_24_filled.svg
-    codepoint: 0xe0fc
+    codepoint: 0xe0fa
     variant: filled
     size: 24
     match_text_direction: false
@@ -3798,7 +3768,7 @@ icons:
   - id: icon-0255
     name: torah_scroll_24_filled
     source: assets_src/svg/torah_scroll_24_filled.svg
-    codepoint: 0xe0fd
+    codepoint: 0xe0fb
     variant: filled
     size: 24
     match_text_direction: false
@@ -3813,7 +3783,7 @@ icons:
   - id: icon-0256
     name: text_alef_bet_list_24_filled
     source: assets_src/svg/text_alef_bet_list_24_filled.svg
-    codepoint: 0xe0fe
+    codepoint: 0xe0fc
     variant: filled
     size: 24
     match_text_direction: false
@@ -3828,7 +3798,7 @@ icons:
   - id: icon-0257
     name: icon_x_24_filled
     source: assets_src/svg/icon_x_24_filled.svg
-    codepoint: 0xe0ff
+    codepoint: 0xe0fd
     variant: filled
     size: 24
     match_text_direction: false
@@ -3843,7 +3813,7 @@ icons:
   - id: icon-0258
     name: yoma_deilula_24_filled
     source: assets_src/svg/yoma_deilula_24_filled.svg
-    codepoint: 0xe100
+    codepoint: 0xe0fe
     variant: filled
     size: 24
     match_text_direction: false
