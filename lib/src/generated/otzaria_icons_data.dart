@@ -128,8 +128,8 @@ abstract final class OtzariaIcons {
     fontPackage: fontPackage,
   );
 
-  /// `book_open_medium_line_24_regular.svg`
-  static const IconData book_open_medium_line_24_regular = IconData(
+  /// `book_open_medium_lines_24_regular.svg`
+  static const IconData book_open_medium_lines_24_regular = IconData(
     0xe011,
     fontFamily: fontFamily,
     fontPackage: fontPackage,
@@ -149,8 +149,8 @@ abstract final class OtzariaIcons {
     fontPackage: fontPackage,
   );
 
-  /// `book_open_small_line_24_regular.svg`
-  static const IconData book_open_small_line_24_regular = IconData(
+  /// `book_open_small_lines_24_regular.svg`
+  static const IconData book_open_small_lines_24_regular = IconData(
     0xe014,
     fontFamily: fontFamily,
     fontPackage: fontPackage,
@@ -317,8 +317,8 @@ abstract final class OtzariaIcons {
     fontPackage: fontPackage,
   );
 
-  /// `otzaria_icon_line_24_regular.svg`
-  static const IconData otzaria_icon_line_24_regular = IconData(
+  /// `otzaria_icon_lines_24_regular.svg`
+  static const IconData otzaria_icon_lines_24_regular = IconData(
     0xe02c,
     fontFamily: fontFamily,
     fontPackage: fontPackage,
@@ -338,15 +338,15 @@ abstract final class OtzariaIcons {
     fontPackage: fontPackage,
   );
 
-  /// `search_in_the_book_24_regular.svg`
-  static const IconData search_in_the_book_24_regular = IconData(
+  /// `search_in_book_24_regular.svg`
+  static const IconData search_in_book_24_regular = IconData(
     0xe02f,
     fontFamily: fontFamily,
     fontPackage: fontPackage,
   );
 
-  /// `search_in_the_library_24_regular.svg`
-  static const IconData search_in_the_library_24_regular = IconData(
+  /// `search_in_library_24_regular.svg`
+  static const IconData search_in_library_24_regular = IconData(
     0xe030,
     fontFamily: fontFamily,
     fontPackage: fontPackage,
@@ -457,8 +457,8 @@ abstract final class OtzariaIcons {
     fontPackage: fontPackage,
   );
 
-  /// `alef_deletion_24_regular.svg`
-  static const IconData alef_deletion_24_regular = IconData(
+  /// `alef_delete_24_regular.svg`
+  static const IconData alef_delete_24_regular = IconData(
     0xe040,
     fontFamily: fontFamily,
     fontPackage: fontPackage,
@@ -471,36 +471,36 @@ abstract final class OtzariaIcons {
     fontPackage: fontPackage,
   );
 
-  /// `alef_with_eraser_24_regular.svg`
-  static const IconData alef_with_eraser_24_regular = IconData(
+  /// `alef_eraser_24_regular.svg`
+  static const IconData alef_eraser_24_regular = IconData(
     0xe042,
     fontFamily: fontFamily,
     fontPackage: fontPackage,
   );
 
-  /// `alef_with_flavors_24_regular.svg`
-  static const IconData alef_with_flavors_24_regular = IconData(
+  /// `alef_niqqud_taamim_24_regular.svg`
+  static const IconData alef_niqqud_taamim_24_regular = IconData(
     0xe043,
     fontFamily: fontFamily,
     fontPackage: fontPackage,
   );
 
-  /// `alef_with_information_24_regular.svg`
-  static const IconData alef_with_information_24_regular = IconData(
+  /// `alef_information_24_regular.svg`
+  static const IconData alef_information_24_regular = IconData(
     0xe044,
     fontFamily: fontFamily,
     fontPackage: fontPackage,
   );
 
-  /// `alef_with_punctuation_24_regular.svg`
-  static const IconData alef_with_punctuation_24_regular = IconData(
+  /// `alef_punctuation_24_regular.svg`
+  static const IconData alef_punctuation_24_regular = IconData(
     0xe045,
     fontFamily: fontFamily,
     fontPackage: fontPackage,
   );
 
-  /// `alef_with_score_24_regular.svg`
-  static const IconData alef_with_score_24_regular = IconData(
+  /// `alef_niqqud_24_regular.svg`
+  static const IconData alef_niqqud_24_regular = IconData(
     0xe046,
     fontFamily: fontFamily,
     fontPackage: fontPackage,
@@ -569,8 +569,8 @@ abstract final class OtzariaIcons {
     fontPackage: fontPackage,
   );
 
-  /// `icon_x_24_regular.svg`
-  static const IconData icon_x_24_regular = IconData(
+  /// `cross_24_regular.svg`
+  static const IconData cross_24_regular = IconData(
     0xe050,
     fontFamily: fontFamily,
     fontPackage: fontPackage,
@@ -583,8 +583,8 @@ abstract final class OtzariaIcons {
     fontPackage: fontPackage,
   );
 
-  /// `otzaria_icon_2_page_line_24_regular.svg`
-  static const IconData otzaria_icon_2_page_line_24_regular = IconData(
+  /// `otzaria_icon_2_page_lines_24_regular.svg`
+  static const IconData otzaria_icon_2_page_lines_24_regular = IconData(
     0xe052,
     fontFamily: fontFamily,
     fontPackage: fontPackage,
@@ -604,22 +604,22 @@ abstract final class OtzariaIcons {
     fontPackage: fontPackage,
   );
 
-  /// `search_in_the_document_24_regular.svg`
-  static const IconData search_in_the_document_24_regular = IconData(
+  /// `search_in_document_24_regular.svg`
+  static const IconData search_in_document_24_regular = IconData(
     0xe055,
     fontFamily: fontFamily,
     fontPackage: fontPackage,
   );
 
-  /// `stander_24_filled.svg`
-  static const IconData stander_24_filled = IconData(
+  /// `lectern_24_filled.svg`
+  static const IconData lectern_24_filled = IconData(
     0xe056,
     fontFamily: fontFamily,
     fontPackage: fontPackage,
   );
 
-  /// `stander_24_regular.svg`
-  static const IconData stander_24_regular = IconData(
+  /// `lectern_24_regular.svg`
+  static const IconData lectern_24_regular = IconData(
     0xe057,
     fontFamily: fontFamily,
     fontPackage: fontPackage,
@@ -758,8 +758,8 @@ abstract final class OtzariaIcons {
     fontPackage: fontPackage,
   );
 
-  /// `search_in_the_text_24_regular.svg`
-  static const IconData search_in_the_text_24_regular = IconData(
+  /// `search_in_text_24_regular.svg`
+  static const IconData search_in_text_24_regular = IconData(
     0xe06b,
     fontFamily: fontFamily,
     fontPackage: fontPackage,
@@ -772,8 +772,8 @@ abstract final class OtzariaIcons {
     fontPackage: fontPackage,
   );
 
-  /// `search_in_the_settings_24_regular.svg`
-  static const IconData search_in_the_settings_24_regular = IconData(
+  /// `search_in_settings_24_regular.svg`
+  static const IconData search_in_settings_24_regular = IconData(
     0xe06d,
     fontFamily: fontFamily,
     fontPackage: fontPackage,
@@ -786,8 +786,8 @@ abstract final class OtzariaIcons {
     fontPackage: fontPackage,
   );
 
-  /// `search_in_the_person_24_regular.svg`
-  static const IconData search_in_the_person_24_regular = IconData(
+  /// `search_in_person_24_regular.svg`
+  static const IconData search_in_person_24_regular = IconData(
     0xe06f,
     fontFamily: fontFamily,
     fontPackage: fontPackage,
@@ -807,8 +807,8 @@ abstract final class OtzariaIcons {
     fontPackage: fontPackage,
   );
 
-  /// `yoma_deilula_24_regular.svg`
-  static const IconData yoma_deilula_24_regular = IconData(
+  /// `calendar_yahrzeit_24_regular.svg`
+  static const IconData calendar_yahrzeit_24_regular = IconData(
     0xe072,
     fontFamily: fontFamily,
     fontPackage: fontPackage,
@@ -884,8 +884,8 @@ abstract final class OtzariaIcons {
     fontPackage: fontPackage,
   );
 
-  /// `otzaria_icon_line_24_filled.svg`
-  static const IconData otzaria_icon_line_24_filled = IconData(
+  /// `otzaria_icon_lines_24_filled.svg`
+  static const IconData otzaria_icon_lines_24_filled = IconData(
     0xe07d,
     fontFamily: fontFamily,
     fontPackage: fontPackage,
@@ -1010,15 +1010,15 @@ abstract final class OtzariaIcons {
     fontPackage: fontPackage,
   );
 
-  /// `search_in_the_quote_24_regular.svg`
-  static const IconData search_in_the_quote_24_regular = IconData(
+  /// `search_in_quote_24_regular.svg`
+  static const IconData search_in_quote_24_regular = IconData(
     0xe08f,
     fontFamily: fontFamily,
     fontPackage: fontPackage,
   );
 
-  /// `alef_addition_24_regular.svg`
-  static const IconData alef_addition_24_regular = IconData(
+  /// `alef_add_24_regular.svg`
+  static const IconData alef_add_24_regular = IconData(
     0xe090,
     fontFamily: fontFamily,
     fontPackage: fontPackage,
@@ -1059,8 +1059,8 @@ abstract final class OtzariaIcons {
     fontPackage: fontPackage,
   );
 
-  /// `alef_with_exclamation_24_regular.svg`
-  static const IconData alef_with_exclamation_24_regular = IconData(
+  /// `alef_exclamation_24_regular.svg`
+  static const IconData alef_exclamation_24_regular = IconData(
     0xe096,
     fontFamily: fontFamily,
     fontPackage: fontPackage,
@@ -1073,8 +1073,8 @@ abstract final class OtzariaIcons {
     fontPackage: fontPackage,
   );
 
-  /// `book_open_medium_line_24_filled.svg`
-  static const IconData book_open_medium_line_24_filled = IconData(
+  /// `book_open_medium_lines_24_filled.svg`
+  static const IconData book_open_medium_lines_24_filled = IconData(
     0xe098,
     fontFamily: fontFamily,
     fontPackage: fontPackage,
@@ -1129,22 +1129,22 @@ abstract final class OtzariaIcons {
     fontPackage: fontPackage,
   );
 
-  /// `link_with_eraser_24_regular.svg`
-  static const IconData link_with_eraser_24_regular = IconData(
+  /// `link_eraser_24_regular.svg`
+  static const IconData link_eraser_24_regular = IconData(
     0xe0a0,
     fontFamily: fontFamily,
     fontPackage: fontPackage,
   );
 
-  /// `link_with_information_24_regular.svg`
-  static const IconData link_with_information_24_regular = IconData(
+  /// `link_information_24_regular.svg`
+  static const IconData link_information_24_regular = IconData(
     0xe0a1,
     fontFamily: fontFamily,
     fontPackage: fontPackage,
   );
 
-  /// `link_deletion_24_regular.svg`
-  static const IconData link_deletion_24_regular = IconData(
+  /// `link_delete_24_regular.svg`
+  static const IconData link_delete_24_regular = IconData(
     0xe0a2,
     fontFamily: fontFamily,
     fontPackage: fontPackage,
@@ -1192,8 +1192,8 @@ abstract final class OtzariaIcons {
     fontPackage: fontPackage,
   );
 
-  /// `book_open_small_line_24_filled.svg`
-  static const IconData book_open_small_line_24_filled = IconData(
+  /// `book_open_small_lines_24_filled.svg`
+  static const IconData book_open_small_lines_24_filled = IconData(
     0xe0a9,
     fontFamily: fontFamily,
     fontPackage: fontPackage,
@@ -1206,8 +1206,8 @@ abstract final class OtzariaIcons {
     fontPackage: fontPackage,
   );
 
-  /// `otzaria_icon_2_page_line_24_filled.svg`
-  static const IconData otzaria_icon_2_page_line_24_filled = IconData(
+  /// `otzaria_icon_2_page_lines_24_filled.svg`
+  static const IconData otzaria_icon_2_page_lines_24_filled = IconData(
     0xe0ab,
     fontFamily: fontFamily,
     fontPackage: fontPackage,
@@ -1276,15 +1276,15 @@ abstract final class OtzariaIcons {
     fontPackage: fontPackage,
   );
 
-  /// `link_book_empty_24_regular.svg`
-  static const IconData link_book_empty_24_regular = IconData(
+  /// `link_book_24_regular.svg`
+  static const IconData link_book_24_regular = IconData(
     0xe0b5,
     fontFamily: fontFamily,
     fontPackage: fontPackage,
   );
 
-  /// `link_book_exclamation_24_regular.svg`
-  static const IconData link_book_exclamation_24_regular = IconData(
+  /// `link_exclamation_24_regular.svg`
+  static const IconData link_exclamation_24_regular = IconData(
     0xe0b6,
     fontFamily: fontFamily,
     fontPackage: fontPackage,
@@ -1318,50 +1318,50 @@ abstract final class OtzariaIcons {
     fontPackage: fontPackage,
   );
 
-  /// `search_in_the_book_24_filled.svg`
-  static const IconData search_in_the_book_24_filled = IconData(
+  /// `search_in_book_24_filled.svg`
+  static const IconData search_in_book_24_filled = IconData(
     0xe0bb,
     fontFamily: fontFamily,
     fontPackage: fontPackage,
   );
 
-  /// `search_in_the_document_24_filled.svg`
-  static const IconData search_in_the_document_24_filled = IconData(
+  /// `search_in_document_24_filled.svg`
+  static const IconData search_in_document_24_filled = IconData(
     0xe0bc,
     fontFamily: fontFamily,
     fontPackage: fontPackage,
   );
 
-  /// `search_in_the_library_24_filled.svg`
-  static const IconData search_in_the_library_24_filled = IconData(
+  /// `search_in_library_24_filled.svg`
+  static const IconData search_in_library_24_filled = IconData(
     0xe0bd,
     fontFamily: fontFamily,
     fontPackage: fontPackage,
   );
 
-  /// `search_in_the_person_24_filled.svg`
-  static const IconData search_in_the_person_24_filled = IconData(
+  /// `search_in_person_24_filled.svg`
+  static const IconData search_in_person_24_filled = IconData(
     0xe0be,
     fontFamily: fontFamily,
     fontPackage: fontPackage,
   );
 
-  /// `search_in_the_quote_24_filled.svg`
-  static const IconData search_in_the_quote_24_filled = IconData(
+  /// `search_in_quote_24_filled.svg`
+  static const IconData search_in_quote_24_filled = IconData(
     0xe0bf,
     fontFamily: fontFamily,
     fontPackage: fontPackage,
   );
 
-  /// `search_in_the_settings_24_filled.svg`
-  static const IconData search_in_the_settings_24_filled = IconData(
+  /// `search_in_settings_24_filled.svg`
+  static const IconData search_in_settings_24_filled = IconData(
     0xe0c0,
     fontFamily: fontFamily,
     fontPackage: fontPackage,
   );
 
-  /// `search_in_the_text_24_filled.svg`
-  static const IconData search_in_the_text_24_filled = IconData(
+  /// `search_in_text_24_filled.svg`
+  static const IconData search_in_text_24_filled = IconData(
     0xe0c1,
     fontFamily: fontFamily,
     fontPackage: fontPackage,
@@ -1423,8 +1423,8 @@ abstract final class OtzariaIcons {
     fontPackage: fontPackage,
   );
 
-  /// `alef_addition_24_filled.svg`
-  static const IconData alef_addition_24_filled = IconData(
+  /// `alef_add_24_filled.svg`
+  static const IconData alef_add_24_filled = IconData(
     0xe0ca,
     fontFamily: fontFamily,
     fontPackage: fontPackage,
@@ -1458,8 +1458,8 @@ abstract final class OtzariaIcons {
     fontPackage: fontPackage,
   );
 
-  /// `alef_deletion_24_filled.svg`
-  static const IconData alef_deletion_24_filled = IconData(
+  /// `alef_delete_24_filled.svg`
+  static const IconData alef_delete_24_filled = IconData(
     0xe0cf,
     fontFamily: fontFamily,
     fontPackage: fontPackage,
@@ -1542,43 +1542,43 @@ abstract final class OtzariaIcons {
     fontPackage: fontPackage,
   );
 
-  /// `alef_with_eraser_24_filled.svg`
-  static const IconData alef_with_eraser_24_filled = IconData(
+  /// `alef_eraser_24_filled.svg`
+  static const IconData alef_eraser_24_filled = IconData(
     0xe0db,
     fontFamily: fontFamily,
     fontPackage: fontPackage,
   );
 
-  /// `alef_with_exclamation_24_filled.svg`
-  static const IconData alef_with_exclamation_24_filled = IconData(
+  /// `alef_exclamation_24_filled.svg`
+  static const IconData alef_exclamation_24_filled = IconData(
     0xe0dc,
     fontFamily: fontFamily,
     fontPackage: fontPackage,
   );
 
-  /// `alef_with_flavors_24_filled.svg`
-  static const IconData alef_with_flavors_24_filled = IconData(
+  /// `alef_niqqud_taamim_24_filled.svg`
+  static const IconData alef_niqqud_taamim_24_filled = IconData(
     0xe0dd,
     fontFamily: fontFamily,
     fontPackage: fontPackage,
   );
 
-  /// `alef_with_information_24_filled.svg`
-  static const IconData alef_with_information_24_filled = IconData(
+  /// `alef_information_24_filled.svg`
+  static const IconData alef_information_24_filled = IconData(
     0xe0de,
     fontFamily: fontFamily,
     fontPackage: fontPackage,
   );
 
-  /// `alef_with_punctuation_24_filled.svg`
-  static const IconData alef_with_punctuation_24_filled = IconData(
+  /// `alef_punctuation_24_filled.svg`
+  static const IconData alef_punctuation_24_filled = IconData(
     0xe0df,
     fontFamily: fontFamily,
     fontPackage: fontPackage,
   );
 
-  /// `alef_with_score_24_filled.svg`
-  static const IconData alef_with_score_24_filled = IconData(
+  /// `alef_niqqud_24_filled.svg`
+  static const IconData alef_niqqud_24_filled = IconData(
     0xe0e0,
     fontFamily: fontFamily,
     fontPackage: fontPackage,
@@ -1661,15 +1661,15 @@ abstract final class OtzariaIcons {
     fontPackage: fontPackage,
   );
 
-  /// `link_book_empty_24_filled.svg`
-  static const IconData link_book_empty_24_filled = IconData(
+  /// `link_book_24_filled.svg`
+  static const IconData link_book_24_filled = IconData(
     0xe0ec,
     fontFamily: fontFamily,
     fontPackage: fontPackage,
   );
 
-  /// `link_book_exclamation_24_filled.svg`
-  static const IconData link_book_exclamation_24_filled = IconData(
+  /// `link_exclamation_24_filled.svg`
+  static const IconData link_exclamation_24_filled = IconData(
     0xe0ed,
     fontFamily: fontFamily,
     fontPackage: fontPackage,
@@ -1682,8 +1682,8 @@ abstract final class OtzariaIcons {
     fontPackage: fontPackage,
   );
 
-  /// `link_deletion_24_filled.svg`
-  static const IconData link_deletion_24_filled = IconData(
+  /// `link_delete_24_filled.svg`
+  static const IconData link_delete_24_filled = IconData(
     0xe0ef,
     fontFamily: fontFamily,
     fontPackage: fontPackage,
@@ -1724,15 +1724,15 @@ abstract final class OtzariaIcons {
     fontPackage: fontPackage,
   );
 
-  /// `link_with_eraser_24_filled.svg`
-  static const IconData link_with_eraser_24_filled = IconData(
+  /// `link_eraser_24_filled.svg`
+  static const IconData link_eraser_24_filled = IconData(
     0xe0f5,
     fontFamily: fontFamily,
     fontPackage: fontPackage,
   );
 
-  /// `link_with_information_24_filled.svg`
-  static const IconData link_with_information_24_filled = IconData(
+  /// `link_information_24_filled.svg`
+  static const IconData link_information_24_filled = IconData(
     0xe0f6,
     fontFamily: fontFamily,
     fontPackage: fontPackage,
@@ -1780,15 +1780,15 @@ abstract final class OtzariaIcons {
     fontPackage: fontPackage,
   );
 
-  /// `icon_x_24_filled.svg`
-  static const IconData icon_x_24_filled = IconData(
+  /// `cross_24_filled.svg`
+  static const IconData cross_24_filled = IconData(
     0xe0fd,
     fontFamily: fontFamily,
     fontPackage: fontPackage,
   );
 
-  /// `yoma_deilula_24_filled.svg`
-  static const IconData yoma_deilula_24_filled = IconData(
+  /// `calendar_yahrzeit_24_filled.svg`
+  static const IconData calendar_yahrzeit_24_filled = IconData(
     0xe0fe,
     fontFamily: fontFamily,
     fontPackage: fontPackage,
@@ -1848,10 +1848,10 @@ abstract final class OtzariaIcons {
     'book_open_large_search_24_filled': book_open_large_search_24_filled,
     'book_open_large_search_24_regular': book_open_large_search_24_regular,
     'book_open_medium_24_regular': book_open_medium_24_regular,
-    'book_open_medium_line_24_regular': book_open_medium_line_24_regular,
+    'book_open_medium_lines_24_regular': book_open_medium_lines_24_regular,
     'book_open_medium_search_24_regular': book_open_medium_search_24_regular,
     'book_open_small_24_regular': book_open_small_24_regular,
-    'book_open_small_line_24_regular': book_open_small_line_24_regular,
+    'book_open_small_lines_24_regular': book_open_small_lines_24_regular,
     'book_pdf_24_filled': book_pdf_24_filled,
     'book_pdf_24_regular': book_pdf_24_regular,
     'book_search_24_filled': book_search_24_filled,
@@ -1875,11 +1875,11 @@ abstract final class OtzariaIcons {
     'links_24_regular': links_24_regular,
     'otzaria_icon_24_regular': otzaria_icon_24_regular,
     'otzaria_icon_empty_24_regular': otzaria_icon_empty_24_regular,
-    'otzaria_icon_line_24_regular': otzaria_icon_line_24_regular,
+    'otzaria_icon_lines_24_regular': otzaria_icon_lines_24_regular,
     'search_24_filled': search_24_filled,
     'search_24_regular': search_24_regular,
-    'search_in_the_book_24_regular': search_in_the_book_24_regular,
-    'search_in_the_library_24_regular': search_in_the_library_24_regular,
+    'search_in_book_24_regular': search_in_book_24_regular,
+    'search_in_library_24_regular': search_in_library_24_regular,
     'search_not_found_24_filled': search_not_found_24_filled,
     'search_not_found_24_regular': search_not_found_24_regular,
     'apps_list_24_filled': apps_list_24_filled,
@@ -1895,13 +1895,13 @@ abstract final class OtzariaIcons {
     'alef_24_filled': alef_24_filled,
     'alef_24_regular': alef_24_regular,
     'alef_behind_alef_24_regular': alef_behind_alef_24_regular,
-    'alef_deletion_24_regular': alef_deletion_24_regular,
+    'alef_delete_24_regular': alef_delete_24_regular,
     'alef_near_alef_24_regular': alef_near_alef_24_regular,
-    'alef_with_eraser_24_regular': alef_with_eraser_24_regular,
-    'alef_with_flavors_24_regular': alef_with_flavors_24_regular,
-    'alef_with_information_24_regular': alef_with_information_24_regular,
-    'alef_with_punctuation_24_regular': alef_with_punctuation_24_regular,
-    'alef_with_score_24_regular': alef_with_score_24_regular,
+    'alef_eraser_24_regular': alef_eraser_24_regular,
+    'alef_niqqud_taamim_24_regular': alef_niqqud_taamim_24_regular,
+    'alef_information_24_regular': alef_information_24_regular,
+    'alef_punctuation_24_regular': alef_punctuation_24_regular,
+    'alef_niqqud_24_regular': alef_niqqud_24_regular,
     'beit_behind_alef_24_regular': beit_behind_alef_24_regular,
     'beit_near_alef_24_regular': beit_near_alef_24_regular,
     'booklet_24_regular': booklet_24_regular,
@@ -1911,14 +1911,15 @@ abstract final class OtzariaIcons {
     'clipboard_task_list_24_regular': clipboard_task_list_24_regular,
     'clipboard_text_rtl_24_filled': clipboard_text_rtl_24_filled,
     'clipboard_text_rtl_24_regular': clipboard_text_rtl_24_regular,
-    'icon_x_24_regular': icon_x_24_regular,
+    'cross_24_regular': cross_24_regular,
     'otzaria_icon_2_page_24_regular': otzaria_icon_2_page_24_regular,
-    'otzaria_icon_2_page_line_24_regular': otzaria_icon_2_page_line_24_regular,
+    'otzaria_icon_2_page_lines_24_regular':
+        otzaria_icon_2_page_lines_24_regular,
     'person_24_filled': person_24_filled,
     'person_24_regular': person_24_regular,
-    'search_in_the_document_24_regular': search_in_the_document_24_regular,
-    'stander_24_filled': stander_24_filled,
-    'stander_24_regular': stander_24_regular,
+    'search_in_document_24_regular': search_in_document_24_regular,
+    'lectern_24_filled': lectern_24_filled,
+    'lectern_24_regular': lectern_24_regular,
     'task_list_24_filled': task_list_24_filled,
     'task_list_24_regular': task_list_24_regular,
     'task_list_square_24_filled': task_list_square_24_filled,
@@ -1938,14 +1939,14 @@ abstract final class OtzariaIcons {
     'book_alef_24_regular': book_alef_24_regular,
     'book_open_tzurat_hadaf_24_filled': book_open_tzurat_hadaf_24_filled,
     'book_open_tzurat_hadaf_24_regular': book_open_tzurat_hadaf_24_regular,
-    'search_in_the_text_24_regular': search_in_the_text_24_regular,
+    'search_in_text_24_regular': search_in_text_24_regular,
     'text_alef_bet_list_24_regular': text_alef_bet_list_24_regular,
-    'search_in_the_settings_24_regular': search_in_the_settings_24_regular,
+    'search_in_settings_24_regular': search_in_settings_24_regular,
     'clock_add_24_regular': clock_add_24_regular,
-    'search_in_the_person_24_regular': search_in_the_person_24_regular,
+    'search_in_person_24_regular': search_in_person_24_regular,
     'book_information_24_filled': book_information_24_filled,
     'book_information_24_regular': book_information_24_regular,
-    'yoma_deilula_24_regular': yoma_deilula_24_regular,
+    'calendar_yahrzeit_24_regular': calendar_yahrzeit_24_regular,
     'alef_rashi_24_regular': alef_rashi_24_regular,
     'alef_stam_24_regular': alef_stam_24_regular,
     'book_alef_rashi_24_filled': book_alef_rashi_24_filled,
@@ -1956,7 +1957,7 @@ abstract final class OtzariaIcons {
     'book_tet_24_regular': book_tet_24_regular,
     'otzaria_icon_24_filled': otzaria_icon_24_filled,
     'otzaria_icon_2_page_24_filled': otzaria_icon_2_page_24_filled,
-    'otzaria_icon_line_24_filled': otzaria_icon_line_24_filled,
+    'otzaria_icon_lines_24_filled': otzaria_icon_lines_24_filled,
     'tet_24_regular': tet_24_regular,
     'tet_behind_tet_24_regular': tet_behind_tet_24_regular,
     'tet_near_tet_24_regular': tet_near_tet_24_regular,
@@ -1974,16 +1975,16 @@ abstract final class OtzariaIcons {
     'document_md_24_regular': document_md_24_regular,
     'document_tet_24_filled': document_tet_24_filled,
     'document_tet_24_regular': document_tet_24_regular,
-    'search_in_the_quote_24_regular': search_in_the_quote_24_regular,
-    'alef_addition_24_regular': alef_addition_24_regular,
+    'search_in_quote_24_regular': search_in_quote_24_regular,
+    'alef_add_24_regular': alef_add_24_regular,
     'alef_eye_24_regular': alef_eye_24_regular,
     'alef_mix_24_regular': alef_mix_24_regular,
     'alef_lips_24_regular': alef_lips_24_regular,
     'alef_marker_24_regular': alef_marker_24_regular,
     'alef_scissors_24_regular': alef_scissors_24_regular,
-    'alef_with_exclamation_24_regular': alef_with_exclamation_24_regular,
+    'alef_exclamation_24_regular': alef_exclamation_24_regular,
     'book_open_medium_24_filled': book_open_medium_24_filled,
-    'book_open_medium_line_24_filled': book_open_medium_line_24_filled,
+    'book_open_medium_lines_24_filled': book_open_medium_lines_24_filled,
     'document_alef_24_filled': document_alef_24_filled,
     'document_alef_24_regular': document_alef_24_regular,
     'document_download_24_filled': document_download_24_filled,
@@ -1991,18 +1992,18 @@ abstract final class OtzariaIcons {
     'link_copy_24_regular': link_copy_24_regular,
     'link_quote_24_regular': link_quote_24_regular,
     'link_marker_24_regular': link_marker_24_regular,
-    'link_with_eraser_24_regular': link_with_eraser_24_regular,
-    'link_with_information_24_regular': link_with_information_24_regular,
-    'link_deletion_24_regular': link_deletion_24_regular,
+    'link_eraser_24_regular': link_eraser_24_regular,
+    'link_information_24_regular': link_information_24_regular,
+    'link_delete_24_regular': link_delete_24_regular,
     'link_document_24_regular': link_document_24_regular,
     'link_eye_24_regular': link_eye_24_regular,
     'link_scissors_24_regular': link_scissors_24_regular,
     'alef_latin_a_24_regular': alef_latin_a_24_regular,
     'book_open_medium_search_24_filled': book_open_medium_search_24_filled,
     'book_open_small_24_filled': book_open_small_24_filled,
-    'book_open_small_line_24_filled': book_open_small_line_24_filled,
+    'book_open_small_lines_24_filled': book_open_small_lines_24_filled,
     'books_stacked_high_24_filled': books_stacked_high_24_filled,
-    'otzaria_icon_2_page_line_24_filled': otzaria_icon_2_page_line_24_filled,
+    'otzaria_icon_2_page_lines_24_filled': otzaria_icon_2_page_lines_24_filled,
     'otzaria_icon_empty_24_filled': otzaria_icon_empty_24_filled,
     'alef_lock_24_regular': alef_lock_24_regular,
     'alef_near_alef_rashi_24_regular': alef_near_alef_rashi_24_regular,
@@ -2012,19 +2013,19 @@ abstract final class OtzariaIcons {
     'alef_crown_24_regular': alef_crown_24_regular,
     'link_24_regular': link_24_regular,
     'link_add_24_regular': link_add_24_regular,
-    'link_book_empty_24_regular': link_book_empty_24_regular,
-    'link_book_exclamation_24_regular': link_book_exclamation_24_regular,
+    'link_book_24_regular': link_book_24_regular,
+    'link_exclamation_24_regular': link_exclamation_24_regular,
     'links_24_filled': links_24_filled,
     'book_fanned_24_filled': book_fanned_24_filled,
     'book_fanned_24_regular': book_fanned_24_regular,
     'search_in_numbered_list_24_filled': search_in_numbered_list_24_filled,
-    'search_in_the_book_24_filled': search_in_the_book_24_filled,
-    'search_in_the_document_24_filled': search_in_the_document_24_filled,
-    'search_in_the_library_24_filled': search_in_the_library_24_filled,
-    'search_in_the_person_24_filled': search_in_the_person_24_filled,
-    'search_in_the_quote_24_filled': search_in_the_quote_24_filled,
-    'search_in_the_settings_24_filled': search_in_the_settings_24_filled,
-    'search_in_the_text_24_filled': search_in_the_text_24_filled,
+    'search_in_book_24_filled': search_in_book_24_filled,
+    'search_in_document_24_filled': search_in_document_24_filled,
+    'search_in_library_24_filled': search_in_library_24_filled,
+    'search_in_person_24_filled': search_in_person_24_filled,
+    'search_in_quote_24_filled': search_in_quote_24_filled,
+    'search_in_settings_24_filled': search_in_settings_24_filled,
+    'search_in_text_24_filled': search_in_text_24_filled,
     'search_in_titles_24_filled': search_in_titles_24_filled,
     'book_add_24_filled': book_add_24_filled,
     'book_add_24_regular': book_add_24_regular,
@@ -2033,12 +2034,12 @@ abstract final class OtzariaIcons {
     'alef_1_24_filled': alef_1_24_filled,
     'alef_2_24_filled': alef_2_24_filled,
     'alef_3_24_filled': alef_3_24_filled,
-    'alef_addition_24_filled': alef_addition_24_filled,
+    'alef_add_24_filled': alef_add_24_filled,
     'alef_alef_24_filled': alef_alef_24_filled,
     'alef_behind_alef_24_filled': alef_behind_alef_24_filled,
     'alef_copy_24_filled': alef_copy_24_filled,
     'alef_crown_24_filled': alef_crown_24_filled,
-    'alef_deletion_24_filled': alef_deletion_24_filled,
+    'alef_delete_24_filled': alef_delete_24_filled,
     'alef_eye_24_filled': alef_eye_24_filled,
     'alef_latin_a_24_filled': alef_latin_a_24_filled,
     'alef_lips_24_filled': alef_lips_24_filled,
@@ -2050,12 +2051,12 @@ abstract final class OtzariaIcons {
     'alef_rashi_24_filled': alef_rashi_24_filled,
     'alef_scissors_24_filled': alef_scissors_24_filled,
     'alef_stam_24_filled': alef_stam_24_filled,
-    'alef_with_eraser_24_filled': alef_with_eraser_24_filled,
-    'alef_with_exclamation_24_filled': alef_with_exclamation_24_filled,
-    'alef_with_flavors_24_filled': alef_with_flavors_24_filled,
-    'alef_with_information_24_filled': alef_with_information_24_filled,
-    'alef_with_punctuation_24_filled': alef_with_punctuation_24_filled,
-    'alef_with_score_24_filled': alef_with_score_24_filled,
+    'alef_eraser_24_filled': alef_eraser_24_filled,
+    'alef_exclamation_24_filled': alef_exclamation_24_filled,
+    'alef_niqqud_taamim_24_filled': alef_niqqud_taamim_24_filled,
+    'alef_information_24_filled': alef_information_24_filled,
+    'alef_punctuation_24_filled': alef_punctuation_24_filled,
+    'alef_niqqud_24_filled': alef_niqqud_24_filled,
     'alef_writing_24_filled': alef_writing_24_filled,
     'beit_24_filled': beit_24_filled,
     'beit_behind_alef_24_filled': beit_behind_alef_24_filled,
@@ -2067,25 +2068,25 @@ abstract final class OtzariaIcons {
     'link_24_filled': link_24_filled,
     'link_add_24_filled': link_add_24_filled,
     'link_alef_24_filled': link_alef_24_filled,
-    'link_book_empty_24_filled': link_book_empty_24_filled,
-    'link_book_exclamation_24_filled': link_book_exclamation_24_filled,
+    'link_book_24_filled': link_book_24_filled,
+    'link_exclamation_24_filled': link_exclamation_24_filled,
     'link_copy_24_filled': link_copy_24_filled,
-    'link_deletion_24_filled': link_deletion_24_filled,
+    'link_delete_24_filled': link_delete_24_filled,
     'link_document_24_filled': link_document_24_filled,
     'link_eye_24_filled': link_eye_24_filled,
     'link_marker_24_filled': link_marker_24_filled,
     'link_quote_24_filled': link_quote_24_filled,
     'link_scissors_24_filled': link_scissors_24_filled,
-    'link_with_eraser_24_filled': link_with_eraser_24_filled,
-    'link_with_information_24_filled': link_with_information_24_filled,
+    'link_eraser_24_filled': link_eraser_24_filled,
+    'link_information_24_filled': link_information_24_filled,
     'booklet_24_filled': booklet_24_filled,
     'booklet_empty_24_filled': booklet_empty_24_filled,
     'clock_add_24_filled': clock_add_24_filled,
     'dependent_library_24_filled': dependent_library_24_filled,
     'torah_scroll_24_filled': torah_scroll_24_filled,
     'text_alef_bet_list_24_filled': text_alef_bet_list_24_filled,
-    'icon_x_24_filled': icon_x_24_filled,
-    'yoma_deilula_24_filled': yoma_deilula_24_filled,
+    'cross_24_filled': cross_24_filled,
+    'calendar_yahrzeit_24_filled': calendar_yahrzeit_24_filled,
     'text_continuous_ltr_24_filled': text_continuous_ltr_24_filled,
     'text_continuous_ltr_24_regular': text_continuous_ltr_24_regular,
     'alef_mix_24_filled': alef_mix_24_filled,

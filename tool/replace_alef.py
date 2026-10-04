@@ -86,7 +86,7 @@ SIMPLIFIED = {
     ("alef_behind_alef_24_regular", 1, 0),
     ("book_alef_24_filled", 2, 0),
     ("book_alef_24_regular", 0, 2),
-    ("search_in_the_text_24_regular", 0, 2),
+    ("search_in_text_24_regular", 0, 2),
 }
 
 

@@ -35,6 +35,42 @@
     shaky line. Where a letter touches another (`alef_behind_alef`,
     `beit_behind_alef`, `tet_behind_tet`, the numerals, the vowel marks) the big
     letter keeps its whole boundary instead of losing its foot.
+  * **Breaking: consistent names.** One rule - subject first, then a single
+    word for the badge or variant, the same word in every family (`_add`,
+    `_delete`, `_eraser`, `_information`, `_exclamation`) - and names say what
+    is drawn. Codepoints are unchanged and no aliases are kept (both variants
+    of each):
+
+    | was | is |
+    | --- | --- |
+    | `alef_addition_24_*` | `alef_add_24_*` |
+    | `alef_deletion_24_*` | `alef_delete_24_*` |
+    | `alef_with_eraser_24_*` | `alef_eraser_24_*` |
+    | `alef_with_exclamation_24_*` | `alef_exclamation_24_*` |
+    | `alef_with_information_24_*` | `alef_information_24_*` |
+    | `alef_with_flavors_24_*` | `alef_niqqud_taamim_24_*` |
+    | `alef_with_punctuation_24_*` | `alef_punctuation_24_*` |
+    | `alef_with_score_24_*` | `alef_niqqud_24_*` |
+    | `link_deletion_24_*` | `link_delete_24_*` |
+    | `link_with_eraser_24_*` | `link_eraser_24_*` |
+    | `link_with_information_24_*` | `link_information_24_*` |
+    | `link_book_empty_24_*` | `link_book_24_*` |
+    | `link_book_exclamation_24_*` | `link_exclamation_24_*` |
+    | `book_open_medium_line_24_*` | `book_open_medium_lines_24_*` |
+    | `book_open_small_line_24_*` | `book_open_small_lines_24_*` |
+    | `otzaria_icon_line_24_*` | `otzaria_icon_lines_24_*` |
+    | `otzaria_icon_2_page_line_24_*` | `otzaria_icon_2_page_lines_24_*` |
+    | `search_in_the_book_24_*` | `search_in_book_24_*` |
+    | `search_in_the_document_24_*` | `search_in_document_24_*` |
+    | `search_in_the_library_24_*` | `search_in_library_24_*` |
+    | `search_in_the_person_24_*` | `search_in_person_24_*` |
+    | `search_in_the_quote_24_*` | `search_in_quote_24_*` |
+    | `search_in_the_settings_24_*` | `search_in_settings_24_*` |
+    | `search_in_the_text_24_*` | `search_in_text_24_*` |
+    | `yoma_deilula_24_*` | `calendar_yahrzeit_24_*` |
+    | `stander_24_*` | `lectern_24_*` |
+    | `icon_x_24_*` | `cross_24_*` |
+
   * `person_portrait_24_regular` / `_filled` - a bearded man in a hat and
     round glasses, from the supplied vector art. The sources were
     pixel-traced polylines on two different canvases; each was fitted to 22

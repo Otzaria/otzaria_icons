@@ -53,7 +53,7 @@
     drawing in the heavier weight: a link takes Fluent's filled chain, a list
     rule goes from 1.5 to 2.0 units tall. A regular drawn heavier than that is
     a filled icon and belongs under `_filled`.
-  - **Multi-part icons** (`yoma_deilula`). `inverted()` assumes one silhouette,
+  - **Multi-part icons** (`calendar_yahrzeit`). `inverted()` assumes one silhouette,
     so it is applied to each part, with a closed silhouette built where a part
     has none.
 

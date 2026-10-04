@@ -256,8 +256,8 @@ icons:
     license: GPL-3.0-only
     upstream_commit: null
   - id: icon-0018
-    name: book_open_medium_line_24_regular
-    source: assets_src/svg/book_open_medium_line_24_regular.svg
+    name: book_open_medium_lines_24_regular
+    source: assets_src/svg/book_open_medium_lines_24_regular.svg
     codepoint: 0xe011
     variant: regular
     size: 24
@@ -301,8 +301,8 @@ icons:
     license: GPL-3.0-only
     upstream_commit: null
   - id: icon-0021
-    name: book_open_small_line_24_regular
-    source: assets_src/svg/book_open_small_line_24_regular.svg
+    name: book_open_small_lines_24_regular
+    source: assets_src/svg/book_open_small_lines_24_regular.svg
     codepoint: 0xe014
     variant: regular
     size: 24
@@ -661,8 +661,8 @@ icons:
     license: GPL-3.0-only
     upstream_commit: null
   - id: icon-0046
-    name: otzaria_icon_line_24_regular
-    source: assets_src/svg/otzaria_icon_line_24_regular.svg
+    name: otzaria_icon_lines_24_regular
+    source: assets_src/svg/otzaria_icon_lines_24_regular.svg
     codepoint: 0xe02c
     variant: regular
     size: 24
@@ -706,8 +706,8 @@ icons:
     license: GPL-3.0-only
     upstream_commit: null
   - id: icon-0049
-    name: search_in_the_book_24_regular
-    source: assets_src/svg/search_in_the_book_24_regular.svg
+    name: search_in_book_24_regular
+    source: assets_src/svg/search_in_book_24_regular.svg
     codepoint: 0xe02f
     variant: regular
     size: 24
@@ -721,8 +721,8 @@ icons:
     license: GPL-3.0-only
     upstream_commit: null
   - id: icon-0050
-    name: search_in_the_library_24_regular
-    source: assets_src/svg/search_in_the_library_24_regular.svg
+    name: search_in_library_24_regular
+    source: assets_src/svg/search_in_library_24_regular.svg
     codepoint: 0xe030
     variant: regular
     size: 24
@@ -961,8 +961,8 @@ icons:
     license: GPL-3.0-only
     upstream_commit: null
   - id: icon-0066
-    name: alef_deletion_24_regular
-    source: assets_src/svg/alef_deletion_24_regular.svg
+    name: alef_delete_24_regular
+    source: assets_src/svg/alef_delete_24_regular.svg
     codepoint: 0xe040
     variant: regular
     size: 24
@@ -991,8 +991,8 @@ icons:
     license: GPL-3.0-only
     upstream_commit: null
   - id: icon-0068
-    name: alef_with_eraser_24_regular
-    source: assets_src/svg/alef_with_eraser_24_regular.svg
+    name: alef_eraser_24_regular
+    source: assets_src/svg/alef_eraser_24_regular.svg
     codepoint: 0xe042
     variant: regular
     size: 24
@@ -1006,8 +1006,8 @@ icons:
     license: MIT AND GPL-3.0-only
     upstream_commit: pub:fluentui_system_icons@1.1.273
   - id: icon-0069
-    name: alef_with_flavors_24_regular
-    source: assets_src/svg/alef_with_flavors_24_regular.svg
+    name: alef_niqqud_taamim_24_regular
+    source: assets_src/svg/alef_niqqud_taamim_24_regular.svg
     codepoint: 0xe043
     variant: regular
     size: 24
@@ -1021,8 +1021,8 @@ icons:
     license: GPL-3.0-only
     upstream_commit: null
   - id: icon-0070
-    name: alef_with_information_24_regular
-    source: assets_src/svg/alef_with_information_24_regular.svg
+    name: alef_information_24_regular
+    source: assets_src/svg/alef_information_24_regular.svg
     codepoint: 0xe044
     variant: regular
     size: 24
@@ -1036,8 +1036,8 @@ icons:
     license: GPL-3.0-only
     upstream_commit: null
   - id: icon-0071
-    name: alef_with_punctuation_24_regular
-    source: assets_src/svg/alef_with_punctuation_24_regular.svg
+    name: alef_punctuation_24_regular
+    source: assets_src/svg/alef_punctuation_24_regular.svg
     codepoint: 0xe045
     variant: regular
     size: 24
@@ -1051,8 +1051,8 @@ icons:
     license: GPL-3.0-only
     upstream_commit: null
   - id: icon-0072
-    name: alef_with_score_24_regular
-    source: assets_src/svg/alef_with_score_24_regular.svg
+    name: alef_niqqud_24_regular
+    source: assets_src/svg/alef_niqqud_24_regular.svg
     codepoint: 0xe046
     variant: regular
     size: 24
@@ -1201,8 +1201,8 @@ icons:
     license: GPL-3.0-only
     upstream_commit: null
   - id: icon-0082
-    name: icon_x_24_regular
-    source: assets_src/svg/icon_x_24_regular.svg
+    name: cross_24_regular
+    source: assets_src/svg/cross_24_regular.svg
     codepoint: 0xe050
     variant: regular
     size: 24
@@ -1231,8 +1231,8 @@ icons:
     license: GPL-3.0-only
     upstream_commit: null
   - id: icon-0084
-    name: otzaria_icon_2_page_line_24_regular
-    source: assets_src/svg/otzaria_icon_2_page_line_24_regular.svg
+    name: otzaria_icon_2_page_lines_24_regular
+    source: assets_src/svg/otzaria_icon_2_page_lines_24_regular.svg
     codepoint: 0xe052
     variant: regular
     size: 24
@@ -1276,8 +1276,8 @@ icons:
     license: GPL-3.0-only
     upstream_commit: null
   - id: icon-0087
-    name: search_in_the_document_24_regular
-    source: assets_src/svg/search_in_the_document_24_regular.svg
+    name: search_in_document_24_regular
+    source: assets_src/svg/search_in_document_24_regular.svg
     codepoint: 0xe055
     variant: regular
     size: 24
@@ -1291,8 +1291,8 @@ icons:
     license: GPL-3.0-only
     upstream_commit: null
   - id: icon-0088
-    name: stander_24_filled
-    source: assets_src/svg/stander_24_filled.svg
+    name: lectern_24_filled
+    source: assets_src/svg/lectern_24_filled.svg
     codepoint: 0xe056
     variant: filled
     size: 24
@@ -1306,8 +1306,8 @@ icons:
     license: GPL-3.0-only
     upstream_commit: null
   - id: icon-0089
-    name: stander_24_regular
-    source: assets_src/svg/stander_24_regular.svg
+    name: lectern_24_regular
+    source: assets_src/svg/lectern_24_regular.svg
     codepoint: 0xe057
     variant: regular
     size: 24
@@ -1606,8 +1606,8 @@ icons:
     license: GPL-3.0-only
     upstream_commit: null
   - id: icon-0109
-    name: search_in_the_text_24_regular
-    source: assets_src/svg/search_in_the_text_24_regular.svg
+    name: search_in_text_24_regular
+    source: assets_src/svg/search_in_text_24_regular.svg
     codepoint: 0xe06b
     variant: regular
     size: 24
@@ -1636,8 +1636,8 @@ icons:
     license: GPL-3.0-only
     upstream_commit: null
   - id: icon-0111
-    name: search_in_the_settings_24_regular
-    source: assets_src/svg/search_in_the_settings_24_regular.svg
+    name: search_in_settings_24_regular
+    source: assets_src/svg/search_in_settings_24_regular.svg
     codepoint: 0xe06d
     variant: regular
     size: 24
@@ -1666,8 +1666,8 @@ icons:
     license: GPL-3.0-only
     upstream_commit: null
   - id: icon-0113
-    name: search_in_the_person_24_regular
-    source: assets_src/svg/search_in_the_person_24_regular.svg
+    name: search_in_person_24_regular
+    source: assets_src/svg/search_in_person_24_regular.svg
     codepoint: 0xe06f
     variant: regular
     size: 24
@@ -1711,8 +1711,8 @@ icons:
     license: GPL-3.0-only
     upstream_commit: null
   - id: icon-0116
-    name: yoma_deilula_24_regular
-    source: assets_src/svg/yoma_deilula_24_regular.svg
+    name: calendar_yahrzeit_24_regular
+    source: assets_src/svg/calendar_yahrzeit_24_regular.svg
     codepoint: 0xe072
     variant: regular
     size: 24
@@ -1876,8 +1876,8 @@ icons:
     license: GPL-3.0-only
     upstream_commit: null
   - id: icon-0127
-    name: otzaria_icon_line_24_filled
-    source: assets_src/svg/otzaria_icon_line_24_filled.svg
+    name: otzaria_icon_lines_24_filled
+    source: assets_src/svg/otzaria_icon_lines_24_filled.svg
     codepoint: 0xe07d
     variant: filled
     size: 24
@@ -2146,8 +2146,8 @@ icons:
     license: GPL-3.0-only
     upstream_commit: null
   - id: icon-0147
-    name: search_in_the_quote_24_regular
-    source: assets_src/svg/search_in_the_quote_24_regular.svg
+    name: search_in_quote_24_regular
+    source: assets_src/svg/search_in_quote_24_regular.svg
     codepoint: 0xe08f
     variant: regular
     size: 24
@@ -2161,8 +2161,8 @@ icons:
     license: GPL-3.0-only
     upstream_commit: null
   - id: icon-0148
-    name: alef_addition_24_regular
-    source: assets_src/svg/alef_addition_24_regular.svg
+    name: alef_add_24_regular
+    source: assets_src/svg/alef_add_24_regular.svg
     codepoint: 0xe090
     variant: regular
     size: 24
@@ -2251,8 +2251,8 @@ icons:
     license: MIT AND GPL-3.0-only
     upstream_commit: pub:fluentui_system_icons@1.1.273
   - id: icon-0154
-    name: alef_with_exclamation_24_regular
-    source: assets_src/svg/alef_with_exclamation_24_regular.svg
+    name: alef_exclamation_24_regular
+    source: assets_src/svg/alef_exclamation_24_regular.svg
     codepoint: 0xe096
     variant: regular
     size: 24
@@ -2281,8 +2281,8 @@ icons:
     license: GPL-3.0-only
     upstream_commit: null
   - id: icon-0156
-    name: book_open_medium_line_24_filled
-    source: assets_src/svg/book_open_medium_line_24_filled.svg
+    name: book_open_medium_lines_24_filled
+    source: assets_src/svg/book_open_medium_lines_24_filled.svg
     codepoint: 0xe098
     variant: filled
     size: 24
@@ -2401,8 +2401,8 @@ icons:
     license: MIT AND GPL-3.0-only
     upstream_commit: pub:fluentui_system_icons@1.1.273
   - id: icon-0164
-    name: link_with_eraser_24_regular
-    source: assets_src/svg/link_with_eraser_24_regular.svg
+    name: link_eraser_24_regular
+    source: assets_src/svg/link_eraser_24_regular.svg
     codepoint: 0xe0a0
     variant: regular
     size: 24
@@ -2416,8 +2416,8 @@ icons:
     license: MIT AND GPL-3.0-only
     upstream_commit: pub:fluentui_system_icons@1.1.273
   - id: icon-0165
-    name: link_with_information_24_regular
-    source: assets_src/svg/link_with_information_24_regular.svg
+    name: link_information_24_regular
+    source: assets_src/svg/link_information_24_regular.svg
     codepoint: 0xe0a1
     variant: regular
     size: 24
@@ -2431,8 +2431,8 @@ icons:
     license: MIT AND GPL-3.0-only
     upstream_commit: pub:fluentui_system_icons@1.1.273
   - id: icon-0166
-    name: link_deletion_24_regular
-    source: assets_src/svg/link_deletion_24_regular.svg
+    name: link_delete_24_regular
+    source: assets_src/svg/link_delete_24_regular.svg
     codepoint: 0xe0a2
     variant: regular
     size: 24
@@ -2536,8 +2536,8 @@ icons:
     license: GPL-3.0-only
     upstream_commit: null
   - id: icon-0173
-    name: book_open_small_line_24_filled
-    source: assets_src/svg/book_open_small_line_24_filled.svg
+    name: book_open_small_lines_24_filled
+    source: assets_src/svg/book_open_small_lines_24_filled.svg
     codepoint: 0xe0a9
     variant: filled
     size: 24
@@ -2566,8 +2566,8 @@ icons:
     license: GPL-3.0-only
     upstream_commit: null
   - id: icon-0175
-    name: otzaria_icon_2_page_line_24_filled
-    source: assets_src/svg/otzaria_icon_2_page_line_24_filled.svg
+    name: otzaria_icon_2_page_lines_24_filled
+    source: assets_src/svg/otzaria_icon_2_page_lines_24_filled.svg
     codepoint: 0xe0ab
     variant: filled
     size: 24
@@ -2716,8 +2716,8 @@ icons:
     license: MIT AND GPL-3.0-only
     upstream_commit: pub:fluentui_system_icons@1.1.273
   - id: icon-0185
-    name: link_book_empty_24_regular
-    source: assets_src/svg/link_book_empty_24_regular.svg
+    name: link_book_24_regular
+    source: assets_src/svg/link_book_24_regular.svg
     codepoint: 0xe0b5
     variant: regular
     size: 24
@@ -2731,8 +2731,8 @@ icons:
     license: MIT AND GPL-3.0-only
     upstream_commit: pub:fluentui_system_icons@1.1.273
   - id: icon-0186
-    name: link_book_exclamation_24_regular
-    source: assets_src/svg/link_book_exclamation_24_regular.svg
+    name: link_exclamation_24_regular
+    source: assets_src/svg/link_exclamation_24_regular.svg
     codepoint: 0xe0b6
     variant: regular
     size: 24
@@ -2806,8 +2806,8 @@ icons:
     license: GPL-3.0-only
     upstream_commit: null
   - id: icon-0191
-    name: search_in_the_book_24_filled
-    source: assets_src/svg/search_in_the_book_24_filled.svg
+    name: search_in_book_24_filled
+    source: assets_src/svg/search_in_book_24_filled.svg
     codepoint: 0xe0bb
     variant: filled
     size: 24
@@ -2821,8 +2821,8 @@ icons:
     license: GPL-3.0-only
     upstream_commit: null
   - id: icon-0192
-    name: search_in_the_document_24_filled
-    source: assets_src/svg/search_in_the_document_24_filled.svg
+    name: search_in_document_24_filled
+    source: assets_src/svg/search_in_document_24_filled.svg
     codepoint: 0xe0bc
     variant: filled
     size: 24
@@ -2836,8 +2836,8 @@ icons:
     license: GPL-3.0-only
     upstream_commit: null
   - id: icon-0193
-    name: search_in_the_library_24_filled
-    source: assets_src/svg/search_in_the_library_24_filled.svg
+    name: search_in_library_24_filled
+    source: assets_src/svg/search_in_library_24_filled.svg
     codepoint: 0xe0bd
     variant: filled
     size: 24
@@ -2851,8 +2851,8 @@ icons:
     license: GPL-3.0-only
     upstream_commit: null
   - id: icon-0194
-    name: search_in_the_person_24_filled
-    source: assets_src/svg/search_in_the_person_24_filled.svg
+    name: search_in_person_24_filled
+    source: assets_src/svg/search_in_person_24_filled.svg
     codepoint: 0xe0be
     variant: filled
     size: 24
@@ -2866,8 +2866,8 @@ icons:
     license: GPL-3.0-only
     upstream_commit: null
   - id: icon-0195
-    name: search_in_the_quote_24_filled
-    source: assets_src/svg/search_in_the_quote_24_filled.svg
+    name: search_in_quote_24_filled
+    source: assets_src/svg/search_in_quote_24_filled.svg
     codepoint: 0xe0bf
     variant: filled
     size: 24
@@ -2881,8 +2881,8 @@ icons:
     license: GPL-3.0-only
     upstream_commit: null
   - id: icon-0196
-    name: search_in_the_settings_24_filled
-    source: assets_src/svg/search_in_the_settings_24_filled.svg
+    name: search_in_settings_24_filled
+    source: assets_src/svg/search_in_settings_24_filled.svg
     codepoint: 0xe0c0
     variant: filled
     size: 24
@@ -2896,8 +2896,8 @@ icons:
     license: GPL-3.0-only
     upstream_commit: null
   - id: icon-0197
-    name: search_in_the_text_24_filled
-    source: assets_src/svg/search_in_the_text_24_filled.svg
+    name: search_in_text_24_filled
+    source: assets_src/svg/search_in_text_24_filled.svg
     codepoint: 0xe0c1
     variant: filled
     size: 24
@@ -3031,8 +3031,8 @@ icons:
     license: GPL-3.0-only
     upstream_commit: null
   - id: icon-0206
-    name: alef_addition_24_filled
-    source: assets_src/svg/alef_addition_24_filled.svg
+    name: alef_add_24_filled
+    source: assets_src/svg/alef_add_24_filled.svg
     codepoint: 0xe0ca
     variant: filled
     size: 24
@@ -3106,8 +3106,8 @@ icons:
     license: GPL-3.0-only
     upstream_commit: null
   - id: icon-0211
-    name: alef_deletion_24_filled
-    source: assets_src/svg/alef_deletion_24_filled.svg
+    name: alef_delete_24_filled
+    source: assets_src/svg/alef_delete_24_filled.svg
     codepoint: 0xe0cf
     variant: filled
     size: 24
@@ -3286,8 +3286,8 @@ icons:
     license: GPL-3.0-only
     upstream_commit: null
   - id: icon-0223
-    name: alef_with_eraser_24_filled
-    source: assets_src/svg/alef_with_eraser_24_filled.svg
+    name: alef_eraser_24_filled
+    source: assets_src/svg/alef_eraser_24_filled.svg
     codepoint: 0xe0db
     variant: filled
     size: 24
@@ -3301,8 +3301,8 @@ icons:
     license: MIT AND GPL-3.0-only
     upstream_commit: pub:fluentui_system_icons@1.1.273
   - id: icon-0224
-    name: alef_with_exclamation_24_filled
-    source: assets_src/svg/alef_with_exclamation_24_filled.svg
+    name: alef_exclamation_24_filled
+    source: assets_src/svg/alef_exclamation_24_filled.svg
     codepoint: 0xe0dc
     variant: filled
     size: 24
@@ -3316,8 +3316,8 @@ icons:
     license: GPL-3.0-only
     upstream_commit: null
   - id: icon-0225
-    name: alef_with_flavors_24_filled
-    source: assets_src/svg/alef_with_flavors_24_filled.svg
+    name: alef_niqqud_taamim_24_filled
+    source: assets_src/svg/alef_niqqud_taamim_24_filled.svg
     codepoint: 0xe0dd
     variant: filled
     size: 24
@@ -3331,8 +3331,8 @@ icons:
     license: GPL-3.0-only
     upstream_commit: null
   - id: icon-0226
-    name: alef_with_information_24_filled
-    source: assets_src/svg/alef_with_information_24_filled.svg
+    name: alef_information_24_filled
+    source: assets_src/svg/alef_information_24_filled.svg
     codepoint: 0xe0de
     variant: filled
     size: 24
@@ -3346,8 +3346,8 @@ icons:
     license: GPL-3.0-only
     upstream_commit: null
   - id: icon-0227
-    name: alef_with_punctuation_24_filled
-    source: assets_src/svg/alef_with_punctuation_24_filled.svg
+    name: alef_punctuation_24_filled
+    source: assets_src/svg/alef_punctuation_24_filled.svg
     codepoint: 0xe0df
     variant: filled
     size: 24
@@ -3361,8 +3361,8 @@ icons:
     license: GPL-3.0-only
     upstream_commit: null
   - id: icon-0228
-    name: alef_with_score_24_filled
-    source: assets_src/svg/alef_with_score_24_filled.svg
+    name: alef_niqqud_24_filled
+    source: assets_src/svg/alef_niqqud_24_filled.svg
     codepoint: 0xe0e0
     variant: filled
     size: 24
@@ -3541,8 +3541,8 @@ icons:
     license: MIT AND GPL-3.0-only
     upstream_commit: pub:fluentui_system_icons@1.1.273
   - id: icon-0240
-    name: link_book_empty_24_filled
-    source: assets_src/svg/link_book_empty_24_filled.svg
+    name: link_book_24_filled
+    source: assets_src/svg/link_book_24_filled.svg
     codepoint: 0xe0ec
     variant: filled
     size: 24
@@ -3556,8 +3556,8 @@ icons:
     license: MIT AND GPL-3.0-only
     upstream_commit: pub:fluentui_system_icons@1.1.273
   - id: icon-0241
-    name: link_book_exclamation_24_filled
-    source: assets_src/svg/link_book_exclamation_24_filled.svg
+    name: link_exclamation_24_filled
+    source: assets_src/svg/link_exclamation_24_filled.svg
     codepoint: 0xe0ed
     variant: filled
     size: 24
@@ -3586,8 +3586,8 @@ icons:
     license: MIT AND GPL-3.0-only
     upstream_commit: pub:fluentui_system_icons@1.1.273
   - id: icon-0243
-    name: link_deletion_24_filled
-    source: assets_src/svg/link_deletion_24_filled.svg
+    name: link_delete_24_filled
+    source: assets_src/svg/link_delete_24_filled.svg
     codepoint: 0xe0ef
     variant: filled
     size: 24
@@ -3676,8 +3676,8 @@ icons:
     license: MIT AND GPL-3.0-only
     upstream_commit: pub:fluentui_system_icons@1.1.273
   - id: icon-0249
-    name: link_with_eraser_24_filled
-    source: assets_src/svg/link_with_eraser_24_filled.svg
+    name: link_eraser_24_filled
+    source: assets_src/svg/link_eraser_24_filled.svg
     codepoint: 0xe0f5
     variant: filled
     size: 24
@@ -3691,8 +3691,8 @@ icons:
     license: MIT AND GPL-3.0-only
     upstream_commit: pub:fluentui_system_icons@1.1.273
   - id: icon-0250
-    name: link_with_information_24_filled
-    source: assets_src/svg/link_with_information_24_filled.svg
+    name: link_information_24_filled
+    source: assets_src/svg/link_information_24_filled.svg
     codepoint: 0xe0f6
     variant: filled
     size: 24
@@ -3796,8 +3796,8 @@ icons:
     license: GPL-3.0-only
     upstream_commit: null
   - id: icon-0257
-    name: icon_x_24_filled
-    source: assets_src/svg/icon_x_24_filled.svg
+    name: cross_24_filled
+    source: assets_src/svg/cross_24_filled.svg
     codepoint: 0xe0fd
     variant: filled
     size: 24
@@ -3811,8 +3811,8 @@ icons:
     license: GPL-3.0-only
     upstream_commit: null
   - id: icon-0258
-    name: yoma_deilula_24_filled
-    source: assets_src/svg/yoma_deilula_24_filled.svg
+    name: calendar_yahrzeit_24_filled
+    source: assets_src/svg/calendar_yahrzeit_24_filled.svg
     codepoint: 0xe0fe
     variant: filled
     size: 24

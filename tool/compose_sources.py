@@ -42,7 +42,7 @@ from icon_compose import (Art, circle, glyph, part, polygon, round_rect,
 # The badge
 # --------------------------------------------------------------------------
 # The alef family already carries three badged icons. Two of them (alef_copy,
-# alef_with_information) share one disc; alef_deletion was drawn with a slightly
+# alef_information) share one disc; alef_delete was drawn with a slightly
 # different one (0.2 units right, 0.15 up, a shade larger). The shared one is
 # the canonical disc, and every alef badge composed here is placed on that exact
 # path, so the badges line up across the family instead of drifting further.
@@ -179,14 +179,14 @@ def sym_cross():
     """The deletion cross, recentred from its own slightly-offset disc.
 
     Read as "whichever solid the file marks as the knockout" rather than by a
-    fixed path index: `alef_deletion_24_filled` is a hand-authored source
+    fixed path index: `alef_delete_24_filled` is a hand-authored source
     (letter, disc, cut), but its badge has since been enlarged in place by
     unioning the letter and the disc into one path, which shifts the cut from
     index 2 to index 1. `ic.layers` finds the same cut by its fill="white"
     marker instead, so it is not tied to how many separate solids the file
     happens to carry.
     """
-    _, cuts = ic.layers("alef_deletion_24_filled")
+    _, cuts = ic.layers("alef_delete_24_filled")
     return cuts[0]
 
 
@@ -324,7 +324,7 @@ def sym_copy():
 
 def sym_cross_mark():
     """The cross Fluent knocks out of its own badged link, taken from the
-    template rather than drawn, so `link_deletion` is Fluent's dismiss exactly.
+    template rather than drawn, so `link_delete` is Fluent's dismiss exactly.
     """
     _, disc, inside = link_plate()
     return inside
@@ -409,7 +409,7 @@ def sym_crown():
 
 
 def sym_book_empty():
-    """The literal book `search_in_the_book_24_regular` already draws inside
+    """The literal book `search_in_book_24_regular` already draws inside
     its own lens - not a redrawn approximation of it - read straight from
     that icon's own source the same way `sym_copy` reuses `alef_copy`'s
     sheets: `_search_split` returns exactly the region the font fills for
@@ -425,7 +425,7 @@ def sym_book_empty():
     black seam line" construction with two round rects, which read fine but
     was still a second drawing of a book this set already has one of.
     """
-    _, _, content = _search_split("search_in_the_book_24_regular")
+    _, _, content = _search_split("search_in_book_24_regular")
     return content
 
 
@@ -698,7 +698,7 @@ SPECK = 0.5
 # Five of these icons showed their text as six or seven rules half a unit thick,
 # 1.5 apart - bands of ink and paper almost equal in width. Below 24 px that
 # closes into a grey slab, and it is worse in the filled variants, where the
-# rules are white on black and go first. `book_open_medium_line` had it right
+# rules are white on black and go first. `book_open_medium_lines` had it right
 # already: three rules at 1.25 with 1.75 of paper between them, a gap 1.4 times
 # the ink. Every family below is brought to four rules at that ratio.
 #
@@ -713,7 +713,7 @@ RESTRIPE = {
     # a third of it and they read as ends; at 5.15 they were a quarter and the
     # bar read as a cut rectangle, which is what the owner saw in the filled
     # variant, where the rule is white on black and its ends go first.
-    "book_open_medium_line_24_regular":   (3, 1.25, 3.00, 4.40),
+    "book_open_medium_lines_24_regular":   (3, 1.25, 3.00, 4.40),
     "book_open_medium_search_24_regular": (3, 1.25, 3.00, 4.40),
 }
 
@@ -794,14 +794,14 @@ def restripe(name, art):
 # (rows, gap as a multiple of the rule's own height, rule width - None keeps
 # the width the rules already have).
 RESPREAD = {
-    "otzaria_icon_line_24_regular":        (5, 1.55, None),
-    "otzaria_icon_2_page_line_24_regular": (5, 1.55, None),
+    "otzaria_icon_lines_24_regular":        (5, 1.55, None),
+    "otzaria_icon_2_page_lines_24_regular": (5, 1.55, None),
     # Its rules were 4.80 wide in a page 5.52 across, which left a quarter of a
     # unit of paper beside them - they read as running into the book's own
     # uprights - and four rows at a 2.25 pitch sat in the top half of a page
     # 13 units deep. Spread over the page and set to 4.00 they clear the
     # uprights by three quarters of a unit on each side.
-    "book_open_small_line_24_regular":     (4, 1.75, 4.00),
+    "book_open_small_lines_24_regular":     (4, 1.75, 4.00),
 }
 
 
@@ -893,7 +893,7 @@ def respread(name, art):
 
     # The guard compares the rules themselves rather than the two regions, as
     # `restripe` does. Region arithmetic is the more thorough test but it is not
-    # a reliable one here: on `otzaria_icon_2_page_line` the difference of two
+    # a reliable one here: on `otzaria_icon_2_page_lines` the difference of two
     # regions that draw the same ten rules comes back as eleven square units of
     # contour that encloses nothing, and a guard that cannot recognise its own
     # output is a guard that rewrites the file on every run. Ten boxes to a
@@ -1581,7 +1581,7 @@ def _doc_dl_f():
 # regular. Every other icon in the set is redrawn by re-running this; that one
 # would have had to be redrawn by hand every time.
 for _name in ["book_open_medium_24_filled",
-              "book_open_medium_line_24_filled",
+              "book_open_medium_lines_24_filled",
               "book_open_medium_search_24_filled",
               # These three were drawn, not derived, and the drawing never
               # picked up the text change its regular twin had: six rules
@@ -1590,11 +1590,11 @@ for _name in ["book_open_medium_24_filled",
               "book_open_large_lines_24_filled",
               "book_open_large_search_24_filled",
               "book_open_small_24_filled",
-              "book_open_small_line_24_filled",
+              "book_open_small_lines_24_filled",
               "otzaria_icon_24_filled",
-              "otzaria_icon_line_24_filled",
+              "otzaria_icon_lines_24_filled",
               "otzaria_icon_2_page_24_filled",
-              "otzaria_icon_2_page_line_24_filled",
+              "otzaria_icon_2_page_lines_24_filled",
               "otzaria_icon_empty_24_filled",
               "books_stacked_high_24_filled"]:
     DEPENDS[_name] = _name.replace("_filled", "_regular")
@@ -1738,8 +1738,8 @@ def _search_not_found_badge():
     dividing it into four petal-shaped gaps: it read as a target reticle
     more than a "not found" mark, and the petal-splitting it needed was
     fragile geometry unique to this one icon. A corner badge is what this
-    set already uses for exactly this reading - `alef_deletion`,
-    `link_deletion` - proven to read clearly at small sizes, and reusing
+    set already uses for exactly this reading - `alef_delete`,
+    `link_delete` - proven to read clearly at small sizes, and reusing
     `sym_cross` (the same X, not a redrawn one) keeps that reading
     consistent rather than adding a second "not found" mark to the set.
     """
@@ -1935,26 +1935,26 @@ for _kind, _name in [("scissors", "alef_scissors_24_filled"),
                      ("lips", "alef_lips_24_filled"),
                      ("marker", "alef_marker_24_filled"),
                      ("eye", "alef_eye_24_filled"),
-                     ("eraser", "alef_with_eraser_24_filled"),
-                     ("exclamation", "alef_with_exclamation_24_filled"),
-                     ("plus", "alef_addition_24_filled"),
+                     ("eraser", "alef_eraser_24_filled"),
+                     ("exclamation", "alef_exclamation_24_filled"),
+                     ("plus", "alef_add_24_filled"),
                      ("lock", "alef_lock_24_filled"),
                      ("crown", "alef_crown_24_filled")]:
     RECIPES[_name] = alef_badge(_kind)
 
 for _kind, _name in [("copy", "link_copy_24_regular"),
-                     ("eraser", "link_with_eraser_24_regular"),
+                     ("eraser", "link_eraser_24_regular"),
                      ("marker", "link_marker_24_regular"),
-                     ("information", "link_with_information_24_regular"),
+                     ("information", "link_information_24_regular"),
                      ("quote", "link_quote_24_regular"),
                      ("document", "link_document_24_regular"),
                      ("scissors", "link_scissors_24_regular"),
-                     ("cross", "link_deletion_24_regular"),
+                     ("cross", "link_delete_24_regular"),
                      ("eye", "link_eye_24_regular"),
                      ("alef", "link_alef_24_regular"),
                      ("plus", "link_add_24_regular"),
-                     ("book_empty", "link_book_empty_24_regular"),
-                     ("exclamation", "link_book_exclamation_24_regular")]:
+                     ("book_empty", "link_book_24_regular"),
+                     ("exclamation", "link_exclamation_24_regular")]:
     RECIPES[_name] = link_badge(_kind)
     RECIPES[_name.replace("_regular", "_filled")] = link_badge(_kind, True)
 
@@ -2088,7 +2088,7 @@ for _base, _fit in [("booklet", False), ("booklet_empty", False),
 
 
 # --------------------------------------------------------------------------
-# yoma_deilula: a candle in front of a calendar
+# calendar_yahrzeit: a candle in front of a calendar
 # --------------------------------------------------------------------------
 # `inverted` takes the icon's largest contour as *the* silhouette, and this
 # icon is two separate drawings - so it is applied to each of them in turn. The
@@ -2108,15 +2108,15 @@ YOMA_PAGE_CORNER = 1.6
 YOMA_CUT = 1.9
 
 
-@recipe("yoma_deilula_24_filled")
+@recipe("calendar_yahrzeit_24_filled")
 def _yoma_filled():
-    art = glyph("yoma_deilula_24_regular")
+    art = glyph("calendar_yahrzeit_24_regular")
     cl = ic.contours(art)
     frame, candle = cl[0], cl[1]
     slits = [c for c in cl if 1.3 < c.area < 1.5]
     cells = [c for c in cl if 6.0 < c.area < 8.0 and c.bounds[0] > 9]
     if len(slits) != 3 or len(cells) != 9:
-        raise Restated("yoma_deilula_24_regular no longer has the three "
+        raise Restated("calendar_yahrzeit_24_regular no longer has the three "
                        "binder slits and nine date cells this reads (%d, %d)"
                        % (len(slits), len(cells)))
     page = round_rect(*YOMA_PAGE, YOMA_PAGE_CORNER) - candle.grow(YOMA_CUT)
@@ -2132,7 +2132,7 @@ def _yoma_filled():
     return sized(out), [], False
 
 
-DEPENDS["yoma_deilula_24_filled"] = "yoma_deilula_24_regular"
+DEPENDS["calendar_yahrzeit_24_filled"] = "calendar_yahrzeit_24_regular"
 
 
 # `text_continuous` is Fluent's, taken as Fluent draws it, and it is the
@@ -2171,7 +2171,7 @@ def _alef_bet_list_filled():
 DEPENDS["text_alef_bet_list_24_filled"] = "text_alef_bet_list_24_regular"
 
 
-# `icon_x` was drawn with a 3.3-unit stroke - twice Fluent's 1.5 and heavier
+# `cross` was drawn with a 3.3-unit stroke - twice Fluent's 1.5 and heavier
 # than any other regular in the set - and filed as `_regular`. That is a filled
 # weight, so it moves to `_filled` untouched, and the regular is Fluent's own
 # `dismiss` at the same extent (it is the same mark), which is what a regular
@@ -2179,7 +2179,7 @@ DEPENDS["text_alef_bet_list_24_filled"] = "text_alef_bet_list_24_regular"
 ICON_X_BOX = (2.0, 2.0, 22.0, 22.0)
 
 
-@recipe("icon_x_24_regular")
+@recipe("cross_24_regular")
 def _icon_x_regular():
     return use_fluent("dismiss_24_regular").fit(ICON_X_BOX), [], False
 
@@ -2304,9 +2304,9 @@ LETTER_OVER = {
     "alef_1": "alef_24_filled", "alef_2": "alef_24_filled",
     "alef_3": "alef_24_filled", "alef_behind_alef": "alef_24_filled",
     "beit_behind_alef": "alef_24_filled", "tet_behind_tet": "tet_24_filled",
-    "alef_with_flavors": "alef_24_filled",
-    "alef_with_punctuation": "alef_24_filled",
-    "alef_with_score": "alef_24_filled", "alef_writing": "alef_24_filled",
+    "alef_niqqud_taamim": "alef_24_filled",
+    "alef_punctuation": "alef_24_filled",
+    "alef_niqqud": "alef_24_filled", "alef_writing": "alef_24_filled",
 }
 
 
@@ -2330,15 +2330,15 @@ def outline_recipe(filled, badged_letter=False, over=None, solid_rest=False):
 # are only letters (a numeral, a second letter, a pen, a dot count as part of
 # the letter and take the same outline).
 LETTER_BADGED = (
-    "alef_addition", "alef_copy", "alef_crown", "alef_deletion", "alef_eye",
+    "alef_add", "alef_copy", "alef_crown", "alef_delete", "alef_eye",
     "alef_lips", "alef_lock", "alef_marker", "alef_scissors",
-    "alef_with_eraser", "alef_with_exclamation", "alef_with_information",
+    "alef_eraser", "alef_exclamation", "alef_information",
 )
 LETTER_PLAIN = (
     "alef_1", "alef_2", "alef_3", "alef_alef", "alef_behind_alef",
     "alef_latin_a", "alef_near_alef", "alef_near_alef_rashi",
-    "alef_near_alef_stam", "alef_rashi", "alef_stam", "alef_with_flavors",
-    "alef_with_punctuation", "alef_with_score", "alef_writing", "beit",
+    "alef_near_alef_stam", "alef_rashi", "alef_stam", "alef_niqqud_taamim",
+    "alef_punctuation", "alef_niqqud", "alef_writing", "beit",
     "beit_behind_alef", "beit_near_alef", "tet", "tet_behind_tet",
     "tet_near_tet", "tet_tet",
 )
