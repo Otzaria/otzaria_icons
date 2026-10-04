@@ -1416,6 +1416,244 @@ abstract final class OtzariaIcons {
     fontPackage: fontPackage,
   );
 
+  /// `alef_1_24_filled.svg`
+  static const IconData alef_1_24_filled = IconData(
+    0xe0c9,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `alef_2_24_filled.svg`
+  static const IconData alef_2_24_filled = IconData(
+    0xe0ca,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `alef_3_24_filled.svg`
+  static const IconData alef_3_24_filled = IconData(
+    0xe0cb,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `alef_addition_24_filled.svg`
+  static const IconData alef_addition_24_filled = IconData(
+    0xe0cc,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `alef_alef_24_filled.svg`
+  static const IconData alef_alef_24_filled = IconData(
+    0xe0cd,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `alef_behind_alef_24_filled.svg`
+  static const IconData alef_behind_alef_24_filled = IconData(
+    0xe0ce,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `alef_copy_24_filled.svg`
+  static const IconData alef_copy_24_filled = IconData(
+    0xe0cf,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `alef_crown_24_filled.svg`
+  static const IconData alef_crown_24_filled = IconData(
+    0xe0d0,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `alef_deletion_24_filled.svg`
+  static const IconData alef_deletion_24_filled = IconData(
+    0xe0d1,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `alef_eye_24_filled.svg`
+  static const IconData alef_eye_24_filled = IconData(
+    0xe0d2,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `alef_latin_a_24_filled.svg`
+  static const IconData alef_latin_a_24_filled = IconData(
+    0xe0d3,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `alef_lips_24_filled.svg`
+  static const IconData alef_lips_24_filled = IconData(
+    0xe0d4,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `alef_lock_24_filled.svg`
+  static const IconData alef_lock_24_filled = IconData(
+    0xe0d5,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `alef_marker_24_filled.svg`
+  static const IconData alef_marker_24_filled = IconData(
+    0xe0d6,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `alef_near_alef_24_filled.svg`
+  static const IconData alef_near_alef_24_filled = IconData(
+    0xe0d7,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `alef_near_alef_rashi_24_filled.svg`
+  static const IconData alef_near_alef_rashi_24_filled = IconData(
+    0xe0d8,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `alef_near_alef_stam_24_filled.svg`
+  static const IconData alef_near_alef_stam_24_filled = IconData(
+    0xe0d9,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `alef_rashi_24_filled.svg`
+  static const IconData alef_rashi_24_filled = IconData(
+    0xe0da,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `alef_scissors_24_filled.svg`
+  static const IconData alef_scissors_24_filled = IconData(
+    0xe0db,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `alef_stam_24_filled.svg`
+  static const IconData alef_stam_24_filled = IconData(
+    0xe0dc,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `alef_with_eraser_24_filled.svg`
+  static const IconData alef_with_eraser_24_filled = IconData(
+    0xe0dd,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `alef_with_exclamation_24_filled.svg`
+  static const IconData alef_with_exclamation_24_filled = IconData(
+    0xe0de,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `alef_with_flavors_24_filled.svg`
+  static const IconData alef_with_flavors_24_filled = IconData(
+    0xe0df,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `alef_with_information_24_filled.svg`
+  static const IconData alef_with_information_24_filled = IconData(
+    0xe0e0,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `alef_with_punctuation_24_filled.svg`
+  static const IconData alef_with_punctuation_24_filled = IconData(
+    0xe0e1,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `alef_with_score_24_filled.svg`
+  static const IconData alef_with_score_24_filled = IconData(
+    0xe0e2,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `alef_writing_24_filled.svg`
+  static const IconData alef_writing_24_filled = IconData(
+    0xe0e3,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `beit_24_filled.svg`
+  static const IconData beit_24_filled = IconData(
+    0xe0e4,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `beit_behind_alef_24_filled.svg`
+  static const IconData beit_behind_alef_24_filled = IconData(
+    0xe0e5,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `beit_near_alef_24_filled.svg`
+  static const IconData beit_near_alef_24_filled = IconData(
+    0xe0e6,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `tet_24_filled.svg`
+  static const IconData tet_24_filled = IconData(
+    0xe0e7,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `tet_behind_tet_24_filled.svg`
+  static const IconData tet_behind_tet_24_filled = IconData(
+    0xe0e8,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `tet_near_tet_24_filled.svg`
+  static const IconData tet_near_tet_24_filled = IconData(
+    0xe0e9,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `tet_tet_24_filled.svg`
+  static const IconData tet_tet_24_filled = IconData(
+    0xe0ea,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
   /// Every icon in this library, keyed by its name.
   static const Map<String, IconData> allIcons = <String, IconData>{
     'book_24_filled': book_24_filled,
@@ -1619,5 +1857,39 @@ abstract final class OtzariaIcons {
     'book_add_24_regular': book_add_24_regular,
     'book_exclamation_24_filled': book_exclamation_24_filled,
     'book_exclamation_24_regular': book_exclamation_24_regular,
+    'alef_1_24_filled': alef_1_24_filled,
+    'alef_2_24_filled': alef_2_24_filled,
+    'alef_3_24_filled': alef_3_24_filled,
+    'alef_addition_24_filled': alef_addition_24_filled,
+    'alef_alef_24_filled': alef_alef_24_filled,
+    'alef_behind_alef_24_filled': alef_behind_alef_24_filled,
+    'alef_copy_24_filled': alef_copy_24_filled,
+    'alef_crown_24_filled': alef_crown_24_filled,
+    'alef_deletion_24_filled': alef_deletion_24_filled,
+    'alef_eye_24_filled': alef_eye_24_filled,
+    'alef_latin_a_24_filled': alef_latin_a_24_filled,
+    'alef_lips_24_filled': alef_lips_24_filled,
+    'alef_lock_24_filled': alef_lock_24_filled,
+    'alef_marker_24_filled': alef_marker_24_filled,
+    'alef_near_alef_24_filled': alef_near_alef_24_filled,
+    'alef_near_alef_rashi_24_filled': alef_near_alef_rashi_24_filled,
+    'alef_near_alef_stam_24_filled': alef_near_alef_stam_24_filled,
+    'alef_rashi_24_filled': alef_rashi_24_filled,
+    'alef_scissors_24_filled': alef_scissors_24_filled,
+    'alef_stam_24_filled': alef_stam_24_filled,
+    'alef_with_eraser_24_filled': alef_with_eraser_24_filled,
+    'alef_with_exclamation_24_filled': alef_with_exclamation_24_filled,
+    'alef_with_flavors_24_filled': alef_with_flavors_24_filled,
+    'alef_with_information_24_filled': alef_with_information_24_filled,
+    'alef_with_punctuation_24_filled': alef_with_punctuation_24_filled,
+    'alef_with_score_24_filled': alef_with_score_24_filled,
+    'alef_writing_24_filled': alef_writing_24_filled,
+    'beit_24_filled': beit_24_filled,
+    'beit_behind_alef_24_filled': beit_behind_alef_24_filled,
+    'beit_near_alef_24_filled': beit_near_alef_24_filled,
+    'tet_24_filled': tet_24_filled,
+    'tet_behind_tet_24_filled': tet_behind_tet_24_filled,
+    'tet_near_tet_24_filled': tet_near_tet_24_filled,
+    'tet_tet_24_filled': tet_tet_24_filled,
   };
 }

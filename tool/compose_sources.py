@@ -7,7 +7,7 @@ change to a shared part (the alef was redrawn twice already) propagates by
 re-running this instead of by hand-patching every file that carries it.
 
   python3 tool/compose_sources.py                 # rebuild every composed icon
-  python3 tool/compose_sources.py alef_scissors_24_regular ...
+  python3 tool/compose_sources.py alef_scissors_24_filled ...
   python3 tool/compose_sources.py --list
 
 Some recipes draw on Microsoft's Fluent artwork (see `tool/fluent_art.py`), and
@@ -46,7 +46,7 @@ from icon_compose import (Art, circle, glyph, part, polygon, round_rect,
 # different one (0.2 units right, 0.15 up, a shade larger). The shared one is
 # the canonical disc, and every alef badge composed here is placed on that exact
 # path, so the badges line up across the family instead of drifting further.
-BADGE_SOURCE = ("alef_copy_24_regular", 1)
+BADGE_SOURCE = ("alef_copy_24_filled", 1)
 BADGE_CX, BADGE_CY = 16.415, 17.667
 
 # How far a mark's ink may reach from the disc's centre, as a fraction of the
@@ -88,7 +88,7 @@ BADGE_MIN_HOLE = 0.55
 
 
 # How much bigger the alef family's badge disc (+ its knockout mark) is drawn
-# than the disc `alef_copy_24_regular` carries, and the link family's own disc
+# than the disc `alef_copy_24_filled` carries, and the link family's own disc
 # taken from Fluent's template. Both are scaled as one unit - the disc and the
 # mark inside it together - about the canvas corner the badge sits nearest, so
 # the badge grows toward the centre of the icon instead of drifting toward, or
@@ -131,7 +131,7 @@ def badge():
 
 def alef_solid():
     """The solid alef exactly as the existing badged icons spell it."""
-    return part("alef_copy_24_regular", 0)
+    return part("alef_copy_24_filled", 0)
 
 
 def place(art):
@@ -179,14 +179,14 @@ def sym_cross():
     """The deletion cross, recentred from its own slightly-offset disc.
 
     Read as "whichever solid the file marks as the knockout" rather than by a
-    fixed path index: `alef_deletion_24_regular` is a hand-authored source
+    fixed path index: `alef_deletion_24_filled` is a hand-authored source
     (letter, disc, cut), but its badge has since been enlarged in place by
     unioning the letter and the disc into one path, which shifts the cut from
     index 2 to index 1. `ic.layers` finds the same cut by its fill="white"
     marker instead, so it is not tied to how many separate solids the file
     happens to carry.
     """
-    _, cuts = ic.layers("alef_deletion_24_regular")
+    _, cuts = ic.layers("alef_deletion_24_filled")
     return cuts[0]
 
 
@@ -314,12 +314,12 @@ def sym_copy():
     """The copy mark this set already draws, reused rather than replaced.
 
     Fluent's own copy is two outlined sheets; at badge scale its 1.5-unit rings
-    fall to 0.4 and vanish, so `alef_copy_24_regular` cuts the sheets out solid
+    fall to 0.4 and vanish, so `alef_copy_24_filled` cuts the sheets out solid
     with badge ink between them instead. That adaptation is already the right
     drawing for a disc this size, so the link badge takes it rather than
     reducing Fluent's again and getting a different answer.
     """
-    return part("alef_copy_24_regular", 2)
+    return part("alef_copy_24_filled", 2)
 
 
 def sym_cross_mark():
@@ -474,7 +474,7 @@ def badged(base, kind, badge_scale=1.0):
     disc = badge()
     # Centred on the disc's own actual centre, not the fixed BADGE_CX/BADGE_CY
     # `place` used: those constants recorded where the disc used to sit before
-    # its own source (alef_copy_24_regular) was enlarged 20% in place, and the
+    # its own source (alef_copy_24_filled) was enlarged 20% in place, and the
     # corner-anchored scale that enlarged it also moved its centre - reading
     # the disc's current centre keeps the mark and the disc registered on each
     # other however the disc is drawn.
@@ -492,7 +492,7 @@ def badged(base, kind, badge_scale=1.0):
 def alef_badge(kind):
     """The alef, badged.
 
-    No `badge_scale` here: `alef_copy_24_regular` - the file `badge()` reads
+    No `badge_scale` here: `alef_copy_24_filled` - the file `badge()` reads
     the canonical disc from - already carries it enlarged 20% in its own
     source (it is one of the icons the owner asked to have a bigger badge,
     same as every other alef badge). Applying `ALEF_BADGE_SCALE` again here
@@ -997,7 +997,7 @@ def scroll_bars(art):
 # --------------------------------------------------------------------------
 # Two letters side by side
 # --------------------------------------------------------------------------
-# `alef_alef_24_regular`'s layout exactly - two letters 10.80 units wide at
+# `alef_alef_24_filled`'s layout exactly - two letters 10.80 units wide at
 # x 0.95 and x 12.25 - so every pair in the set sits at the same size and
 # rhythm. The Hebrew letter goes on the right, where a Hebrew reader starts.
 PAIR_LEFT, PAIR_RIGHT, PAIR_WIDTH = 0.95, 12.25, 10.80
@@ -1069,7 +1069,7 @@ def recipe(name):
 # silently overwrite the traced result if compose_sources.py were ever run
 # for them again.
 
-@recipe("alef_rashi_24_regular")
+@recipe("alef_rashi_24_filled")
 def _alef_rashi():
     """Widened and given a little more weight.
 
@@ -1085,9 +1085,9 @@ def _alef_rashi():
     would widen the letter twice. It refuses to run on a letter that is already
     wide, which is the state its own output leaves behind.
     """
-    a = glyph("alef_rashi_24_regular")
+    a = glyph("alef_rashi_24_filled")
     if a.size[0] > 11.5:
-        raise Restated("alef_rashi_24_regular is already widened (%.2f units "
+        raise Restated("alef_rashi_24_filled is already widened (%.2f units "
                        "across); rebuilding it would widen it again"
                        % a.size[0])
     return a.scale(1.22, 1.0, about=a.centre).grow(0.13), [], False
@@ -1101,8 +1101,8 @@ def _alef_half():
 # How much of the erosion is given back to the beit's back, over what span, and
 # how far the giving-back is eased in at each end.
 #
-# `beit_24_regular` was made by scaling the small beit inside
-# `beit_near_alef_24_regular` up to letter size and eroding it 0.45 units on
+# `beit_24_filled` was made by scaling the small beit inside
+# `beit_near_alef_24_filled` up to letter size and eroding it 0.45 units on
 # every flank - 0.90 off every stroke. The back could not afford it: it measured
 # 2.95 at the shoulder but 0.22 at y=16, a fifth of a pixel at 24 px. Restoring
 # exactly the 0.90 the erosion took puts the back back on the letterform's own
@@ -1123,25 +1123,25 @@ def _ink_across(art, y, x0, x1):
     return sum(c.bounds[2] - c.bounds[0] for c in ic.contours(strip))
 
 
-@recipe("alef_near_alef_stam_24_regular")
+@recipe("alef_near_alef_stam_24_filled")
 def _alef_near_stam():
     """The square alef facing the STA"M one."""
-    return pair(glyph("alef_24_filled"), glyph("alef_stam_24_regular")), [], False
+    return pair(glyph("alef_24_filled"), glyph("alef_stam_24_filled")), [], False
 
 
-@recipe("alef_near_alef_rashi_24_regular")
+@recipe("alef_near_alef_rashi_24_filled")
 def _alef_near_rashi():
     """The square alef facing the Rashi one."""
-    return pair(glyph("alef_24_filled"), glyph("alef_rashi_24_regular")), [], False
+    return pair(glyph("alef_24_filled"), glyph("alef_rashi_24_filled")), [], False
 
 
-@recipe("alef_latin_a_24_regular")
+@recipe("alef_latin_a_24_filled")
 def _alef_latin_a():
     """The alef facing a Latin A."""
     return pair(glyph("alef_24_filled"), latin_a()), [], False
 
 
-@recipe("beit_24_regular")
+@recipe("beit_24_filled")
 def _beit():
     """Give the beit's back its weight back, and nothing else.
 
@@ -1160,14 +1160,14 @@ def _beit():
     so what lands on the letter is one clean stroke edge from the corner under
     the bar down into the base.
     """
-    art = glyph("beit_24_regular")
+    art = glyph("beit_24_filled")
     # Guard on the defect itself - the ink across the back at mid-height -
     # rather than on "is there any thin ink left". There always is: the base's
     # terminals are cut on a slant, so they taper to a point and answer that
     # question yes however often this is run.
     waist = _ink_across(art, 15.0, 14.0, 20.0)
     if waist > 1.00:
-        raise Restated("beit_24_regular's back already measures %.2f units at "
+        raise Restated("beit_24_filled's back already measures %.2f units at "
                        "mid-height" % waist)
     return art.pad_left_edge(BEIT_TOP, BEIT_FOOT, 14.0, 20.0,
                              BEIT_RESTORE, BEIT_EASE), [], False
@@ -1846,15 +1846,15 @@ RECIPES["otzaria_icon_24_regular"] = steps_for("otzaria_icon_24_regular",
 
 
 
-for _kind, _name in [("scissors", "alef_scissors_24_regular"),
-                     ("lips", "alef_lips_24_regular"),
-                     ("marker", "alef_marker_24_regular"),
-                     ("eye", "alef_eye_24_regular"),
-                     ("eraser", "alef_with_eraser_24_regular"),
-                     ("exclamation", "alef_with_exclamation_24_regular"),
-                     ("plus", "alef_addition_24_regular"),
-                     ("lock", "alef_lock_24_regular"),
-                     ("crown", "alef_crown_24_regular")]:
+for _kind, _name in [("scissors", "alef_scissors_24_filled"),
+                     ("lips", "alef_lips_24_filled"),
+                     ("marker", "alef_marker_24_filled"),
+                     ("eye", "alef_eye_24_filled"),
+                     ("eraser", "alef_with_eraser_24_filled"),
+                     ("exclamation", "alef_with_exclamation_24_filled"),
+                     ("plus", "alef_addition_24_filled"),
+                     ("lock", "alef_lock_24_filled"),
+                     ("crown", "alef_crown_24_filled")]:
     RECIPES[_name] = alef_badge(_kind)
 
 for _kind, _name in [("copy", "link_copy_24_regular"),
@@ -1871,6 +1871,100 @@ for _kind, _name in [("copy", "link_copy_24_regular"),
                      ("book_empty", "link_book_empty_24_regular"),
                      ("exclamation", "link_book_exclamation_24_regular")]:
     RECIPES[_name] = link_badge(_kind)
+
+
+# --------------------------------------------------------------------------
+# The letters: a solid `_filled` and an outlined `_regular`
+# --------------------------------------------------------------------------
+# Every letter icon was drawn as a solid body and filed as `_regular`, so the
+# whole alef/beit/tet family had a "regular" that was a filled icon - and no
+# filled twin to select. The solid drawings now live under `_filled`, exactly as
+# they were, and the `_regular` is derived from them here.
+#
+# A solid letter turns into an outline one the way `alef_24_regular` is already
+# drawn: the letter's own boundary, kept inside the shape so the silhouette (and
+# with it the icon's size) does not move. Strokes thinner than two lines come
+# through solid, which is right - the hairlines of a letter, a dot, a numeral
+# stay readable instead of dissolving into a pair of parallel threads.
+LETTER_LINE = 0.50
+
+# A badge on an outlined letter is a ring with its mark drawn as ink inside it -
+# the same pairing the book family uses (`book_add_24_regular`'s plus sits in an
+# outlined circle, `book_add_24_filled`'s is knocked out of a solid one). The
+# ring is a little heavier than the letter's own line because it carries the
+# badge, the gap is what keeps the letter's foot from running into it, and the
+# air is what keeps the mark off the ring.
+BADGE_RING = 0.90
+BADGE_RING_GAP = 0.55
+BADGE_RING_AIR = 0.50
+
+# Which recipe supplied the Fluent artwork a derived icon inherits, so that its
+# provenance follows the icon it was derived from rather than resetting to
+# "custom".
+PROVENANCE_OF = {}
+
+
+def letter_outline(art):
+    return art.deburr().outlined(LETTER_LINE, inside=True)
+
+
+def ring_badge(letter, disc, mark):
+    """An outlined `letter` carrying a ring badge: the letter is cut back from
+    the disc by BADGE_RING_GAP, the disc becomes a ring, and `mark` - which the
+    solid icon knocks out of its disc - is drawn as ink inside it, brought down
+    to fit within the ring."""
+    inner = disc.radius() - BADGE_RING
+    ring = disc.outlined(BADGE_RING, inside=True)
+    ink = mark.fit_radius(inner - BADGE_RING_AIR, about=disc.centre)
+    return (letter_outline(letter) - disc.grow(BADGE_RING_GAP)) | ring | ink
+
+
+def _split_badge(filled):
+    """(letter, disc, mark) of a badged letter icon, from its solid source.
+
+    The mark is whatever the source cuts out. The disc is the second solid when
+    the source keeps it as its own path, and otherwise the canonical badge disc,
+    which is what every composed alef badge is built on.
+    """
+    solids, cuts = ic.layers(filled)
+    mark = Art()
+    for c in cuts:
+        mark = mark | c
+    disc = min(solids, key=lambda s: s.area) if len(solids) == 2 else badge()
+    return alef_solid(), disc, mark
+
+
+def outline_recipe(filled, badged_letter=False):
+    def build():
+        if badged_letter:
+            letter, disc, mark = _split_badge(filled)
+            return ring_badge(letter, disc, mark), [], False
+        return letter_outline(glyph(filled)), [], False
+    return build
+
+
+# The letter icons whose badge is a disc with a mark in it, and the ones that
+# are only letters (a numeral, a second letter, a pen, a dot count as part of
+# the letter and take the same outline).
+LETTER_BADGED = (
+    "alef_addition", "alef_copy", "alef_crown", "alef_deletion", "alef_eye",
+    "alef_lips", "alef_lock", "alef_marker", "alef_scissors",
+    "alef_with_eraser", "alef_with_exclamation", "alef_with_information",
+)
+LETTER_PLAIN = (
+    "alef_1", "alef_2", "alef_3", "alef_alef", "alef_behind_alef",
+    "alef_latin_a", "alef_near_alef", "alef_near_alef_rashi",
+    "alef_near_alef_stam", "alef_rashi", "alef_stam", "alef_with_flavors",
+    "alef_with_punctuation", "alef_with_score", "alef_writing", "beit",
+    "beit_behind_alef", "beit_near_alef", "tet", "tet_behind_tet",
+    "tet_near_tet", "tet_tet",
+)
+
+for _letter in LETTER_PLAIN + LETTER_BADGED:
+    _filled, _regular = _letter + "_24_filled", _letter + "_24_regular"
+    RECIPES[_regular] = outline_recipe(_filled, _letter in LETTER_BADGED)
+    DEPENDS[_regular] = _filled
+    PROVENANCE_OF[_regular] = _filled
 
 
 # --------------------------------------------------------------------------
@@ -1994,7 +2088,7 @@ def main(argv):
                 print("%-40s skipped: %s" % (n + ".svg", e))
                 skipped += 1
             continue
-        used[n] = list(_USED)
+        used[n] = list(_USED) + used.get(PROVENANCE_OF.get(n), [])
         if record_only:
             continue
         path = write(n, solid, cuts, preserve_overlap=overlap)

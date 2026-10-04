@@ -25,3 +25,8 @@ The following entries are derivative works and retain the provenance recorded in
 - `link_add_24_regular` — based on `microsoft/fluentui-system-icons: link_dismiss_24_regular (fluentui_system_icons 1.1.273)` at `pub:fluentui_system_icons@1.1.273`; license: MIT AND GPL-3.0-only.
 - `link_book_empty_24_regular` — based on `microsoft/fluentui-system-icons: link_dismiss_24_regular (fluentui_system_icons 1.1.273)` at `pub:fluentui_system_icons@1.1.273`; license: MIT AND GPL-3.0-only.
 - `link_book_exclamation_24_regular` — based on `microsoft/fluentui-system-icons: link_dismiss_24_regular (fluentui_system_icons 1.1.273)` at `pub:fluentui_system_icons@1.1.273`; license: MIT AND GPL-3.0-only.
+- `alef_eye_24_filled` — based on `microsoft/fluentui-system-icons: eye_24_filled (fluentui_system_icons 1.1.273)` at `pub:fluentui_system_icons@1.1.273`; license: MIT AND GPL-3.0-only.
+- `alef_latin_a_24_filled` — based on `microsoft/fluentui-system-icons: local_language_24_filled (fluentui_system_icons 1.1.273)` at `pub:fluentui_system_icons@1.1.273`; license: MIT AND GPL-3.0-only.
+- `alef_marker_24_filled` — based on `microsoft/fluentui-system-icons: highlight_24_filled (fluentui_system_icons 1.1.273)` at `pub:fluentui_system_icons@1.1.273`; license: MIT AND GPL-3.0-only.
+- `alef_scissors_24_filled` — based on `microsoft/fluentui-system-icons: cut_24_filled (fluentui_system_icons 1.1.273)` at `pub:fluentui_system_icons@1.1.273`; license: MIT AND GPL-3.0-only.
+- `alef_with_eraser_24_filled` — based on `microsoft/fluentui-system-icons: eraser_24_filled (fluentui_system_icons 1.1.273)` at `pub:fluentui_system_icons@1.1.273`; license: MIT AND GPL-3.0-only.

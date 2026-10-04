@@ -3015,3 +3015,513 @@ icons:
     author: Otzaria contributors
     license: GPL-3.0-only
     upstream_commit: null
+  - id: icon-0203
+    name: alef_1_24_filled
+    source: assets_src/svg/alef_1_24_filled.svg
+    codepoint: 0xe0c9
+    variant: filled
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: custom
+    based_on: null
+    author: Otzaria contributors
+    license: GPL-3.0-only
+    upstream_commit: null
+  - id: icon-0204
+    name: alef_2_24_filled
+    source: assets_src/svg/alef_2_24_filled.svg
+    codepoint: 0xe0ca
+    variant: filled
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: custom
+    based_on: null
+    author: Otzaria contributors
+    license: GPL-3.0-only
+    upstream_commit: null
+  - id: icon-0205
+    name: alef_3_24_filled
+    source: assets_src/svg/alef_3_24_filled.svg
+    codepoint: 0xe0cb
+    variant: filled
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: custom
+    based_on: null
+    author: Otzaria contributors
+    license: GPL-3.0-only
+    upstream_commit: null
+  - id: icon-0206
+    name: alef_addition_24_filled
+    source: assets_src/svg/alef_addition_24_filled.svg
+    codepoint: 0xe0cc
+    variant: filled
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: custom
+    based_on: null
+    author: Otzaria contributors
+    license: GPL-3.0-only
+    upstream_commit: null
+  - id: icon-0207
+    name: alef_alef_24_filled
+    source: assets_src/svg/alef_alef_24_filled.svg
+    codepoint: 0xe0cd
+    variant: filled
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: custom
+    based_on: null
+    author: Otzaria contributors
+    license: GPL-3.0-only
+    upstream_commit: null
+  - id: icon-0208
+    name: alef_behind_alef_24_filled
+    source: assets_src/svg/alef_behind_alef_24_filled.svg
+    codepoint: 0xe0ce
+    variant: filled
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: custom
+    based_on: null
+    author: Otzaria contributors
+    license: GPL-3.0-only
+    upstream_commit: null
+  - id: icon-0209
+    name: alef_copy_24_filled
+    source: assets_src/svg/alef_copy_24_filled.svg
+    codepoint: 0xe0cf
+    variant: filled
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: custom
+    based_on: null
+    author: Otzaria contributors
+    license: GPL-3.0-only
+    upstream_commit: null
+  - id: icon-0210
+    name: alef_crown_24_filled
+    source: assets_src/svg/alef_crown_24_filled.svg
+    codepoint: 0xe0d0
+    variant: filled
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: custom
+    based_on: null
+    author: Otzaria contributors
+    license: GPL-3.0-only
+    upstream_commit: null
+  - id: icon-0211
+    name: alef_deletion_24_filled
+    source: assets_src/svg/alef_deletion_24_filled.svg
+    codepoint: 0xe0d1
+    variant: filled
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: custom
+    based_on: null
+    author: Otzaria contributors
+    license: GPL-3.0-only
+    upstream_commit: null
+  - id: icon-0212
+    name: alef_eye_24_filled
+    source: assets_src/svg/alef_eye_24_filled.svg
+    codepoint: 0xe0d2
+    variant: filled
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: modified_fluent
+    based_on: 'microsoft/fluentui-system-icons: eye_24_filled (fluentui_system_icons 1.1.273)'
+    author: Otzaria contributors
+    license: MIT AND GPL-3.0-only
+    upstream_commit: pub:fluentui_system_icons@1.1.273
+  - id: icon-0213
+    name: alef_latin_a_24_filled
+    source: assets_src/svg/alef_latin_a_24_filled.svg
+    codepoint: 0xe0d3
+    variant: filled
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: modified_fluent
+    based_on: 'microsoft/fluentui-system-icons: local_language_24_filled (fluentui_system_icons 1.1.273)'
+    author: Otzaria contributors
+    license: MIT AND GPL-3.0-only
+    upstream_commit: pub:fluentui_system_icons@1.1.273
+  - id: icon-0214
+    name: alef_lips_24_filled
+    source: assets_src/svg/alef_lips_24_filled.svg
+    codepoint: 0xe0d4
+    variant: filled
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: custom
+    based_on: null
+    author: Otzaria contributors
+    license: GPL-3.0-only
+    upstream_commit: null
+  - id: icon-0215
+    name: alef_lock_24_filled
+    source: assets_src/svg/alef_lock_24_filled.svg
+    codepoint: 0xe0d5
+    variant: filled
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: custom
+    based_on: null
+    author: Otzaria contributors
+    license: GPL-3.0-only
+    upstream_commit: null
+  - id: icon-0216
+    name: alef_marker_24_filled
+    source: assets_src/svg/alef_marker_24_filled.svg
+    codepoint: 0xe0d6
+    variant: filled
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: modified_fluent
+    based_on: 'microsoft/fluentui-system-icons: highlight_24_filled (fluentui_system_icons 1.1.273)'
+    author: Otzaria contributors
+    license: MIT AND GPL-3.0-only
+    upstream_commit: pub:fluentui_system_icons@1.1.273
+  - id: icon-0217
+    name: alef_near_alef_24_filled
+    source: assets_src/svg/alef_near_alef_24_filled.svg
+    codepoint: 0xe0d7
+    variant: filled
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: custom
+    based_on: null
+    author: Otzaria contributors
+    license: GPL-3.0-only
+    upstream_commit: null
+  - id: icon-0218
+    name: alef_near_alef_rashi_24_filled
+    source: assets_src/svg/alef_near_alef_rashi_24_filled.svg
+    codepoint: 0xe0d8
+    variant: filled
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: custom
+    based_on: null
+    author: Otzaria contributors
+    license: GPL-3.0-only
+    upstream_commit: null
+  - id: icon-0219
+    name: alef_near_alef_stam_24_filled
+    source: assets_src/svg/alef_near_alef_stam_24_filled.svg
+    codepoint: 0xe0d9
+    variant: filled
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: custom
+    based_on: null
+    author: Otzaria contributors
+    license: GPL-3.0-only
+    upstream_commit: null
+  - id: icon-0220
+    name: alef_rashi_24_filled
+    source: assets_src/svg/alef_rashi_24_filled.svg
+    codepoint: 0xe0da
+    variant: filled
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: custom
+    based_on: null
+    author: Otzaria contributors
+    license: GPL-3.0-only
+    upstream_commit: null
+  - id: icon-0221
+    name: alef_scissors_24_filled
+    source: assets_src/svg/alef_scissors_24_filled.svg
+    codepoint: 0xe0db
+    variant: filled
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: modified_fluent
+    based_on: 'microsoft/fluentui-system-icons: cut_24_filled (fluentui_system_icons 1.1.273)'
+    author: Otzaria contributors
+    license: MIT AND GPL-3.0-only
+    upstream_commit: pub:fluentui_system_icons@1.1.273
+  - id: icon-0222
+    name: alef_stam_24_filled
+    source: assets_src/svg/alef_stam_24_filled.svg
+    codepoint: 0xe0dc
+    variant: filled
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: custom
+    based_on: null
+    author: Otzaria contributors
+    license: GPL-3.0-only
+    upstream_commit: null
+  - id: icon-0223
+    name: alef_with_eraser_24_filled
+    source: assets_src/svg/alef_with_eraser_24_filled.svg
+    codepoint: 0xe0dd
+    variant: filled
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: modified_fluent
+    based_on: 'microsoft/fluentui-system-icons: eraser_24_filled (fluentui_system_icons 1.1.273)'
+    author: Otzaria contributors
+    license: MIT AND GPL-3.0-only
+    upstream_commit: pub:fluentui_system_icons@1.1.273
+  - id: icon-0224
+    name: alef_with_exclamation_24_filled
+    source: assets_src/svg/alef_with_exclamation_24_filled.svg
+    codepoint: 0xe0de
+    variant: filled
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: custom
+    based_on: null
+    author: Otzaria contributors
+    license: GPL-3.0-only
+    upstream_commit: null
+  - id: icon-0225
+    name: alef_with_flavors_24_filled
+    source: assets_src/svg/alef_with_flavors_24_filled.svg
+    codepoint: 0xe0df
+    variant: filled
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: custom
+    based_on: null
+    author: Otzaria contributors
+    license: GPL-3.0-only
+    upstream_commit: null
+  - id: icon-0226
+    name: alef_with_information_24_filled
+    source: assets_src/svg/alef_with_information_24_filled.svg
+    codepoint: 0xe0e0
+    variant: filled
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: custom
+    based_on: null
+    author: Otzaria contributors
+    license: GPL-3.0-only
+    upstream_commit: null
+  - id: icon-0227
+    name: alef_with_punctuation_24_filled
+    source: assets_src/svg/alef_with_punctuation_24_filled.svg
+    codepoint: 0xe0e1
+    variant: filled
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: custom
+    based_on: null
+    author: Otzaria contributors
+    license: GPL-3.0-only
+    upstream_commit: null
+  - id: icon-0228
+    name: alef_with_score_24_filled
+    source: assets_src/svg/alef_with_score_24_filled.svg
+    codepoint: 0xe0e2
+    variant: filled
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: custom
+    based_on: null
+    author: Otzaria contributors
+    license: GPL-3.0-only
+    upstream_commit: null
+  - id: icon-0229
+    name: alef_writing_24_filled
+    source: assets_src/svg/alef_writing_24_filled.svg
+    codepoint: 0xe0e3
+    variant: filled
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: custom
+    based_on: null
+    author: Otzaria contributors
+    license: GPL-3.0-only
+    upstream_commit: null
+  - id: icon-0230
+    name: beit_24_filled
+    source: assets_src/svg/beit_24_filled.svg
+    codepoint: 0xe0e4
+    variant: filled
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: custom
+    based_on: null
+    author: Otzaria contributors
+    license: GPL-3.0-only
+    upstream_commit: null
+  - id: icon-0231
+    name: beit_behind_alef_24_filled
+    source: assets_src/svg/beit_behind_alef_24_filled.svg
+    codepoint: 0xe0e5
+    variant: filled
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: custom
+    based_on: null
+    author: Otzaria contributors
+    license: GPL-3.0-only
+    upstream_commit: null
+  - id: icon-0232
+    name: beit_near_alef_24_filled
+    source: assets_src/svg/beit_near_alef_24_filled.svg
+    codepoint: 0xe0e6
+    variant: filled
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: custom
+    based_on: null
+    author: Otzaria contributors
+    license: GPL-3.0-only
+    upstream_commit: null
+  - id: icon-0233
+    name: tet_24_filled
+    source: assets_src/svg/tet_24_filled.svg
+    codepoint: 0xe0e7
+    variant: filled
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: custom
+    based_on: null
+    author: Otzaria contributors
+    license: GPL-3.0-only
+    upstream_commit: null
+  - id: icon-0234
+    name: tet_behind_tet_24_filled
+    source: assets_src/svg/tet_behind_tet_24_filled.svg
+    codepoint: 0xe0e8
+    variant: filled
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: custom
+    based_on: null
+    author: Otzaria contributors
+    license: GPL-3.0-only
+    upstream_commit: null
+  - id: icon-0235
+    name: tet_near_tet_24_filled
+    source: assets_src/svg/tet_near_tet_24_filled.svg
+    codepoint: 0xe0e9
+    variant: filled
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: custom
+    based_on: null
+    author: Otzaria contributors
+    license: GPL-3.0-only
+    upstream_commit: null
+  - id: icon-0236
+    name: tet_tet_24_filled
+    source: assets_src/svg/tet_tet_24_filled.svg
+    codepoint: 0xe0ea
+    variant: filled
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: custom
+    based_on: null
+    author: Otzaria contributors
+    license: GPL-3.0-only
+    upstream_commit: null

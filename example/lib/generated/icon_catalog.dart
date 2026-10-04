@@ -320,4 +320,51 @@ const iconCatalog = <GalleryIcon>[
       'book_exclamation_24_filled', OtzariaIcons.book_exclamation_24_filled),
   GalleryIcon(
       'book_exclamation_24_regular', OtzariaIcons.book_exclamation_24_regular),
+  GalleryIcon('alef_1_24_filled', OtzariaIcons.alef_1_24_filled),
+  GalleryIcon('alef_2_24_filled', OtzariaIcons.alef_2_24_filled),
+  GalleryIcon('alef_3_24_filled', OtzariaIcons.alef_3_24_filled),
+  GalleryIcon('alef_addition_24_filled', OtzariaIcons.alef_addition_24_filled),
+  GalleryIcon('alef_alef_24_filled', OtzariaIcons.alef_alef_24_filled),
+  GalleryIcon(
+      'alef_behind_alef_24_filled', OtzariaIcons.alef_behind_alef_24_filled),
+  GalleryIcon('alef_copy_24_filled', OtzariaIcons.alef_copy_24_filled),
+  GalleryIcon('alef_crown_24_filled', OtzariaIcons.alef_crown_24_filled),
+  GalleryIcon('alef_deletion_24_filled', OtzariaIcons.alef_deletion_24_filled),
+  GalleryIcon('alef_eye_24_filled', OtzariaIcons.alef_eye_24_filled),
+  GalleryIcon('alef_latin_a_24_filled', OtzariaIcons.alef_latin_a_24_filled),
+  GalleryIcon('alef_lips_24_filled', OtzariaIcons.alef_lips_24_filled),
+  GalleryIcon('alef_lock_24_filled', OtzariaIcons.alef_lock_24_filled),
+  GalleryIcon('alef_marker_24_filled', OtzariaIcons.alef_marker_24_filled),
+  GalleryIcon(
+      'alef_near_alef_24_filled', OtzariaIcons.alef_near_alef_24_filled),
+  GalleryIcon('alef_near_alef_rashi_24_filled',
+      OtzariaIcons.alef_near_alef_rashi_24_filled),
+  GalleryIcon('alef_near_alef_stam_24_filled',
+      OtzariaIcons.alef_near_alef_stam_24_filled),
+  GalleryIcon('alef_rashi_24_filled', OtzariaIcons.alef_rashi_24_filled),
+  GalleryIcon('alef_scissors_24_filled', OtzariaIcons.alef_scissors_24_filled),
+  GalleryIcon('alef_stam_24_filled', OtzariaIcons.alef_stam_24_filled),
+  GalleryIcon(
+      'alef_with_eraser_24_filled', OtzariaIcons.alef_with_eraser_24_filled),
+  GalleryIcon('alef_with_exclamation_24_filled',
+      OtzariaIcons.alef_with_exclamation_24_filled),
+  GalleryIcon(
+      'alef_with_flavors_24_filled', OtzariaIcons.alef_with_flavors_24_filled),
+  GalleryIcon('alef_with_information_24_filled',
+      OtzariaIcons.alef_with_information_24_filled),
+  GalleryIcon('alef_with_punctuation_24_filled',
+      OtzariaIcons.alef_with_punctuation_24_filled),
+  GalleryIcon(
+      'alef_with_score_24_filled', OtzariaIcons.alef_with_score_24_filled),
+  GalleryIcon('alef_writing_24_filled', OtzariaIcons.alef_writing_24_filled),
+  GalleryIcon('beit_24_filled', OtzariaIcons.beit_24_filled),
+  GalleryIcon(
+      'beit_behind_alef_24_filled', OtzariaIcons.beit_behind_alef_24_filled),
+  GalleryIcon(
+      'beit_near_alef_24_filled', OtzariaIcons.beit_near_alef_24_filled),
+  GalleryIcon('tet_24_filled', OtzariaIcons.tet_24_filled),
+  GalleryIcon(
+      'tet_behind_tet_24_filled', OtzariaIcons.tet_behind_tet_24_filled),
+  GalleryIcon('tet_near_tet_24_filled', OtzariaIcons.tet_near_tet_24_filled),
+  GalleryIcon('tet_tet_24_filled', OtzariaIcons.tet_tet_24_filled),
 ];
