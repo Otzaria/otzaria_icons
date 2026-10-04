@@ -1031,8 +1031,8 @@ abstract final class OtzariaIcons {
     fontPackage: fontPackage,
   );
 
-  /// `alef_half_filled_24_regular.svg`
-  static const IconData alef_half_filled_24_regular = IconData(
+  /// `alef_mix_24_regular.svg`
+  static const IconData alef_mix_24_regular = IconData(
     0xe092,
     fontFamily: fontFamily,
     fontPackage: fontPackage,
@@ -1808,6 +1808,13 @@ abstract final class OtzariaIcons {
     fontPackage: fontPackage,
   );
 
+  /// `alef_mix_24_filled.svg`
+  static const IconData alef_mix_24_filled = IconData(
+    0xe101,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
   /// Every icon in this library, keyed by its name.
   static const Map<String, IconData> allIcons = <String, IconData>{
     'book_24_filled': book_24_filled,
@@ -1956,7 +1963,7 @@ abstract final class OtzariaIcons {
     'search_in_the_quote_24_regular': search_in_the_quote_24_regular,
     'alef_addition_24_regular': alef_addition_24_regular,
     'alef_eye_24_regular': alef_eye_24_regular,
-    'alef_half_filled_24_regular': alef_half_filled_24_regular,
+    'alef_mix_24_regular': alef_mix_24_regular,
     'alef_lips_24_regular': alef_lips_24_regular,
     'alef_marker_24_regular': alef_marker_24_regular,
     'alef_scissors_24_regular': alef_scissors_24_regular,
@@ -2067,5 +2074,6 @@ abstract final class OtzariaIcons {
     'yoma_deilula_24_filled': yoma_deilula_24_filled,
     'text_continuous_ltr_24_filled': text_continuous_ltr_24_filled,
     'text_continuous_ltr_24_regular': text_continuous_ltr_24_regular,
+    'alef_mix_24_filled': alef_mix_24_filled,
   };
 }

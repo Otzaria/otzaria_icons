@@ -2191,8 +2191,8 @@ icons:
     license: MIT AND GPL-3.0-only
     upstream_commit: pub:fluentui_system_icons@1.1.273
   - id: icon-0150
-    name: alef_half_filled_24_regular
-    source: assets_src/svg/alef_half_filled_24_regular.svg
+    name: alef_mix_24_regular
+    source: assets_src/svg/alef_mix_24_regular.svg
     codepoint: 0xe092
     variant: regular
     size: 24
@@ -3855,3 +3855,18 @@ icons:
     author: Otzaria contributors
     license: MIT AND GPL-3.0-only
     upstream_commit: pub:fluentui_system_icons@1.1.273
+  - id: icon-0261
+    name: alef_mix_24_filled
+    source: assets_src/svg/alef_mix_24_filled.svg
+    codepoint: 0xe101
+    variant: filled
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: custom
+    based_on: null
+    author: Otzaria contributors
+    license: GPL-3.0-only
+    upstream_commit: null

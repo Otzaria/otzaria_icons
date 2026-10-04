@@ -567,7 +567,7 @@ def link_badge(kind, filled=False):
 # --------------------------------------------------------------------------
 # The alef in two weights at once
 # --------------------------------------------------------------------------
-def alef_half():
+def alef_half(swap=False):
     """alef_24_filled on one side of a falling diagonal, alef_24_regular on the
     other.
 
@@ -593,7 +593,8 @@ def alef_half():
         edge = 200 * sign
         return polygon([(k + 50, -50), (k - 60, 60), (edge, 60), (edge, -50)])
 
-    return (filled & half(+1)) | (outline & half(-1))
+    sign = -1 if swap else 1
+    return (filled & half(sign)) | (outline & half(-sign))
 
 
 # --------------------------------------------------------------------------
@@ -1098,9 +1099,16 @@ def _alef_rashi():
     return a.scale(1.22, 1.0, about=a.centre).grow(0.13), [], False
 
 
-@recipe("alef_half_filled_24_regular")
+@recipe("alef_mix_24_regular")
 def _alef_half():
     return alef_half(), [], False
+
+
+@recipe("alef_mix_24_filled")
+def _alef_mix_filled():
+    """The same letter cut along the same diagonal with the weights swapped:
+    solid above, outlined below."""
+    return alef_half(swap=True), [], False
 
 
 # How much of the erosion is given back to the beit's back, over what span, and

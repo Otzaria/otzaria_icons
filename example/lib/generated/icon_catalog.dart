@@ -230,8 +230,7 @@ const iconCatalog = <GalleryIcon>[
   GalleryIcon(
       'alef_addition_24_regular', OtzariaIcons.alef_addition_24_regular),
   GalleryIcon('alef_eye_24_regular', OtzariaIcons.alef_eye_24_regular),
-  GalleryIcon(
-      'alef_half_filled_24_regular', OtzariaIcons.alef_half_filled_24_regular),
+  GalleryIcon('alef_mix_24_regular', OtzariaIcons.alef_mix_24_regular),
   GalleryIcon('alef_lips_24_regular', OtzariaIcons.alef_lips_24_regular),
   GalleryIcon('alef_marker_24_regular', OtzariaIcons.alef_marker_24_regular),
   GalleryIcon(
@@ -397,4 +396,5 @@ const iconCatalog = <GalleryIcon>[
       OtzariaIcons.text_continuous_ltr_24_filled),
   GalleryIcon('text_continuous_ltr_24_regular',
       OtzariaIcons.text_continuous_ltr_24_regular),
+  GalleryIcon('alef_mix_24_filled', OtzariaIcons.alef_mix_24_filled),
 ];
