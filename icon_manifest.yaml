@@ -1171,8 +1171,8 @@ icons:
     license: GPL-3.0-only
     upstream_commit: null
   - id: icon-0080
-    name: clipboard_text_24_filled
-    source: assets_src/svg/clipboard_text_24_filled.svg
+    name: clipboard_text_rtl_24_filled
+    source: assets_src/svg/clipboard_text_rtl_24_filled.svg
     codepoint: 0xe04e
     variant: filled
     size: 24

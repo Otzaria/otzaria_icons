@@ -131,8 +131,8 @@ const iconCatalog = <GalleryIcon>[
       OtzariaIcons.clipboard_task_list_24_filled),
   GalleryIcon('clipboard_task_list_24_regular',
       OtzariaIcons.clipboard_task_list_24_regular),
-  GalleryIcon(
-      'clipboard_text_24_filled', OtzariaIcons.clipboard_text_24_filled),
+  GalleryIcon('clipboard_text_rtl_24_filled',
+      OtzariaIcons.clipboard_text_rtl_24_filled),
   GalleryIcon('clipboard_text_rtl_24_regular',
       OtzariaIcons.clipboard_text_rtl_24_regular),
   GalleryIcon('icon_x_24_regular', OtzariaIcons.icon_x_24_regular),

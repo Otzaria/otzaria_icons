@@ -555,8 +555,8 @@ abstract final class OtzariaIcons {
     fontPackage: fontPackage,
   );
 
-  /// `clipboard_text_24_filled.svg`
-  static const IconData clipboard_text_24_filled = IconData(
+  /// `clipboard_text_rtl_24_filled.svg`
+  static const IconData clipboard_text_rtl_24_filled = IconData(
     0xe04e,
     fontFamily: fontFamily,
     fontPackage: fontPackage,
@@ -1867,7 +1867,7 @@ abstract final class OtzariaIcons {
     'calendar_24_regular': calendar_24_regular,
     'clipboard_task_list_24_filled': clipboard_task_list_24_filled,
     'clipboard_task_list_24_regular': clipboard_task_list_24_regular,
-    'clipboard_text_24_filled': clipboard_text_24_filled,
+    'clipboard_text_rtl_24_filled': clipboard_text_rtl_24_filled,
     'clipboard_text_rtl_24_regular': clipboard_text_rtl_24_regular,
     'icon_x_24_regular': icon_x_24_regular,
     'otzaria_icon_2_page_24_regular': otzaria_icon_2_page_24_regular,

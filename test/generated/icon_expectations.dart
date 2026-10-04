@@ -94,7 +94,7 @@ const generatedIconExpectations = <String, IconData>{
   'calendar_24_regular': OtzariaIcons.calendar_24_regular,
   'clipboard_task_list_24_filled': OtzariaIcons.clipboard_task_list_24_filled,
   'clipboard_task_list_24_regular': OtzariaIcons.clipboard_task_list_24_regular,
-  'clipboard_text_24_filled': OtzariaIcons.clipboard_text_24_filled,
+  'clipboard_text_rtl_24_filled': OtzariaIcons.clipboard_text_rtl_24_filled,
   'clipboard_text_rtl_24_regular': OtzariaIcons.clipboard_text_rtl_24_regular,
   'icon_x_24_regular': OtzariaIcons.icon_x_24_regular,
   'otzaria_icon_2_page_24_regular': OtzariaIcons.otzaria_icon_2_page_24_regular,
