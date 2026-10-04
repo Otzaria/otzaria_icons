@@ -667,15 +667,15 @@ abstract final class OtzariaIcons {
     fontPackage: fontPackage,
   );
 
-  /// `text_continuous_24_filled.svg`
-  static const IconData text_continuous_24_filled = IconData(
+  /// `text_continuous_rtl_24_filled.svg`
+  static const IconData text_continuous_rtl_24_filled = IconData(
     0xe05e,
     fontFamily: fontFamily,
     fontPackage: fontPackage,
   );
 
-  /// `text_continuous_24_regular.svg`
-  static const IconData text_continuous_24_regular = IconData(
+  /// `text_continuous_rtl_24_regular.svg`
+  static const IconData text_continuous_rtl_24_regular = IconData(
     0xe05f,
     fontFamily: fontFamily,
     fontPackage: fontPackage,
@@ -1794,6 +1794,20 @@ abstract final class OtzariaIcons {
     fontPackage: fontPackage,
   );
 
+  /// `text_continuous_ltr_24_filled.svg`
+  static const IconData text_continuous_ltr_24_filled = IconData(
+    0xe0ff,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `text_continuous_ltr_24_regular.svg`
+  static const IconData text_continuous_ltr_24_regular = IconData(
+    0xe100,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
   /// Every icon in this library, keyed by its name.
   static const Map<String, IconData> allIcons = <String, IconData>{
     'book_24_filled': book_24_filled,
@@ -1890,8 +1904,8 @@ abstract final class OtzariaIcons {
     'task_list_square_24_regular': task_list_square_24_regular,
     'text_bullet_list_24_filled': text_bullet_list_24_filled,
     'text_bullet_list_24_regular': text_bullet_list_24_regular,
-    'text_continuous_24_filled': text_continuous_24_filled,
-    'text_continuous_24_regular': text_continuous_24_regular,
+    'text_continuous_rtl_24_filled': text_continuous_rtl_24_filled,
+    'text_continuous_rtl_24_regular': text_continuous_rtl_24_regular,
     'text_number_list_24_filled': text_number_list_24_filled,
     'text_number_list_24_regular': text_number_list_24_regular,
     'torah_scroll_24_regular': torah_scroll_24_regular,
@@ -2051,5 +2065,7 @@ abstract final class OtzariaIcons {
     'text_alef_bet_list_24_filled': text_alef_bet_list_24_filled,
     'icon_x_24_filled': icon_x_24_filled,
     'yoma_deilula_24_filled': yoma_deilula_24_filled,
+    'text_continuous_ltr_24_filled': text_continuous_ltr_24_filled,
+    'text_continuous_ltr_24_regular': text_continuous_ltr_24_regular,
   };
 }

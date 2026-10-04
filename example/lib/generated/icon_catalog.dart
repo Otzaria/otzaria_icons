@@ -156,10 +156,10 @@ const iconCatalog = <GalleryIcon>[
       'text_bullet_list_24_filled', OtzariaIcons.text_bullet_list_24_filled),
   GalleryIcon(
       'text_bullet_list_24_regular', OtzariaIcons.text_bullet_list_24_regular),
-  GalleryIcon(
-      'text_continuous_24_filled', OtzariaIcons.text_continuous_24_filled),
-  GalleryIcon(
-      'text_continuous_24_regular', OtzariaIcons.text_continuous_24_regular),
+  GalleryIcon('text_continuous_rtl_24_filled',
+      OtzariaIcons.text_continuous_rtl_24_filled),
+  GalleryIcon('text_continuous_rtl_24_regular',
+      OtzariaIcons.text_continuous_rtl_24_regular),
   GalleryIcon(
       'text_number_list_24_filled', OtzariaIcons.text_number_list_24_filled),
   GalleryIcon(
@@ -393,4 +393,8 @@ const iconCatalog = <GalleryIcon>[
       OtzariaIcons.text_alef_bet_list_24_filled),
   GalleryIcon('icon_x_24_filled', OtzariaIcons.icon_x_24_filled),
   GalleryIcon('yoma_deilula_24_filled', OtzariaIcons.yoma_deilula_24_filled),
+  GalleryIcon('text_continuous_ltr_24_filled',
+      OtzariaIcons.text_continuous_ltr_24_filled),
+  GalleryIcon('text_continuous_ltr_24_regular',
+      OtzariaIcons.text_continuous_ltr_24_regular),
 ];

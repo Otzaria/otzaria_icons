@@ -1411,8 +1411,8 @@ icons:
     license: GPL-3.0-only
     upstream_commit: null
   - id: icon-0096
-    name: text_continuous_24_filled
-    source: assets_src/svg/text_continuous_24_filled.svg
+    name: text_continuous_rtl_24_filled
+    source: assets_src/svg/text_continuous_rtl_24_filled.svg
     codepoint: 0xe05e
     variant: filled
     size: 24
@@ -1426,8 +1426,8 @@ icons:
     license: GPL-3.0-only
     upstream_commit: null
   - id: icon-0097
-    name: text_continuous_24_regular
-    source: assets_src/svg/text_continuous_24_regular.svg
+    name: text_continuous_rtl_24_regular
+    source: assets_src/svg/text_continuous_rtl_24_regular.svg
     codepoint: 0xe05f
     variant: regular
     size: 24
@@ -3825,3 +3825,33 @@ icons:
     author: Otzaria contributors
     license: GPL-3.0-only
     upstream_commit: null
+  - id: icon-0259
+    name: text_continuous_ltr_24_filled
+    source: assets_src/svg/text_continuous_ltr_24_filled.svg
+    codepoint: 0xe0ff
+    variant: filled
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: modified_fluent
+    based_on: 'microsoft/fluentui-system-icons: text_continuous_24_filled (fluentui_system_icons 1.1.273)'
+    author: Otzaria contributors
+    license: MIT AND GPL-3.0-only
+    upstream_commit: pub:fluentui_system_icons@1.1.273
+  - id: icon-0260
+    name: text_continuous_ltr_24_regular
+    source: assets_src/svg/text_continuous_ltr_24_regular.svg
+    codepoint: 0xe100
+    variant: regular
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: modified_fluent
+    based_on: 'microsoft/fluentui-system-icons: text_continuous_24_regular (fluentui_system_icons 1.1.273)'
+    author: Otzaria contributors
+    license: MIT AND GPL-3.0-only
+    upstream_commit: pub:fluentui_system_icons@1.1.273

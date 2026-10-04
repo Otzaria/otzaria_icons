@@ -1977,6 +1977,15 @@ def _yoma_filled():
 DEPENDS["yoma_deilula_24_filled"] = "yoma_deilula_24_regular"
 
 
+# `text_continuous` is Fluent's, taken as Fluent draws it, and it is the
+# left-to-right one: the indent chevron at the left, the rules flush right.
+# The set's own drawing is its mirror image and is kept as `_rtl`.
+for _v in ("regular", "filled"):
+    def _text_continuous_ltr(v=_v):
+        return use_fluent("text_continuous_24_" + v), [], False
+    RECIPES["text_continuous_ltr_24_" + _v] = _text_continuous_ltr
+
+
 # A list whose rows are text rules and letters. The filled variants of the other
 # lists (`text_bullet_list`, `text_number_list`) keep every rule's length and
 # take it from 1.5 to 2.0 units tall, and the marks beside them get a little

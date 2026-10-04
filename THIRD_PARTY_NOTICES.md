@@ -45,3 +45,5 @@ The following entries are derivative works and retain the provenance recorded in
 - `link_scissors_24_filled` — based on `microsoft/fluentui-system-icons: link_dismiss_24_filled, cut_24_filled (fluentui_system_icons 1.1.273)` at `pub:fluentui_system_icons@1.1.273`; license: MIT AND GPL-3.0-only.
 - `link_with_eraser_24_filled` — based on `microsoft/fluentui-system-icons: link_dismiss_24_filled, eraser_24_filled (fluentui_system_icons 1.1.273)` at `pub:fluentui_system_icons@1.1.273`; license: MIT AND GPL-3.0-only.
 - `link_with_information_24_filled` — based on `microsoft/fluentui-system-icons: link_dismiss_24_filled, info_24_filled (fluentui_system_icons 1.1.273)` at `pub:fluentui_system_icons@1.1.273`; license: MIT AND GPL-3.0-only.
+- `text_continuous_ltr_24_filled` — based on `microsoft/fluentui-system-icons: text_continuous_24_filled (fluentui_system_icons 1.1.273)` at `pub:fluentui_system_icons@1.1.273`; license: MIT AND GPL-3.0-only.
+- `text_continuous_ltr_24_regular` — based on `microsoft/fluentui-system-icons: text_continuous_24_regular (fluentui_system_icons 1.1.273)` at `pub:fluentui_system_icons@1.1.273`; license: MIT AND GPL-3.0-only.

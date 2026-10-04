@@ -112,8 +112,8 @@ const generatedIconExpectations = <String, IconData>{
   'task_list_square_24_regular': OtzariaIcons.task_list_square_24_regular,
   'text_bullet_list_24_filled': OtzariaIcons.text_bullet_list_24_filled,
   'text_bullet_list_24_regular': OtzariaIcons.text_bullet_list_24_regular,
-  'text_continuous_24_filled': OtzariaIcons.text_continuous_24_filled,
-  'text_continuous_24_regular': OtzariaIcons.text_continuous_24_regular,
+  'text_continuous_rtl_24_filled': OtzariaIcons.text_continuous_rtl_24_filled,
+  'text_continuous_rtl_24_regular': OtzariaIcons.text_continuous_rtl_24_regular,
   'text_number_list_24_filled': OtzariaIcons.text_number_list_24_filled,
   'text_number_list_24_regular': OtzariaIcons.text_number_list_24_regular,
   'torah_scroll_24_regular': OtzariaIcons.torah_scroll_24_regular,
@@ -294,4 +294,6 @@ const generatedIconExpectations = <String, IconData>{
   'text_alef_bet_list_24_filled': OtzariaIcons.text_alef_bet_list_24_filled,
   'icon_x_24_filled': OtzariaIcons.icon_x_24_filled,
   'yoma_deilula_24_filled': OtzariaIcons.yoma_deilula_24_filled,
+  'text_continuous_ltr_24_filled': OtzariaIcons.text_continuous_ltr_24_filled,
+  'text_continuous_ltr_24_regular': OtzariaIcons.text_continuous_ltr_24_regular,
 };
