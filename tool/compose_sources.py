@@ -1929,6 +1929,33 @@ for _base, _fit in [("booklet", False), ("booklet_empty", False),
     DEPENDS[_base + "_24_filled"] = _base + "_24_regular"
 
 
+# A list whose rows are text rules and letters. The filled variants of the other
+# lists (`text_bullet_list`, `text_number_list`) keep every rule's length and
+# take it from 1.5 to 2.0 units tall, and the marks beside them get a little
+# heavier; that is all the weight a list gains, and it is what this does.
+LIST_RULE_HEIGHT = 2.0
+LIST_MARK_GROW = 0.25
+
+
+@recipe("text_alef_bet_list_24_filled")
+def _alef_bet_list_filled():
+    art = glyph("text_alef_bet_list_24_regular")
+    out = Art()
+    for c in ic.contours(art):
+        x0, y0, x1, y1 = c.bounds
+        if x1 - x0 > 8:                       # a text rule
+            cy = (y0 + y1) / 2
+            out = out | round_rect(x0, cy - LIST_RULE_HEIGHT / 2, x1,
+                                   cy + LIST_RULE_HEIGHT / 2,
+                                   LIST_RULE_HEIGHT / 2)
+        else:                                 # a letter
+            out = out | c.grow(LIST_MARK_GROW)
+    return out, [], False
+
+
+DEPENDS["text_alef_bet_list_24_filled"] = "text_alef_bet_list_24_regular"
+
+
 # --------------------------------------------------------------------------
 # The letters: a solid `_filled` and an outlined `_regular`
 # --------------------------------------------------------------------------

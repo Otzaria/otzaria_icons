@@ -1787,6 +1787,13 @@ abstract final class OtzariaIcons {
     fontPackage: fontPackage,
   );
 
+  /// `text_alef_bet_list_24_filled.svg`
+  static const IconData text_alef_bet_list_24_filled = IconData(
+    0xe0fe,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
   /// Every icon in this library, keyed by its name.
   static const Map<String, IconData> allIcons = <String, IconData>{
     'book_24_filled': book_24_filled,
@@ -2043,5 +2050,6 @@ abstract final class OtzariaIcons {
     'clock_add_24_filled': clock_add_24_filled,
     'dependent_library_24_filled': dependent_library_24_filled,
     'torah_scroll_24_filled': torah_scroll_24_filled,
+    'text_alef_bet_list_24_filled': text_alef_bet_list_24_filled,
   };
 }

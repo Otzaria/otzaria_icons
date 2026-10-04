@@ -391,4 +391,6 @@ const iconCatalog = <GalleryIcon>[
   GalleryIcon(
       'dependent_library_24_filled', OtzariaIcons.dependent_library_24_filled),
   GalleryIcon('torah_scroll_24_filled', OtzariaIcons.torah_scroll_24_filled),
+  GalleryIcon('text_alef_bet_list_24_filled',
+      OtzariaIcons.text_alef_bet_list_24_filled),
 ];
