@@ -294,4 +294,5 @@ const generatedIconExpectations = <String, IconData>{
   'dependent_library_24_filled': OtzariaIcons.dependent_library_24_filled,
   'torah_scroll_24_filled': OtzariaIcons.torah_scroll_24_filled,
   'text_alef_bet_list_24_filled': OtzariaIcons.text_alef_bet_list_24_filled,
+  'icon_x_24_filled': OtzariaIcons.icon_x_24_filled,
 };

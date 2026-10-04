@@ -7,6 +7,7 @@ This file is generated from `icon_manifest.yaml` by `tool/generate.dart`.
 The following entries are derivative works and retain the provenance recorded in the manifest:
 
 - `alef_with_eraser_24_regular` — based on `microsoft/fluentui-system-icons: eraser_24_filled (fluentui_system_icons 1.1.273)` at `pub:fluentui_system_icons@1.1.273`; license: MIT AND GPL-3.0-only.
+- `icon_x_24_regular` — based on `microsoft/fluentui-system-icons: dismiss_24_regular (fluentui_system_icons 1.1.273)` at `pub:fluentui_system_icons@1.1.273`; license: MIT AND GPL-3.0-only.
 - `alef_eye_24_regular` — based on `microsoft/fluentui-system-icons: eye_24_filled (fluentui_system_icons 1.1.273)` at `pub:fluentui_system_icons@1.1.273`; license: MIT AND GPL-3.0-only.
 - `alef_marker_24_regular` — based on `microsoft/fluentui-system-icons: highlight_24_filled (fluentui_system_icons 1.1.273)` at `pub:fluentui_system_icons@1.1.273`; license: MIT AND GPL-3.0-only.
 - `alef_scissors_24_regular` — based on `microsoft/fluentui-system-icons: cut_24_filled (fluentui_system_icons 1.1.273)` at `pub:fluentui_system_icons@1.1.273`; license: MIT AND GPL-3.0-only.

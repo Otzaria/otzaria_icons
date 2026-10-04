@@ -1956,6 +1956,19 @@ def _alef_bet_list_filled():
 DEPENDS["text_alef_bet_list_24_filled"] = "text_alef_bet_list_24_regular"
 
 
+# `icon_x` was drawn with a 3.3-unit stroke - twice Fluent's 1.5 and heavier
+# than any other regular in the set - and filed as `_regular`. That is a filled
+# weight, so it moves to `_filled` untouched, and the regular is Fluent's own
+# `dismiss` at the same extent (it is the same mark), which is what a regular
+# cross is everywhere else.
+ICON_X_BOX = (2.0, 2.0, 22.0, 22.0)
+
+
+@recipe("icon_x_24_regular")
+def _icon_x_regular():
+    return use_fluent("dismiss_24_regular").fit(ICON_X_BOX), [], False
+
+
 # --------------------------------------------------------------------------
 # The letters: a solid `_filled` and an outlined `_regular`
 # --------------------------------------------------------------------------
