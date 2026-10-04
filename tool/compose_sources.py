@@ -514,8 +514,12 @@ def alef_badge(kind):
 # imitated: the link comes back with Fluent's own cut-back, and the disc is
 # Fluent's own circle in Fluent's own place.
 LINK_TEMPLATE = "link_dismiss_24_regular"
+# The filled twin of the same template: Fluent's own heavier chain, with the
+# same disc in the same place. A link is a stroke icon, so its filled variant is
+# the same drawing thickened - which is exactly what Fluent ships.
+LINK_TEMPLATE_FILLED = "link_dismiss_24_filled"
 
-def link_plate():
+def link_plate(template=LINK_TEMPLATE):
     """(cut-back link, disc, the mark in the disc) from Fluent's badged-link
     template.
 
@@ -525,7 +529,7 @@ def link_plate():
     it holds, and the link is everything else - which stays true if Fluent
     renumbers its outline.
     """
-    art = use_fluent(LINK_TEMPLATE)
+    art = use_fluent(template)
     cs = ic.contours(art)
     disc = max(cs, key=lambda c: c.area)
     held = [c for c in cs if c is not disc and (c & disc).area > 0.9 * c.area]
@@ -538,7 +542,7 @@ def link_plate():
     return link, disc, mark
 
 
-def link_badge(kind):
+def link_badge(kind, filled=False):
     """Fluent's link, cut back, with `kind` knocked out of Fluent's disc.
 
     The disc and its mark are enlarged 15% as one unit, anchored to the corner
@@ -547,7 +551,8 @@ def link_badge(kind):
     the set that is drawn as large as it will go is: see `fill_canvas`.
     """
     def build():
-        link, disc, _ = link_plate()
+        link, disc, _ = link_plate(LINK_TEMPLATE_FILLED if filled
+                                   else LINK_TEMPLATE)
         x0, y0, x1, y1 = disc.bounds
         mark = symbol(kind, disc.radius() * SYMBOL_REACH).centred_on(
             (x0 + x1) / 2, (y0 + y1) / 2)
@@ -1889,6 +1894,13 @@ for _kind, _name in [("copy", "link_copy_24_regular"),
                      ("book_empty", "link_book_empty_24_regular"),
                      ("exclamation", "link_book_exclamation_24_regular")]:
     RECIPES[_name] = link_badge(_kind)
+    RECIPES[_name.replace("_regular", "_filled")] = link_badge(_kind, True)
+
+
+@recipe("link_24_filled")
+def _link_plain_filled():
+    """`link_24_regular`'s drawing in Fluent's heavier weight, sized the same."""
+    return sized(use_fluent("link_24_filled")), [], False
 
 
 # --------------------------------------------------------------------------

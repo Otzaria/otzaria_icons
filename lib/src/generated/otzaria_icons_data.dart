@@ -1654,6 +1654,104 @@ abstract final class OtzariaIcons {
     fontPackage: fontPackage,
   );
 
+  /// `link_24_filled.svg`
+  static const IconData link_24_filled = IconData(
+    0xe0eb,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `link_add_24_filled.svg`
+  static const IconData link_add_24_filled = IconData(
+    0xe0ec,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `link_alef_24_filled.svg`
+  static const IconData link_alef_24_filled = IconData(
+    0xe0ed,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `link_book_empty_24_filled.svg`
+  static const IconData link_book_empty_24_filled = IconData(
+    0xe0ee,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `link_book_exclamation_24_filled.svg`
+  static const IconData link_book_exclamation_24_filled = IconData(
+    0xe0ef,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `link_copy_24_filled.svg`
+  static const IconData link_copy_24_filled = IconData(
+    0xe0f0,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `link_deletion_24_filled.svg`
+  static const IconData link_deletion_24_filled = IconData(
+    0xe0f1,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `link_document_24_filled.svg`
+  static const IconData link_document_24_filled = IconData(
+    0xe0f2,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `link_eye_24_filled.svg`
+  static const IconData link_eye_24_filled = IconData(
+    0xe0f3,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `link_marker_24_filled.svg`
+  static const IconData link_marker_24_filled = IconData(
+    0xe0f4,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `link_quote_24_filled.svg`
+  static const IconData link_quote_24_filled = IconData(
+    0xe0f5,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `link_scissors_24_filled.svg`
+  static const IconData link_scissors_24_filled = IconData(
+    0xe0f6,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `link_with_eraser_24_filled.svg`
+  static const IconData link_with_eraser_24_filled = IconData(
+    0xe0f7,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `link_with_information_24_filled.svg`
+  static const IconData link_with_information_24_filled = IconData(
+    0xe0f8,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
   /// Every icon in this library, keyed by its name.
   static const Map<String, IconData> allIcons = <String, IconData>{
     'book_24_filled': book_24_filled,
@@ -1891,5 +1989,19 @@ abstract final class OtzariaIcons {
     'tet_behind_tet_24_filled': tet_behind_tet_24_filled,
     'tet_near_tet_24_filled': tet_near_tet_24_filled,
     'tet_tet_24_filled': tet_tet_24_filled,
+    'link_24_filled': link_24_filled,
+    'link_add_24_filled': link_add_24_filled,
+    'link_alef_24_filled': link_alef_24_filled,
+    'link_book_empty_24_filled': link_book_empty_24_filled,
+    'link_book_exclamation_24_filled': link_book_exclamation_24_filled,
+    'link_copy_24_filled': link_copy_24_filled,
+    'link_deletion_24_filled': link_deletion_24_filled,
+    'link_document_24_filled': link_document_24_filled,
+    'link_eye_24_filled': link_eye_24_filled,
+    'link_marker_24_filled': link_marker_24_filled,
+    'link_quote_24_filled': link_quote_24_filled,
+    'link_scissors_24_filled': link_scissors_24_filled,
+    'link_with_eraser_24_filled': link_with_eraser_24_filled,
+    'link_with_information_24_filled': link_with_information_24_filled,
   };
 }

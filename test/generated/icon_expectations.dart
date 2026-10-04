@@ -272,4 +272,20 @@ const generatedIconExpectations = <String, IconData>{
   'tet_behind_tet_24_filled': OtzariaIcons.tet_behind_tet_24_filled,
   'tet_near_tet_24_filled': OtzariaIcons.tet_near_tet_24_filled,
   'tet_tet_24_filled': OtzariaIcons.tet_tet_24_filled,
+  'link_24_filled': OtzariaIcons.link_24_filled,
+  'link_add_24_filled': OtzariaIcons.link_add_24_filled,
+  'link_alef_24_filled': OtzariaIcons.link_alef_24_filled,
+  'link_book_empty_24_filled': OtzariaIcons.link_book_empty_24_filled,
+  'link_book_exclamation_24_filled':
+      OtzariaIcons.link_book_exclamation_24_filled,
+  'link_copy_24_filled': OtzariaIcons.link_copy_24_filled,
+  'link_deletion_24_filled': OtzariaIcons.link_deletion_24_filled,
+  'link_document_24_filled': OtzariaIcons.link_document_24_filled,
+  'link_eye_24_filled': OtzariaIcons.link_eye_24_filled,
+  'link_marker_24_filled': OtzariaIcons.link_marker_24_filled,
+  'link_quote_24_filled': OtzariaIcons.link_quote_24_filled,
+  'link_scissors_24_filled': OtzariaIcons.link_scissors_24_filled,
+  'link_with_eraser_24_filled': OtzariaIcons.link_with_eraser_24_filled,
+  'link_with_information_24_filled':
+      OtzariaIcons.link_with_information_24_filled,
 };
