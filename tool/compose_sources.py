@@ -2237,8 +2237,9 @@ def _outline_shapes(art, tallest, solid=False):
     """Outline each separate shape of `art`, the line chosen by its size."""
     out = Art()
     for c in ic.contours(art.filled()):
-        shape = (art & c).smoothed(LETTER_SMOOTH)
-        x0, y0, x1, y1 = shape.bounds
+        raw = art & c
+        x0, y0, x1, y1 = raw.bounds
+        shape = raw if (solid or y1 - y0 < SOLID_HEIGHT)             else raw.smoothed(LETTER_SMOOTH)
         small = (y1 - y0) < SMALL_FRACTION * tallest
         if solid or (small and (y1 - y0 < SOLID_HEIGHT
                                 or shape.mean_stroke() < SOLID_BELOW)):

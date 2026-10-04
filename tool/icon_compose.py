@@ -551,7 +551,14 @@ class Art:
                             end[1] + 2 / 3 * (q[1] - end[1]), *end)
                 cur = end
             out.close()
-        return Art(pathops.simplify(out))
+        try:
+            return Art(pathops.simplify(out))
+        except pathops.PathOpsError:
+            # A very small feature (the foot of a numeral) can fold over itself
+            # once averaged. A slightly wider average takes the fold out.
+            if sigma > 2 * step:
+                raise
+            return self.smoothed(sigma * 1.5, step * 1.3)
 
     def prune(self, eps=1e-6):
         """Drop contours that enclose nothing, keeping every other one exactly.
