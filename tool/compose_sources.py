@@ -1123,6 +1123,24 @@ def _ink_across(art, y, x0, x1):
     return sum(c.bounds[2] - c.bounds[0] for c in ic.contours(strip))
 
 
+@recipe("alef_near_alef_24_filled")
+def _alef_near_alef():
+    """The small alef beside the big one, brought back inside the canvas.
+
+    The drawing was placed 0.86 units past the left edge, so the small letter's
+    tail was cut off by the glyph's own box - the one icon in the set whose
+    artwork left the canvas. It is scaled (by half a percent) and moved into the
+    same 0.95-unit margin every other two-letter icon here keeps. This edits its
+    own source, so it stands down once the drawing is inside.
+    """
+    art = glyph("alef_near_alef_24_filled")
+    x0, y0, x1, y1 = art.bounds
+    if x0 >= PAIR_LEFT - 0.01:
+        raise Restated("alef_near_alef_24_filled is already inside the canvas")
+    right = 24 - PAIR_LEFT
+    return art.fit((PAIR_LEFT, y0, right, y1)), [], False
+
+
 @recipe("alef_near_alef_stam_24_filled")
 def _alef_near_stam():
     """The square alef facing the STA"M one."""
