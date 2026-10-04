@@ -1966,6 +1966,35 @@ def _link_plain_filled():
 
 
 # --------------------------------------------------------------------------
+# book_fanned: squarer, with heavier lines
+# --------------------------------------------------------------------------
+# The fanned book was traced 23 units wide and 8 tall - a strip, beside a set of
+# books that fill their square - and its page lines were 0.3 units across in the
+# regular. Stretching it vertically does both at once: it makes the icon
+# squarer, and it thickens every line that runs across the page by the same
+# factor, while the lines running up it are not touched much. A fine outward
+# offset then brings the near-vertical strokes up with them. This edits its own
+# source, so it stands down once the drawing is taller than the strip it was.
+FANNED_STRETCH = 1.9
+FANNED_GROW = 0.08
+
+
+def _fanned(name):
+    def build():
+        art = glyph(name)
+        x0, y0, x1, y1 = art.bounds
+        if y1 - y0 > 12:
+            raise Restated("%s is already %.1f tall" % (name, y1 - y0))
+        return (art.scale(1, FANNED_STRETCH, about=(12, 12))
+                   .grow(FANNED_GROW)), [], False
+    return build
+
+
+for _name in ("book_fanned_24_regular", "book_fanned_24_filled"):
+    RECIPES[_name] = _fanned(_name)
+
+
+# --------------------------------------------------------------------------
 # document_column: even air above, between and below the rows
 # --------------------------------------------------------------------------
 # The six rules were drawn 1.0 below the fold, 2.0 apart and 1.0 above the
