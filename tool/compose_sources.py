@@ -2047,7 +2047,25 @@ def _icon_x_regular():
 # with it the icon's size) does not move. Strokes thinner than two lines come
 # through solid, which is right - the hairlines of a letter, a dot, a numeral
 # stay readable instead of dissolving into a pair of parallel threads.
-LETTER_LINE = 0.50
+LETTER_LINE = 0.56
+
+# The small things - the second letter of a pair, a numeral, a dot - carry a
+# finer line than the letter they sit beside, or they read as heavy as it is
+# while being a third of the size. Anything under SMALL_FRACTION of the icon's
+# tallest shape is small, and anything small whose own strokes are thinner than
+# SOLID_BELOW - or under SOLID_HEIGHT tall, a dot or a vowel mark - is simply
+# left solid: outlining a 1.4-unit pen leaves a 0.4-unit slit, which is noise at
+# every size this set is used at. What is outlined still has the slits too
+# narrow to print filled in (SMALL_HOLE).
+LETTER_LINE_SMALL = 0.46
+SMALL_FRACTION = 0.75
+SOLID_BELOW = 0.8
+SOLID_HEIGHT = 4.0
+SMALL_HOLE = 0.6
+
+# How hard the ripples of a traced outline are ironed out before it is offset;
+# see `Art.smoothed`.
+LETTER_SMOOTH = 0.30
 
 # A badge on an outlined letter is a ring with its mark drawn as ink inside it -
 # the same pairing the book family uses (`book_add_24_regular`'s plus sits in an
@@ -2055,7 +2073,7 @@ LETTER_LINE = 0.50
 # ring is a little heavier than the letter's own line because it carries the
 # badge, the gap is what keeps the letter's foot from running into it, and the
 # air is what keeps the mark off the ring.
-BADGE_RING = 0.90
+BADGE_RING = 1.00
 BADGE_RING_GAP = 0.55
 BADGE_RING_AIR = 0.50
 
@@ -2065,8 +2083,42 @@ BADGE_RING_AIR = 0.50
 PROVENANCE_OF = {}
 
 
-def letter_outline(art):
-    return art.deburr().outlined(LETTER_LINE, inside=True)
+def _outline_shapes(art, tallest, solid=False):
+    """Outline each separate shape of `art`, the line chosen by its size."""
+    out = Art()
+    for c in ic.contours(art.filled()):
+        shape = (art & c).smoothed(LETTER_SMOOTH)
+        x0, y0, x1, y1 = shape.bounds
+        small = (y1 - y0) < SMALL_FRACTION * tallest
+        if solid or (small and (y1 - y0 < SOLID_HEIGHT
+                                or shape.mean_stroke() < SOLID_BELOW)):
+            out = out | shape
+        elif small:
+            out = out | shape.outlined(LETTER_LINE_SMALL, inside=True)                 .fill_holes(SMALL_HOLE)
+        else:
+            out = out | shape.outlined(LETTER_LINE, inside=True)
+    return out
+
+
+def letter_outline(art, over=None, solid_rest=False):
+    """The outlined letter.
+
+    `over` is a letter the rest of the drawing sits against - the big alef a
+    small letter hides behind, the stem a numeral touches. It is outlined whole
+    and everything else is outlined on its own and then cut by it, so the big
+    letter keeps its complete boundary where the others meet it. Outlining the
+    union instead is what used to cut the big alef's foot short.
+    """
+    x0, y0, x1, y1 = art.bounds
+    tallest = max(c.bounds[3] - c.bounds[1] for c in ic.contours(art.filled()))
+    if over is None:
+        return _outline_shapes(art, tallest)
+    over = over & art          # what of it the drawing actually keeps
+    rest = art - over
+    out = (_outline_shapes(over, tallest)
+           | (_outline_shapes(rest.despeckle(0.3), tallest, solid_rest) - over))
+    # Cutting one outline by another leaves zero-area slivers where they meet.
+    return out.despeckle(0.05).prune(0.002)
 
 
 def ring_badge(letter, disc, mark):
@@ -2095,12 +2147,31 @@ def _split_badge(filled):
     return alef_solid(), disc, mark
 
 
-def outline_recipe(filled, badged_letter=False):
+# The letters that carry something drawn against them, and the letter it is
+# drawn against.
+LETTER_OVER = {
+    "alef_1": "alef_24_filled", "alef_2": "alef_24_filled",
+    "alef_3": "alef_24_filled", "alef_behind_alef": "alef_24_filled",
+    "beit_behind_alef": "alef_24_filled", "tet_behind_tet": "tet_24_filled",
+    "alef_with_flavors": "alef_24_filled",
+    "alef_with_punctuation": "alef_24_filled",
+    "alef_with_score": "alef_24_filled", "alef_writing": "alef_24_filled",
+}
+
+
+# A numeral is a mark on the letter, not a second letter: it stays solid at
+# every size, so the three of them read as one set.
+LETTER_SOLID_REST = ("alef_1", "alef_2", "alef_3")
+
+
+def outline_recipe(filled, badged_letter=False, over=None, solid_rest=False):
     def build():
         if badged_letter:
             letter, disc, mark = _split_badge(filled)
             return ring_badge(letter, disc, mark), [], False
-        return letter_outline(glyph(filled)), [], False
+        return (letter_outline(glyph(filled), glyph(over) if over else None,
+                                solid_rest),
+                [], False)
     return build
 
 
@@ -2123,7 +2194,9 @@ LETTER_PLAIN = (
 
 for _letter in LETTER_PLAIN + LETTER_BADGED:
     _filled, _regular = _letter + "_24_filled", _letter + "_24_regular"
-    RECIPES[_regular] = outline_recipe(_filled, _letter in LETTER_BADGED)
+    RECIPES[_regular] = outline_recipe(_filled, _letter in LETTER_BADGED,
+                                       LETTER_OVER.get(_letter),
+                                       _letter in LETTER_SOLID_REST)
     DEPENDS[_regular] = _filled
     PROVENANCE_OF[_regular] = _filled
 
