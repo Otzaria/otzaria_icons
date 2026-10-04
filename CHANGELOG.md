@@ -1,5 +1,37 @@
 # Changelog
 
+## Unreleased
+
+- Every icon now has both a `_regular` and a `_filled` variant, except
+  `alef_half_filled`, which is half of each by design. The set grows from 201
+  to **257** icons over a contiguous `U+E000`-`U+E100`. Codepoints of existing
+  icons are unchanged.
+
+  * **Behaviour change: the letter icons.** All 34 `alef_*`, `beit*` and
+    `tet*` icons (except `alef_24` and `alef_half_filled`, which already had
+    both) were drawn solid and filed as `_regular`. Those solid drawings are now
+    `_filled`, exactly as they were, and **`_regular` is an outlined letter** -
+    the same line weight as `alef_24_regular`. A badge on an outlined letter is
+    a ring with its mark drawn as ink inside it, as in the book family. Apps
+    that showed `alef_*_24_regular` as a solid letter now show an outline one;
+    use `_filled` for the old look.
+  * `link_24_filled` and the 13 `link_*_24_filled` badge icons - Fluent's
+    heavier chain on the same disc and mark.
+  * `booklet`, `booklet_empty`, `clock_add`, `dependent_library`,
+    `torah_scroll` and `yoma_deilula` gain `_filled` variants (the first five
+    by the `inverted()` rule; `yoma_deilula` per shape, since it is a candle
+    and a calendar). Closes the `torah_scroll` half of #3.
+  * `text_alef_bet_list_24_filled`, with the weight gain the other lists use.
+  * **Breaking name change:** `clipboard_text_24_filled` is now
+    `clipboard_text_rtl_24_filled`. Its drawing is right-aligned, exactly like
+    `clipboard_text_rtl_24_regular`, so the two were one pair under two names.
+    Codepoint and drawing are unchanged; no alias is kept.
+  * **Behaviour change: `icon_x`.** The 3.3-unit cross is a filled weight, so
+    it moves to `icon_x_24_filled` unchanged, and `icon_x_24_regular` is now
+    Fluent's `dismiss` at the same extent.
+  * `alef_near_alef` was drawn 0.86 units past the left edge of the canvas; it
+    is back inside the 0.95 margin the other two-letter icons keep.
+
 ## 0.5.0 - 2026-09-20
 
 - Added **twenty-one** icons. The set now ships **201** icons over a
