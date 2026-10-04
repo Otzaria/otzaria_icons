@@ -500,7 +500,7 @@ class Art:
         # The contours as drawn, direction and all: `contours()` would hand a
         # hole back as a region of its own and the smoothing would fill it.
         loops, cur = [], None
-        for q in _flatten(self.p, 8):
+        for q in _flatten(self.p, 24):
             if q is None:
                 cur = []
                 loops.append(cur)

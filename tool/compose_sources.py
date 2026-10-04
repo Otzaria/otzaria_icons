@@ -1832,10 +1832,64 @@ def _search_redraw(name):
 SEARCH_IN_NAMES = [os.path.basename(p)[:-4] for p in
                   sorted(glob.glob(os.path.join(ic.SVG_DIR, "search_in_*.svg")))]
 
+# The ring and handle every `search_in_*` icon shares, drawn once. They were cut
+# from `search_24_regular`'s traced ring, and the tracing came along: a ragged
+# notch where the neck meets the ring, a ripple in the ring's edge, and a
+# junction that differed from icon to icon. The geometry here is the same
+# numbers the old ring measured - lens, ring width, handle width and length -
+# so nothing moves; what changes is that it is now one clean construction: a
+# circle, a neck that eases out to the handle's width, a capsule handle, and a
+# fillet where the neck leaves the ring.
+SEARCH_CENTRE = (9.32, 9.18)
+SEARCH_LENS_R = 6.71
+SEARCH_OUTER_R = 8.65
+SEARCH_NECK = 2.90
+SEARCH_HANDLE = 3.46
+SEARCH_FLARE = (8.65, 13.5)        # distances from the lens centre
+SEARCH_HANDLE_END = 17.4           # centre of the handle's round end
+SEARCH_JOIN = 1.0                  # fillet where the neck meets the ring
+
+
+def search_ring():
+    """(outer silhouette, lens opening) of the shared ring and handle."""
+    cx, cy = SEARCH_CENTRE
+    u = (math.sqrt(0.5), math.sqrt(0.5))       # the handle lies at 45 degrees
+    n = (-u[1], u[0])
+    f0, f1 = SEARCH_FLARE
+
+    def half_width(d):
+        t = min(1.0, max(0.0, (d - f0) / (f1 - f0)))
+        t = t * t * (3 - 2 * t)
+        return (SEARCH_NECK + (SEARCH_HANDLE - SEARCH_NECK) * t) / 2
+
+    def at(d, w):
+        return (cx + u[0] * d + n[0] * w, cy + u[1] * d + n[1] * w)
+
+    ds = [7.5 + k * (SEARCH_HANDLE_END - 7.5) / 120 for k in range(121)]
+    side_a = [at(d, half_width(d)) for d in ds]
+    side_b = [at(d, -half_width(d)) for d in reversed(ds)]
+    r = SEARCH_HANDLE / 2
+    cap = [at(SEARCH_HANDLE_END + r * math.sin(a), r * math.cos(a))
+           for a in [math.pi * k / 24 for k in range(1, 24)]]
+    handle = polygon(side_a + cap + side_b)
+    outer = (circle(cx, cy, SEARCH_OUTER_R) | handle)
+    outer = outer.grow(SEARCH_JOIN).shrink(SEARCH_JOIN)
+    return outer, circle(cx, cy, SEARCH_LENS_R)
+
+
+def _search_in_ring(name):
+    """`name`'s content inside the shared ring. The content is whatever the
+    icon already draws inside its own lens opening, so redrawing is idempotent:
+    a second run finds the shared lens and the same content."""
+    def build():
+        _, lens, content = _search_split(name)
+        outer, new_lens = search_ring()
+        return (outer - new_lens) | content, [], False
+    return build
+
+
 for _name in SEARCH_IN_NAMES:
-    def _search_redraw_recipe(name=_name):
-        return _search_redraw(name)
-    RECIPES[_name] = _search_redraw_recipe
+    RECIPES[_name] = _search_in_ring(_name)
 
 
 # `inverted`'s default FILLED_EDGE (0.55) is tuned for a cover silhouette, and
@@ -1909,6 +1963,44 @@ for _kind, _name in [("copy", "link_copy_24_regular"),
 def _link_plain_filled():
     """`link_24_regular`'s drawing in Fluent's heavier weight, sized the same."""
     return sized(use_fluent("link_24_filled")), [], False
+
+
+# --------------------------------------------------------------------------
+# document_column: even air above, between and below the rows
+# --------------------------------------------------------------------------
+# The six rules were drawn 1.0 below the fold, 2.0 apart and 1.0 above the
+# bottom edge: the first and last rows crowded the ink that bounds them while
+# the middle ones floated. The air between the fold's lower arm and the page's
+# lower edge is 10.5 units, and three 1.5-unit rules leave 6.0 of it, so every
+# one of the four gaps is 1.5. The rules themselves are untouched stadiums; only
+# their height moves, in the regular and in the filled alike.
+COLUMN_ROWS_FROM = (11.0, 14.5, 18.0)
+COLUMN_ROWS_TO = (11.5, 14.5, 17.5)
+
+
+def _column_rows(name):
+    def build():
+        art = glyph(name)
+        rows = [c for c in ic.contours(art) if 6.0 < c.area < 6.6]
+        if len(rows) != 6:
+            raise Restated("%s has %d rules, not the 6 this moves"
+                           % (name, len(rows)))
+        if min(r.bounds[1] for r in rows) > COLUMN_ROWS_TO[0] - 0.01:
+            raise Restated("%s's rules are already evenly spaced" % name)
+        ink = name.endswith("_regular")      # a rule is ink in one, a cut in the other
+        old, new = Art(), Art()
+        for r in rows:
+            i = COLUMN_ROWS_FROM.index(round(r.bounds[1], 2))
+            old = old | r
+            new = new | r.translate(0, COLUMN_ROWS_TO[i] - COLUMN_ROWS_FROM[i])
+        if ink:
+            return (art - old) | new, [], False
+        return (art | old) - new, [], False
+    return build
+
+
+for _name in ("document_column_24_regular", "document_column_24_filled"):
+    RECIPES[_name] = _column_rows(_name)
 
 
 # --------------------------------------------------------------------------
