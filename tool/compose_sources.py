@@ -1912,6 +1912,35 @@ def _link_plain_filled():
 
 
 # --------------------------------------------------------------------------
+# booklet: a steadier line, 5% heavier
+# --------------------------------------------------------------------------
+# Both covers were traced by hand: the corners are chamfers of slightly
+# different sizes and the edges carry kinks a few hundredths of a unit across,
+# which at a 1.5-unit line read as a trembling outline. Smoothing irons them
+# out, and the line is thickened 5%, as asked, by growing it half of that on
+# each side. This edits its own source, so it stands down once the stroke has
+# been raised.
+BOOKLET_TOP = {"booklet_24_regular": 1.38, "booklet_empty_24_regular": 1.36}
+BOOKLET_SMOOTH = 0.35
+BOOKLET_GROW = 0.04
+
+
+def _booklet_tidy(name):
+    def build():
+        art = glyph(name)
+        # The test is where the top edge is: growing moves it up by the grow
+        # distance, which a stroke measurement of a stroked outline cannot show.
+        if art.bounds[1] < BOOKLET_TOP[name] - BOOKLET_GROW / 2:
+            raise Restated("%s is already smoothed and thickened" % name)
+        return art.smoothed(BOOKLET_SMOOTH).grow(BOOKLET_GROW), [], False
+    return build
+
+
+for _name in BOOKLET_TOP:
+    RECIPES[_name] = _booklet_tidy(_name)
+
+
+# --------------------------------------------------------------------------
 # Filled twins that were simply missing
 # --------------------------------------------------------------------------
 # Icons that shipped with a regular and nothing to select with. Each filled one

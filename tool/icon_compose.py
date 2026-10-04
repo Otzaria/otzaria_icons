@@ -497,8 +497,16 @@ class Art:
         *derived* and not for the drawings themselves.
         """
         out = pathops.Path()
-        for c in contours(self):
-            pts = [q for q in _flatten(c.p, 8) if q is not None]
+        # The contours as drawn, direction and all: `contours()` would hand a
+        # hole back as a region of its own and the smoothing would fill it.
+        loops, cur = [], None
+        for q in _flatten(self.p, 8):
+            if q is None:
+                cur = []
+                loops.append(cur)
+            else:
+                cur.append(q)
+        for pts in loops:
             if len(pts) < 4:
                 continue
             if pts[0] == pts[-1]:
