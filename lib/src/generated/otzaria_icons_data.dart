@@ -1815,6 +1815,20 @@ abstract final class OtzariaIcons {
     fontPackage: fontPackage,
   );
 
+  /// `person_portrait_24_filled.svg`
+  static const IconData person_portrait_24_filled = IconData(
+    0xe102,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `person_portrait_24_regular.svg`
+  static const IconData person_portrait_24_regular = IconData(
+    0xe103,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
   /// Every icon in this library, keyed by its name.
   static const Map<String, IconData> allIcons = <String, IconData>{
     'book_24_filled': book_24_filled,
@@ -2075,5 +2089,7 @@ abstract final class OtzariaIcons {
     'text_continuous_ltr_24_filled': text_continuous_ltr_24_filled,
     'text_continuous_ltr_24_regular': text_continuous_ltr_24_regular,
     'alef_mix_24_filled': alef_mix_24_filled,
+    'person_portrait_24_filled': person_portrait_24_filled,
+    'person_portrait_24_regular': person_portrait_24_regular,
   };
 }

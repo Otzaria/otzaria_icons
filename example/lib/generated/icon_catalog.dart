@@ -397,4 +397,8 @@ const iconCatalog = <GalleryIcon>[
   GalleryIcon('text_continuous_ltr_24_regular',
       OtzariaIcons.text_continuous_ltr_24_regular),
   GalleryIcon('alef_mix_24_filled', OtzariaIcons.alef_mix_24_filled),
+  GalleryIcon(
+      'person_portrait_24_filled', OtzariaIcons.person_portrait_24_filled),
+  GalleryIcon(
+      'person_portrait_24_regular', OtzariaIcons.person_portrait_24_regular),
 ];

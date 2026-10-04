@@ -297,4 +297,6 @@ const generatedIconExpectations = <String, IconData>{
   'text_continuous_ltr_24_filled': OtzariaIcons.text_continuous_ltr_24_filled,
   'text_continuous_ltr_24_regular': OtzariaIcons.text_continuous_ltr_24_regular,
   'alef_mix_24_filled': OtzariaIcons.alef_mix_24_filled,
+  'person_portrait_24_filled': OtzariaIcons.person_portrait_24_filled,
+  'person_portrait_24_regular': OtzariaIcons.person_portrait_24_regular,
 };

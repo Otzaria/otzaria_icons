@@ -35,6 +35,11 @@
     shaky line. Where a letter touches another (`alef_behind_alef`,
     `beit_behind_alef`, `tet_behind_tet`, the numerals, the vowel marks) the big
     letter keeps its whole boundary instead of losing its foot.
+  * `person_portrait_24_regular` / `_filled` - a bearded man in a hat and
+    round glasses, from the supplied vector art. The sources were
+    pixel-traced polylines on two different canvases; each was fitted to 22
+    units tall, smoothed, and (regular only) thickened by 0.09 per side, since
+    its 0.5-unit line was too fine for the set.
   * `book_md_24_regular`/`_filled` are **removed**, without aliases; the
     codepoints stay a dense run, so everything after them moved down by two.
   * **Breaking name changes:** `text_continuous_*` becomes `text_continuous_rtl_*`
