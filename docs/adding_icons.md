@@ -105,7 +105,7 @@ Generation performs this sequence:
 9. repair glyph outlines from source (`tool/repair_glyphs.py`): the pinned
    `icon_font_generator` distorts a few complex glyphs during outline
    conversion — a horizontal shift on `book_open_large_search_24_filled`,
-   contour damage on `stander` and `search_in_the_text` — even from clean
+   contour damage on `lectern` and `search_in_text` — even from clean
    sources. This step rewrites each glyph's outline directly from its SVG so the
    font matches the catalog exactly. Interior knockouts are rebuilt as a boolean
    difference (body minus the cut) so the cut stays transparent regardless of

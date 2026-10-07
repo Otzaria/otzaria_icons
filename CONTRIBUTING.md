@@ -108,8 +108,8 @@ The generator allocates IDs/codepoints and updates all derived artifacts. Its
 final step (`tool/repair_glyphs.py`) rewrites each non-knockout glyph outline
 directly from its source SVG, because the pinned `icon_font_generator` distorts
 some complex glyphs during outline conversion (a horizontal shift on
-`book_open_large_search_24_filled`, contour damage on `stander` and
-`search_in_the_text`) even from clean sources. Review the new
+`book_open_large_search_24_filled`, contour damage on `lectern` and
+`search_in_text`) even from clean sources. Review the new
 `icon_manifest.yaml` record. Do not edit generated Dart, font, catalog,
 expectations, or notices files manually.
 

@@ -484,6 +484,82 @@ class Art:
         """
         return self.shrink(delta).grow(delta)
 
+    def smoothed(self, sigma=0.25, step=0.15):
+        """Iron the wobble out of every contour.
+
+        The letter drawings were traced and hand-patched, so their edges carry
+        ripples a fraction of a unit long. Filled in, nobody sees them; as the
+        two edges of a 0.5-unit outline they read as a shaky line. Each contour
+        is resampled every `step` units, averaged with a gaussian of width
+        `sigma` (along the outline, wrapping around), and written back as a
+        quadratic B-spline (as cubics), which is smooth by construction. A corner loses
+        about `sigma` of its tip, which is why this is for outlines being
+        *derived* and not for the drawings themselves.
+        """
+        out = pathops.Path()
+        # The contours as drawn, direction and all: `contours()` would hand a
+        # hole back as a region of its own and the smoothing would fill it.
+        loops, cur = [], None
+        for q in _flatten(self.p, 24):
+            if q is None:
+                cur = []
+                loops.append(cur)
+            else:
+                cur.append(q)
+        for pts in loops:
+            if len(pts) < 4:
+                continue
+            if pts[0] == pts[-1]:
+                pts.pop()
+            # resample at even arclength
+            n = len(pts)
+            seg = [math.dist(pts[i], pts[(i + 1) % n]) for i in range(n)]
+            total = sum(seg)
+            m = max(8, int(total / step))
+            res, i, acc = [], 0, 0.0
+            for k in range(m):
+                target = total * k / m
+                while acc + seg[i] < target:
+                    acc += seg[i]
+                    i = (i + 1) % n
+                f = (target - acc) / seg[i] if seg[i] else 0.0
+                a, b = pts[i], pts[(i + 1) % n]
+                res.append((a[0] + (b[0] - a[0]) * f, a[1] + (b[1] - a[1]) * f))
+            sp = sigma / (total / m)
+            half = int(3 * sp) + 1
+            w = [math.exp(-0.5 * (j / sp) ** 2) for j in range(-half, half + 1)]
+            ws = sum(w)
+            sm = []
+            for k in range(m):
+                x = y = 0.0
+                for j, wj in zip(range(-half, half + 1), w):
+                    q = res[(k + j) % m]
+                    x += q[0] * wj
+                    y += q[1] * wj
+                sm.append((x / ws, y / ws))
+            mid = lambda a, b: ((a[0] + b[0]) / 2, (a[1] + b[1]) / 2)
+            # Each quadratic is written as the cubic that is exactly equal to
+            # it: the rest of this module measures and flattens cubics.
+            cur = mid(sm[-1], sm[0])
+            out.moveTo(*cur)
+            for k in range(m):
+                end = mid(sm[k], sm[(k + 1) % m])
+                q = sm[k]
+                out.cubicTo(cur[0] + 2 / 3 * (q[0] - cur[0]),
+                            cur[1] + 2 / 3 * (q[1] - cur[1]),
+                            end[0] + 2 / 3 * (q[0] - end[0]),
+                            end[1] + 2 / 3 * (q[1] - end[1]), *end)
+                cur = end
+            out.close()
+        try:
+            return Art(pathops.simplify(out))
+        except pathops.PathOpsError:
+            # A very small feature (the foot of a numeral) can fold over itself
+            # once averaged. A slightly wider average takes the fold out.
+            if sigma > 2 * step:
+                raise
+            return self.smoothed(sigma * 1.5, step * 1.3)
+
     def prune(self, eps=1e-6):
         """Drop contours that enclose nothing, keeping every other one exactly.
 

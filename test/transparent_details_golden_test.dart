@@ -25,7 +25,6 @@ void main() {
   });
 
   const knockoutIcons = <String, IconData>{
-    'book_zim_24_filled': OtzariaIcons.book_zim_24_filled,
     'book_word_24_filled': OtzariaIcons.book_word_24_filled,
     'book_upload_24_filled': OtzariaIcons.book_upload_24_filled,
     'book_pdf_24_filled': OtzariaIcons.book_pdf_24_filled,

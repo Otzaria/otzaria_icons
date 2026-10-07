@@ -42,6 +42,20 @@
   added outward only.
 - Interior negative space may be simplified in filled variants, but the icon
   must remain recognizable at 16 px.
+- Every icon ships both variants. Three families get there differently, and
+  in each the pair is *derived*, never drawn twice:
+  - **Letters** (`alef_*`, `beit*`, `tet*`). The solid drawing is the `_filled`;
+    the `_regular` is the same letter outlined - its own boundary, 0.5 units
+    across, kept inside the silhouette. A badge on an outlined letter is a ring
+    with the mark as ink inside it; on the solid letter it is a disc with the
+    mark knocked out. Never file a solid letter as `_regular`.
+  - **Stroke icons** (links, lists, crosses). The filled variant is the same
+    drawing in the heavier weight: a link takes Fluent's filled chain, a list
+    rule goes from 1.5 to 2.0 units tall. A regular drawn heavier than that is
+    a filled icon and belongs under `_filled`.
+  - **Multi-part icons** (`calendar_yahrzeit`). `inverted()` assumes one silhouette,
+    so it is applied to each part, with a closed silhouette built where a part
+    has none.
 
 ## Directionality
 

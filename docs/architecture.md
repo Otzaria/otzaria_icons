@@ -38,8 +38,8 @@ As its final step, `generate.dart` runs `tool/repair_glyphs.py`, which rewrites
 each non-knockout glyph outline directly from its source SVG (24×24 mapped onto
 the em, y-flipped, no re-fitting). The pinned generator's outline converter
 distorts a few complex glyphs — a horizontal shift on
-`book_open_large_search_24_filled`, contour damage on `stander` and
-`search_in_the_text` — even from clean, correctly wound sources; this step makes
+`book_open_large_search_24_filled`, contour damage on `lectern` and
+`search_in_text` — even from clean, correctly wound sources; this step makes
 the font geometry byte-for-byte what the sources and `docs/icon_catalog.svg`
 show. Interior-knockout icons are rebuilt as a boolean difference (body minus
 the cut) so the cut stays transparent regardless of source winding. It is

@@ -373,8 +373,8 @@ Future<void> _runOverlapCheck() async {
 /// Rewrites each non-knockout glyph outline in the freshly generated OTF
 /// directly from its source SVG. icon_font_generator's outline converter
 /// distorts a few complex glyphs (a horizontal shift on
-/// book_open_large_search_24_filled, contour damage on stander /
-/// search_in_the_text) even from clean, correctly-wound sources; this makes the
+/// book_open_large_search_24_filled, contour damage on lectern /
+/// search_in_text) even from clean, correctly-wound sources; this makes the
 /// font geometry match the source (and docs/icon_catalog.svg) exactly. It is
 /// deterministic and preserves all generator metadata, so `--check` stays
 /// reproducible. Requires Python 3 with skia-pathops and fonttools.
@@ -1022,7 +1022,7 @@ String _yamlNullable(String? value) =>
 /// not read back as the same string.
 ///
 /// Provenance is free text, and one field already contains `": "` — the
-/// `based_on` of `search_in_the_quote_24_regular` names a path inside the
+/// `based_on` of `search_in_quote_24_regular` names a path inside the
 /// Fluent repository. Emitted bare, that turns the value into a nested mapping
 /// key and the manifest stops parsing, which only shows up the next time an
 /// icon is appended after it.

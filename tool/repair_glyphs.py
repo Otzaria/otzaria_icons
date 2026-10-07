@@ -6,7 +6,7 @@ WHY THIS EXISTS
 `icon_font_generator` builds the OTF from the SVG sources, but its outline
 converter distorts a few complex glyphs even when the source is a clean, single,
 correctly-wound path: it translated `book_open_large_search_24_filled` ~4 units
-left and mangled contours in `stander_24_filled` / `search_in_the_text_24_regular`.
+left and mangled contours in `lectern_24_filled` / `search_in_text_24_regular`.
 These defects are internal to the pinned generator and unrelated to the source.
 
 This step runs AFTER `dart run tool/generate.dart`. For every icon it rebuilds
