@@ -238,6 +238,7 @@ FLUENT_SYMBOLS = {
     # barrel up to the right - the angle a pen is actually held at.
     "marker": ("highlight_24_filled", 45),
     "eye": ("eye_24_filled", 0),
+    "check": ("checkmark_24_filled", 0),
     "quote": ("text_quote_24_filled", 0),
     "document": ("document_24_filled", 0),
     # Fluent's info "i" is a fine stroke inside a disc; on a badge it needs more
@@ -1729,7 +1730,7 @@ def _search_split(name):
     return outer, lens, full & lens
 
 
-def _search_not_found_badge():
+def _search_not_found_badge(kind="cross"):
     """search_24_regular's own ring+handle, empty lens, with a small corner
     badge - a disc with the alef family's own X knocked out of it - added
     opposite the handle.
@@ -1777,9 +1778,12 @@ def _search_not_found_badge():
 
     badge = (circle(bx, by, badge_r).scale(group_scale, about=anchor)
             .translate(0, shift_down))
-    mark = (sym_cross().fit_radius(badge_r * 0.88).deburr(0.05)
-            .centred_on(bx, by).scale(group_scale, about=anchor)
-            .translate(0, shift_down))
+    if kind == "cross":
+        mark = (sym_cross().fit_radius(badge_r * 0.88).deburr(0.05)
+                .centred_on(bx, by))
+    else:
+        mark = symbol(kind, badge_r * 0.84).centred_on(bx, by)
+    mark = mark.scale(group_scale, about=anchor).translate(0, shift_down)
     ring = (t_outer - t_lens) | badge
     return sized(ring), [mark]
 
@@ -1926,6 +1930,26 @@ def _search_not_found_filled_recipe():
 
 RECIPES["search_not_found_24_filled"] = _search_not_found_filled_recipe
 
+
+# The same magnifier with a tick in the badge where `search_not_found` has a
+# cross: the query was found. Built by the same function, so the badge is the
+# same disc in the same place and only the mark differs.
+def _search_check_regular_recipe():
+    solid, cuts = _search_not_found_badge("check")
+    return solid, cuts, True
+
+
+RECIPES["search_check_24_regular"] = _search_check_regular_recipe
+DEPENDS["search_check_24_filled"] = "search_check_24_regular"
+
+
+def _search_check_filled_recipe():
+    solid, cuts = inverted("search_check_24_regular", edge=SEARCH_FILLED_EDGE)
+    return sized(solid), cuts, False
+
+
+RECIPES["search_check_24_filled"] = _search_check_filled_recipe
+
 RECIPES["otzaria_icon_24_regular"] = steps_for("otzaria_icon_24_regular",
                                                round_rule_ends)
 
@@ -1939,7 +1963,8 @@ for _kind, _name in [("scissors", "alef_scissors_24_filled"),
                      ("exclamation", "alef_exclamation_24_filled"),
                      ("plus", "alef_add_24_filled"),
                      ("lock", "alef_lock_24_filled"),
-                     ("crown", "alef_crown_24_filled")]:
+                     ("crown", "alef_crown_24_filled"),
+                     ("check", "alef_check_24_filled")]:
     RECIPES[_name] = alef_badge(_kind)
 
 for _kind, _name in [("copy", "link_copy_24_regular"),
@@ -1954,7 +1979,8 @@ for _kind, _name in [("copy", "link_copy_24_regular"),
                      ("alef", "link_alef_24_regular"),
                      ("plus", "link_add_24_regular"),
                      ("book_empty", "link_book_24_regular"),
-                     ("exclamation", "link_exclamation_24_regular")]:
+                     ("exclamation", "link_exclamation_24_regular"),
+                     ("check", "link_check_24_regular")]:
     RECIPES[_name] = link_badge(_kind)
     RECIPES[_name.replace("_regular", "_filled")] = link_badge(_kind, True)
 
@@ -2315,7 +2341,8 @@ def _split_badge(filled):
 # drawn against.
 LETTER_OVER = {
     "alef_1": "alef_24_filled", "alef_2": "alef_24_filled",
-    "alef_3": "alef_24_filled", "alef_behind_alef": "alef_24_filled",
+    "alef_3": "alef_24_filled", "alef_4": "alef_24_filled",
+    "alef_5": "alef_24_filled", "alef_behind_alef": "alef_24_filled",
     "beit_behind_alef": "alef_24_filled", "tet_behind_tet": "tet_24_filled",
     "alef_niqqud_taamim": "alef_24_filled",
     "alef_punctuation": "alef_24_filled",
@@ -2325,7 +2352,7 @@ LETTER_OVER = {
 
 # A numeral is a mark on the letter, not a second letter: it stays solid at
 # every size, so the three of them read as one set.
-LETTER_SOLID_REST = ("alef_1", "alef_2", "alef_3")
+LETTER_SOLID_REST = ("alef_1", "alef_2", "alef_3", "alef_4", "alef_5")
 
 
 def outline_recipe(filled, badged_letter=False, over=None, solid_rest=False):
@@ -2345,15 +2372,16 @@ def outline_recipe(filled, badged_letter=False, over=None, solid_rest=False):
 LETTER_BADGED = (
     "alef_add", "alef_copy", "alef_crown", "alef_delete", "alef_eye",
     "alef_lips", "alef_lock", "alef_marker", "alef_scissors",
-    "alef_eraser", "alef_exclamation", "alef_information",
+    "alef_eraser", "alef_exclamation", "alef_information", "alef_check",
 )
 LETTER_PLAIN = (
-    "alef_1", "alef_2", "alef_3", "alef_alef", "alef_behind_alef",
+    "alef_1", "alef_2", "alef_3", "alef_4", "alef_5", "alef_alef",
+    "alef_behind_alef",
     "alef_latin_a", "alef_near_alef", "alef_near_alef_rashi",
     "alef_near_alef_stam", "alef_rashi", "alef_stam", "alef_niqqud_taamim",
     "alef_punctuation", "alef_niqqud", "alef_writing", "beit",
     "beit_behind_alef", "beit_near_alef", "tet", "tet_behind_tet",
-    "tet_near_tet", "tet_tet",
+    "tet_near_tet", "tet_tet", "tet_latin_t",
 )
 
 for _letter in LETTER_PLAIN + LETTER_BADGED:
@@ -2363,6 +2391,149 @@ for _letter in LETTER_PLAIN + LETTER_BADGED:
                                        _letter in LETTER_SOLID_REST)
     DEPENDS[_regular] = _filled
     PROVENANCE_OF[_regular] = _filled
+
+
+# --------------------------------------------------------------------------
+# New pairs: book_lines, document_text/_pdf/_upload, alef_4/_5, tet_latin_t,
+# check
+# --------------------------------------------------------------------------
+def stripes(cx, cy, width, rows, height, pitch):
+    """`rows` text rules, each a stadium `width` wide and `height` tall, `pitch`
+    apart, the block centred on (cx, cy)."""
+    top = cy - ((rows - 1) * pitch + height) / 2
+    out = Art()
+    for r in range(rows):
+        y = top + r * pitch
+        out = out | round_rect(cx - width / 2, y, cx + width / 2, y + height,
+                               height / 2)
+    return out
+
+
+# `document_bullet_list`'s rules - 1.5 tall, 3.0 apart - without the dots, on the
+# empty cover `book_empty` draws. Four of them, centred on the cover's own
+# opening, so the text sits where the title does on the other book_* icons.
+BOOK_LINES = dict(width=8.0, rows=4, height=1.5, pitch=3.0)
+
+
+def _book_lines_rules():
+    inner = ic.contours(glyph("book_empty_24_regular"))[1]
+    cx, cy = inner.centre
+    return stripes(cx, cy, **BOOK_LINES)
+
+
+@recipe("book_lines_24_regular")
+def _book_lines_r():
+    return glyph("book_empty_24_regular") | _book_lines_rules(), [], False
+
+
+@recipe("book_lines_24_filled")
+def _book_lines_f():
+    return glyph("book_empty_24_filled"), [_book_lines_rules()], True
+
+
+# The letter band the H and the W of `document_html` / `document_word` stand in.
+DOC_TEXT_Y = (11.06, 17.5)
+
+
+def mark_t():
+    """A T in the H's own drawing: the H's 1.33-unit stem, the same height, and
+    the same small radius on every corner."""
+    y0, y1 = DOC_TEXT_Y
+    w, t = 6.0, 1.33
+    bar = ic.rect(12 - w / 2, y0, 12 + w / 2, y0 + t)
+    stem = ic.rect(12 - t / 2, y0, 12 + t / 2, y1)
+    return (bar | stem).fillet(0.3)
+
+
+def mark_pdf():
+    """book_pdf's three letters, centred on the band the W stands in. They are
+    the white of its solid cover, so they are read as the cover minus its glyph
+    - which also keeps the P's and the D's counters as ink islands."""
+    full = glyph("book_pdf_24_filled")
+    letters = ic.contours(full)[0] - full
+    y0, y1 = DOC_TEXT_Y
+    w = 10.2
+    x0, a0, x1, a1 = letters.bounds
+    h = (a1 - a0) * w / (x1 - x0)
+    cy = (y0 + y1) / 2
+    return letters.fit((12 - w / 2, cy - h / 2, 12 + w / 2, cy + h / 2))
+
+
+def mark_upload():
+    """`mark_download`'s arrow turned over: the shaft below, the head above."""
+    arrow = Art.from_d("M10.5 16.5 V10.5 H7.5 L12 6 L16.5 10.5 H13.5 V16.5 Z")
+    return arrow.fit(MARK_BOX)
+
+
+def _document_pair(stem, mark):
+    for filled in (False, True):
+        def build(filled=filled):
+            solid, cuts = document(mark(), filled=filled)
+            return solid, cuts, False
+        RECIPES["%s_24_%s" % (stem, "filled" if filled else "regular")] = build
+
+
+_document_pair("document_text", mark_t)
+_document_pair("document_pdf", mark_pdf)
+_document_pair("document_upload", mark_upload)
+
+
+# The numerals are drawn here as paths: they are not recoverable from
+# `alef_3_24_filled`, where the three is merged into the letter. They are set in
+# a serif like the 1, 2 and 3 - 7 units tall, right edge at 22.7, on the
+# baseline the 3 stands on.
+NUMERALS = {
+    4: "M 18.407 16.147 L 21.42 11.286 Q 21.44 11.253 21.479 11.253 L 22.05 11.253 Q 22.079 11.253 22.099 11.273 Q 22.12 11.294 22.12 11.323 L 22.12 16.114 L 22.63 16.114 Q 22.659 16.115 22.679 16.135 Q 22.7 16.155 22.7 16.184 L 22.7 17.337 Q 22.7 17.366 22.679 17.387 Q 22.659 17.407 22.63 17.407 L 22.12 17.407 L 22.12 19.03 Q 22.12 19.059 22.099 19.08 Q 22.079 19.1 22.05 19.1 L 20.764 19.1 Q 20.735 19.1 20.714 19.08 Q 20.694 19.059 20.694 19.03 L 20.694 17.407 L 18.467 17.407 Q 18.438 17.407 18.417 17.387 Q 18.397 17.366 18.397 17.337 L 18.397 16.184 Q 18.397 16.164 18.407 16.147 Z M 19.046 16.114 L 20.694 16.114 L 20.694 13.451 Z",
+    5: "M 19.66 11.253 L 22.63 11.253 Q 22.659 11.253 22.679 11.274 Q 22.7 11.294 22.7 11.323 Q 22.7 11.334 22.696 11.345 L 22.224 12.781 Q 22.208 12.83 22.158 12.83 L 19.711 12.83 L 19.515 13.446 Q 21.09 13.54 21.955 14.42 Q 22.691 15.17 22.691 16.285 Q 22.691 16.997 22.351 17.677 Q 22.01 18.361 21.389 18.731 Q 20.769 19.1 20.029 19.1 Q 19.227 19.1 18.792 18.739 Q 18.476 18.472 18.476 18.128 Q 18.476 17.863 18.644 17.66 Q 18.817 17.451 19.051 17.451 Q 19.25 17.451 19.451 17.547 Q 19.646 17.64 20.107 18.024 Q 20.384 18.251 20.582 18.337 Q 20.714 18.398 20.881 18.398 Q 21.23 18.398 21.479 18.09 Q 21.732 17.775 21.732 17.332 Q 21.732 16.387 20.937 15.795 Q 20.132 15.196 18.902 15.196 Q 18.777 15.196 18.524 15.202 Q 18.495 15.203 18.475 15.183 Q 18.454 15.163 18.453 15.134 Q 18.453 15.123 18.456 15.112 L 19.593 11.303 Q 19.607 11.253 19.66 11.253 Z",
+}
+
+
+def alef_numeral(n):
+    return glyph("alef_24_filled") | Art.from_d(NUMERALS[n])
+
+
+def _alef_numeral_recipe(n):
+    return lambda: (alef_numeral(n), [], False)
+
+
+for _n in (4, 5):
+    RECIPES["alef_%d_24_filled" % _n] = _alef_numeral_recipe(_n)
+
+
+def latin_t():
+    """A sans capital T at the A's proportions and weight (2.06 mean stroke)."""
+    w, h, t = 13.0, 15.0, 2.1
+    return ic.rect(0, 0, w, t) | ic.rect((w - 2.3) / 2, 0, (w + 2.3) / 2, h)
+
+
+@recipe("tet_latin_t_24_filled")
+def _tet_latin_t():
+    """The tet facing a Latin T - `alef_latin_a` for the other letter."""
+    return pair(glyph("tet_24_filled"), latin_t()), [], False
+
+
+# A tick at the stroke weights `cross` already carries: its regular and filled
+# mean strokes are read from the two icons rather than restated, so the pair
+# follows them. The tick is Fluent's, fitted so that once the weight is put back
+# it still fills the same box the cross does.
+def _check(target):
+    base = use_fluent("checkmark_24_regular")
+    g = 0.0
+    for _ in range(3):
+        x0, y0, x1, y1 = ICON_X_BOX
+        art = base.fit((x0 + g, y0 + g, x1 - g, y1 - g))
+        g = max(0.0, (target - art.mean_stroke()) / 2)
+    return art.grow(g)
+
+
+@recipe("check_24_regular")
+def _check_regular():
+    return _check(glyph("cross_24_regular").mean_stroke()), [], False
+
+
+@recipe("check_24_filled")
+def _check_filled():
+    return _check(glyph("cross_24_filled").mean_stroke()), [], False
 
 
 # --------------------------------------------------------------------------
