@@ -47,3 +47,11 @@ The following entries are derivative works and retain the provenance recorded in
 - `link_information_24_filled` — based on `microsoft/fluentui-system-icons: link_dismiss_24_filled, info_24_filled (fluentui_system_icons 1.1.273)` at `pub:fluentui_system_icons@1.1.273`; license: MIT AND GPL-3.0-only.
 - `text_continuous_ltr_24_filled` — based on `microsoft/fluentui-system-icons: text_continuous_24_filled (fluentui_system_icons 1.1.273)` at `pub:fluentui_system_icons@1.1.273`; license: MIT AND GPL-3.0-only.
 - `text_continuous_ltr_24_regular` — based on `microsoft/fluentui-system-icons: text_continuous_24_regular (fluentui_system_icons 1.1.273)` at `pub:fluentui_system_icons@1.1.273`; license: MIT AND GPL-3.0-only.
+- `alef_check_24_filled` — based on `microsoft/fluentui-system-icons: checkmark_24_filled (fluentui_system_icons 1.1.273)` at `pub:fluentui_system_icons@1.1.273`; license: MIT AND GPL-3.0-only.
+- `alef_check_24_regular` — based on `microsoft/fluentui-system-icons: checkmark_24_filled (fluentui_system_icons 1.1.273)` at `pub:fluentui_system_icons@1.1.273`; license: MIT AND GPL-3.0-only.
+- `check_24_filled` — based on `microsoft/fluentui-system-icons: checkmark_24_regular (fluentui_system_icons 1.1.273)` at `pub:fluentui_system_icons@1.1.273`; license: MIT AND GPL-3.0-only.
+- `check_24_regular` — based on `microsoft/fluentui-system-icons: checkmark_24_regular (fluentui_system_icons 1.1.273)` at `pub:fluentui_system_icons@1.1.273`; license: MIT AND GPL-3.0-only.
+- `link_check_24_filled` — based on `microsoft/fluentui-system-icons: link_dismiss_24_filled, checkmark_24_filled (fluentui_system_icons 1.1.273)` at `pub:fluentui_system_icons@1.1.273`; license: MIT AND GPL-3.0-only.
+- `link_check_24_regular` — based on `microsoft/fluentui-system-icons: link_dismiss_24_regular, checkmark_24_filled (fluentui_system_icons 1.1.273)` at `pub:fluentui_system_icons@1.1.273`; license: MIT AND GPL-3.0-only.
+- `search_check_24_filled` — based on `microsoft/fluentui-system-icons: checkmark_24_filled (fluentui_system_icons 1.1.273)` at `pub:fluentui_system_icons@1.1.273`; license: MIT AND GPL-3.0-only.
+- `search_check_24_regular` — based on `microsoft/fluentui-system-icons: checkmark_24_filled (fluentui_system_icons 1.1.273)` at `pub:fluentui_system_icons@1.1.273`; license: MIT AND GPL-3.0-only.

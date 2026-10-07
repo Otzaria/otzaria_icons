@@ -407,4 +407,12 @@ const iconCatalog = <GalleryIcon>[
   GalleryIcon('alef_5_24_regular', OtzariaIcons.alef_5_24_regular),
   GalleryIcon('tet_latin_t_24_filled', OtzariaIcons.tet_latin_t_24_filled),
   GalleryIcon('tet_latin_t_24_regular', OtzariaIcons.tet_latin_t_24_regular),
+  GalleryIcon('alef_check_24_filled', OtzariaIcons.alef_check_24_filled),
+  GalleryIcon('alef_check_24_regular', OtzariaIcons.alef_check_24_regular),
+  GalleryIcon('check_24_filled', OtzariaIcons.check_24_filled),
+  GalleryIcon('check_24_regular', OtzariaIcons.check_24_regular),
+  GalleryIcon('link_check_24_filled', OtzariaIcons.link_check_24_filled),
+  GalleryIcon('link_check_24_regular', OtzariaIcons.link_check_24_regular),
+  GalleryIcon('search_check_24_filled', OtzariaIcons.search_check_24_filled),
+  GalleryIcon('search_check_24_regular', OtzariaIcons.search_check_24_regular),
 ];

@@ -1913,6 +1913,62 @@ abstract final class OtzariaIcons {
     fontPackage: fontPackage,
   );
 
+  /// `alef_check_24_filled.svg`
+  static const IconData alef_check_24_filled = IconData(
+    0xe110,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `alef_check_24_regular.svg`
+  static const IconData alef_check_24_regular = IconData(
+    0xe111,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `check_24_filled.svg`
+  static const IconData check_24_filled = IconData(
+    0xe112,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `check_24_regular.svg`
+  static const IconData check_24_regular = IconData(
+    0xe113,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `link_check_24_filled.svg`
+  static const IconData link_check_24_filled = IconData(
+    0xe114,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `link_check_24_regular.svg`
+  static const IconData link_check_24_regular = IconData(
+    0xe115,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `search_check_24_filled.svg`
+  static const IconData search_check_24_filled = IconData(
+    0xe116,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `search_check_24_regular.svg`
+  static const IconData search_check_24_regular = IconData(
+    0xe117,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
   /// Every icon in this library, keyed by its name.
   static const Map<String, IconData> allIcons = <String, IconData>{
     'book_24_filled': book_24_filled,
@@ -2188,5 +2244,13 @@ abstract final class OtzariaIcons {
     'alef_5_24_regular': alef_5_24_regular,
     'tet_latin_t_24_filled': tet_latin_t_24_filled,
     'tet_latin_t_24_regular': tet_latin_t_24_regular,
+    'alef_check_24_filled': alef_check_24_filled,
+    'alef_check_24_regular': alef_check_24_regular,
+    'check_24_filled': check_24_filled,
+    'check_24_regular': check_24_regular,
+    'link_check_24_filled': link_check_24_filled,
+    'link_check_24_regular': link_check_24_regular,
+    'search_check_24_filled': search_check_24_filled,
+    'search_check_24_regular': search_check_24_regular,
   };
 }

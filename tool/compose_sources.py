@@ -2512,6 +2512,11 @@ def _tet_latin_t():
     return pair(glyph("tet_24_filled"), latin_t()), [], False
 
 
+# The filled magnifier is derived from the regular one, so it inherits the
+# Fluent tick the regular one drew on.
+PROVENANCE_OF["search_check_24_filled"] = "search_check_24_regular"
+
+
 # A tick at the stroke weights `cross` already carries: its regular and filled
 # mean strokes are read from the two icons rather than restated, so the pair
 # follows them. The tick is Fluent's, fitted so that once the weight is put back

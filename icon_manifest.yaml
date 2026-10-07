@@ -4080,3 +4080,123 @@ icons:
     author: Otzaria contributors
     license: GPL-3.0-only
     upstream_commit: null
+  - id: icon-0278
+    name: alef_check_24_filled
+    source: assets_src/svg/alef_check_24_filled.svg
+    codepoint: 0xe110
+    variant: filled
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: modified_fluent
+    based_on: 'microsoft/fluentui-system-icons: checkmark_24_filled (fluentui_system_icons 1.1.273)'
+    author: Otzaria contributors
+    license: MIT AND GPL-3.0-only
+    upstream_commit: pub:fluentui_system_icons@1.1.273
+  - id: icon-0279
+    name: alef_check_24_regular
+    source: assets_src/svg/alef_check_24_regular.svg
+    codepoint: 0xe111
+    variant: regular
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: modified_fluent
+    based_on: 'microsoft/fluentui-system-icons: checkmark_24_filled (fluentui_system_icons 1.1.273)'
+    author: Otzaria contributors
+    license: MIT AND GPL-3.0-only
+    upstream_commit: pub:fluentui_system_icons@1.1.273
+  - id: icon-0280
+    name: check_24_filled
+    source: assets_src/svg/check_24_filled.svg
+    codepoint: 0xe112
+    variant: filled
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: modified_fluent
+    based_on: 'microsoft/fluentui-system-icons: checkmark_24_regular (fluentui_system_icons 1.1.273)'
+    author: Otzaria contributors
+    license: MIT AND GPL-3.0-only
+    upstream_commit: pub:fluentui_system_icons@1.1.273
+  - id: icon-0281
+    name: check_24_regular
+    source: assets_src/svg/check_24_regular.svg
+    codepoint: 0xe113
+    variant: regular
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: modified_fluent
+    based_on: 'microsoft/fluentui-system-icons: checkmark_24_regular (fluentui_system_icons 1.1.273)'
+    author: Otzaria contributors
+    license: MIT AND GPL-3.0-only
+    upstream_commit: pub:fluentui_system_icons@1.1.273
+  - id: icon-0282
+    name: link_check_24_filled
+    source: assets_src/svg/link_check_24_filled.svg
+    codepoint: 0xe114
+    variant: filled
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: modified_fluent
+    based_on: 'microsoft/fluentui-system-icons: link_dismiss_24_filled, checkmark_24_filled (fluentui_system_icons 1.1.273)'
+    author: Otzaria contributors
+    license: MIT AND GPL-3.0-only
+    upstream_commit: pub:fluentui_system_icons@1.1.273
+  - id: icon-0283
+    name: link_check_24_regular
+    source: assets_src/svg/link_check_24_regular.svg
+    codepoint: 0xe115
+    variant: regular
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: modified_fluent
+    based_on: 'microsoft/fluentui-system-icons: link_dismiss_24_regular, checkmark_24_filled (fluentui_system_icons 1.1.273)'
+    author: Otzaria contributors
+    license: MIT AND GPL-3.0-only
+    upstream_commit: pub:fluentui_system_icons@1.1.273
+  - id: icon-0284
+    name: search_check_24_filled
+    source: assets_src/svg/search_check_24_filled.svg
+    codepoint: 0xe116
+    variant: filled
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: modified_fluent
+    based_on: 'microsoft/fluentui-system-icons: checkmark_24_filled (fluentui_system_icons 1.1.273)'
+    author: Otzaria contributors
+    license: MIT AND GPL-3.0-only
+    upstream_commit: pub:fluentui_system_icons@1.1.273
+  - id: icon-0285
+    name: search_check_24_regular
+    source: assets_src/svg/search_check_24_regular.svg
+    codepoint: 0xe117
+    variant: regular
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: modified_fluent
+    based_on: 'microsoft/fluentui-system-icons: checkmark_24_filled (fluentui_system_icons 1.1.273)'
+    author: Otzaria contributors
+    license: MIT AND GPL-3.0-only
+    upstream_commit: pub:fluentui_system_icons@1.1.273
