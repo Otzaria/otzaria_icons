@@ -53,8 +53,6 @@ const iconCatalog = <GalleryIcon>[
   GalleryIcon('book_upload_24_regular', OtzariaIcons.book_upload_24_regular),
   GalleryIcon('book_word_24_filled', OtzariaIcons.book_word_24_filled),
   GalleryIcon('book_word_24_regular', OtzariaIcons.book_word_24_regular),
-  GalleryIcon('book_zim_24_filled', OtzariaIcons.book_zim_24_filled),
-  GalleryIcon('book_zim_24_regular', OtzariaIcons.book_zim_24_regular),
   GalleryIcon(
       'booklet_empty_24_regular', OtzariaIcons.booklet_empty_24_regular),
   GalleryIcon('books_stacked_high_24_regular',

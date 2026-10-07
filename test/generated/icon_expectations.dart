@@ -41,8 +41,6 @@ const generatedIconExpectations = <String, IconData>{
   'book_upload_24_regular': OtzariaIcons.book_upload_24_regular,
   'book_word_24_filled': OtzariaIcons.book_word_24_filled,
   'book_word_24_regular': OtzariaIcons.book_word_24_regular,
-  'book_zim_24_filled': OtzariaIcons.book_zim_24_filled,
-  'book_zim_24_regular': OtzariaIcons.book_zim_24_regular,
   'booklet_empty_24_regular': OtzariaIcons.booklet_empty_24_regular,
   'books_stacked_high_24_regular': OtzariaIcons.books_stacked_high_24_regular,
   'books_stacked_low_24_filled': OtzariaIcons.books_stacked_low_24_filled,
