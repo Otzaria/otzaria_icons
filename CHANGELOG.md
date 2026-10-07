@@ -3,9 +3,9 @@
 ## Unreleased
 
 - Every icon now has both a `_regular` and a `_filled` variant. The set grows
-  from 201 to **258** icons over a contiguous `U+E000`-`U+E101`. Existing
-  icons keep their codepoints, except those after the removed `book_md`
-  family, which move down by two.
+  from 201 to **280** icons over a contiguous `U+E000`-`U+E117`. Existing
+  icons keep their codepoints, except those after the removed `book_md` and
+  `book_zim` families, which move down by two for each.
 
   * **Behaviour change: the letter icons.** All 34 `alef_*`, `beit*` and
     `tet*` icons (except `alef_24` and `alef_half_filled`, which already had
@@ -76,8 +76,19 @@
     pixel-traced polylines on two different canvases; each was fitted to 22
     units tall, smoothed, and (regular only) thickened by 0.09 per side, since
     its 0.5-unit line was too fine for the set.
-  * `book_md_24_regular`/`_filled` are **removed**, without aliases; the
-    codepoints stay a dense run, so everything after them moved down by two.
+  * `book_md_24_regular`/`_filled` and `book_zim_24_regular`/`_filled` are
+    **removed**, without aliases; the codepoints stay a dense run, so
+    everything after each of them moved down by two.
+  * **Eleven new pairs** (22 icons), appended at the end of the run:
+    `book_lines` (the empty book with four text rules, as in
+    `document_bullet_list` but without the dots), `document_text` (a T where
+    `document_html` has an H), `document_pdf` (the letters of `book_pdf` on
+    `document_word`'s page), `document_upload` (`document_download` with the
+    arrow turned over), `alef_4` and `alef_5` (the numeral beside the alef, as
+    in `alef_3`), `tet_latin_t` (a tet beside a Latin T, as `alef_latin_a`),
+    `check` (a tick at `cross`'s box and weights) and the three badged ticks
+    `alef_check`, `link_check` and `search_check`, which are `alef_delete`,
+    `link_delete` and `search_not_found` with a tick in the same disc.
   * **Breaking name changes:** `text_continuous_*` becomes `text_continuous_rtl_*`
     (the set's own drawing, a mirror of Fluent's), and Fluent's original is added
     as `text_continuous_ltr_*`. `alef_half_filled_24_regular` becomes
@@ -85,7 +96,9 @@
     half is solid.
   * `booklet` and `booklet_empty` are smoothed and their regular line is 5%
     heavier; `book_fanned` is stretched vertically (x1.9) to be squarer with
-    heavier lines; `document_column` has equal gaps (1.5) above, between and
+    heavier lines, then lowered again (x0.84, the stroke put back by an
+    outward offset) so the gaps between its page lines close and the icon is
+    about 15% shorter; `document_column` has equal gaps (1.5) above, between and
     below its rows; every `search_in_*` icon now shares one cleanly built ring
     and handle, so the neck joins the ring identically in all of them.
   * `alef_near_alef` was drawn 0.86 units past the left edge of the canvas; it
