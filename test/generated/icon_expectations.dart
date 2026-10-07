@@ -281,4 +281,12 @@ const generatedIconExpectations = <String, IconData>{
   'alef_mix_24_filled': OtzariaIcons.alef_mix_24_filled,
   'person_portrait_24_filled': OtzariaIcons.person_portrait_24_filled,
   'person_portrait_24_regular': OtzariaIcons.person_portrait_24_regular,
+  'book_lines_24_filled': OtzariaIcons.book_lines_24_filled,
+  'book_lines_24_regular': OtzariaIcons.book_lines_24_regular,
+  'document_pdf_24_filled': OtzariaIcons.document_pdf_24_filled,
+  'document_pdf_24_regular': OtzariaIcons.document_pdf_24_regular,
+  'document_text_24_filled': OtzariaIcons.document_text_24_filled,
+  'document_text_24_regular': OtzariaIcons.document_text_24_regular,
+  'document_upload_24_filled': OtzariaIcons.document_upload_24_filled,
+  'document_upload_24_regular': OtzariaIcons.document_upload_24_regular,
 };

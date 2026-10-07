@@ -390,4 +390,15 @@ const iconCatalog = <GalleryIcon>[
       'person_portrait_24_filled', OtzariaIcons.person_portrait_24_filled),
   GalleryIcon(
       'person_portrait_24_regular', OtzariaIcons.person_portrait_24_regular),
+  GalleryIcon('book_lines_24_filled', OtzariaIcons.book_lines_24_filled),
+  GalleryIcon('book_lines_24_regular', OtzariaIcons.book_lines_24_regular),
+  GalleryIcon('document_pdf_24_filled', OtzariaIcons.document_pdf_24_filled),
+  GalleryIcon('document_pdf_24_regular', OtzariaIcons.document_pdf_24_regular),
+  GalleryIcon('document_text_24_filled', OtzariaIcons.document_text_24_filled),
+  GalleryIcon(
+      'document_text_24_regular', OtzariaIcons.document_text_24_regular),
+  GalleryIcon(
+      'document_upload_24_filled', OtzariaIcons.document_upload_24_filled),
+  GalleryIcon(
+      'document_upload_24_regular', OtzariaIcons.document_upload_24_regular),
 ];

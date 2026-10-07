@@ -1815,6 +1815,62 @@ abstract final class OtzariaIcons {
     fontPackage: fontPackage,
   );
 
+  /// `book_lines_24_filled.svg`
+  static const IconData book_lines_24_filled = IconData(
+    0xe102,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `book_lines_24_regular.svg`
+  static const IconData book_lines_24_regular = IconData(
+    0xe103,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `document_pdf_24_filled.svg`
+  static const IconData document_pdf_24_filled = IconData(
+    0xe104,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `document_pdf_24_regular.svg`
+  static const IconData document_pdf_24_regular = IconData(
+    0xe105,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `document_text_24_filled.svg`
+  static const IconData document_text_24_filled = IconData(
+    0xe106,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `document_text_24_regular.svg`
+  static const IconData document_text_24_regular = IconData(
+    0xe107,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `document_upload_24_filled.svg`
+  static const IconData document_upload_24_filled = IconData(
+    0xe108,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `document_upload_24_regular.svg`
+  static const IconData document_upload_24_regular = IconData(
+    0xe109,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
   /// Every icon in this library, keyed by its name.
   static const Map<String, IconData> allIcons = <String, IconData>{
     'book_24_filled': book_24_filled,
@@ -2076,5 +2132,13 @@ abstract final class OtzariaIcons {
     'alef_mix_24_filled': alef_mix_24_filled,
     'person_portrait_24_filled': person_portrait_24_filled,
     'person_portrait_24_regular': person_portrait_24_regular,
+    'book_lines_24_filled': book_lines_24_filled,
+    'book_lines_24_regular': book_lines_24_regular,
+    'document_pdf_24_filled': document_pdf_24_filled,
+    'document_pdf_24_regular': document_pdf_24_regular,
+    'document_text_24_filled': document_text_24_filled,
+    'document_text_24_regular': document_text_24_regular,
+    'document_upload_24_filled': document_upload_24_filled,
+    'document_upload_24_regular': document_upload_24_regular,
   };
 }
