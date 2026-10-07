@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 0.6.0 - 2026-10-07
+
 - Every icon now has both a `_regular` and a `_filled` variant. The set grows
   from 201 to **280** icons over a contiguous `U+E000`-`U+E117`. Existing
   icons keep their codepoints, except those after the removed `book_md` and
