@@ -1978,15 +1978,28 @@ def _link_plain_filled():
 FANNED_STRETCH = 1.9
 FANNED_GROW = 0.08
 
+# Then lowered again: stretched that far the fan stood 15.5 units tall in the
+# regular and the gaps between its page lines were wider than the lines were
+# thick. The drawing is squeezed vertically about its centre, which closes
+# those gaps and lowers the icon together, and the stroke the squeeze took off
+# is given straight back by an outward offset - so the lines keep the weight
+# they had and only the air between them goes. Anything taller than the
+# threshold has not been lowered yet, which is how a second run stands down.
+FANNED_LOWER = 0.84
+FANNED_LOWER_FROM = 14.0
+
 
 def _fanned(name):
     def build():
         art = glyph(name)
         x0, y0, x1, y1 = art.bounds
-        if y1 - y0 > 12:
-            raise Restated("%s is already %.1f tall" % (name, y1 - y0))
-        return (art.scale(1, FANNED_STRETCH, about=(12, 12))
-                   .grow(FANNED_GROW)), [], False
+        if y1 - y0 <= 12:
+            return (art.scale(1, FANNED_STRETCH, about=(12, 12))
+                       .grow(FANNED_GROW)), [], False
+        if y1 - y0 > FANNED_LOWER_FROM:
+            low = art.scale(1, FANNED_LOWER, about=(12, 12))
+            return low.grow((art.mean_stroke() - low.mean_stroke()) / 2), [], False
+        raise Restated("%s is already %.1f tall" % (name, y1 - y0))
     return build
 
 
