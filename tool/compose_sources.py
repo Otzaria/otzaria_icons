@@ -254,6 +254,9 @@ SYMBOL_WEIGHT = {
     # other and cost the mark its point, which is the one thing that says
     # scissors.
     "scissors": 0.62,
+    # A tick has no counter or gap to protect, so it can take the weight: the
+    # default 1.0 read thin beside the cross it pairs with in the delete badges.
+    "check": 1.5,
 }
 
 
@@ -1782,7 +1785,7 @@ def _search_not_found_badge(kind="cross"):
         mark = (sym_cross().fit_radius(badge_r * 0.88).deburr(0.05)
                 .centred_on(bx, by))
     else:
-        mark = symbol(kind, badge_r * 0.84).centred_on(bx, by)
+        mark = symbol(kind, badge_r * 0.78).centred_on(bx, by)
     mark = mark.scale(group_scale, about=anchor).translate(0, shift_down)
     ring = (t_outer - t_lens) | badge
     return sized(ring), [mark]
@@ -2412,7 +2415,7 @@ def stripes(cx, cy, width, rows, height, pitch):
 # `document_bullet_list`'s rules - 1.5 tall, 3.0 apart - without the dots, on the
 # empty cover `book_empty` draws. Four of them, centred on the cover's own
 # opening, so the text sits where the title does on the other book_* icons.
-BOOK_LINES = dict(width=8.0, rows=4, height=1.5, pitch=3.0)
+BOOK_LINES = dict(width=9.5, rows=4, height=1.5, pitch=3.0)
 
 
 def _book_lines_rules():
@@ -2436,27 +2439,32 @@ DOC_TEXT_Y = (11.06, 17.5)
 
 
 def mark_t():
-    """A T in the H's own drawing: the H's 1.33-unit stem, the same height, and
-    the same small radius on every corner."""
+    """A T with the H's 1.33-unit stem and the same height, and round ends: the
+    bar and the stem are stadiums, like every text rule in the set, so all
+    three ends of the T are half circles."""
     y0, y1 = DOC_TEXT_Y
     w, t = 6.0, 1.33
-    bar = ic.rect(12 - w / 2, y0, 12 + w / 2, y0 + t)
-    stem = ic.rect(12 - t / 2, y0, 12 + t / 2, y1)
-    return (bar | stem).fillet(0.3)
+    bar = round_rect(12 - w / 2, y0, 12 + w / 2, y0 + t, t / 2)
+    stem = round_rect(12 - t / 2, y0, 12 + t / 2, y1, t / 2)
+    return bar | stem
 
 
 def mark_pdf():
     """book_pdf's three letters, centred on the band the W stands in. They are
     the white of its solid cover, so they are read as the cover minus its glyph
-    - which also keeps the P's and the D's counters as ink islands."""
+    - which also keeps the P's and the D's counters as ink islands.
+
+    Set tall rather than wide: at 16 px the letters are what has to be told
+    apart, and a word 10 units wide but 4 tall turns to a grey bar, while the
+    same width stretched to the band's own 6.8 keeps three separate letters.
+    The width stays inside the page's margin, and a little weight (0.1 a side)
+    keeps the P's and D's counters from closing."""
     full = glyph("book_pdf_24_filled")
     letters = ic.contours(full)[0] - full
-    y0, y1 = DOC_TEXT_Y
-    w = 10.2
-    x0, a0, x1, a1 = letters.bounds
-    h = (a1 - a0) * w / (x1 - x0)
-    cy = (y0 + y1) / 2
-    return letters.fit((12 - w / 2, cy - h / 2, 12 + w / 2, cy + h / 2))
+    w, h = 10.4, 6.8
+    cy = sum(DOC_TEXT_Y) / 2
+    box = (12 - w / 2, cy - h / 2, 12 + w / 2, cy + h / 2)
+    return letters.fit(box, keep_aspect=False).grow(0.1)
 
 
 def mark_upload():
@@ -2502,8 +2510,9 @@ for _n in (4, 5):
 
 def latin_t():
     """A sans capital T at the A's proportions and weight (2.06 mean stroke)."""
-    w, h, t = 13.0, 15.0, 2.1
-    return ic.rect(0, 0, w, t) | ic.rect((w - 2.3) / 2, 0, (w + 2.3) / 2, h)
+    w, h, t, st = 13.0, 15.0, 2.1, 2.3
+    return (round_rect(0, 0, w, t, t / 2)
+            | round_rect((w - st) / 2, 0, (w + st) / 2, h, st / 2))
 
 
 @recipe("tet_latin_t_24_filled")
