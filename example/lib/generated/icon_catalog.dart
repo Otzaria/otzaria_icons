@@ -401,4 +401,10 @@ const iconCatalog = <GalleryIcon>[
       'document_upload_24_filled', OtzariaIcons.document_upload_24_filled),
   GalleryIcon(
       'document_upload_24_regular', OtzariaIcons.document_upload_24_regular),
+  GalleryIcon('alef_4_24_filled', OtzariaIcons.alef_4_24_filled),
+  GalleryIcon('alef_4_24_regular', OtzariaIcons.alef_4_24_regular),
+  GalleryIcon('alef_5_24_filled', OtzariaIcons.alef_5_24_filled),
+  GalleryIcon('alef_5_24_regular', OtzariaIcons.alef_5_24_regular),
+  GalleryIcon('tet_latin_t_24_filled', OtzariaIcons.tet_latin_t_24_filled),
+  GalleryIcon('tet_latin_t_24_regular', OtzariaIcons.tet_latin_t_24_regular),
 ];

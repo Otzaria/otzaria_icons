@@ -3990,3 +3990,93 @@ icons:
     author: Otzaria contributors
     license: GPL-3.0-only
     upstream_commit: null
+  - id: icon-0272
+    name: alef_4_24_filled
+    source: assets_src/svg/alef_4_24_filled.svg
+    codepoint: 0xe10a
+    variant: filled
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: custom
+    based_on: null
+    author: Otzaria contributors
+    license: GPL-3.0-only
+    upstream_commit: null
+  - id: icon-0273
+    name: alef_4_24_regular
+    source: assets_src/svg/alef_4_24_regular.svg
+    codepoint: 0xe10b
+    variant: regular
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: custom
+    based_on: null
+    author: Otzaria contributors
+    license: GPL-3.0-only
+    upstream_commit: null
+  - id: icon-0274
+    name: alef_5_24_filled
+    source: assets_src/svg/alef_5_24_filled.svg
+    codepoint: 0xe10c
+    variant: filled
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: custom
+    based_on: null
+    author: Otzaria contributors
+    license: GPL-3.0-only
+    upstream_commit: null
+  - id: icon-0275
+    name: alef_5_24_regular
+    source: assets_src/svg/alef_5_24_regular.svg
+    codepoint: 0xe10d
+    variant: regular
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: custom
+    based_on: null
+    author: Otzaria contributors
+    license: GPL-3.0-only
+    upstream_commit: null
+  - id: icon-0276
+    name: tet_latin_t_24_filled
+    source: assets_src/svg/tet_latin_t_24_filled.svg
+    codepoint: 0xe10e
+    variant: filled
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: custom
+    based_on: null
+    author: Otzaria contributors
+    license: GPL-3.0-only
+    upstream_commit: null
+  - id: icon-0277
+    name: tet_latin_t_24_regular
+    source: assets_src/svg/tet_latin_t_24_regular.svg
+    codepoint: 0xe10f
+    variant: regular
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: custom
+    based_on: null
+    author: Otzaria contributors
+    license: GPL-3.0-only
+    upstream_commit: null

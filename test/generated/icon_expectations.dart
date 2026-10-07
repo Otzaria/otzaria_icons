@@ -289,4 +289,10 @@ const generatedIconExpectations = <String, IconData>{
   'document_text_24_regular': OtzariaIcons.document_text_24_regular,
   'document_upload_24_filled': OtzariaIcons.document_upload_24_filled,
   'document_upload_24_regular': OtzariaIcons.document_upload_24_regular,
+  'alef_4_24_filled': OtzariaIcons.alef_4_24_filled,
+  'alef_4_24_regular': OtzariaIcons.alef_4_24_regular,
+  'alef_5_24_filled': OtzariaIcons.alef_5_24_filled,
+  'alef_5_24_regular': OtzariaIcons.alef_5_24_regular,
+  'tet_latin_t_24_filled': OtzariaIcons.tet_latin_t_24_filled,
+  'tet_latin_t_24_regular': OtzariaIcons.tet_latin_t_24_regular,
 };

@@ -1871,6 +1871,48 @@ abstract final class OtzariaIcons {
     fontPackage: fontPackage,
   );
 
+  /// `alef_4_24_filled.svg`
+  static const IconData alef_4_24_filled = IconData(
+    0xe10a,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `alef_4_24_regular.svg`
+  static const IconData alef_4_24_regular = IconData(
+    0xe10b,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `alef_5_24_filled.svg`
+  static const IconData alef_5_24_filled = IconData(
+    0xe10c,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `alef_5_24_regular.svg`
+  static const IconData alef_5_24_regular = IconData(
+    0xe10d,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `tet_latin_t_24_filled.svg`
+  static const IconData tet_latin_t_24_filled = IconData(
+    0xe10e,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `tet_latin_t_24_regular.svg`
+  static const IconData tet_latin_t_24_regular = IconData(
+    0xe10f,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
   /// Every icon in this library, keyed by its name.
   static const Map<String, IconData> allIcons = <String, IconData>{
     'book_24_filled': book_24_filled,
@@ -2140,5 +2182,11 @@ abstract final class OtzariaIcons {
     'document_text_24_regular': document_text_24_regular,
     'document_upload_24_filled': document_upload_24_filled,
     'document_upload_24_regular': document_upload_24_regular,
+    'alef_4_24_filled': alef_4_24_filled,
+    'alef_4_24_regular': alef_4_24_regular,
+    'alef_5_24_filled': alef_5_24_filled,
+    'alef_5_24_regular': alef_5_24_regular,
+    'tet_latin_t_24_filled': tet_latin_t_24_filled,
+    'tet_latin_t_24_regular': tet_latin_t_24_regular,
   };
 }
