@@ -2551,9 +2551,262 @@ def _check_filled():
 
 
 # --------------------------------------------------------------------------
+# Round 1: a Fluent mark on the book cover / the document page
+# --------------------------------------------------------------------------
+# The same two templates the set already uses for a centred mark -
+# `_book_marked` (book_download, book_exclamation) and `document` (document_alef,
+# document_upload) - carrying a Fluent mark instead of a drawn one. Fluent's own
+# filled style is the source, as it is for the badges: the regular style is a
+# 1.5-unit outline and an outline reduced to this size is a ring too fine to
+# print. The mark is fitted into the block the existing marks occupy, and its
+# stroke is put back to the cover's weight after scaling.
+MARK_WEIGHT = 1.45
+
+# short name -> Fluent base name (always read from the `_24_filled` font)
+ROUND1_MARKS = {
+    "checkmark": "checkmark",
+    "bookmark": "bookmark",
+    "edit": "edit",
+    "delete": "delete",
+    "dismiss": "dismiss",
+    "copy": "copy",
+    "settings": "settings",
+    "lock": "lock_closed",
+    "pin": "pin",
+    "history": "history",
+    "save": "save",
+    "link": "link",
+    "clock": "clock",
+}
+
+# Per-mark fitting boxes where the default block does not suit a mark's shape.
+# The chain sits in a wider, shorter band than the square-ish marks, so it can be
+# larger without touching the page's margin (interior x 5.5 to 18.5).
+ROUND1_BOX = {"link": (6.6, 9.5, 17.4, 18.5)}
+# A thin chain closes its own gaps when it is thickened at this size, so it
+# keeps closer to Fluent's own weight.
+ROUND1_WEIGHT = {"link": 0.95}
+ROUND1_TURN = {}
+
+
+def fluent_mark(short, box):
+    """Fluent's `short` mark, fitted to `box`, with the cover's stroke weight."""
+    box = ROUND1_BOX.get(short, box)
+    weight = ROUND1_WEIGHT.get(short, MARK_WEIGHT)
+    art = use_fluent("%s_24_filled" % ROUND1_MARKS[short])
+    if short in ROUND1_TURN:
+        art = art.rotate(ROUND1_TURN[short])
+    art = art.fit(box)
+    have = art.mean_stroke()
+    if have and have < weight:
+        art = art.grow((weight - have) / 2)
+    return art.fill_holes(BADGE_MIN_HOLE)
+
+
+def _round1_book(short, filled):
+    def build():
+        solid, cuts = _book_marked(fluent_mark(short, BOOK_MARK_BLOCK), filled)
+        return solid, cuts, filled
+    return build
+
+
+def otzaria_links_mark(box):
+    """The set's own two-link chain (`links`), on the page like any other mark.
+    It is drawn at 24 px with a 2-unit line, so at mark size the line is put
+    back to the weight Fluent's chain carries here."""
+    art = glyph("links_24_regular").fit(box)
+    have = art.mean_stroke()
+    if have and have < ROUND1_WEIGHT["link"]:
+        art = art.grow((ROUND1_WEIGHT["link"] - have) / 2)
+    return art
+
+
+def _round1_document(short, filled):
+    def build():
+        mark = (otzaria_links_mark(ROUND1_BOX["link"]) if short == "links"
+                else fluent_mark(short, MARK_BOX))
+        solid, cuts = document(mark, filled)
+        return solid, cuts, False
+    return build
+
+
+ROUND1_BOOKS = {"book_checkmark": "checkmark", "book_bookmark": "bookmark",
+                "book_edit": "edit", "book_delete": "delete",
+                "book_dismiss": "dismiss", "book_copy": "copy",
+                "book_settings": "settings", "book_lock": "lock",
+                "book_pin": "pin", "book_history": "history"}
+ROUND1_DOCUMENTS = {"document_checkmark": "checkmark", "document_edit": "edit",
+                    "document_save": "save", "document_copy": "copy",
+                    "document_lock": "lock", "document_link": "link",
+                    "document_links": "links",
+                    "document_clock": "clock"}
+
+for _stem, _short in ROUND1_BOOKS.items():
+    for _filled in (False, True):
+        RECIPES["%s_24_%s" % (_stem, "filled" if _filled else "regular")] = \
+            _round1_book(_short, _filled)
+for _stem, _short in ROUND1_DOCUMENTS.items():
+    for _filled in (False, True):
+        RECIPES["%s_24_%s" % (_stem, "filled" if _filled else "regular")] = \
+            _round1_document(_short, _filled)
+
+
+# Fluent draws these with the panel / the binding on the left. In a right-to-left
+# layout the panel is on the right, and Fluent has no right-hand twin of
+# `panel_left_expand` / `panel_left_text`, so they are Fluent's own drawing turned
+# over about the canvas centre. Nothing in them is text or a numeral, so the
+# mirror does not reverse anything that must not be reversed.
+def _mirrored(source, filled):
+    def build():
+        art = use_fluent("%s_24_%s" % (source, "filled" if filled else "regular"))
+        return art.scale(-1, 1, about=(12, 0)), [], False
+    return build
+
+
+for _stem, _source in (("panel_right_expand", "panel_left_expand"),
+                       ("panel_right_contract", "panel_left_contract"),
+                       ("panel_right_text", "panel_left_text"),
+                       ("notebook", "notebook")):
+    for _filled in (False, True):
+        RECIPES["%s_24_%s" % (_stem, "filled" if _filled else "regular")] = \
+            _mirrored(_source, _filled)
+
+
+# --------------------------------------------------------------------------
+# Round 2
+# --------------------------------------------------------------------------
+# More Fluent marks for the badge machinery above (`symbol` reads FLUENT_SYMBOLS).
+FLUENT_SYMBOLS.update({
+    "edit": ("edit_24_filled", 0),
+    "search": ("search_24_filled", 0),
+    "star": ("star_24_filled", 0),
+    "settings": ("settings_24_filled", 0),
+    "refresh": ("arrow_clockwise_24_filled", 0),
+})
+
+# Fluent text icons drawn for a left-to-right page: the paragraph, the bullets
+# or the tree start on the left. Fluent has no right-to-left twin of these four,
+# so each is Fluent's own drawing turned over about the canvas centre.
+for _stem in ("text_first_line", "text_hanging", "text_bullet_list_tree",
+              "text_bullet_list_square"):
+    for _filled in (False, True):
+        RECIPES["%s_24_%s" % (_stem, "filled" if _filled else "regular")] =             _mirrored(_stem, _filled)
+
+
+# alef_* and link_* with a new badge: the same disc and placement as the rest of
+# each family, only the mark differs.
+for _kind, _stem in (("edit", "alef_edit"), ("search", "alef_search"),
+                     ("settings", "alef_settings")):
+    _f, _r = _stem + "_24_filled", _stem + "_24_regular"
+    RECIPES[_f] = alef_badge(_kind)
+    RECIPES[_r] = outline_recipe(_f, True)
+    DEPENDS[_r] = _f
+    PROVENANCE_OF[_r] = _f
+
+for _kind, _stem in (("lock", "link_lock"), ("edit", "link_edit"),
+                     ("search", "link_search"), ("star", "link_star")):
+    RECIPES[_stem + "_24_regular"] = link_badge(_kind)
+    RECIPES[_stem + "_24_filled"] = link_badge(_kind, True)
+
+
+# search_in_*: the shared ring with a new content mark in the lens. The ring and
+# the filled derivation are the family's own; only the content is new.
+SEARCH_IN_REACH = 4.9
+SEARCH_IN_WEIGHT = 1.35
+
+
+def _fitted(art, reach, weight):
+    art = art.fit_radius(reach)
+    have = art.mean_stroke()
+    if have and have < weight:
+        art = art.grow((weight - have) / 2)
+    return art.fill_holes(BADGE_MIN_HOLE)
+
+
+# Marks made of fine lines close up when thickened to the default weight.
+SEARCH_IN_WEIGHT_OF = {"search_in_history": 0.9, "search_in_commentary": 0.85}
+SEARCH_IN_REACH_OF = {"search_in_history": 5.4, "search_in_commentary": 5.4}
+
+SEARCH_IN_CONTENT = {
+    "search_in_bookmarks": lambda: use_fluent("bookmark_24_filled"),
+    "search_in_notes": lambda: use_fluent("note_24_filled"),
+    "search_in_links": lambda: glyph("links_24_regular"),
+    "search_in_history": lambda: use_fluent("history_24_filled"),
+    "search_in_commentary": lambda: glyph("book_open_medium_24_regular"),
+}
+
+
+def _search_in_new(stem):
+    def build():
+        outer, lens = search_ring()
+        content = _fitted(SEARCH_IN_CONTENT[stem](),
+                          SEARCH_IN_REACH_OF.get(stem, SEARCH_IN_REACH),
+                          SEARCH_IN_WEIGHT_OF.get(stem, SEARCH_IN_WEIGHT)
+                          ).centred_on(*SEARCH_CENTRE)
+        return (outer - lens) | content, [], False
+    return build
+
+
+for _stem in SEARCH_IN_CONTENT:
+    _r, _f = _stem + "_24_regular", _stem + "_24_filled"
+    RECIPES[_r] = _search_in_new(_stem)
+    DEPENDS[_f] = _r
+
+    def _search_in_filled(base=_r):
+        solid, cuts = inverted(base, edge=SEARCH_FILLED_EDGE)
+        return sized(solid), cuts, False
+    RECIPES[_f] = _search_in_filled
+
+
+# calendar_alef: the set's calendar with the five dots of its grid replaced by
+# an alef, placed the way `document_alef` places it on its page.
+CALENDAR_MARK_BOX = (8.0, 9.7, 16.0, 18.5)
+
+
+def _calendar_alef(filled):
+    def build():
+        mark = alef_solid().fit(CALENDAR_MARK_BOX)
+        if filled:
+            cs = ic.contours(part("calendar_24_filled", 0))
+            return cs[0] | cs[1], [mark], True
+        cs = ic.contours(part("calendar_24_regular", 0))
+        dots = Art()
+        for c in cs[3:]:
+            dots = dots | c
+        return (glyph("calendar_24_regular") - dots) | mark, [], False
+    return build
+
+
+RECIPES["calendar_alef_24_regular"] = _calendar_alef(False)
+RECIPES["calendar_alef_24_filled"] = _calendar_alef(True)
+
+
+# library_*: Fluent's three standing books with a corner disc and a mark knocked
+# out of it - the disc `book_add` carries, with the books cut back to clear it.
+LIBRARY_DISC = (17.6, 17.6, 5.2)
+LIBRARY_CLEAR = 0.9
+
+
+def _library_badged(kind, filled):
+    def build():
+        art = use_fluent("library_24_%s" % ("filled" if filled else "regular"))
+        cx, cy, r = LIBRARY_DISC
+        disc = circle(cx, cy, r)
+        mark = symbol(kind, r * SYMBOL_REACH).centred_on(cx, cy)
+        return (art - disc.grow(LIBRARY_CLEAR)) | disc, [mark], True
+    return build
+
+
+for _kind, _stem in (("plus", "library_add"), ("settings", "library_settings"),
+                     ("refresh", "library_refresh")):
+    RECIPES[_stem + "_24_regular"] = _library_badged(_kind, False)
+    RECIPES[_stem + "_24_filled"] = _library_badged(_kind, True)
+
+
+# --------------------------------------------------------------------------
 # Recording where the artwork came from
 # --------------------------------------------------------------------------
-MANIFEST = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
+MANIFEST =os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
                         "icon_manifest.yaml")
 
 

@@ -2,6 +2,28 @@
 
 ## Unreleased
 
+- 42 new icons, each with `_regular` and `_filled` (84 glyphs, 364 in all):
+  * `book_checkmark`, `book_bookmark`, `book_edit`, `book_delete`,
+    `book_dismiss`, `book_copy`, `book_settings`, `book_lock`, `book_pin` and
+    `book_history` - the closed book with a Fluent mark centred on the cover,
+    placed like `book_download` / `book_exclamation`.
+  * `document_checkmark`, `document_edit`, `document_save`, `document_copy`,
+    `document_lock`, `document_link`, `document_links` and `document_clock` -
+    the document page with a Fluent mark (`document_links`: the set's own
+    `links` chain), placed like `document_alef` / `document_upload`.
+  * `panel_right_expand`, `panel_right_contract`, `panel_right_text` and
+    `notebook`, and `text_first_line`, `text_hanging`, `text_bullet_list_tree`
+    and `text_bullet_list_square` - Fluent's drawings mirrored for
+    right-to-left layouts. `panel_right_contract` is drawn here as well so a
+    toggle button can take both of its icons from this set.
+  * `alef_edit`, `alef_search`, `alef_settings`, `link_lock`, `link_edit`,
+    `link_search` and `link_star` - the family's own disc with a new mark.
+  * `search_in_bookmarks`, `search_in_notes`, `search_in_links`,
+    `search_in_history` and `search_in_commentary`.
+  * `calendar_alef` - the calendar with an alef in place of its dots.
+  * `library_add`, `library_settings` and `library_refresh` - Fluent's
+    `library` with a corner badge.
+
 ## 0.6.0 - 2026-10-07
 
 - Every icon now has both a `_regular` and a `_filled` variant. The set grows

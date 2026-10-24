@@ -4200,3 +4200,1263 @@ icons:
     author: Otzaria contributors
     license: MIT AND GPL-3.0-only
     upstream_commit: pub:fluentui_system_icons@1.1.273
+  - id: icon-0286
+    name: book_bookmark_24_filled
+    source: assets_src/svg/book_bookmark_24_filled.svg
+    codepoint: 0xe118
+    variant: filled
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: modified_fluent
+    based_on: 'microsoft/fluentui-system-icons: bookmark_24_filled (fluentui_system_icons 1.1.273)'
+    author: Otzaria contributors
+    license: MIT AND GPL-3.0-only
+    upstream_commit: pub:fluentui_system_icons@1.1.273
+  - id: icon-0287
+    name: book_bookmark_24_regular
+    source: assets_src/svg/book_bookmark_24_regular.svg
+    codepoint: 0xe119
+    variant: regular
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: modified_fluent
+    based_on: 'microsoft/fluentui-system-icons: bookmark_24_filled (fluentui_system_icons 1.1.273)'
+    author: Otzaria contributors
+    license: MIT AND GPL-3.0-only
+    upstream_commit: pub:fluentui_system_icons@1.1.273
+  - id: icon-0288
+    name: book_checkmark_24_filled
+    source: assets_src/svg/book_checkmark_24_filled.svg
+    codepoint: 0xe11a
+    variant: filled
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: modified_fluent
+    based_on: 'microsoft/fluentui-system-icons: checkmark_24_filled (fluentui_system_icons 1.1.273)'
+    author: Otzaria contributors
+    license: MIT AND GPL-3.0-only
+    upstream_commit: pub:fluentui_system_icons@1.1.273
+  - id: icon-0289
+    name: book_checkmark_24_regular
+    source: assets_src/svg/book_checkmark_24_regular.svg
+    codepoint: 0xe11b
+    variant: regular
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: modified_fluent
+    based_on: 'microsoft/fluentui-system-icons: checkmark_24_filled (fluentui_system_icons 1.1.273)'
+    author: Otzaria contributors
+    license: MIT AND GPL-3.0-only
+    upstream_commit: pub:fluentui_system_icons@1.1.273
+  - id: icon-0290
+    name: book_copy_24_filled
+    source: assets_src/svg/book_copy_24_filled.svg
+    codepoint: 0xe11c
+    variant: filled
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: modified_fluent
+    based_on: 'microsoft/fluentui-system-icons: copy_24_filled (fluentui_system_icons 1.1.273)'
+    author: Otzaria contributors
+    license: MIT AND GPL-3.0-only
+    upstream_commit: pub:fluentui_system_icons@1.1.273
+  - id: icon-0291
+    name: book_copy_24_regular
+    source: assets_src/svg/book_copy_24_regular.svg
+    codepoint: 0xe11d
+    variant: regular
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: modified_fluent
+    based_on: 'microsoft/fluentui-system-icons: copy_24_filled (fluentui_system_icons 1.1.273)'
+    author: Otzaria contributors
+    license: MIT AND GPL-3.0-only
+    upstream_commit: pub:fluentui_system_icons@1.1.273
+  - id: icon-0292
+    name: book_delete_24_filled
+    source: assets_src/svg/book_delete_24_filled.svg
+    codepoint: 0xe11e
+    variant: filled
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: modified_fluent
+    based_on: 'microsoft/fluentui-system-icons: delete_24_filled (fluentui_system_icons 1.1.273)'
+    author: Otzaria contributors
+    license: MIT AND GPL-3.0-only
+    upstream_commit: pub:fluentui_system_icons@1.1.273
+  - id: icon-0293
+    name: book_delete_24_regular
+    source: assets_src/svg/book_delete_24_regular.svg
+    codepoint: 0xe11f
+    variant: regular
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: modified_fluent
+    based_on: 'microsoft/fluentui-system-icons: delete_24_filled (fluentui_system_icons 1.1.273)'
+    author: Otzaria contributors
+    license: MIT AND GPL-3.0-only
+    upstream_commit: pub:fluentui_system_icons@1.1.273
+  - id: icon-0294
+    name: book_dismiss_24_filled
+    source: assets_src/svg/book_dismiss_24_filled.svg
+    codepoint: 0xe120
+    variant: filled
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: modified_fluent
+    based_on: 'microsoft/fluentui-system-icons: dismiss_24_filled (fluentui_system_icons 1.1.273)'
+    author: Otzaria contributors
+    license: MIT AND GPL-3.0-only
+    upstream_commit: pub:fluentui_system_icons@1.1.273
+  - id: icon-0295
+    name: book_dismiss_24_regular
+    source: assets_src/svg/book_dismiss_24_regular.svg
+    codepoint: 0xe121
+    variant: regular
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: modified_fluent
+    based_on: 'microsoft/fluentui-system-icons: dismiss_24_filled (fluentui_system_icons 1.1.273)'
+    author: Otzaria contributors
+    license: MIT AND GPL-3.0-only
+    upstream_commit: pub:fluentui_system_icons@1.1.273
+  - id: icon-0296
+    name: book_edit_24_filled
+    source: assets_src/svg/book_edit_24_filled.svg
+    codepoint: 0xe122
+    variant: filled
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: modified_fluent
+    based_on: 'microsoft/fluentui-system-icons: edit_24_filled (fluentui_system_icons 1.1.273)'
+    author: Otzaria contributors
+    license: MIT AND GPL-3.0-only
+    upstream_commit: pub:fluentui_system_icons@1.1.273
+  - id: icon-0297
+    name: book_edit_24_regular
+    source: assets_src/svg/book_edit_24_regular.svg
+    codepoint: 0xe123
+    variant: regular
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: modified_fluent
+    based_on: 'microsoft/fluentui-system-icons: edit_24_filled (fluentui_system_icons 1.1.273)'
+    author: Otzaria contributors
+    license: MIT AND GPL-3.0-only
+    upstream_commit: pub:fluentui_system_icons@1.1.273
+  - id: icon-0298
+    name: book_history_24_filled
+    source: assets_src/svg/book_history_24_filled.svg
+    codepoint: 0xe124
+    variant: filled
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: modified_fluent
+    based_on: 'microsoft/fluentui-system-icons: history_24_filled (fluentui_system_icons 1.1.273)'
+    author: Otzaria contributors
+    license: MIT AND GPL-3.0-only
+    upstream_commit: pub:fluentui_system_icons@1.1.273
+  - id: icon-0299
+    name: book_history_24_regular
+    source: assets_src/svg/book_history_24_regular.svg
+    codepoint: 0xe125
+    variant: regular
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: modified_fluent
+    based_on: 'microsoft/fluentui-system-icons: history_24_filled (fluentui_system_icons 1.1.273)'
+    author: Otzaria contributors
+    license: MIT AND GPL-3.0-only
+    upstream_commit: pub:fluentui_system_icons@1.1.273
+  - id: icon-0300
+    name: book_lock_24_filled
+    source: assets_src/svg/book_lock_24_filled.svg
+    codepoint: 0xe126
+    variant: filled
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: modified_fluent
+    based_on: 'microsoft/fluentui-system-icons: lock_closed_24_filled (fluentui_system_icons 1.1.273)'
+    author: Otzaria contributors
+    license: MIT AND GPL-3.0-only
+    upstream_commit: pub:fluentui_system_icons@1.1.273
+  - id: icon-0301
+    name: book_lock_24_regular
+    source: assets_src/svg/book_lock_24_regular.svg
+    codepoint: 0xe127
+    variant: regular
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: modified_fluent
+    based_on: 'microsoft/fluentui-system-icons: lock_closed_24_filled (fluentui_system_icons 1.1.273)'
+    author: Otzaria contributors
+    license: MIT AND GPL-3.0-only
+    upstream_commit: pub:fluentui_system_icons@1.1.273
+  - id: icon-0302
+    name: book_pin_24_filled
+    source: assets_src/svg/book_pin_24_filled.svg
+    codepoint: 0xe128
+    variant: filled
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: modified_fluent
+    based_on: 'microsoft/fluentui-system-icons: pin_24_filled (fluentui_system_icons 1.1.273)'
+    author: Otzaria contributors
+    license: MIT AND GPL-3.0-only
+    upstream_commit: pub:fluentui_system_icons@1.1.273
+  - id: icon-0303
+    name: book_pin_24_regular
+    source: assets_src/svg/book_pin_24_regular.svg
+    codepoint: 0xe129
+    variant: regular
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: modified_fluent
+    based_on: 'microsoft/fluentui-system-icons: pin_24_filled (fluentui_system_icons 1.1.273)'
+    author: Otzaria contributors
+    license: MIT AND GPL-3.0-only
+    upstream_commit: pub:fluentui_system_icons@1.1.273
+  - id: icon-0304
+    name: book_settings_24_filled
+    source: assets_src/svg/book_settings_24_filled.svg
+    codepoint: 0xe12a
+    variant: filled
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: modified_fluent
+    based_on: 'microsoft/fluentui-system-icons: settings_24_filled (fluentui_system_icons 1.1.273)'
+    author: Otzaria contributors
+    license: MIT AND GPL-3.0-only
+    upstream_commit: pub:fluentui_system_icons@1.1.273
+  - id: icon-0305
+    name: book_settings_24_regular
+    source: assets_src/svg/book_settings_24_regular.svg
+    codepoint: 0xe12b
+    variant: regular
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: modified_fluent
+    based_on: 'microsoft/fluentui-system-icons: settings_24_filled (fluentui_system_icons 1.1.273)'
+    author: Otzaria contributors
+    license: MIT AND GPL-3.0-only
+    upstream_commit: pub:fluentui_system_icons@1.1.273
+  - id: icon-0306
+    name: document_checkmark_24_filled
+    source: assets_src/svg/document_checkmark_24_filled.svg
+    codepoint: 0xe12c
+    variant: filled
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: modified_fluent
+    based_on: 'microsoft/fluentui-system-icons: checkmark_24_filled (fluentui_system_icons 1.1.273)'
+    author: Otzaria contributors
+    license: MIT AND GPL-3.0-only
+    upstream_commit: pub:fluentui_system_icons@1.1.273
+  - id: icon-0307
+    name: document_checkmark_24_regular
+    source: assets_src/svg/document_checkmark_24_regular.svg
+    codepoint: 0xe12d
+    variant: regular
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: modified_fluent
+    based_on: 'microsoft/fluentui-system-icons: checkmark_24_filled (fluentui_system_icons 1.1.273)'
+    author: Otzaria contributors
+    license: MIT AND GPL-3.0-only
+    upstream_commit: pub:fluentui_system_icons@1.1.273
+  - id: icon-0308
+    name: document_clock_24_filled
+    source: assets_src/svg/document_clock_24_filled.svg
+    codepoint: 0xe12e
+    variant: filled
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: modified_fluent
+    based_on: 'microsoft/fluentui-system-icons: clock_24_filled (fluentui_system_icons 1.1.273)'
+    author: Otzaria contributors
+    license: MIT AND GPL-3.0-only
+    upstream_commit: pub:fluentui_system_icons@1.1.273
+  - id: icon-0309
+    name: document_clock_24_regular
+    source: assets_src/svg/document_clock_24_regular.svg
+    codepoint: 0xe12f
+    variant: regular
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: modified_fluent
+    based_on: 'microsoft/fluentui-system-icons: clock_24_filled (fluentui_system_icons 1.1.273)'
+    author: Otzaria contributors
+    license: MIT AND GPL-3.0-only
+    upstream_commit: pub:fluentui_system_icons@1.1.273
+  - id: icon-0310
+    name: document_copy_24_filled
+    source: assets_src/svg/document_copy_24_filled.svg
+    codepoint: 0xe130
+    variant: filled
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: modified_fluent
+    based_on: 'microsoft/fluentui-system-icons: copy_24_filled (fluentui_system_icons 1.1.273)'
+    author: Otzaria contributors
+    license: MIT AND GPL-3.0-only
+    upstream_commit: pub:fluentui_system_icons@1.1.273
+  - id: icon-0311
+    name: document_copy_24_regular
+    source: assets_src/svg/document_copy_24_regular.svg
+    codepoint: 0xe131
+    variant: regular
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: modified_fluent
+    based_on: 'microsoft/fluentui-system-icons: copy_24_filled (fluentui_system_icons 1.1.273)'
+    author: Otzaria contributors
+    license: MIT AND GPL-3.0-only
+    upstream_commit: pub:fluentui_system_icons@1.1.273
+  - id: icon-0312
+    name: document_edit_24_filled
+    source: assets_src/svg/document_edit_24_filled.svg
+    codepoint: 0xe132
+    variant: filled
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: modified_fluent
+    based_on: 'microsoft/fluentui-system-icons: edit_24_filled (fluentui_system_icons 1.1.273)'
+    author: Otzaria contributors
+    license: MIT AND GPL-3.0-only
+    upstream_commit: pub:fluentui_system_icons@1.1.273
+  - id: icon-0313
+    name: document_edit_24_regular
+    source: assets_src/svg/document_edit_24_regular.svg
+    codepoint: 0xe133
+    variant: regular
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: modified_fluent
+    based_on: 'microsoft/fluentui-system-icons: edit_24_filled (fluentui_system_icons 1.1.273)'
+    author: Otzaria contributors
+    license: MIT AND GPL-3.0-only
+    upstream_commit: pub:fluentui_system_icons@1.1.273
+  - id: icon-0314
+    name: document_link_24_filled
+    source: assets_src/svg/document_link_24_filled.svg
+    codepoint: 0xe134
+    variant: filled
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: modified_fluent
+    based_on: 'microsoft/fluentui-system-icons: link_24_filled (fluentui_system_icons 1.1.273)'
+    author: Otzaria contributors
+    license: MIT AND GPL-3.0-only
+    upstream_commit: pub:fluentui_system_icons@1.1.273
+  - id: icon-0315
+    name: document_link_24_regular
+    source: assets_src/svg/document_link_24_regular.svg
+    codepoint: 0xe135
+    variant: regular
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: modified_fluent
+    based_on: 'microsoft/fluentui-system-icons: link_24_filled (fluentui_system_icons 1.1.273)'
+    author: Otzaria contributors
+    license: MIT AND GPL-3.0-only
+    upstream_commit: pub:fluentui_system_icons@1.1.273
+  - id: icon-0316
+    name: document_lock_24_filled
+    source: assets_src/svg/document_lock_24_filled.svg
+    codepoint: 0xe136
+    variant: filled
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: modified_fluent
+    based_on: 'microsoft/fluentui-system-icons: lock_closed_24_filled (fluentui_system_icons 1.1.273)'
+    author: Otzaria contributors
+    license: MIT AND GPL-3.0-only
+    upstream_commit: pub:fluentui_system_icons@1.1.273
+  - id: icon-0317
+    name: document_lock_24_regular
+    source: assets_src/svg/document_lock_24_regular.svg
+    codepoint: 0xe137
+    variant: regular
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: modified_fluent
+    based_on: 'microsoft/fluentui-system-icons: lock_closed_24_filled (fluentui_system_icons 1.1.273)'
+    author: Otzaria contributors
+    license: MIT AND GPL-3.0-only
+    upstream_commit: pub:fluentui_system_icons@1.1.273
+  - id: icon-0318
+    name: document_save_24_filled
+    source: assets_src/svg/document_save_24_filled.svg
+    codepoint: 0xe138
+    variant: filled
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: modified_fluent
+    based_on: 'microsoft/fluentui-system-icons: save_24_filled (fluentui_system_icons 1.1.273)'
+    author: Otzaria contributors
+    license: MIT AND GPL-3.0-only
+    upstream_commit: pub:fluentui_system_icons@1.1.273
+  - id: icon-0319
+    name: document_save_24_regular
+    source: assets_src/svg/document_save_24_regular.svg
+    codepoint: 0xe139
+    variant: regular
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: modified_fluent
+    based_on: 'microsoft/fluentui-system-icons: save_24_filled (fluentui_system_icons 1.1.273)'
+    author: Otzaria contributors
+    license: MIT AND GPL-3.0-only
+    upstream_commit: pub:fluentui_system_icons@1.1.273
+  - id: icon-0320
+    name: notebook_24_filled
+    source: assets_src/svg/notebook_24_filled.svg
+    codepoint: 0xe13a
+    variant: filled
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: modified_fluent
+    based_on: 'microsoft/fluentui-system-icons: notebook_24_filled (fluentui_system_icons 1.1.273)'
+    author: Otzaria contributors
+    license: MIT AND GPL-3.0-only
+    upstream_commit: pub:fluentui_system_icons@1.1.273
+  - id: icon-0321
+    name: notebook_24_regular
+    source: assets_src/svg/notebook_24_regular.svg
+    codepoint: 0xe13b
+    variant: regular
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: modified_fluent
+    based_on: 'microsoft/fluentui-system-icons: notebook_24_regular (fluentui_system_icons 1.1.273)'
+    author: Otzaria contributors
+    license: MIT AND GPL-3.0-only
+    upstream_commit: pub:fluentui_system_icons@1.1.273
+  - id: icon-0322
+    name: panel_right_expand_24_filled
+    source: assets_src/svg/panel_right_expand_24_filled.svg
+    codepoint: 0xe13c
+    variant: filled
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: modified_fluent
+    based_on: 'microsoft/fluentui-system-icons: panel_left_expand_24_filled (fluentui_system_icons 1.1.273)'
+    author: Otzaria contributors
+    license: MIT AND GPL-3.0-only
+    upstream_commit: pub:fluentui_system_icons@1.1.273
+  - id: icon-0323
+    name: panel_right_expand_24_regular
+    source: assets_src/svg/panel_right_expand_24_regular.svg
+    codepoint: 0xe13d
+    variant: regular
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: modified_fluent
+    based_on: 'microsoft/fluentui-system-icons: panel_left_expand_24_regular (fluentui_system_icons 1.1.273)'
+    author: Otzaria contributors
+    license: MIT AND GPL-3.0-only
+    upstream_commit: pub:fluentui_system_icons@1.1.273
+  - id: icon-0324
+    name: panel_right_text_24_filled
+    source: assets_src/svg/panel_right_text_24_filled.svg
+    codepoint: 0xe13e
+    variant: filled
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: modified_fluent
+    based_on: 'microsoft/fluentui-system-icons: panel_left_text_24_filled (fluentui_system_icons 1.1.273)'
+    author: Otzaria contributors
+    license: MIT AND GPL-3.0-only
+    upstream_commit: pub:fluentui_system_icons@1.1.273
+  - id: icon-0325
+    name: panel_right_text_24_regular
+    source: assets_src/svg/panel_right_text_24_regular.svg
+    codepoint: 0xe13f
+    variant: regular
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: modified_fluent
+    based_on: 'microsoft/fluentui-system-icons: panel_left_text_24_regular (fluentui_system_icons 1.1.273)'
+    author: Otzaria contributors
+    license: MIT AND GPL-3.0-only
+    upstream_commit: pub:fluentui_system_icons@1.1.273
+  - id: icon-0326
+    name: document_links_24_filled
+    source: assets_src/svg/document_links_24_filled.svg
+    codepoint: 0xe140
+    variant: filled
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: custom
+    based_on: null
+    author: Otzaria contributors
+    license: GPL-3.0-only
+    upstream_commit: null
+  - id: icon-0327
+    name: document_links_24_regular
+    source: assets_src/svg/document_links_24_regular.svg
+    codepoint: 0xe141
+    variant: regular
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: custom
+    based_on: null
+    author: Otzaria contributors
+    license: GPL-3.0-only
+    upstream_commit: null
+  - id: icon-0328
+    name: alef_edit_24_filled
+    source: assets_src/svg/alef_edit_24_filled.svg
+    codepoint: 0xe142
+    variant: filled
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: modified_fluent
+    based_on: 'microsoft/fluentui-system-icons: edit_24_filled (fluentui_system_icons 1.1.273)'
+    author: Otzaria contributors
+    license: MIT AND GPL-3.0-only
+    upstream_commit: pub:fluentui_system_icons@1.1.273
+  - id: icon-0329
+    name: alef_edit_24_regular
+    source: assets_src/svg/alef_edit_24_regular.svg
+    codepoint: 0xe143
+    variant: regular
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: modified_fluent
+    based_on: 'microsoft/fluentui-system-icons: edit_24_filled (fluentui_system_icons 1.1.273)'
+    author: Otzaria contributors
+    license: MIT AND GPL-3.0-only
+    upstream_commit: pub:fluentui_system_icons@1.1.273
+  - id: icon-0330
+    name: alef_search_24_filled
+    source: assets_src/svg/alef_search_24_filled.svg
+    codepoint: 0xe144
+    variant: filled
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: modified_fluent
+    based_on: 'microsoft/fluentui-system-icons: search_24_filled (fluentui_system_icons 1.1.273)'
+    author: Otzaria contributors
+    license: MIT AND GPL-3.0-only
+    upstream_commit: pub:fluentui_system_icons@1.1.273
+  - id: icon-0331
+    name: alef_search_24_regular
+    source: assets_src/svg/alef_search_24_regular.svg
+    codepoint: 0xe145
+    variant: regular
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: modified_fluent
+    based_on: 'microsoft/fluentui-system-icons: search_24_filled (fluentui_system_icons 1.1.273)'
+    author: Otzaria contributors
+    license: MIT AND GPL-3.0-only
+    upstream_commit: pub:fluentui_system_icons@1.1.273
+  - id: icon-0332
+    name: alef_settings_24_filled
+    source: assets_src/svg/alef_settings_24_filled.svg
+    codepoint: 0xe146
+    variant: filled
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: modified_fluent
+    based_on: 'microsoft/fluentui-system-icons: settings_24_filled (fluentui_system_icons 1.1.273)'
+    author: Otzaria contributors
+    license: MIT AND GPL-3.0-only
+    upstream_commit: pub:fluentui_system_icons@1.1.273
+  - id: icon-0333
+    name: alef_settings_24_regular
+    source: assets_src/svg/alef_settings_24_regular.svg
+    codepoint: 0xe147
+    variant: regular
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: modified_fluent
+    based_on: 'microsoft/fluentui-system-icons: settings_24_filled (fluentui_system_icons 1.1.273)'
+    author: Otzaria contributors
+    license: MIT AND GPL-3.0-only
+    upstream_commit: pub:fluentui_system_icons@1.1.273
+  - id: icon-0334
+    name: calendar_alef_24_filled
+    source: assets_src/svg/calendar_alef_24_filled.svg
+    codepoint: 0xe148
+    variant: filled
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: custom
+    based_on: null
+    author: Otzaria contributors
+    license: GPL-3.0-only
+    upstream_commit: null
+  - id: icon-0335
+    name: calendar_alef_24_regular
+    source: assets_src/svg/calendar_alef_24_regular.svg
+    codepoint: 0xe149
+    variant: regular
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: custom
+    based_on: null
+    author: Otzaria contributors
+    license: GPL-3.0-only
+    upstream_commit: null
+  - id: icon-0336
+    name: library_add_24_filled
+    source: assets_src/svg/library_add_24_filled.svg
+    codepoint: 0xe14a
+    variant: filled
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: modified_fluent
+    based_on: 'microsoft/fluentui-system-icons: library_24_filled (fluentui_system_icons 1.1.273)'
+    author: Otzaria contributors
+    license: MIT AND GPL-3.0-only
+    upstream_commit: pub:fluentui_system_icons@1.1.273
+  - id: icon-0337
+    name: library_add_24_regular
+    source: assets_src/svg/library_add_24_regular.svg
+    codepoint: 0xe14b
+    variant: regular
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: modified_fluent
+    based_on: 'microsoft/fluentui-system-icons: library_24_regular (fluentui_system_icons 1.1.273)'
+    author: Otzaria contributors
+    license: MIT AND GPL-3.0-only
+    upstream_commit: pub:fluentui_system_icons@1.1.273
+  - id: icon-0338
+    name: library_refresh_24_filled
+    source: assets_src/svg/library_refresh_24_filled.svg
+    codepoint: 0xe14c
+    variant: filled
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: modified_fluent
+    based_on: 'microsoft/fluentui-system-icons: library_24_filled, arrow_clockwise_24_filled (fluentui_system_icons 1.1.273)'
+    author: Otzaria contributors
+    license: MIT AND GPL-3.0-only
+    upstream_commit: pub:fluentui_system_icons@1.1.273
+  - id: icon-0339
+    name: library_refresh_24_regular
+    source: assets_src/svg/library_refresh_24_regular.svg
+    codepoint: 0xe14d
+    variant: regular
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: modified_fluent
+    based_on: 'microsoft/fluentui-system-icons: library_24_regular, arrow_clockwise_24_filled (fluentui_system_icons 1.1.273)'
+    author: Otzaria contributors
+    license: MIT AND GPL-3.0-only
+    upstream_commit: pub:fluentui_system_icons@1.1.273
+  - id: icon-0340
+    name: library_settings_24_filled
+    source: assets_src/svg/library_settings_24_filled.svg
+    codepoint: 0xe14e
+    variant: filled
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: modified_fluent
+    based_on: 'microsoft/fluentui-system-icons: library_24_filled, settings_24_filled (fluentui_system_icons 1.1.273)'
+    author: Otzaria contributors
+    license: MIT AND GPL-3.0-only
+    upstream_commit: pub:fluentui_system_icons@1.1.273
+  - id: icon-0341
+    name: library_settings_24_regular
+    source: assets_src/svg/library_settings_24_regular.svg
+    codepoint: 0xe14f
+    variant: regular
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: modified_fluent
+    based_on: 'microsoft/fluentui-system-icons: library_24_regular, settings_24_filled (fluentui_system_icons 1.1.273)'
+    author: Otzaria contributors
+    license: MIT AND GPL-3.0-only
+    upstream_commit: pub:fluentui_system_icons@1.1.273
+  - id: icon-0342
+    name: link_edit_24_filled
+    source: assets_src/svg/link_edit_24_filled.svg
+    codepoint: 0xe150
+    variant: filled
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: modified_fluent
+    based_on: 'microsoft/fluentui-system-icons: link_dismiss_24_filled, edit_24_filled (fluentui_system_icons 1.1.273)'
+    author: Otzaria contributors
+    license: MIT AND GPL-3.0-only
+    upstream_commit: pub:fluentui_system_icons@1.1.273
+  - id: icon-0343
+    name: link_edit_24_regular
+    source: assets_src/svg/link_edit_24_regular.svg
+    codepoint: 0xe151
+    variant: regular
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: modified_fluent
+    based_on: 'microsoft/fluentui-system-icons: link_dismiss_24_regular, edit_24_filled (fluentui_system_icons 1.1.273)'
+    author: Otzaria contributors
+    license: MIT AND GPL-3.0-only
+    upstream_commit: pub:fluentui_system_icons@1.1.273
+  - id: icon-0344
+    name: link_lock_24_filled
+    source: assets_src/svg/link_lock_24_filled.svg
+    codepoint: 0xe152
+    variant: filled
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: modified_fluent
+    based_on: 'microsoft/fluentui-system-icons: link_dismiss_24_filled (fluentui_system_icons 1.1.273)'
+    author: Otzaria contributors
+    license: MIT AND GPL-3.0-only
+    upstream_commit: pub:fluentui_system_icons@1.1.273
+  - id: icon-0345
+    name: link_lock_24_regular
+    source: assets_src/svg/link_lock_24_regular.svg
+    codepoint: 0xe153
+    variant: regular
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: modified_fluent
+    based_on: 'microsoft/fluentui-system-icons: link_dismiss_24_regular (fluentui_system_icons 1.1.273)'
+    author: Otzaria contributors
+    license: MIT AND GPL-3.0-only
+    upstream_commit: pub:fluentui_system_icons@1.1.273
+  - id: icon-0346
+    name: link_search_24_filled
+    source: assets_src/svg/link_search_24_filled.svg
+    codepoint: 0xe154
+    variant: filled
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: modified_fluent
+    based_on: 'microsoft/fluentui-system-icons: link_dismiss_24_filled, search_24_filled (fluentui_system_icons 1.1.273)'
+    author: Otzaria contributors
+    license: MIT AND GPL-3.0-only
+    upstream_commit: pub:fluentui_system_icons@1.1.273
+  - id: icon-0347
+    name: link_search_24_regular
+    source: assets_src/svg/link_search_24_regular.svg
+    codepoint: 0xe155
+    variant: regular
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: modified_fluent
+    based_on: 'microsoft/fluentui-system-icons: link_dismiss_24_regular, search_24_filled (fluentui_system_icons 1.1.273)'
+    author: Otzaria contributors
+    license: MIT AND GPL-3.0-only
+    upstream_commit: pub:fluentui_system_icons@1.1.273
+  - id: icon-0348
+    name: link_star_24_filled
+    source: assets_src/svg/link_star_24_filled.svg
+    codepoint: 0xe156
+    variant: filled
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: modified_fluent
+    based_on: 'microsoft/fluentui-system-icons: link_dismiss_24_filled, star_24_filled (fluentui_system_icons 1.1.273)'
+    author: Otzaria contributors
+    license: MIT AND GPL-3.0-only
+    upstream_commit: pub:fluentui_system_icons@1.1.273
+  - id: icon-0349
+    name: link_star_24_regular
+    source: assets_src/svg/link_star_24_regular.svg
+    codepoint: 0xe157
+    variant: regular
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: modified_fluent
+    based_on: 'microsoft/fluentui-system-icons: link_dismiss_24_regular, star_24_filled (fluentui_system_icons 1.1.273)'
+    author: Otzaria contributors
+    license: MIT AND GPL-3.0-only
+    upstream_commit: pub:fluentui_system_icons@1.1.273
+  - id: icon-0350
+    name: search_in_bookmarks_24_filled
+    source: assets_src/svg/search_in_bookmarks_24_filled.svg
+    codepoint: 0xe158
+    variant: filled
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: custom
+    based_on: null
+    author: Otzaria contributors
+    license: GPL-3.0-only
+    upstream_commit: null
+  - id: icon-0351
+    name: search_in_bookmarks_24_regular
+    source: assets_src/svg/search_in_bookmarks_24_regular.svg
+    codepoint: 0xe159
+    variant: regular
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: modified_fluent
+    based_on: 'microsoft/fluentui-system-icons: bookmark_24_filled (fluentui_system_icons 1.1.273)'
+    author: Otzaria contributors
+    license: MIT AND GPL-3.0-only
+    upstream_commit: pub:fluentui_system_icons@1.1.273
+  - id: icon-0352
+    name: search_in_commentary_24_filled
+    source: assets_src/svg/search_in_commentary_24_filled.svg
+    codepoint: 0xe15a
+    variant: filled
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: custom
+    based_on: null
+    author: Otzaria contributors
+    license: GPL-3.0-only
+    upstream_commit: null
+  - id: icon-0353
+    name: search_in_commentary_24_regular
+    source: assets_src/svg/search_in_commentary_24_regular.svg
+    codepoint: 0xe15b
+    variant: regular
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: custom
+    based_on: null
+    author: Otzaria contributors
+    license: GPL-3.0-only
+    upstream_commit: null
+  - id: icon-0356
+    name: search_in_history_24_filled
+    source: assets_src/svg/search_in_history_24_filled.svg
+    codepoint: 0xe15c
+    variant: filled
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: custom
+    based_on: null
+    author: Otzaria contributors
+    license: GPL-3.0-only
+    upstream_commit: null
+  - id: icon-0357
+    name: search_in_history_24_regular
+    source: assets_src/svg/search_in_history_24_regular.svg
+    codepoint: 0xe15d
+    variant: regular
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: modified_fluent
+    based_on: 'microsoft/fluentui-system-icons: history_24_filled (fluentui_system_icons 1.1.273)'
+    author: Otzaria contributors
+    license: MIT AND GPL-3.0-only
+    upstream_commit: pub:fluentui_system_icons@1.1.273
+  - id: icon-0358
+    name: search_in_links_24_filled
+    source: assets_src/svg/search_in_links_24_filled.svg
+    codepoint: 0xe15e
+    variant: filled
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: custom
+    based_on: null
+    author: Otzaria contributors
+    license: GPL-3.0-only
+    upstream_commit: null
+  - id: icon-0359
+    name: search_in_links_24_regular
+    source: assets_src/svg/search_in_links_24_regular.svg
+    codepoint: 0xe15f
+    variant: regular
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: custom
+    based_on: null
+    author: Otzaria contributors
+    license: GPL-3.0-only
+    upstream_commit: null
+  - id: icon-0360
+    name: search_in_notes_24_filled
+    source: assets_src/svg/search_in_notes_24_filled.svg
+    codepoint: 0xe160
+    variant: filled
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: custom
+    based_on: null
+    author: Otzaria contributors
+    license: GPL-3.0-only
+    upstream_commit: null
+  - id: icon-0361
+    name: search_in_notes_24_regular
+    source: assets_src/svg/search_in_notes_24_regular.svg
+    codepoint: 0xe161
+    variant: regular
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: modified_fluent
+    based_on: 'microsoft/fluentui-system-icons: note_24_filled (fluentui_system_icons 1.1.273)'
+    author: Otzaria contributors
+    license: MIT AND GPL-3.0-only
+    upstream_commit: pub:fluentui_system_icons@1.1.273
+  - id: icon-0362
+    name: text_bullet_list_square_24_filled
+    source: assets_src/svg/text_bullet_list_square_24_filled.svg
+    codepoint: 0xe162
+    variant: filled
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: modified_fluent
+    based_on: 'microsoft/fluentui-system-icons: text_bullet_list_square_24_filled (fluentui_system_icons 1.1.273)'
+    author: Otzaria contributors
+    license: MIT AND GPL-3.0-only
+    upstream_commit: pub:fluentui_system_icons@1.1.273
+  - id: icon-0363
+    name: text_bullet_list_square_24_regular
+    source: assets_src/svg/text_bullet_list_square_24_regular.svg
+    codepoint: 0xe163
+    variant: regular
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: modified_fluent
+    based_on: 'microsoft/fluentui-system-icons: text_bullet_list_square_24_regular (fluentui_system_icons 1.1.273)'
+    author: Otzaria contributors
+    license: MIT AND GPL-3.0-only
+    upstream_commit: pub:fluentui_system_icons@1.1.273
+  - id: icon-0364
+    name: text_bullet_list_tree_24_filled
+    source: assets_src/svg/text_bullet_list_tree_24_filled.svg
+    codepoint: 0xe164
+    variant: filled
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: modified_fluent
+    based_on: 'microsoft/fluentui-system-icons: text_bullet_list_tree_24_filled (fluentui_system_icons 1.1.273)'
+    author: Otzaria contributors
+    license: MIT AND GPL-3.0-only
+    upstream_commit: pub:fluentui_system_icons@1.1.273
+  - id: icon-0365
+    name: text_bullet_list_tree_24_regular
+    source: assets_src/svg/text_bullet_list_tree_24_regular.svg
+    codepoint: 0xe165
+    variant: regular
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: modified_fluent
+    based_on: 'microsoft/fluentui-system-icons: text_bullet_list_tree_24_regular (fluentui_system_icons 1.1.273)'
+    author: Otzaria contributors
+    license: MIT AND GPL-3.0-only
+    upstream_commit: pub:fluentui_system_icons@1.1.273
+  - id: icon-0366
+    name: text_first_line_24_filled
+    source: assets_src/svg/text_first_line_24_filled.svg
+    codepoint: 0xe166
+    variant: filled
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: modified_fluent
+    based_on: 'microsoft/fluentui-system-icons: text_first_line_24_filled (fluentui_system_icons 1.1.273)'
+    author: Otzaria contributors
+    license: MIT AND GPL-3.0-only
+    upstream_commit: pub:fluentui_system_icons@1.1.273
+  - id: icon-0367
+    name: text_first_line_24_regular
+    source: assets_src/svg/text_first_line_24_regular.svg
+    codepoint: 0xe167
+    variant: regular
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: modified_fluent
+    based_on: 'microsoft/fluentui-system-icons: text_first_line_24_regular (fluentui_system_icons 1.1.273)'
+    author: Otzaria contributors
+    license: MIT AND GPL-3.0-only
+    upstream_commit: pub:fluentui_system_icons@1.1.273
+  - id: icon-0368
+    name: text_hanging_24_filled
+    source: assets_src/svg/text_hanging_24_filled.svg
+    codepoint: 0xe168
+    variant: filled
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: modified_fluent
+    based_on: 'microsoft/fluentui-system-icons: text_hanging_24_filled (fluentui_system_icons 1.1.273)'
+    author: Otzaria contributors
+    license: MIT AND GPL-3.0-only
+    upstream_commit: pub:fluentui_system_icons@1.1.273
+  - id: icon-0369
+    name: text_hanging_24_regular
+    source: assets_src/svg/text_hanging_24_regular.svg
+    codepoint: 0xe169
+    variant: regular
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: modified_fluent
+    based_on: 'microsoft/fluentui-system-icons: text_hanging_24_regular (fluentui_system_icons 1.1.273)'
+    author: Otzaria contributors
+    license: MIT AND GPL-3.0-only
+    upstream_commit: pub:fluentui_system_icons@1.1.273
+  - id: icon-0370
+    name: panel_right_contract_24_filled
+    source: assets_src/svg/panel_right_contract_24_filled.svg
+    codepoint: 0xe16a
+    variant: filled
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: modified_fluent
+    based_on: 'microsoft/fluentui-system-icons: panel_left_contract_24_filled (fluentui_system_icons 1.1.273)'
+    author: Otzaria contributors
+    license: MIT AND GPL-3.0-only
+    upstream_commit: pub:fluentui_system_icons@1.1.273
+  - id: icon-0371
+    name: panel_right_contract_24_regular
+    source: assets_src/svg/panel_right_contract_24_regular.svg
+    codepoint: 0xe16b
+    variant: regular
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: modified_fluent
+    based_on: 'microsoft/fluentui-system-icons: panel_left_contract_24_regular (fluentui_system_icons 1.1.273)'
+    author: Otzaria contributors
+    license: MIT AND GPL-3.0-only
+    upstream_commit: pub:fluentui_system_icons@1.1.273
