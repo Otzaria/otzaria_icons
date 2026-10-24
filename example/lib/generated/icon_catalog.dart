@@ -748,4 +748,21 @@ const iconCatalog = <GalleryIcon>[
       'text_citation_24_regular', OtzariaIcons.text_citation_24_regular),
   GalleryIcon('text_compare_24_filled', OtzariaIcons.text_compare_24_filled),
   GalleryIcon('text_compare_24_regular', OtzariaIcons.text_compare_24_regular),
+  GalleryIcon('kiddush_cup_24_filled', OtzariaIcons.kiddush_cup_24_filled),
+  GalleryIcon('kiddush_cup_24_regular', OtzariaIcons.kiddush_cup_24_regular),
+  GalleryIcon('luchot_habrit_24_filled', OtzariaIcons.luchot_habrit_24_filled),
+  GalleryIcon(
+      'luchot_habrit_24_regular', OtzariaIcons.luchot_habrit_24_regular),
+  GalleryIcon('menorah_24_filled', OtzariaIcons.menorah_24_filled),
+  GalleryIcon('menorah_24_regular', OtzariaIcons.menorah_24_regular),
+  GalleryIcon('mezuzah_24_filled', OtzariaIcons.mezuzah_24_filled),
+  GalleryIcon('mezuzah_24_regular', OtzariaIcons.mezuzah_24_regular),
+  GalleryIcon(
+      'shabbat_candles_24_filled', OtzariaIcons.shabbat_candles_24_filled),
+  GalleryIcon(
+      'shabbat_candles_24_regular', OtzariaIcons.shabbat_candles_24_regular),
+  GalleryIcon('sunrise_24_filled', OtzariaIcons.sunrise_24_filled),
+  GalleryIcon('sunrise_24_regular', OtzariaIcons.sunrise_24_regular),
+  GalleryIcon('sunset_24_filled', OtzariaIcons.sunset_24_filled),
+  GalleryIcon('sunset_24_regular', OtzariaIcons.sunset_24_regular),
 ];

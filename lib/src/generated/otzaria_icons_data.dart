@@ -3467,6 +3467,104 @@ abstract final class OtzariaIcons {
     fontPackage: fontPackage,
   );
 
+  /// `kiddush_cup_24_filled.svg`
+  static const IconData kiddush_cup_24_filled = IconData(
+    0xe1ee,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `kiddush_cup_24_regular.svg`
+  static const IconData kiddush_cup_24_regular = IconData(
+    0xe1ef,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `luchot_habrit_24_filled.svg`
+  static const IconData luchot_habrit_24_filled = IconData(
+    0xe1f0,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `luchot_habrit_24_regular.svg`
+  static const IconData luchot_habrit_24_regular = IconData(
+    0xe1f1,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `menorah_24_filled.svg`
+  static const IconData menorah_24_filled = IconData(
+    0xe1f2,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `menorah_24_regular.svg`
+  static const IconData menorah_24_regular = IconData(
+    0xe1f3,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `mezuzah_24_filled.svg`
+  static const IconData mezuzah_24_filled = IconData(
+    0xe1f4,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `mezuzah_24_regular.svg`
+  static const IconData mezuzah_24_regular = IconData(
+    0xe1f5,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `shabbat_candles_24_filled.svg`
+  static const IconData shabbat_candles_24_filled = IconData(
+    0xe1f6,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `shabbat_candles_24_regular.svg`
+  static const IconData shabbat_candles_24_regular = IconData(
+    0xe1f7,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `sunrise_24_filled.svg`
+  static const IconData sunrise_24_filled = IconData(
+    0xe1f8,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `sunrise_24_regular.svg`
+  static const IconData sunrise_24_regular = IconData(
+    0xe1f9,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `sunset_24_filled.svg`
+  static const IconData sunset_24_filled = IconData(
+    0xe1fa,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `sunset_24_regular.svg`
+  static const IconData sunset_24_regular = IconData(
+    0xe1fb,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
   /// Every icon in this library, keyed by its name.
   static const Map<String, IconData> allIcons = <String, IconData>{
     'book_24_filled': book_24_filled,
@@ -3972,5 +4070,19 @@ abstract final class OtzariaIcons {
     'text_citation_24_regular': text_citation_24_regular,
     'text_compare_24_filled': text_compare_24_filled,
     'text_compare_24_regular': text_compare_24_regular,
+    'kiddush_cup_24_filled': kiddush_cup_24_filled,
+    'kiddush_cup_24_regular': kiddush_cup_24_regular,
+    'luchot_habrit_24_filled': luchot_habrit_24_filled,
+    'luchot_habrit_24_regular': luchot_habrit_24_regular,
+    'menorah_24_filled': menorah_24_filled,
+    'menorah_24_regular': menorah_24_regular,
+    'mezuzah_24_filled': mezuzah_24_filled,
+    'mezuzah_24_regular': mezuzah_24_regular,
+    'shabbat_candles_24_filled': shabbat_candles_24_filled,
+    'shabbat_candles_24_regular': shabbat_candles_24_regular,
+    'sunrise_24_filled': sunrise_24_filled,
+    'sunrise_24_regular': sunrise_24_regular,
+    'sunset_24_filled': sunset_24_filled,
+    'sunset_24_regular': sunset_24_regular,
   };
 }

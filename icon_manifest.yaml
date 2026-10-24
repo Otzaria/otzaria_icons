@@ -7410,3 +7410,213 @@ icons:
     author: Otzaria contributors
     license: GPL-3.0-only
     upstream_commit: null
+  - id: icon-0520
+    name: kiddush_cup_24_filled
+    source: assets_src/svg/kiddush_cup_24_filled.svg
+    codepoint: 0xe1ee
+    variant: filled
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: custom
+    based_on: null
+    author: Otzaria contributors
+    license: GPL-3.0-only
+    upstream_commit: null
+  - id: icon-0521
+    name: kiddush_cup_24_regular
+    source: assets_src/svg/kiddush_cup_24_regular.svg
+    codepoint: 0xe1ef
+    variant: regular
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: custom
+    based_on: null
+    author: Otzaria contributors
+    license: GPL-3.0-only
+    upstream_commit: null
+  - id: icon-0522
+    name: luchot_habrit_24_filled
+    source: assets_src/svg/luchot_habrit_24_filled.svg
+    codepoint: 0xe1f0
+    variant: filled
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: custom
+    based_on: null
+    author: Otzaria contributors
+    license: GPL-3.0-only
+    upstream_commit: null
+  - id: icon-0523
+    name: luchot_habrit_24_regular
+    source: assets_src/svg/luchot_habrit_24_regular.svg
+    codepoint: 0xe1f1
+    variant: regular
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: custom
+    based_on: null
+    author: Otzaria contributors
+    license: GPL-3.0-only
+    upstream_commit: null
+  - id: icon-0524
+    name: menorah_24_filled
+    source: assets_src/svg/menorah_24_filled.svg
+    codepoint: 0xe1f2
+    variant: filled
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: custom
+    based_on: null
+    author: Otzaria contributors
+    license: GPL-3.0-only
+    upstream_commit: null
+  - id: icon-0525
+    name: menorah_24_regular
+    source: assets_src/svg/menorah_24_regular.svg
+    codepoint: 0xe1f3
+    variant: regular
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: custom
+    based_on: null
+    author: Otzaria contributors
+    license: GPL-3.0-only
+    upstream_commit: null
+  - id: icon-0526
+    name: mezuzah_24_filled
+    source: assets_src/svg/mezuzah_24_filled.svg
+    codepoint: 0xe1f4
+    variant: filled
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: custom
+    based_on: null
+    author: Otzaria contributors
+    license: GPL-3.0-only
+    upstream_commit: null
+  - id: icon-0527
+    name: mezuzah_24_regular
+    source: assets_src/svg/mezuzah_24_regular.svg
+    codepoint: 0xe1f5
+    variant: regular
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: custom
+    based_on: null
+    author: Otzaria contributors
+    license: GPL-3.0-only
+    upstream_commit: null
+  - id: icon-0530
+    name: shabbat_candles_24_filled
+    source: assets_src/svg/shabbat_candles_24_filled.svg
+    codepoint: 0xe1f6
+    variant: filled
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: custom
+    based_on: null
+    author: Otzaria contributors
+    license: GPL-3.0-only
+    upstream_commit: null
+  - id: icon-0531
+    name: shabbat_candles_24_regular
+    source: assets_src/svg/shabbat_candles_24_regular.svg
+    codepoint: 0xe1f7
+    variant: regular
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: custom
+    based_on: null
+    author: Otzaria contributors
+    license: GPL-3.0-only
+    upstream_commit: null
+  - id: icon-0534
+    name: sunrise_24_filled
+    source: assets_src/svg/sunrise_24_filled.svg
+    codepoint: 0xe1f8
+    variant: filled
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: custom
+    based_on: null
+    author: Otzaria contributors
+    license: GPL-3.0-only
+    upstream_commit: null
+  - id: icon-0535
+    name: sunrise_24_regular
+    source: assets_src/svg/sunrise_24_regular.svg
+    codepoint: 0xe1f9
+    variant: regular
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: custom
+    based_on: null
+    author: Otzaria contributors
+    license: GPL-3.0-only
+    upstream_commit: null
+  - id: icon-0536
+    name: sunset_24_filled
+    source: assets_src/svg/sunset_24_filled.svg
+    codepoint: 0xe1fa
+    variant: filled
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: custom
+    based_on: null
+    author: Otzaria contributors
+    license: GPL-3.0-only
+    upstream_commit: null
+  - id: icon-0537
+    name: sunset_24_regular
+    source: assets_src/svg/sunset_24_regular.svg
+    codepoint: 0xe1fb
+    variant: regular
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: custom
+    based_on: null
+    author: Otzaria contributors
+    license: GPL-3.0-only
+    upstream_commit: null

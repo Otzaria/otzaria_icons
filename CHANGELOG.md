@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+- 7 objects drawn from scratch, each with `_regular` and `_filled` (14 glyphs,
+  508 in all): `menorah`, `kiddush_cup`, `shabbat_candles`, `mezuzah`,
+  `luchot_habrit`, `sunrise` and `sunset`.
 - 3 icons drawn from the set's own parts, each with `_regular` and `_filled`
   (6 glyphs, 494 in all): `book_dictionary`, `text_citation` and `text_compare`.
 - 62 more icons, each with `_regular` and `_filled` (124 glyphs, 488 in all).

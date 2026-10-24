@@ -3086,6 +3086,169 @@ RECIPES["text_compare_24_filled"] = _compare(True)
 
 
 # --------------------------------------------------------------------------
+# Round 5: objects drawn here
+# --------------------------------------------------------------------------
+# An object is a solid silhouette with details. The regular variant draws the
+# silhouette as a 1.5-unit outline with the details as ink; the filled one keeps
+# the silhouette solid and cuts the details out of it - the pairing of every
+# cover and page in the set. Objects that are a drawing in lines (a menorah, a
+# sun) are strokes instead, and their filled variant is the same lines at the
+# 2.0 weight the other line icons use.
+OBJECT_LINE = 1.5
+OBJECT_LINE_FILLED = 2.0
+CAP_ROUND = pathops.LineCap.ROUND_CAP
+
+
+def _path(ops):
+    p = pathops.Path()
+    for op in ops:
+        c, a = op[0], op[1:]
+        if c == "M":
+            p.moveTo(*a)
+        elif c == "L":
+            p.lineTo(*a)
+        elif c == "Q":
+            p.quadTo(*a)
+        elif c == "C":
+            p.cubicTo(*a)
+        elif c == "Z":
+            p.close()
+    return p
+
+
+def _stroke(ops, width):
+    """An open or closed path stroked to a region, round ends and joins."""
+    return ic._stroked(_path(ops), width, CAP_ROUND)
+
+
+def _solid(ops):
+    """A closed path as a region."""
+    return Art(pathops.simplify(_path(ops)))
+
+
+def _object(solid, details=None, ink=None):
+    """(regular, filled) recipes' shared shape: `details` are cut out of the
+    filled variant and drawn as ink on the regular one; `ink` is drawn solid in
+    both (a flame, a knob)."""
+    details = details or Art()
+    ink = ink or Art()
+
+    def regular():
+        return solid.outlined(OBJECT_LINE, inside=True) | details | ink, [], False
+
+    def filled():
+        return solid | ink, [details], True
+    return regular, filled
+
+
+def _register_object(stem, regular, filled):
+    RECIPES[stem + "_24_regular"] = regular
+    RECIPES[stem + "_24_filled"] = filled
+
+
+def _menorah(filled):
+    def build():
+        w = OBJECT_LINE_FILLED if filled else OBJECT_LINE
+        out = _stroke([("M", 12.0, 8.0), ("L", 12.0, 21.0)], w)
+        out |= _stroke([("M", 7.5, 21.0), ("L", 16.5, 21.0)], w)
+        for d in (3.0, 6.0, 9.0):
+            for sign in (-1, 1):
+                x = 12.0 + sign * d
+                out |= _stroke([("M", 12.0, 17.5), ("L", x - sign * 3.0, 17.5),
+                                ("Q", x, 17.5, x, 14.5), ("L", x, 8.0)], w)
+        for d in (0.0, 3.0, 6.0, 9.0):
+            for sign in ((1,) if d == 0 else (-1, 1)):
+                out |= circle(12.0 + sign * d, 5.6, 1.35)
+        return out, [], False
+    return build
+
+
+RECIPES["menorah_24_regular"] = _menorah(False)
+RECIPES["menorah_24_filled"] = _menorah(True)
+
+
+def _kiddush_cup():
+    bowl = _solid([("M", 6.5, 3.0), ("L", 17.5, 3.0), ("L", 17.5, 8.0),
+                   ("Q", 17.5, 13.5, 12.0, 13.5), ("Q", 6.5, 13.5, 6.5, 8.0), ("Z",)])
+    stem = round_rect(10.9, 13.0, 13.1, 19.0, 0.4)
+    foot = round_rect(6.5, 18.6, 17.5, 21.4, 1.4)
+    wine = round_rect(8.6, 6.4, 15.4, 7.6, 0.6)
+    return _object(bowl | stem | foot, wine)
+
+
+_register_object("kiddush_cup", *_kiddush_cup())
+
+
+def _shabbat_candles():
+    def flame(cx):
+        return _solid([("M", cx, 2.4), ("Q", cx + 1.9, 5.0, cx + 1.9, 6.4),
+                       ("Q", cx + 1.9, 8.2, cx, 8.2), ("Q", cx - 1.9, 8.2, cx - 1.9, 6.4),
+                       ("Q", cx - 1.9, 5.0, cx, 2.4), ("Z",)])
+
+    def candle(cx):
+        return round_rect(cx - 2.2, 9.6, cx + 2.2, 18.0, 0.8)
+
+    def holder(cx):
+        return round_rect(cx - 4.4, 18.0, cx + 4.4, 21.4, 1.5)
+    body = candle(6.9) | candle(17.1) | holder(6.9) | holder(17.1)
+    return _object(body, Art(), flame(6.9) | flame(17.1))
+
+
+_register_object("shabbat_candles", *_shabbat_candles())
+
+
+def _mezuzah():
+    case = round_rect(9.2, 2.0, 14.8, 22.0, 1.6).rotate(12, about=(12, 12))
+    slot = round_rect(11.2, 6.2, 12.8, 17.8, 0.8).rotate(12, about=(12, 12))
+    cap = round_rect(9.2, 4.2, 14.8, 5.4, 0.6).rotate(12, about=(12, 12))
+    return _object(case, slot | cap)
+
+
+_register_object("mezuzah", *_mezuzah())
+
+
+def _luchot():
+    def tablet(x0, x1):
+        mid = (x0 + x1) / 2
+        return _solid([("M", x0, 20.5), ("L", x0, 8.5), ("Q", x0, 3.8, mid, 3.8),
+                       ("Q", x1, 3.8, x1, 8.5), ("L", x1, 20.5), ("Z",)])
+
+    def rules(x0, x1):
+        return (round_rect(x0 + 2.0, 9.0, x1 - 2.0, 10.1, 0.55)
+                | round_rect(x0 + 2.0, 12.4, x1 - 2.0, 13.5, 0.55)
+                | round_rect(x0 + 2.0, 15.8, x1 - 2.0, 16.9, 0.55))
+    return _object(tablet(3.0, 11.2) | tablet(12.8, 21.0),
+                   rules(3.0, 11.2) | rules(12.8, 21.0))
+
+
+_register_object("luchot_habrit", *_luchot())
+
+
+def _sun_on_horizon(filled, arrow):
+    def build():
+        w = OBJECT_LINE_FILLED if filled else OBJECT_LINE
+        out = _stroke([("M", 3.0, 16.0), ("L", 21.0, 16.0)], w)
+        half = [("M", 7.2, 16.0), ("C", 7.2, 9.5, 16.8, 9.5, 16.8, 16.0)]
+        out |= (_solid(half + [("Z",)]) if filled else _stroke(half, w))
+        for ang in (90.0, 45.0, 135.0):
+            c, sn = math.cos(math.radians(ang)), math.sin(math.radians(ang))
+            out |= _stroke([("M", 12.0 + c * 7.4, 16.0 - sn * 7.4),
+                            ("L", 12.0 + c * 9.6, 16.0 - sn * 9.6)], w)
+        out |= _stroke([("M", 12.0, 21.8), ("L", 12.0, 18.6)], w)
+        if arrow == "up":
+            out |= _stroke([("M", 10.0, 20.4), ("L", 12.0, 18.4), ("L", 14.0, 20.4)], w)
+        else:
+            out |= _stroke([("M", 10.0, 20.0), ("L", 12.0, 22.0), ("L", 14.0, 20.0)], w)
+        return out, [], False
+    return build
+
+
+for _stem, _arrow in (("sunrise", "up"), ("sunset", "down")):
+    RECIPES[_stem + "_24_regular"] = _sun_on_horizon(False, _arrow)
+    RECIPES[_stem + "_24_filled"] = _sun_on_horizon(True, _arrow)
+
+
+# --------------------------------------------------------------------------
 # Recording where the artwork came from
 # --------------------------------------------------------------------------
 MANIFEST =os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
