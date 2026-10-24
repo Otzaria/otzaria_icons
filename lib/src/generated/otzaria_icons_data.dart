@@ -3579,6 +3579,20 @@ abstract final class OtzariaIcons {
     fontPackage: fontPackage,
   );
 
+  /// `mount_sinai_24_filled.svg`
+  static const IconData mount_sinai_24_filled = IconData(
+    0xe1fe,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `mount_sinai_24_regular.svg`
+  static const IconData mount_sinai_24_regular = IconData(
+    0xe1ff,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
   /// Every icon in this library, keyed by its name.
   static const Map<String, IconData> allIcons = <String, IconData>{
     'book_24_filled': book_24_filled,
@@ -4100,5 +4114,7 @@ abstract final class OtzariaIcons {
     'sunset_24_regular': sunset_24_regular,
     'shamor_vezachor_24_filled': shamor_vezachor_24_filled,
     'shamor_vezachor_24_regular': shamor_vezachor_24_regular,
+    'mount_sinai_24_filled': mount_sinai_24_filled,
+    'mount_sinai_24_regular': mount_sinai_24_regular,
   };
 }

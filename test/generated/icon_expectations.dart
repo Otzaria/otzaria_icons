@@ -560,4 +560,6 @@ const generatedIconExpectations = <String, IconData>{
   'sunset_24_regular': OtzariaIcons.sunset_24_regular,
   'shamor_vezachor_24_filled': OtzariaIcons.shamor_vezachor_24_filled,
   'shamor_vezachor_24_regular': OtzariaIcons.shamor_vezachor_24_regular,
+  'mount_sinai_24_filled': OtzariaIcons.mount_sinai_24_filled,
+  'mount_sinai_24_regular': OtzariaIcons.mount_sinai_24_regular,
 };
