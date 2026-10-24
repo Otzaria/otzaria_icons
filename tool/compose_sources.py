@@ -95,6 +95,11 @@ BADGE_MIN_HOLE = 0.55
 # past, the edge it is anchored to.
 ALEF_BADGE_SCALE = 1.20
 LINK_BADGE_SCALE = 1.15
+# The two variants of a link badge differ in the size of their disc, so a pair
+# reads as two weights and not as one drawing: the regular's disc is 5% smaller
+# and the filled's 5% larger than the shared scale.
+LINK_BADGE_REGULAR = 0.95
+LINK_BADGE_FILLED = 1.05
 
 
 def _anchor_corner(bounds):
@@ -561,8 +566,10 @@ def link_badge(kind, filled=False):
         mark = symbol(kind, disc.radius() * SYMBOL_REACH).centred_on(
             (x0 + x1) / 2, (y0 + y1) / 2)
         corner = _anchor_corner(disc.bounds)
-        disc = disc.scale(LINK_BADGE_SCALE, about=corner)
-        mark = mark.scale(LINK_BADGE_SCALE, about=corner)
+        scale = LINK_BADGE_SCALE * (LINK_BADGE_FILLED if filled
+                                    else LINK_BADGE_REGULAR)
+        disc = disc.scale(scale, about=corner)
+        mark = mark.scale(scale, about=corner)
         solid, cuts = fill_canvas_pair(link | disc, [mark])
         return solid, cuts, True
     return build
@@ -1850,11 +1857,11 @@ SEARCH_IN_NAMES = [os.path.basename(p)[:-4] for p in
 SEARCH_CENTRE = (9.32, 9.18)
 SEARCH_LENS_R = 6.71
 SEARCH_OUTER_R = 8.65
-SEARCH_NECK = 2.90
+SEARCH_NECK = 2.20
 SEARCH_HANDLE = 3.46
-SEARCH_FLARE = (8.65, 13.5)        # distances from the lens centre
+SEARCH_FLARE = (9.6, 13.8)        # distances from the lens centre
 SEARCH_HANDLE_END = 17.4           # centre of the handle's round end
-SEARCH_JOIN = 1.0                  # fillet where the neck meets the ring
+SEARCH_JOIN = 0.3                  # fillet where the neck meets the ring
 
 
 def search_ring():
@@ -2314,14 +2321,15 @@ def letter_outline(art, over=None, solid_rest=False):
     return out.despeckle(0.05).prune(0.002)
 
 
-def ring_badge(letter, disc, mark):
+def ring_badge(letter, disc, mark, air=None):
     """An outlined `letter` carrying a ring badge: the letter is cut back from
     the disc by BADGE_RING_GAP, the disc becomes a ring, and `mark` - which the
     solid icon knocks out of its disc - is drawn as ink inside it, brought down
     to fit within the ring."""
     inner = disc.radius() - BADGE_RING
     ring = disc.outlined(BADGE_RING, inside=True)
-    ink = mark.fit_radius(inner - BADGE_RING_AIR, about=disc.centre)
+    ink = mark.fit_radius(inner - (BADGE_RING_AIR if air is None else air),
+                          about=disc.centre)
     return (letter_outline(letter) - disc.grow(BADGE_RING_GAP)) | ring | ink
 
 
@@ -2358,11 +2366,12 @@ LETTER_OVER = {
 LETTER_SOLID_REST = ("alef_1", "alef_2", "alef_3", "alef_4", "alef_5")
 
 
-def outline_recipe(filled, badged_letter=False, over=None, solid_rest=False):
+def outline_recipe(filled, badged_letter=False, over=None, solid_rest=False,
+                   air=None):
     def build():
         if badged_letter:
             letter, disc, mark = _split_badge(filled)
-            return ring_badge(letter, disc, mark), [], False
+            return ring_badge(letter, disc, mark, air), [], False
         return (letter_outline(glyph(filled), glyph(over) if over else None,
                                 solid_rest),
                 [], False)
@@ -2592,6 +2601,16 @@ ROUND1_TURN = {}
 def fluent_mark(short, box):
     """Fluent's `short` mark, fitted to `box`, with the cover's stroke weight."""
     box = ROUND1_BOX.get(short, box)
+    if short == "lock":
+        # The padlock the alef badges carry, not Fluent's, so every lock in the
+        # set is one drawing.
+        return sym_lock().fit(box).scale(0.8, about=((box[0] + box[2]) / 2,
+                                                     (box[1] + box[3]) / 2))
+    if short == "info":
+        # The set's own "i" (as on the badges), not Fluent's disc with an "i" cut
+        # in it, which at this size is a blob with a hairline.
+        return sym_information(4.4).centred_on((box[0] + box[2]) / 2,
+                                               (box[1] + box[3]) / 2)
     weight = ROUND1_WEIGHT.get(short, MARK_WEIGHT)
     art = use_fluent("%s_24_filled" % ROUND1_MARKS[short])
     if short in ROUND1_TURN:
@@ -2801,6 +2820,196 @@ for _kind, _stem in (("plus", "library_add"), ("settings", "library_settings"),
                      ("refresh", "library_refresh")):
     RECIPES[_stem + "_24_regular"] = _library_badged(_kind, False)
     RECIPES[_stem + "_24_filled"] = _library_badged(_kind, True)
+
+
+# --------------------------------------------------------------------------
+# Round 3
+# --------------------------------------------------------------------------
+FLUENT_SYMBOLS.update({
+    "download": ("arrow_download_24_filled", 0),
+    "upload": ("arrow_upload_24_filled", 0),
+    "link": ("link_24_filled", 0),
+    "delete": ("delete_24_filled", 0),
+    "clock": ("clock_24_filled", 0),
+    "person": ("person_24_filled", 0),
+    "tag": ("tag_24_filled", 0),
+    "share": ("share_24_filled", 0),
+    "print": ("print_24_filled", 0),
+    "folder": ("folder_24_filled", 0),
+    "calendar": ("calendar_rtl_24_filled", 0),
+})
+
+# Book and document marks (the Round 1 templates).
+ROUND1_MARKS.update({
+    "refresh": "arrow_clockwise", "share": "share", "print": "print",
+    "tag": "tag", "person": "person", "calendar": "calendar_rtl",
+    "star": "star", "info": "info",
+    "exclamation": "important",
+})
+for _stem, _short in (("book_refresh", "refresh"), ("book_share", "share"),
+                      ("book_print", "print"), ("book_tag", "tag"),
+                      ("book_person", "person"), ("book_calendar", "calendar")):
+    for _filled in (False, True):
+        RECIPES["%s_24_%s" % (_stem, "filled" if _filled else "regular")] = \
+            _round1_book(_short, _filled)
+for _stem, _short in (("document_dismiss", "dismiss"), ("document_star", "star"), ("document_info", "info"),
+                      ("document_exclamation", "exclamation"),
+                      ("document_delete", "delete"), ("document_tag", "tag"),
+                      ("document_print", "print"), ("document_share", "share")):
+    for _filled in (False, True):
+        RECIPES["%s_24_%s" % (_stem, "filled" if _filled else "regular")] = \
+            _round1_document(_short, _filled)
+
+
+# library_*: more marks on the corner disc.
+for _kind, _stem in (("cross", "library_dismiss"), ("share", "library_share"),
+                     ("tag", "library_tag"), ("search", "library_search"), ("download", "library_download"),
+                     ("upload", "library_upload"), ("link", "library_link"),
+                     ("lock", "library_lock"), ("star", "library_star"),
+                     ("check", "library_checkmark"), ("delete", "library_delete"),
+                     ("information", "library_info"),
+                     ("exclamation", "library_exclamation"),
+                     ("edit", "library_edit"), ("clock", "library_clock"),
+                     ("person", "library_person")):
+    RECIPES[_stem + "_24_regular"] = _library_badged(_kind, False)
+    RECIPES[_stem + "_24_filled"] = _library_badged(_kind, True)
+
+
+# alef_* / link_* with more marks.
+# The clock's face is a full disc, so the default gap to the ring reads as a hair
+# line; a wider one makes the ring and the face two separate things.
+CLOCK_RING_AIR = 1.0
+for _kind, _stem in (("clock", "alef_clock"), ("star", "alef_star"),
+                     ("download", "alef_download"), ("upload", "alef_upload"),
+                     ("tag", "alef_tag")):
+    _f, _r = _stem + "_24_filled", _stem + "_24_regular"
+    RECIPES[_f] = alef_badge(_kind)
+    RECIPES[_r] = outline_recipe(_f, True,
+                                 air=CLOCK_RING_AIR if _kind == "clock" else None)
+    DEPENDS[_r] = _f
+    PROVENANCE_OF[_r] = _f
+
+for _kind, _stem in (("clock", "link_clock"), ("settings", "link_settings"),
+                     ("download", "link_download"), ("upload", "link_upload"),
+                     ("tag", "link_tag")):
+    RECIPES[_stem + "_24_regular"] = link_badge(_kind)
+    RECIPES[_stem + "_24_filled"] = link_badge(_kind, True)
+
+
+# search_in_*: more content.
+SEARCH_IN_CONTENT.update({
+    "search_in_star": lambda: use_fluent("star_24_filled"),
+    "search_in_folder": lambda: use_fluent("folder_24_filled"),
+    "search_in_calendar": lambda: use_fluent("calendar_rtl_24_filled"),
+    "search_in_tag": lambda: use_fluent("tag_24_filled"),
+    "search_in_pdf": lambda: mark_pdf(),
+})
+SEARCH_IN_WEIGHT_OF["search_in_pdf"] = 0.8
+for _stem in ("search_in_star", "search_in_folder", "search_in_calendar",
+              "search_in_tag", "search_in_pdf"):
+    _r, _f = _stem + "_24_regular", _stem + "_24_filled"
+    RECIPES[_r] = _search_in_new(_stem)
+    DEPENDS[_f] = _r
+
+    def _search_in_filled2(base=_r):
+        solid, cuts = inverted(base, edge=SEARCH_FILLED_EDGE)
+        return sized(solid), cuts, False
+    RECIPES[_f] = _search_in_filled2
+
+
+# More Fluent drawings for a left-to-right layout, turned over.
+for _stem, _source in (
+        ("panel_right_add", "panel_left_add"),
+        ("panel_right_text_add", "panel_left_text_add"),
+        ("panel_right_text_dismiss", "panel_left_text_dismiss"),
+        ("panel_right_header", "panel_left_header"),
+        ("panel_right_header_add", "panel_left_header_add"),
+        ("panel_right_key", "panel_left_key"),
+        ("notebook_add", "notebook_add"),
+        ("notebook_sync", "notebook_sync"),
+        ("text_bullet_list_add", "text_bullet_list_add"),
+        ("text_bullet_list_square_edit", "text_bullet_list_square_edit"),
+        ("text_bullet_list_square_warning", "text_bullet_list_square_warning")):
+    for _filled in (False, True):
+        RECIPES["%s_24_%s" % (_stem, "filled" if _filled else "regular")] = \
+            _mirrored(_source, _filled)
+
+
+# Fluent's Latin-letter text icons with the letters replaced by Hebrew ones. The
+# arrow and the rule - anything that is not a letter - are Fluent's own, and the
+# drawing is turned so the letters sit on the right, where a Hebrew reader
+# starts. The letters are the set's own alef and beit. The font and underline
+# icons follow the letter family (regular = outline, filled = solid, and the
+# underline's rule is hollow too); the sort icons follow Fluent's own sort
+# (regular = the plain weight, filled = the same drawing heavier).
+def _hebrew_text(layout, filled):
+    def build():
+        alef, beit = alef_solid(), glyph("beit_24_filled")
+        letters, rest, hollow_rest = layout(alef, beit)
+        if not filled:
+            letters = letter_outline(letters)
+            if hollow_rest:
+                rest = rest.outlined(LETTER_LINE, inside=True)
+        return (letters | rest), [], False
+    return build
+
+
+def _sort_build(top, bottom_letter, filled):
+    def build():
+        alef, beit = alef_solid(), glyph("beit_24_filled")
+        art = use_fluent("text_sort_ascending_24_%s"
+                         % ("filled" if filled else "regular"))
+        arrow = (art & ic.rect(12.5, 0, 24, 24)).scale(-1, 1, about=(12, 0))
+        a = {"alef": alef, "beit": beit}
+        first = a[top].fit((13.0, 2.8, 21.0, 10.8))
+        second = a[bottom_letter].fit((13.0, 13.2, 21.0, 21.2))
+        letters = first | second
+        if filled:
+            # The same drawing, heavier: Fluent's filled sort is the plain one
+            # with a thicker line, so the letters and the arrow both gain weight.
+            letters = letters.grow(0.25)
+            arrow = arrow.grow(0.15)
+        return letters | arrow, [], False
+    return build
+
+
+def _font_layout(alef, beit):
+    big = alef.fit((10.5, 6.0, 22.5, 22.0))
+    small = alef.fit((1.5, 1.5, 9.5, 10.5))
+    return big | small, Art(), False
+
+
+def _font_number_layout(alef, beit):
+    big = alef.fit((10.5, 6.0, 22.5, 22.0))
+    # The numeral is the rightmost shape of `alef_1`; it stays solid in both
+    # variants, like the numerals that icon already carries.
+    one = max(ic.contours(glyph("alef_1_24_filled")), key=lambda c: c.bounds[0])
+    return big, one.fit((2.5, 1.5, 8.5, 10.5)), False
+
+
+def _font_size_layout(alef, beit):
+    small = alef.fit((2.0, 11.0, 10.5, 21.0))
+    big = alef.fit((11.5, 3.0, 22.5, 21.0))
+    return small | big, Art(), False
+
+
+def _underline_layout(alef, beit):
+    return (alef.fit((6.5, 2.5, 17.5, 16.0)),
+            round_rect(4.0, 18.6, 20.0, 20.6, 1.0), True)
+
+
+for _stem, _top, _bottom in (("text_sort_ascending_hebrew", "alef", "beit"),
+                             ("text_sort_descending_hebrew", "beit", "alef")):
+    for _filled in (False, True):
+        RECIPES["%s_24_%s" % (_stem, "filled" if _filled else "regular")] =             _sort_build(_top, _bottom, _filled)
+
+for _stem, _layout in (
+        ("text_font_hebrew", _font_layout),
+        ("text_font_number_hebrew", _font_number_layout),
+        ("text_font_size_hebrew", _font_size_layout),
+        ("text_underline_hebrew", _underline_layout)):
+    for _filled in (False, True):
+        RECIPES["%s_24_%s" % (_stem, "filled" if _filled else "regular")] =             _hebrew_text(_layout, _filled)
 
 
 # --------------------------------------------------------------------------

@@ -2557,6 +2557,874 @@ abstract final class OtzariaIcons {
     fontPackage: fontPackage,
   );
 
+  /// `alef_clock_24_filled.svg`
+  static const IconData alef_clock_24_filled = IconData(
+    0xe16c,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `alef_clock_24_regular.svg`
+  static const IconData alef_clock_24_regular = IconData(
+    0xe16d,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `alef_download_24_filled.svg`
+  static const IconData alef_download_24_filled = IconData(
+    0xe16e,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `alef_download_24_regular.svg`
+  static const IconData alef_download_24_regular = IconData(
+    0xe16f,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `alef_star_24_filled.svg`
+  static const IconData alef_star_24_filled = IconData(
+    0xe170,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `alef_star_24_regular.svg`
+  static const IconData alef_star_24_regular = IconData(
+    0xe171,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `alef_tag_24_filled.svg`
+  static const IconData alef_tag_24_filled = IconData(
+    0xe172,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `alef_tag_24_regular.svg`
+  static const IconData alef_tag_24_regular = IconData(
+    0xe173,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `book_calendar_24_filled.svg`
+  static const IconData book_calendar_24_filled = IconData(
+    0xe174,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `book_calendar_24_regular.svg`
+  static const IconData book_calendar_24_regular = IconData(
+    0xe175,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `book_person_24_filled.svg`
+  static const IconData book_person_24_filled = IconData(
+    0xe176,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `book_person_24_regular.svg`
+  static const IconData book_person_24_regular = IconData(
+    0xe177,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `book_print_24_filled.svg`
+  static const IconData book_print_24_filled = IconData(
+    0xe178,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `book_print_24_regular.svg`
+  static const IconData book_print_24_regular = IconData(
+    0xe179,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `book_refresh_24_filled.svg`
+  static const IconData book_refresh_24_filled = IconData(
+    0xe17a,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `book_refresh_24_regular.svg`
+  static const IconData book_refresh_24_regular = IconData(
+    0xe17b,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `book_share_24_filled.svg`
+  static const IconData book_share_24_filled = IconData(
+    0xe17c,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `book_share_24_regular.svg`
+  static const IconData book_share_24_regular = IconData(
+    0xe17d,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `book_tag_24_filled.svg`
+  static const IconData book_tag_24_filled = IconData(
+    0xe17e,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `book_tag_24_regular.svg`
+  static const IconData book_tag_24_regular = IconData(
+    0xe17f,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `document_delete_24_filled.svg`
+  static const IconData document_delete_24_filled = IconData(
+    0xe180,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `document_delete_24_regular.svg`
+  static const IconData document_delete_24_regular = IconData(
+    0xe181,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `document_exclamation_24_filled.svg`
+  static const IconData document_exclamation_24_filled = IconData(
+    0xe182,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `document_exclamation_24_regular.svg`
+  static const IconData document_exclamation_24_regular = IconData(
+    0xe183,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `document_info_24_filled.svg`
+  static const IconData document_info_24_filled = IconData(
+    0xe184,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `document_info_24_regular.svg`
+  static const IconData document_info_24_regular = IconData(
+    0xe185,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `document_print_24_filled.svg`
+  static const IconData document_print_24_filled = IconData(
+    0xe186,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `document_print_24_regular.svg`
+  static const IconData document_print_24_regular = IconData(
+    0xe187,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `document_share_24_filled.svg`
+  static const IconData document_share_24_filled = IconData(
+    0xe188,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `document_share_24_regular.svg`
+  static const IconData document_share_24_regular = IconData(
+    0xe189,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `document_star_24_filled.svg`
+  static const IconData document_star_24_filled = IconData(
+    0xe18a,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `document_star_24_regular.svg`
+  static const IconData document_star_24_regular = IconData(
+    0xe18b,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `document_tag_24_filled.svg`
+  static const IconData document_tag_24_filled = IconData(
+    0xe18c,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `document_tag_24_regular.svg`
+  static const IconData document_tag_24_regular = IconData(
+    0xe18d,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `library_checkmark_24_filled.svg`
+  static const IconData library_checkmark_24_filled = IconData(
+    0xe18e,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `library_checkmark_24_regular.svg`
+  static const IconData library_checkmark_24_regular = IconData(
+    0xe18f,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `library_clock_24_filled.svg`
+  static const IconData library_clock_24_filled = IconData(
+    0xe190,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `library_clock_24_regular.svg`
+  static const IconData library_clock_24_regular = IconData(
+    0xe191,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `library_delete_24_filled.svg`
+  static const IconData library_delete_24_filled = IconData(
+    0xe192,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `library_delete_24_regular.svg`
+  static const IconData library_delete_24_regular = IconData(
+    0xe193,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `library_download_24_filled.svg`
+  static const IconData library_download_24_filled = IconData(
+    0xe194,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `library_download_24_regular.svg`
+  static const IconData library_download_24_regular = IconData(
+    0xe195,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `library_edit_24_filled.svg`
+  static const IconData library_edit_24_filled = IconData(
+    0xe196,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `library_edit_24_regular.svg`
+  static const IconData library_edit_24_regular = IconData(
+    0xe197,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `library_exclamation_24_filled.svg`
+  static const IconData library_exclamation_24_filled = IconData(
+    0xe198,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `library_exclamation_24_regular.svg`
+  static const IconData library_exclamation_24_regular = IconData(
+    0xe199,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `library_info_24_filled.svg`
+  static const IconData library_info_24_filled = IconData(
+    0xe19a,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `library_info_24_regular.svg`
+  static const IconData library_info_24_regular = IconData(
+    0xe19b,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `library_link_24_filled.svg`
+  static const IconData library_link_24_filled = IconData(
+    0xe19c,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `library_link_24_regular.svg`
+  static const IconData library_link_24_regular = IconData(
+    0xe19d,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `library_lock_24_filled.svg`
+  static const IconData library_lock_24_filled = IconData(
+    0xe19e,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `library_lock_24_regular.svg`
+  static const IconData library_lock_24_regular = IconData(
+    0xe19f,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `library_person_24_filled.svg`
+  static const IconData library_person_24_filled = IconData(
+    0xe1a0,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `library_person_24_regular.svg`
+  static const IconData library_person_24_regular = IconData(
+    0xe1a1,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `library_search_24_filled.svg`
+  static const IconData library_search_24_filled = IconData(
+    0xe1a2,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `library_search_24_regular.svg`
+  static const IconData library_search_24_regular = IconData(
+    0xe1a3,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `library_star_24_filled.svg`
+  static const IconData library_star_24_filled = IconData(
+    0xe1a4,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `library_star_24_regular.svg`
+  static const IconData library_star_24_regular = IconData(
+    0xe1a5,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `library_upload_24_filled.svg`
+  static const IconData library_upload_24_filled = IconData(
+    0xe1a6,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `library_upload_24_regular.svg`
+  static const IconData library_upload_24_regular = IconData(
+    0xe1a7,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `link_clock_24_filled.svg`
+  static const IconData link_clock_24_filled = IconData(
+    0xe1a8,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `link_clock_24_regular.svg`
+  static const IconData link_clock_24_regular = IconData(
+    0xe1a9,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `link_download_24_filled.svg`
+  static const IconData link_download_24_filled = IconData(
+    0xe1aa,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `link_download_24_regular.svg`
+  static const IconData link_download_24_regular = IconData(
+    0xe1ab,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `link_settings_24_filled.svg`
+  static const IconData link_settings_24_filled = IconData(
+    0xe1ac,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `link_settings_24_regular.svg`
+  static const IconData link_settings_24_regular = IconData(
+    0xe1ad,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `link_tag_24_filled.svg`
+  static const IconData link_tag_24_filled = IconData(
+    0xe1ae,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `link_tag_24_regular.svg`
+  static const IconData link_tag_24_regular = IconData(
+    0xe1af,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `notebook_add_24_filled.svg`
+  static const IconData notebook_add_24_filled = IconData(
+    0xe1b0,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `notebook_add_24_regular.svg`
+  static const IconData notebook_add_24_regular = IconData(
+    0xe1b1,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `notebook_sync_24_filled.svg`
+  static const IconData notebook_sync_24_filled = IconData(
+    0xe1b2,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `notebook_sync_24_regular.svg`
+  static const IconData notebook_sync_24_regular = IconData(
+    0xe1b3,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `panel_right_add_24_filled.svg`
+  static const IconData panel_right_add_24_filled = IconData(
+    0xe1b4,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `panel_right_add_24_regular.svg`
+  static const IconData panel_right_add_24_regular = IconData(
+    0xe1b5,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `panel_right_header_24_filled.svg`
+  static const IconData panel_right_header_24_filled = IconData(
+    0xe1b6,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `panel_right_header_24_regular.svg`
+  static const IconData panel_right_header_24_regular = IconData(
+    0xe1b7,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `panel_right_header_add_24_filled.svg`
+  static const IconData panel_right_header_add_24_filled = IconData(
+    0xe1b8,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `panel_right_header_add_24_regular.svg`
+  static const IconData panel_right_header_add_24_regular = IconData(
+    0xe1b9,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `panel_right_key_24_filled.svg`
+  static const IconData panel_right_key_24_filled = IconData(
+    0xe1ba,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `panel_right_key_24_regular.svg`
+  static const IconData panel_right_key_24_regular = IconData(
+    0xe1bb,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `panel_right_text_add_24_filled.svg`
+  static const IconData panel_right_text_add_24_filled = IconData(
+    0xe1bc,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `panel_right_text_add_24_regular.svg`
+  static const IconData panel_right_text_add_24_regular = IconData(
+    0xe1bd,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `panel_right_text_dismiss_24_filled.svg`
+  static const IconData panel_right_text_dismiss_24_filled = IconData(
+    0xe1be,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `panel_right_text_dismiss_24_regular.svg`
+  static const IconData panel_right_text_dismiss_24_regular = IconData(
+    0xe1bf,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `search_in_calendar_24_filled.svg`
+  static const IconData search_in_calendar_24_filled = IconData(
+    0xe1c0,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `search_in_calendar_24_regular.svg`
+  static const IconData search_in_calendar_24_regular = IconData(
+    0xe1c1,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `search_in_folder_24_filled.svg`
+  static const IconData search_in_folder_24_filled = IconData(
+    0xe1c2,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `search_in_folder_24_regular.svg`
+  static const IconData search_in_folder_24_regular = IconData(
+    0xe1c3,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `search_in_pdf_24_filled.svg`
+  static const IconData search_in_pdf_24_filled = IconData(
+    0xe1c4,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `search_in_pdf_24_regular.svg`
+  static const IconData search_in_pdf_24_regular = IconData(
+    0xe1c5,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `search_in_star_24_filled.svg`
+  static const IconData search_in_star_24_filled = IconData(
+    0xe1c6,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `search_in_star_24_regular.svg`
+  static const IconData search_in_star_24_regular = IconData(
+    0xe1c7,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `search_in_tag_24_filled.svg`
+  static const IconData search_in_tag_24_filled = IconData(
+    0xe1c8,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `search_in_tag_24_regular.svg`
+  static const IconData search_in_tag_24_regular = IconData(
+    0xe1c9,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `text_bullet_list_add_24_filled.svg`
+  static const IconData text_bullet_list_add_24_filled = IconData(
+    0xe1ca,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `text_bullet_list_add_24_regular.svg`
+  static const IconData text_bullet_list_add_24_regular = IconData(
+    0xe1cb,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `text_bullet_list_square_edit_24_filled.svg`
+  static const IconData text_bullet_list_square_edit_24_filled = IconData(
+    0xe1cc,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `text_bullet_list_square_edit_24_regular.svg`
+  static const IconData text_bullet_list_square_edit_24_regular = IconData(
+    0xe1cd,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `text_bullet_list_square_warning_24_filled.svg`
+  static const IconData text_bullet_list_square_warning_24_filled = IconData(
+    0xe1ce,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `text_bullet_list_square_warning_24_regular.svg`
+  static const IconData text_bullet_list_square_warning_24_regular = IconData(
+    0xe1cf,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `text_font_hebrew_24_filled.svg`
+  static const IconData text_font_hebrew_24_filled = IconData(
+    0xe1d0,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `text_font_hebrew_24_regular.svg`
+  static const IconData text_font_hebrew_24_regular = IconData(
+    0xe1d1,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `text_font_size_hebrew_24_filled.svg`
+  static const IconData text_font_size_hebrew_24_filled = IconData(
+    0xe1d2,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `text_font_size_hebrew_24_regular.svg`
+  static const IconData text_font_size_hebrew_24_regular = IconData(
+    0xe1d3,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `text_sort_ascending_hebrew_24_filled.svg`
+  static const IconData text_sort_ascending_hebrew_24_filled = IconData(
+    0xe1d4,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `text_sort_ascending_hebrew_24_regular.svg`
+  static const IconData text_sort_ascending_hebrew_24_regular = IconData(
+    0xe1d5,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `text_sort_descending_hebrew_24_filled.svg`
+  static const IconData text_sort_descending_hebrew_24_filled = IconData(
+    0xe1d6,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `text_sort_descending_hebrew_24_regular.svg`
+  static const IconData text_sort_descending_hebrew_24_regular = IconData(
+    0xe1d7,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `text_underline_hebrew_24_filled.svg`
+  static const IconData text_underline_hebrew_24_filled = IconData(
+    0xe1d8,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `text_underline_hebrew_24_regular.svg`
+  static const IconData text_underline_hebrew_24_regular = IconData(
+    0xe1d9,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `text_font_number_hebrew_24_filled.svg`
+  static const IconData text_font_number_hebrew_24_filled = IconData(
+    0xe1da,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `text_font_number_hebrew_24_regular.svg`
+  static const IconData text_font_number_hebrew_24_regular = IconData(
+    0xe1db,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `alef_upload_24_filled.svg`
+  static const IconData alef_upload_24_filled = IconData(
+    0xe1dc,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `alef_upload_24_regular.svg`
+  static const IconData alef_upload_24_regular = IconData(
+    0xe1dd,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `link_upload_24_filled.svg`
+  static const IconData link_upload_24_filled = IconData(
+    0xe1de,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `link_upload_24_regular.svg`
+  static const IconData link_upload_24_regular = IconData(
+    0xe1df,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `document_dismiss_24_filled.svg`
+  static const IconData document_dismiss_24_filled = IconData(
+    0xe1e0,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `document_dismiss_24_regular.svg`
+  static const IconData document_dismiss_24_regular = IconData(
+    0xe1e1,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `library_dismiss_24_filled.svg`
+  static const IconData library_dismiss_24_filled = IconData(
+    0xe1e2,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `library_dismiss_24_regular.svg`
+  static const IconData library_dismiss_24_regular = IconData(
+    0xe1e3,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `library_share_24_filled.svg`
+  static const IconData library_share_24_filled = IconData(
+    0xe1e4,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `library_share_24_regular.svg`
+  static const IconData library_share_24_regular = IconData(
+    0xe1e5,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `library_tag_24_filled.svg`
+  static const IconData library_tag_24_filled = IconData(
+    0xe1e6,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `library_tag_24_regular.svg`
+  static const IconData library_tag_24_regular = IconData(
+    0xe1e7,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
   /// Every icon in this library, keyed by its name.
   static const Map<String, IconData> allIcons = <String, IconData>{
     'book_24_filled': book_24_filled,
@@ -2924,5 +3792,137 @@ abstract final class OtzariaIcons {
     'text_hanging_24_regular': text_hanging_24_regular,
     'panel_right_contract_24_filled': panel_right_contract_24_filled,
     'panel_right_contract_24_regular': panel_right_contract_24_regular,
+    'alef_clock_24_filled': alef_clock_24_filled,
+    'alef_clock_24_regular': alef_clock_24_regular,
+    'alef_download_24_filled': alef_download_24_filled,
+    'alef_download_24_regular': alef_download_24_regular,
+    'alef_star_24_filled': alef_star_24_filled,
+    'alef_star_24_regular': alef_star_24_regular,
+    'alef_tag_24_filled': alef_tag_24_filled,
+    'alef_tag_24_regular': alef_tag_24_regular,
+    'book_calendar_24_filled': book_calendar_24_filled,
+    'book_calendar_24_regular': book_calendar_24_regular,
+    'book_person_24_filled': book_person_24_filled,
+    'book_person_24_regular': book_person_24_regular,
+    'book_print_24_filled': book_print_24_filled,
+    'book_print_24_regular': book_print_24_regular,
+    'book_refresh_24_filled': book_refresh_24_filled,
+    'book_refresh_24_regular': book_refresh_24_regular,
+    'book_share_24_filled': book_share_24_filled,
+    'book_share_24_regular': book_share_24_regular,
+    'book_tag_24_filled': book_tag_24_filled,
+    'book_tag_24_regular': book_tag_24_regular,
+    'document_delete_24_filled': document_delete_24_filled,
+    'document_delete_24_regular': document_delete_24_regular,
+    'document_exclamation_24_filled': document_exclamation_24_filled,
+    'document_exclamation_24_regular': document_exclamation_24_regular,
+    'document_info_24_filled': document_info_24_filled,
+    'document_info_24_regular': document_info_24_regular,
+    'document_print_24_filled': document_print_24_filled,
+    'document_print_24_regular': document_print_24_regular,
+    'document_share_24_filled': document_share_24_filled,
+    'document_share_24_regular': document_share_24_regular,
+    'document_star_24_filled': document_star_24_filled,
+    'document_star_24_regular': document_star_24_regular,
+    'document_tag_24_filled': document_tag_24_filled,
+    'document_tag_24_regular': document_tag_24_regular,
+    'library_checkmark_24_filled': library_checkmark_24_filled,
+    'library_checkmark_24_regular': library_checkmark_24_regular,
+    'library_clock_24_filled': library_clock_24_filled,
+    'library_clock_24_regular': library_clock_24_regular,
+    'library_delete_24_filled': library_delete_24_filled,
+    'library_delete_24_regular': library_delete_24_regular,
+    'library_download_24_filled': library_download_24_filled,
+    'library_download_24_regular': library_download_24_regular,
+    'library_edit_24_filled': library_edit_24_filled,
+    'library_edit_24_regular': library_edit_24_regular,
+    'library_exclamation_24_filled': library_exclamation_24_filled,
+    'library_exclamation_24_regular': library_exclamation_24_regular,
+    'library_info_24_filled': library_info_24_filled,
+    'library_info_24_regular': library_info_24_regular,
+    'library_link_24_filled': library_link_24_filled,
+    'library_link_24_regular': library_link_24_regular,
+    'library_lock_24_filled': library_lock_24_filled,
+    'library_lock_24_regular': library_lock_24_regular,
+    'library_person_24_filled': library_person_24_filled,
+    'library_person_24_regular': library_person_24_regular,
+    'library_search_24_filled': library_search_24_filled,
+    'library_search_24_regular': library_search_24_regular,
+    'library_star_24_filled': library_star_24_filled,
+    'library_star_24_regular': library_star_24_regular,
+    'library_upload_24_filled': library_upload_24_filled,
+    'library_upload_24_regular': library_upload_24_regular,
+    'link_clock_24_filled': link_clock_24_filled,
+    'link_clock_24_regular': link_clock_24_regular,
+    'link_download_24_filled': link_download_24_filled,
+    'link_download_24_regular': link_download_24_regular,
+    'link_settings_24_filled': link_settings_24_filled,
+    'link_settings_24_regular': link_settings_24_regular,
+    'link_tag_24_filled': link_tag_24_filled,
+    'link_tag_24_regular': link_tag_24_regular,
+    'notebook_add_24_filled': notebook_add_24_filled,
+    'notebook_add_24_regular': notebook_add_24_regular,
+    'notebook_sync_24_filled': notebook_sync_24_filled,
+    'notebook_sync_24_regular': notebook_sync_24_regular,
+    'panel_right_add_24_filled': panel_right_add_24_filled,
+    'panel_right_add_24_regular': panel_right_add_24_regular,
+    'panel_right_header_24_filled': panel_right_header_24_filled,
+    'panel_right_header_24_regular': panel_right_header_24_regular,
+    'panel_right_header_add_24_filled': panel_right_header_add_24_filled,
+    'panel_right_header_add_24_regular': panel_right_header_add_24_regular,
+    'panel_right_key_24_filled': panel_right_key_24_filled,
+    'panel_right_key_24_regular': panel_right_key_24_regular,
+    'panel_right_text_add_24_filled': panel_right_text_add_24_filled,
+    'panel_right_text_add_24_regular': panel_right_text_add_24_regular,
+    'panel_right_text_dismiss_24_filled': panel_right_text_dismiss_24_filled,
+    'panel_right_text_dismiss_24_regular': panel_right_text_dismiss_24_regular,
+    'search_in_calendar_24_filled': search_in_calendar_24_filled,
+    'search_in_calendar_24_regular': search_in_calendar_24_regular,
+    'search_in_folder_24_filled': search_in_folder_24_filled,
+    'search_in_folder_24_regular': search_in_folder_24_regular,
+    'search_in_pdf_24_filled': search_in_pdf_24_filled,
+    'search_in_pdf_24_regular': search_in_pdf_24_regular,
+    'search_in_star_24_filled': search_in_star_24_filled,
+    'search_in_star_24_regular': search_in_star_24_regular,
+    'search_in_tag_24_filled': search_in_tag_24_filled,
+    'search_in_tag_24_regular': search_in_tag_24_regular,
+    'text_bullet_list_add_24_filled': text_bullet_list_add_24_filled,
+    'text_bullet_list_add_24_regular': text_bullet_list_add_24_regular,
+    'text_bullet_list_square_edit_24_filled':
+        text_bullet_list_square_edit_24_filled,
+    'text_bullet_list_square_edit_24_regular':
+        text_bullet_list_square_edit_24_regular,
+    'text_bullet_list_square_warning_24_filled':
+        text_bullet_list_square_warning_24_filled,
+    'text_bullet_list_square_warning_24_regular':
+        text_bullet_list_square_warning_24_regular,
+    'text_font_hebrew_24_filled': text_font_hebrew_24_filled,
+    'text_font_hebrew_24_regular': text_font_hebrew_24_regular,
+    'text_font_size_hebrew_24_filled': text_font_size_hebrew_24_filled,
+    'text_font_size_hebrew_24_regular': text_font_size_hebrew_24_regular,
+    'text_sort_ascending_hebrew_24_filled':
+        text_sort_ascending_hebrew_24_filled,
+    'text_sort_ascending_hebrew_24_regular':
+        text_sort_ascending_hebrew_24_regular,
+    'text_sort_descending_hebrew_24_filled':
+        text_sort_descending_hebrew_24_filled,
+    'text_sort_descending_hebrew_24_regular':
+        text_sort_descending_hebrew_24_regular,
+    'text_underline_hebrew_24_filled': text_underline_hebrew_24_filled,
+    'text_underline_hebrew_24_regular': text_underline_hebrew_24_regular,
+    'text_font_number_hebrew_24_filled': text_font_number_hebrew_24_filled,
+    'text_font_number_hebrew_24_regular': text_font_number_hebrew_24_regular,
+    'alef_upload_24_filled': alef_upload_24_filled,
+    'alef_upload_24_regular': alef_upload_24_regular,
+    'link_upload_24_filled': link_upload_24_filled,
+    'link_upload_24_regular': link_upload_24_regular,
+    'document_dismiss_24_filled': document_dismiss_24_filled,
+    'document_dismiss_24_regular': document_dismiss_24_regular,
+    'library_dismiss_24_filled': library_dismiss_24_filled,
+    'library_dismiss_24_regular': library_dismiss_24_regular,
+    'library_share_24_filled': library_share_24_filled,
+    'library_share_24_regular': library_share_24_regular,
+    'library_tag_24_filled': library_tag_24_filled,
+    'library_tag_24_regular': library_tag_24_regular,
   };
 }

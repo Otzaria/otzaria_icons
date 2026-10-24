@@ -2,6 +2,25 @@
 
 ## Unreleased
 
+- 62 more icons, each with `_regular` and `_filled` (124 glyphs, 488 in all).
+  The disc of a `link_*` badge is 5% smaller in `_regular` and 5% larger in
+  `_filled`. Every `search_in_*` icon now has a narrower join between the ring and the
+  handle, as `search_check` does:
+  * `library_dismiss`, `_share`, `_tag`, `_search`, `_download`, `_upload`, `_link`, `_lock`, `_star`,
+    `_checkmark`, `_delete`, `_info`, `_exclamation`, `_edit`, `_clock` and
+    `_person` - Fluent's `library` with a corner badge.
+  * `book_refresh`, `_share`, `_print`, `_tag`, `_person` and `_calendar`;
+    `document_dismiss`, `document_star`, `_info`, `_exclamation`, `_delete`, `_tag`,
+    `_print` and `_share` - a mark on the cover / the page.
+  * `search_in_star`, `_folder`, `_calendar`, `_tag` and `_pdf`.
+  * `alef_clock`, `_star`, `_download`, `_upload`, `_tag` and `link_clock`,
+    `_settings`, `_download`, `_upload`, `_tag`.
+  * Fluent's `panel_left_{add,text_add,text_dismiss,header,header_add,key}`
+    as `panel_right_*`, `notebook_{add,sync}`, `text_bullet_list_add` and
+    `text_bullet_list_square_{edit,warning}`, mirrored for right-to-left.
+  * `text_sort_ascending_hebrew`, `text_sort_descending_hebrew`,
+    `text_font_hebrew`, `text_font_number_hebrew`, `text_font_size_hebrew` and
+    `text_underline_hebrew` - Fluent's Latin-letter text icons with the set's alef and beit.
 - 42 new icons, each with `_regular` and `_filled` (84 glyphs, 364 in all):
   * `book_checkmark`, `book_bookmark`, `book_edit`, `book_delete`,
     `book_dismiss`, `book_copy`, `book_settings`, `book_lock`, `book_pin` and
