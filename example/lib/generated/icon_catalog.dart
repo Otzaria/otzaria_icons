@@ -739,4 +739,13 @@ const iconCatalog = <GalleryIcon>[
       'library_share_24_regular', OtzariaIcons.library_share_24_regular),
   GalleryIcon('library_tag_24_filled', OtzariaIcons.library_tag_24_filled),
   GalleryIcon('library_tag_24_regular', OtzariaIcons.library_tag_24_regular),
+  GalleryIcon(
+      'book_dictionary_24_filled', OtzariaIcons.book_dictionary_24_filled),
+  GalleryIcon(
+      'book_dictionary_24_regular', OtzariaIcons.book_dictionary_24_regular),
+  GalleryIcon('text_citation_24_filled', OtzariaIcons.text_citation_24_filled),
+  GalleryIcon(
+      'text_citation_24_regular', OtzariaIcons.text_citation_24_regular),
+  GalleryIcon('text_compare_24_filled', OtzariaIcons.text_compare_24_filled),
+  GalleryIcon('text_compare_24_regular', OtzariaIcons.text_compare_24_regular),
 ];

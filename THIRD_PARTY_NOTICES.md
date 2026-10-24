@@ -234,3 +234,5 @@ The following entries are derivative works and retain the provenance recorded in
 - `library_share_24_regular` — based on `microsoft/fluentui-system-icons: library_24_regular, share_24_filled (fluentui_system_icons 1.1.273)` at `pub:fluentui_system_icons@1.1.273`; license: MIT AND GPL-3.0-only.
 - `library_tag_24_filled` — based on `microsoft/fluentui-system-icons: library_24_filled, tag_24_filled (fluentui_system_icons 1.1.273)` at `pub:fluentui_system_icons@1.1.273`; license: MIT AND GPL-3.0-only.
 - `library_tag_24_regular` — based on `microsoft/fluentui-system-icons: library_24_regular, tag_24_filled (fluentui_system_icons 1.1.273)` at `pub:fluentui_system_icons@1.1.273`; license: MIT AND GPL-3.0-only.
+- `text_citation_24_filled` — based on `microsoft/fluentui-system-icons: text_quote_24_filled (fluentui_system_icons 1.1.273)` at `pub:fluentui_system_icons@1.1.273`; license: MIT AND GPL-3.0-only.
+- `text_citation_24_regular` — based on `microsoft/fluentui-system-icons: text_quote_24_filled (fluentui_system_icons 1.1.273)` at `pub:fluentui_system_icons@1.1.273`; license: MIT AND GPL-3.0-only.

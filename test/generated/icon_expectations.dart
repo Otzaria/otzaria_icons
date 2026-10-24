@@ -538,4 +538,10 @@ const generatedIconExpectations = <String, IconData>{
   'library_share_24_regular': OtzariaIcons.library_share_24_regular,
   'library_tag_24_filled': OtzariaIcons.library_tag_24_filled,
   'library_tag_24_regular': OtzariaIcons.library_tag_24_regular,
+  'book_dictionary_24_filled': OtzariaIcons.book_dictionary_24_filled,
+  'book_dictionary_24_regular': OtzariaIcons.book_dictionary_24_regular,
+  'text_citation_24_filled': OtzariaIcons.text_citation_24_filled,
+  'text_citation_24_regular': OtzariaIcons.text_citation_24_regular,
+  'text_compare_24_filled': OtzariaIcons.text_compare_24_filled,
+  'text_compare_24_regular': OtzariaIcons.text_compare_24_regular,
 };

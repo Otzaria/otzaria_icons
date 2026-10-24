@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- 3 icons drawn from the set's own parts, each with `_regular` and `_filled`
+  (6 glyphs, 494 in all): `book_dictionary`, `text_citation` and `text_compare`.
 - 62 more icons, each with `_regular` and `_filled` (124 glyphs, 488 in all).
   The disc of a `link_*` badge is 5% smaller in `_regular` and 5% larger in
   `_filled`. Every `search_in_*` icon now has a narrower join between the ring and the

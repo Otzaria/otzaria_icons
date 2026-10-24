@@ -3013,6 +3013,79 @@ for _stem, _layout in (
 
 
 # --------------------------------------------------------------------------
+# Round 4: icons drawn here, from the set's own parts
+# --------------------------------------------------------------------------
+# A page, or a pane, is an outline in the regular variant and a solid with its
+# text knocked out in the filled one - the same pairing as every document icon.
+# Text is a stack of round-ended rules, like every other text rule in the set.
+FRAME_LINE = 1.5
+RULE_H = 1.2
+
+
+def _frame(x0, y0, x1, y1, r, line=FRAME_LINE):
+    outer = round_rect(x0, y0, x1, y1, r)
+    inner = round_rect(x0 + line, y0 + line, x1 - line, y1 - line,
+                       max(r - line, 0.5))
+    return outer, outer - inner
+
+
+def _rules(spans, h=RULE_H):
+    """Round-ended rules: `spans` is a list of (x0, x1, y_centre)."""
+    out = Art()
+    for x0, x1, y in spans:
+        out = out | round_rect(x0, y - h / 2, x1, y + h / 2, h / 2)
+    return out
+
+
+# book_dictionary: the book cover with an alef and a beit on it.
+def _dictionary_mark():
+    alef = alef_solid().fit((11.7, 7.4, 16.7, 15.6))
+    beit = glyph("beit_24_filled").fit((7.3, 7.4, 12.1, 15.6))
+    return alef | beit
+
+
+for _filled in (False, True):
+    def _dict_build(filled=_filled):
+        solid, cuts = _book_marked(_dictionary_mark(), filled)
+        return solid, cuts, filled
+    RECIPES["book_dictionary_24_%s" % ("filled" if _filled else "regular")] = \
+        _dict_build
+
+
+# text_citation: a quotation mark over the line that names its source.
+def _citation(filled):
+    def build():
+        h = LIST_RULE_HEIGHT if filled else 1.5
+        quote = use_fluent("text_quote_24_filled").fit((3.0, 2.5, 21.0, 12.0))
+        out = quote
+        for (x0, y) in ((9.0, 15.5), (13.0, 19.5)):
+            out = out | round_rect(x0, y - h / 2, 21.0, y + h / 2, h / 2)
+        return out, [], False
+    return build
+
+
+RECIPES["text_citation_24_regular"] = _citation(False)
+RECIPES["text_citation_24_filled"] = _citation(True)
+
+
+# text_compare: two pages, the same text on both except for the middle line.
+def _compare(filled):
+    def build():
+        left_o, left_r = _frame(2.5, 3.0, 11.0, 21.0, 2.0)
+        right_o, right_r = _frame(13.0, 3.0, 21.5, 21.0, 2.0)
+        text = _rules([(4.8, 8.7, 8.0), (4.8, 8.7, 12.0), (4.8, 8.7, 16.0),
+                       (15.3, 19.2, 8.0), (15.3, 17.2, 12.0), (15.3, 19.2, 16.0)])
+        if filled:
+            return left_o | right_o, [text], True
+        return left_r | right_r | text, [], False
+    return build
+
+
+RECIPES["text_compare_24_regular"] = _compare(False)
+RECIPES["text_compare_24_filled"] = _compare(True)
+
+
+# --------------------------------------------------------------------------
 # Recording where the artwork came from
 # --------------------------------------------------------------------------
 MANIFEST =os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
