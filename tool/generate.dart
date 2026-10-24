@@ -728,20 +728,38 @@ String _generateNotices(List<ManifestIcon> icons) {
   return buffer.toString();
 }
 
+/// Groups the icons into `regular` / `filled` pairs, in the order each base
+/// name first appears. An icon with only one variant is a group of its own.
+Map<String, Map<String, ManifestIcon>> _iconPairs(List<ManifestIcon> icons) {
+  final pattern = RegExp(r'^(.*)_24_(regular|filled)$');
+  final groups = <String, Map<String, ManifestIcon>>{};
+  for (final icon in icons) {
+    final match = pattern.firstMatch(icon.name);
+    final base = match?.group(1) ?? icon.name;
+    final variant = match?.group(2) ?? 'single';
+    groups.putIfAbsent(base, () => {})[variant] = icon;
+  }
+  return groups;
+}
+
 String _generateSvgCatalog(List<ManifestIcon> icons) {
-  // Compact contact-sheet grid: a small glyph plus its name per tile. Names
-  // are centered and, only when too long to fit, squeezed to the tile width;
-  // every tile also carries a <title> so the full name shows on hover. This
-  // keeps the catalog a few thousand pixels tall instead of one huge column.
-  const columns = 5;
-  const tileW = 184;
-  const tileH = 88;
+  // Contact sheet of regular/filled pairs: three pairs (six icons) per row, the
+  // two variants of an icon always side by side and the base name centred under
+  // them. The glyphs keep their size; the sheet gets narrower by dropping the
+  // empty space between tiles. Names are centered and, only when too long to
+  // fit, squeezed to the tile width; every glyph also carries a <title> so the
+  // full name shows on hover.
+  const columns = 3;
+  const tileW = 150;
+  const tileH = 84;
   const margin = 20;
   const headerH = 56;
   const glyph = 46;
+  const gap = 6;
   const fontSize = 9;
-  const usable = tileW - 12;
-  final rows = (icons.length / columns).ceil();
+  const usable = tileW - 10;
+  final groups = _iconPairs(icons).entries.toList();
+  final rows = (groups.length / columns).ceil();
   const width = columns * tileW + margin * 2;
   final height = headerH + rows * tileH + margin;
   final buffer = StringBuffer()
@@ -755,36 +773,45 @@ String _generateSvgCatalog(List<ManifestIcon> icons) {
       'font-size="22" font-weight="600" fill="#202020">'
       'Otzaria Icons (${icons.length})</text>',
     );
-  for (var index = 0; index < icons.length; index++) {
-    final icon = icons[index];
+  for (var index = 0; index < groups.length; index++) {
+    final base = groups[index].key;
+    final variants = groups[index].value;
     final tileX = margin + (index % columns) * tileW;
     final tileY = headerH + (index ~/ columns) * tileH;
     final centerX = tileX + tileW ~/ 2;
-    final document = File(icon.source).readAsStringSync();
-    // Extract the inner markup of the <svg> root. Anchor on the <svg tag and
-    // take the first '>' at or after it, so an XML prolog or leading comment
-    // (both pass validate.dart, which only restricts elements) can't be
-    // mistaken for the end of the opening tag. Sources are canonical single
-    // <svg>...</svg> documents, so this is identical output for them.
-    final svgStart = document.indexOf('<svg');
-    final body = document.substring(
-      document.indexOf('>', svgStart) + 1,
-      document.lastIndexOf('</svg>'),
-    );
-    final fit = icon.name.length * 0.6 * fontSize > usable
+    final shown = [
+      for (final v in const ['regular', 'filled', 'single'])
+        if (variants.containsKey(v)) variants[v]!,
+    ];
+    final span = shown.length * glyph + (shown.length - 1) * gap;
+    for (var k = 0; k < shown.length; k++) {
+      final icon = shown[k];
+      final document = File(icon.source).readAsStringSync();
+      // Extract the inner markup of the <svg> root. Anchor on the <svg tag and
+      // take the first '>' at or after it, so an XML prolog or leading comment
+      // (both pass validate.dart, which only restricts elements) can't be
+      // mistaken for the end of the opening tag. Sources are canonical single
+      // <svg>...</svg> documents, so this is identical output for them.
+      final svgStart = document.indexOf('<svg');
+      final body = document.substring(
+        document.indexOf('>', svgStart) + 1,
+        document.lastIndexOf('</svg>'),
+      );
+      final x = centerX - span ~/ 2 + k * (glyph + gap);
+      buffer.writeln(
+        '<svg x="$x" y="${tileY + 6}" '
+        'width="$glyph" height="$glyph" viewBox="0 0 24 24" '
+        'color="#202020"><title>${icon.name}</title>$body</svg>',
+      );
+    }
+    final fit = base.length * 0.6 * fontSize > usable
         ? ' textLength="$usable" lengthAdjust="spacingAndGlyphs"'
         : '';
-    buffer
-      ..writeln(
-        '<svg x="${centerX - glyph ~/ 2}" y="${tileY + 6}" '
-        'width="$glyph" height="$glyph" viewBox="0 0 24 24" '
-        'color="#202020">$body</svg>',
-      )
-      ..writeln(
-        '<text x="$centerX" y="${tileY + glyph + 22}" text-anchor="middle" '
-        'font-family="Consolas, monospace" font-size="$fontSize" '
-        'fill="#444444"$fit><title>${icon.name}</title>${icon.name}</text>',
-      );
+    buffer.writeln(
+      '<text x="$centerX" y="${tileY + glyph + 22}" text-anchor="middle" '
+      'font-family="Consolas, monospace" font-size="$fontSize" '
+      'fill="#444444"$fit>$base</text>',
+    );
   }
   return '${buffer.toString()}</svg>\n';
 }
@@ -819,7 +846,7 @@ String _generateWebCatalog(List<ManifestIcon> icons) {
     .hero-logo { display: inline-block; width: min(180px, 42vw); height: auto; }
     h1 { margin: 0 0 12px; font-size: clamp(2.35rem, 7vw, 4.6rem); letter-spacing: -.035em; }
     .subtitle { max-width: 620px; margin: 0 auto; color: var(--muted); font-size: clamp(1rem, 2.5vw, 1.2rem); line-height: 1.7; }
-    main { width: min(1220px, calc(100% - 32px)); margin: -48px auto 0; padding-bottom: 64px; position: relative; }
+    main { width: min(900px, calc(100% - 32px)); margin: -48px auto 0; padding-bottom: 64px; position: relative; }
     .toolbar { margin-bottom: 28px; padding: 18px; border: 1px solid var(--border); border-radius: 18px; background: rgba(255,253,248,.94); box-shadow: var(--shadow); backdrop-filter: blur(12px); }
     .controls { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 12px; }
     input[type="search"] { width: min(520px, 100%); min-height: 50px; padding: 0 18px; border: 1px solid var(--border); border-radius: 12px; outline: none; background: var(--card); color: var(--text); font: inherit; transition: border-color .2s, box-shadow .2s; }
@@ -829,13 +856,19 @@ String _generateWebCatalog(List<ManifestIcon> icons) {
     button:hover, button:focus-visible { background: var(--accent-soft); outline: none; }
     input[type="range"] { width: 120px; accent-color: var(--accent); }
     .results { margin: 0 4px 16px; color: var(--muted); font-size: 14px; text-align: right; }
-    #grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 16px; }
-    .card { min-width: 0; padding: 28px 16px 18px; border: 1px solid var(--border); border-radius: 16px; background: var(--card); box-shadow: 0 3px 14px rgba(67,49,25,.035); cursor: pointer; transition: transform .18s, border-color .18s, box-shadow .18s; }
-    .card:hover { transform: translateY(-3px); border-color: #d5c2a3; box-shadow: 0 12px 30px rgba(67,49,25,.09); }
-    .card:focus-visible { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px rgba(155,108,47,.18); }
-    .card.selected { border-color: var(--accent); box-shadow: 0 0 0 2px rgba(155,108,47,.28); }
-    .icon { display: grid; min-height: 142px; place-items: center; font-family: "OtzariaIcons"; font-size: var(--icon-size, 72px); line-height: 1; color: #28241e; }
-    .name { direction: ltr; min-height: 42px; display: grid; place-items: center; overflow-wrap: anywhere; font: 13px/1.5 Consolas, monospace; color: var(--muted); }
+    /* One card per icon holds its regular and filled variants side by side, so
+       a pair can never be split across two rows. */
+    #grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+    .card { container-type: inline-size; min-width: 0; padding: 10px 6px 8px; border: 1px solid var(--border); border-radius: 16px; background: var(--card); box-shadow: 0 3px 14px rgba(67,49,25,.035); transition: border-color .18s, box-shadow .18s; }
+    .card:hover { border-color: #d5c2a3; box-shadow: 0 12px 30px rgba(67,49,25,.09); }
+    .pair { display: flex; justify-content: center; gap: 2px; }
+    .half { flex: 0 1 auto; width: auto; height: auto; min-width: 0; padding: 4px; border: 1px solid transparent; border-radius: 12px; background: transparent; cursor: pointer; transition: background .15s, border-color .15s; }
+    .half:hover { background: var(--accent-soft); }
+    .half:focus-visible { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px rgba(155,108,47,.18); }
+    .half.selected { border-color: var(--accent); box-shadow: 0 0 0 2px rgba(155,108,47,.28); }
+    .icon { display: grid; width: 1em; height: 1em; place-items: center; font-family: "OtzariaIcons"; font-size: min(var(--icon-size, 72px), 40cqw); line-height: 1; color: #28241e; }
+    .variant { display: block; margin-top: 2px; font: 10px/1.3 Consolas, monospace; color: var(--muted); }
+    .name { direction: ltr; min-height: 22px; display: grid; place-items: center; margin-top: 4px; overflow-wrap: anywhere; font: 13px/1.4 Consolas, monospace; color: var(--muted); }
     #empty { display: none; padding: 60px 0; color: var(--muted); }
     footer { padding: 8px 20px 42px; color: var(--muted); font-size: 14px; }
     footer a { color: var(--accent); text-decoration: none; }
@@ -847,7 +880,14 @@ String _generateWebCatalog(List<ManifestIcon> icons) {
     .copy-btn { width: auto; height: auto; padding: 6px 14px; border-radius: 9px; background: var(--accent-soft); color: var(--accent); font: 700 13px Arial, "Noto Sans Hebrew", sans-serif; }
     .copy-btn:hover, .copy-btn:focus-visible { background: var(--accent); color: #fff; }
     .code { direction: ltr; text-align: left; margin: 0; padding: 14px; background: #141414; color: #e8e4da; font: 14px/1.6 Consolas, monospace; overflow-x: auto; white-space: pre; }
-    @media (max-width: 560px) { .hero { padding-top: 46px; } main { width: min(100% - 20px, 1220px); } .toolbar { padding: 12px; } .size-control { width: 100%; justify-content: center; } #grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 10px; } .card { padding-inline: 10px; } }
+    /* The grid follows the width: four pairs (eight icons) per row on a wide
+       screen, three (six) below 1100px, two (four) below 700px and one (two)
+       below 331px - always a whole number of pairs. */
+    @media (min-width: 1100px) { main { width: min(1180px, calc(100% - 32px)); } #grid { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+    @media (max-width: 1099px) { #grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+    @media (max-width: 699px) { #grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+    @media (max-width: 560px) { .hero { padding-top: 46px; } main { width: min(100% - 20px, 900px); } .toolbar { padding: 12px; } .size-control { width: 100%; justify-content: center; } #grid { gap: 8px; } .card { padding-inline: 2px; } }
+    @media (max-width: 330px) { #grid { grid-template-columns: minmax(0, 1fr); } }
   </style>
 </head>
 <body>
@@ -912,33 +952,53 @@ String _generateWebCatalog(List<ManifestIcon> icons) {
   const empty = document.querySelector('#empty');
   const count = document.querySelector('#count');
 
+  // The two variants of an icon are shown together on one card.
+  const pairs = new Map();
+  for (const icon of icons) {
+    const match = icon.name.match(/^(.*)_24_(regular|filled)$/);
+    const base = match ? match[1] : icon.name;
+    const variant = match ? match[2] : '';
+    if (!pairs.has(base)) pairs.set(base, { base, variants: [] });
+    pairs.get(base).variants.push({ icon, variant });
+  }
+  const order = { regular: 0, filled: 1, '': 2 };
+  for (const pair of pairs.values()) {
+    pair.variants.sort((a, b) => order[a.variant] - order[b.variant]);
+  }
+
   function render() {
     const query = search.value.trim().toLowerCase();
-    const visible = icons
-      .filter(icon => icon.name.toLowerCase().includes(query))
-      .sort((a, b) => a.name.localeCompare(b.name));
-    grid.replaceChildren(...visible.map(icon => {
+    const visible = [...pairs.values()]
+      .filter(pair => pair.base.toLowerCase().includes(query))
+      .sort((a, b) => a.base.localeCompare(b.base));
+    grid.replaceChildren(...visible.map(pair => {
       const card = document.createElement('article');
       card.className = 'card';
-      card.tabIndex = 0;
-      card.addEventListener('click', () => selectIcon(card, icon.name));
-      card.addEventListener('keydown', event => {
-        if (event.key === 'Enter' || event.key === ' ') {
-          event.preventDefault();
-          selectIcon(card, icon.name);
-        }
-      });
-      const glyph = document.createElement('span');
-      glyph.className = 'icon';
-      glyph.setAttribute('aria-hidden', 'true');
-      glyph.textContent = String.fromCodePoint(icon.codepoint);
+      const row = document.createElement('div');
+      row.className = 'pair';
+      for (const { icon, variant } of pair.variants) {
+        const half = document.createElement('button');
+        half.type = 'button';
+        half.className = 'half';
+        half.title = icon.name;
+        half.addEventListener('click', () => selectIcon(half, icon.name));
+        const glyph = document.createElement('span');
+        glyph.className = 'icon';
+        glyph.setAttribute('aria-hidden', 'true');
+        glyph.textContent = String.fromCodePoint(icon.codepoint);
+        const label = document.createElement('span');
+        label.className = 'variant';
+        label.textContent = variant;
+        half.append(glyph, label);
+        row.append(half);
+      }
       const name = document.createElement('div');
       name.className = 'name';
-      name.textContent = icon.name;
-      card.append(glyph, name);
+      name.textContent = pair.base;
+      card.append(row, name);
       return card;
     }));
-    count.textContent = visible.length;
+    count.textContent = visible.reduce((n, pair) => n + pair.variants.length, 0);
     empty.style.display = visible.length ? 'none' : 'block';
   }
 
@@ -956,7 +1016,7 @@ String _generateWebCatalog(List<ManifestIcon> icons) {
     useCode.textContent = `const Icon(OtzariaIcons.${name});`;
   }
   function selectIcon(card, name) {
-    grid.querySelectorAll('.card.selected').forEach(c => c.classList.remove('selected'));
+    grid.querySelectorAll('.half.selected').forEach(c => c.classList.remove('selected'));
     card.classList.add('selected');
     setUsage(name);
   }
