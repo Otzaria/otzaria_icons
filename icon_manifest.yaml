@@ -7620,3 +7620,33 @@ icons:
     author: Otzaria contributors
     license: GPL-3.0-only
     upstream_commit: null
+  - id: icon-0538
+    name: shamor_vezachor_24_filled
+    source: assets_src/svg/shamor_vezachor_24_filled.svg
+    codepoint: 0xe1fc
+    variant: filled
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: custom
+    based_on: null
+    author: Otzaria contributors
+    license: GPL-3.0-only
+    upstream_commit: null
+  - id: icon-0539
+    name: shamor_vezachor_24_regular
+    source: assets_src/svg/shamor_vezachor_24_regular.svg
+    codepoint: 0xe1fd
+    variant: regular
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: custom
+    based_on: null
+    author: Otzaria contributors
+    license: GPL-3.0-only
+    upstream_commit: null

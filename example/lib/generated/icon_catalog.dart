@@ -765,4 +765,8 @@ const iconCatalog = <GalleryIcon>[
   GalleryIcon('sunrise_24_regular', OtzariaIcons.sunrise_24_regular),
   GalleryIcon('sunset_24_filled', OtzariaIcons.sunset_24_filled),
   GalleryIcon('sunset_24_regular', OtzariaIcons.sunset_24_regular),
+  GalleryIcon(
+      'shamor_vezachor_24_filled', OtzariaIcons.shamor_vezachor_24_filled),
+  GalleryIcon(
+      'shamor_vezachor_24_regular', OtzariaIcons.shamor_vezachor_24_regular),
 ];

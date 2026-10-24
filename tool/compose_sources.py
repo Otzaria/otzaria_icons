@@ -3241,6 +3241,33 @@ for _stem, _arrow in (("sunrise", "up"), ("sunset", "down")):
 
 
 # --------------------------------------------------------------------------
+# shamor_vezachor: an open book built as a wall of bricks
+# --------------------------------------------------------------------------
+# The regular variant is supplied artwork (an open book whose pages are laid out
+# as brick courses), brought onto the 24-unit canvas at 22 units and smoothed;
+# it is a source file like any other, not a recipe. The filled variant follows
+# the set's rule - every white brick turns black, the mortar turns white, a thin
+# edge is added - and carries the tick the supplied filled drawing had at the top
+# left, drawn as a black tick with a clear halo cut round it so it stays readable
+# on the black bricks. The tick is the supplied polyline (167,265 - 238,317 -
+# 421,124 on its 1024 canvas) put through the same transform as the book.
+SHAMOR_CHECK = [(3.532, 5.769), (5.277, 7.047), (9.775, 2.303)]
+SHAMOR_CHECK_WIDTH = 1.7
+SHAMOR_CHECK_HALO = 0.6
+
+
+def _shamor_vezachor_filled():
+    solid, cuts = inverted("shamor_vezachor_24_regular")
+    tick = ic.stroke_line(SHAMOR_CHECK, SHAMOR_CHECK_WIDTH)
+    halo = ic.stroke_line(SHAMOR_CHECK, SHAMOR_CHECK_WIDTH + 2 * SHAMOR_CHECK_HALO)
+    return (solid - halo) | tick, cuts, False
+
+
+RECIPES["shamor_vezachor_24_filled"] = _shamor_vezachor_filled
+DEPENDS["shamor_vezachor_24_filled"] = "shamor_vezachor_24_regular"
+
+
+# --------------------------------------------------------------------------
 # Recording where the artwork came from
 # --------------------------------------------------------------------------
 MANIFEST =os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
