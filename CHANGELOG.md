@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+- Every `search_in_*` icon now carries `search_24_regular`'s own ring and handle -
+  the drawing `search_check` is built on - instead of a second construction of
+  it.
 - 7 objects drawn from scratch, each with `_regular` and `_filled` (14 glyphs,
   508 in all): `menorah`, `kiddush_cup`, `shabbat_candles`, `mezuzah`,
   `luchot_habrit`, `sunrise` and `sunset`.

@@ -1865,30 +1865,22 @@ SEARCH_JOIN = 0.3                  # fillet where the neck meets the ring
 
 
 def search_ring():
-    """(outer silhouette, lens opening) of the shared ring and handle."""
-    cx, cy = SEARCH_CENTRE
-    u = (math.sqrt(0.5), math.sqrt(0.5))       # the handle lies at 45 degrees
-    n = (-u[1], u[0])
-    f0, f1 = SEARCH_FLARE
+    """(outer silhouette, lens opening) of the shared ring and handle.
 
-    def half_width(d):
-        t = min(1.0, max(0.0, (d - f0) / (f1 - f0)))
-        t = t * t * (3 - 2 * t)
-        return (SEARCH_NECK + (SEARCH_HANDLE - SEARCH_NECK) * t) / 2
-
-    def at(d, w):
-        return (cx + u[0] * d + n[0] * w, cy + u[1] * d + n[1] * w)
-
-    ds = [7.5 + k * (SEARCH_HANDLE_END - 7.5) / 120 for k in range(121)]
-    side_a = [at(d, half_width(d)) for d in ds]
-    side_b = [at(d, -half_width(d)) for d in reversed(ds)]
-    r = SEARCH_HANDLE / 2
-    cap = [at(SEARCH_HANDLE_END + r * math.sin(a), r * math.cos(a))
-           for a in [math.pi * k / 24 for k in range(1, 24)]]
-    handle = polygon(side_a + cap + side_b)
-    outer = (circle(cx, cy, SEARCH_OUTER_R) | handle)
-    outer = outer.grow(SEARCH_JOIN).shrink(SEARCH_JOIN)
-    return outer, circle(cx, cy, SEARCH_LENS_R)
+    This is `search_24_regular`'s own ring and handle - the same drawing
+    `search_check` and `search_not_found` are built on - placed so its lens is
+    the one every `search_in_*` icon carries its content in. The handle is
+    therefore identical to theirs, from the join with the ring to the tip,
+    rather than a second construction that only resembles it.
+    """
+    t_outer, t_lens = _search_ring_template()
+    k = SEARCH_LENS_R / t_lens.radius()
+    about = t_lens.centre
+    outer = t_outer.scale(k, about=about)
+    lens = t_lens.scale(k, about=about)
+    dx = SEARCH_CENTRE[0] - about[0]
+    dy = SEARCH_CENTRE[1] - about[1]
+    return outer.translate(dx, dy), lens.translate(dx, dy)
 
 
 def _search_in_ring(name):
