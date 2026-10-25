@@ -3138,19 +3138,49 @@ def _register_object(stem, regular, filled):
     RECIPES[stem + "_24_filled"] = filled
 
 
+# Arms are the nested U-shapes of a common hanukkiah: each pair leaves the stem
+# lower the farther out it goes, swings out in a round half-ellipse and rises
+# to the same height, where a flame stands on it. K is the cubic's constant for
+# a quarter ellipse.
+ARM_K = 0.5523
+ARM_TOP = 9.2
+ARM_BOTTOM = 19.2
+FLAME_GAP = 0.4
+
+
+def _flame(cx, base, height=4.4, half=1.15):
+    """A teardrop flame (shalevet): a point above, a round belly below."""
+    return _solid([("M", cx, base - height),
+                   ("C", cx + 0.2, base - height * 0.55, cx + half, base - height * 0.38,
+                    cx + half, base - half),
+                   ("C", cx + half, base - half * 0.35, cx + half * 0.55, base, cx, base),
+                   ("C", cx - half * 0.55, base, cx - half, base - half * 0.35,
+                    cx - half, base - half),
+                   ("C", cx - half, base - height * 0.38, cx - 0.2, base - height * 0.55,
+                    cx, base - height), ("Z",)])
+
+
 def _menorah(filled):
     def build():
         w = OBJECT_LINE_FILLED if filled else OBJECT_LINE
-        out = _stroke([("M", 12.0, 8.0), ("L", 12.0, 21.0)], w)
-        out |= _stroke([("M", 7.5, 21.0), ("L", 16.5, 21.0)], w)
-        for d in (3.0, 6.0, 9.0):
+        out = _stroke([("M", 12.0, ARM_TOP), ("L", 12.0, 21.4)], w)
+        out |= _stroke([("M", 7.5, 21.4), ("L", 16.5, 21.4)], w)
+        # The U-shapes' bottoms are a stroke width and a little apart, or they
+        # run together into one dark lump at the stem.
+        step = w + 0.5
+        for k, d in enumerate((3.0, 6.0, 9.0)):
+            ry = 2.4 + k * step
+            rise = ARM_BOTTOM - 2.4 - 2 * step
+            y = rise + ry
             for sign in (-1, 1):
                 x = 12.0 + sign * d
-                out |= _stroke([("M", 12.0, 17.5), ("L", x - sign * 3.0, 17.5),
-                                ("Q", x, 17.5, x, 14.5), ("L", x, 8.0)], w)
+                out |= _stroke([("M", x, ARM_TOP), ("L", x, rise),
+                                ("C", x, rise + ARM_K * ry,
+                                 12.0 + sign * ARM_K * d, y, 12.0, y)], w)
         for d in (0.0, 3.0, 6.0, 9.0):
             for sign in ((1,) if d == 0 else (-1, 1)):
-                out |= circle(12.0 + sign * d, 5.6, 1.35)
+                # The flame sits a hair above the arm's rounded end.
+                out |= _flame(12.0 + sign * d, ARM_TOP - w / 2 - FLAME_GAP)
         return out, [], False
     return build
 
@@ -3160,12 +3190,28 @@ RECIPES["menorah_24_filled"] = _menorah(True)
 
 
 def _kiddush_cup():
-    bowl = _solid([("M", 6.5, 3.0), ("L", 17.5, 3.0), ("L", 17.5, 8.0),
-                   ("Q", 17.5, 13.5, 12.0, 13.5), ("Q", 6.5, 13.5, 6.5, 8.0), ("Z",)])
-    stem = round_rect(10.9, 13.0, 13.1, 19.0, 0.4)
-    foot = round_rect(6.5, 18.6, 17.5, 21.4, 1.4)
-    wine = round_rect(8.6, 6.4, 15.4, 7.6, 0.6)
-    return _object(bowl | stem | foot, wine)
+    # A round bowl on a short stem and a wide foot. The three are joined and the
+    # inside corners closed with a fillet, so the bowl runs into the stem and the
+    # stem flares into the foot instead of meeting them at a seam. The foot is
+    # lower than twice the outline weight, so it stays solid in the regular one.
+    bowl = _solid([("M", 6.3, 3.0), ("L", 17.7, 3.0), ("L", 17.4, 8.0),
+                   ("C", 17.2, 11.9, 14.9, 14.2, 12.0, 14.2),
+                   ("C", 9.1, 14.2, 6.8, 11.9, 6.6, 8.0), ("Z",)])
+    stem = round_rect(10.9, 13.0, 13.1, 19.6, 0.2)
+    foot = round_rect(6.4, 19.0, 17.6, 21.6, 1.3)
+    cup = (bowl | stem | foot)
+    cup = cup.grow(1.1).shrink(1.1)
+    wine = round_rect(8.4, 6.2, 15.6, 7.4, 0.6)
+    _, filled = _object(cup, wine)
+
+    def regular():
+        # The cavity is the bare bowl drawn in by the outline weight, not the
+        # cup's own inner edge - that comes to a point where the fillet joins
+        # bowl and stem. A sliver of white the fillets leave where the foot
+        # meets the stem is dropped too.
+        inner = bowl.shrink(OBJECT_LINE)
+        return ((cup - inner) | wine).fill_holes(1.0), [], False
+    return regular, filled
 
 
 _register_object("kiddush_cup", *_kiddush_cup())
