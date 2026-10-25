@@ -95,6 +95,11 @@ BADGE_MIN_HOLE = 0.55
 # past, the edge it is anchored to.
 ALEF_BADGE_SCALE = 1.20
 LINK_BADGE_SCALE = 1.15
+# The two variants of a link badge differ in the size of their disc, so a pair
+# reads as two weights and not as one drawing: the regular's disc is 5% smaller
+# and the filled's 5% larger than the shared scale.
+LINK_BADGE_REGULAR = 0.95
+LINK_BADGE_FILLED = 1.05
 
 
 def _anchor_corner(bounds):
@@ -561,8 +566,10 @@ def link_badge(kind, filled=False):
         mark = symbol(kind, disc.radius() * SYMBOL_REACH).centred_on(
             (x0 + x1) / 2, (y0 + y1) / 2)
         corner = _anchor_corner(disc.bounds)
-        disc = disc.scale(LINK_BADGE_SCALE, about=corner)
-        mark = mark.scale(LINK_BADGE_SCALE, about=corner)
+        scale = LINK_BADGE_SCALE * (LINK_BADGE_FILLED if filled
+                                    else LINK_BADGE_REGULAR)
+        disc = disc.scale(scale, about=corner)
+        mark = mark.scale(scale, about=corner)
         solid, cuts = fill_canvas_pair(link | disc, [mark])
         return solid, cuts, True
     return build
@@ -1850,38 +1857,30 @@ SEARCH_IN_NAMES = [os.path.basename(p)[:-4] for p in
 SEARCH_CENTRE = (9.32, 9.18)
 SEARCH_LENS_R = 6.71
 SEARCH_OUTER_R = 8.65
-SEARCH_NECK = 2.90
+SEARCH_NECK = 2.20
 SEARCH_HANDLE = 3.46
-SEARCH_FLARE = (8.65, 13.5)        # distances from the lens centre
+SEARCH_FLARE = (9.6, 13.8)        # distances from the lens centre
 SEARCH_HANDLE_END = 17.4           # centre of the handle's round end
-SEARCH_JOIN = 1.0                  # fillet where the neck meets the ring
+SEARCH_JOIN = 0.3                  # fillet where the neck meets the ring
 
 
 def search_ring():
-    """(outer silhouette, lens opening) of the shared ring and handle."""
-    cx, cy = SEARCH_CENTRE
-    u = (math.sqrt(0.5), math.sqrt(0.5))       # the handle lies at 45 degrees
-    n = (-u[1], u[0])
-    f0, f1 = SEARCH_FLARE
+    """(outer silhouette, lens opening) of the shared ring and handle.
 
-    def half_width(d):
-        t = min(1.0, max(0.0, (d - f0) / (f1 - f0)))
-        t = t * t * (3 - 2 * t)
-        return (SEARCH_NECK + (SEARCH_HANDLE - SEARCH_NECK) * t) / 2
-
-    def at(d, w):
-        return (cx + u[0] * d + n[0] * w, cy + u[1] * d + n[1] * w)
-
-    ds = [7.5 + k * (SEARCH_HANDLE_END - 7.5) / 120 for k in range(121)]
-    side_a = [at(d, half_width(d)) for d in ds]
-    side_b = [at(d, -half_width(d)) for d in reversed(ds)]
-    r = SEARCH_HANDLE / 2
-    cap = [at(SEARCH_HANDLE_END + r * math.sin(a), r * math.cos(a))
-           for a in [math.pi * k / 24 for k in range(1, 24)]]
-    handle = polygon(side_a + cap + side_b)
-    outer = (circle(cx, cy, SEARCH_OUTER_R) | handle)
-    outer = outer.grow(SEARCH_JOIN).shrink(SEARCH_JOIN)
-    return outer, circle(cx, cy, SEARCH_LENS_R)
+    This is `search_24_regular`'s own ring and handle - the same drawing
+    `search_check` and `search_not_found` are built on - placed so its lens is
+    the one every `search_in_*` icon carries its content in. The handle is
+    therefore identical to theirs, from the join with the ring to the tip,
+    rather than a second construction that only resembles it.
+    """
+    t_outer, t_lens = _search_ring_template()
+    k = SEARCH_LENS_R / t_lens.radius()
+    about = t_lens.centre
+    outer = t_outer.scale(k, about=about)
+    lens = t_lens.scale(k, about=about)
+    dx = SEARCH_CENTRE[0] - about[0]
+    dy = SEARCH_CENTRE[1] - about[1]
+    return outer.translate(dx, dy), lens.translate(dx, dy)
 
 
 def _search_in_ring(name):
@@ -2314,14 +2313,15 @@ def letter_outline(art, over=None, solid_rest=False):
     return out.despeckle(0.05).prune(0.002)
 
 
-def ring_badge(letter, disc, mark):
+def ring_badge(letter, disc, mark, air=None):
     """An outlined `letter` carrying a ring badge: the letter is cut back from
     the disc by BADGE_RING_GAP, the disc becomes a ring, and `mark` - which the
     solid icon knocks out of its disc - is drawn as ink inside it, brought down
     to fit within the ring."""
     inner = disc.radius() - BADGE_RING
     ring = disc.outlined(BADGE_RING, inside=True)
-    ink = mark.fit_radius(inner - BADGE_RING_AIR, about=disc.centre)
+    ink = mark.fit_radius(inner - (BADGE_RING_AIR if air is None else air),
+                          about=disc.centre)
     return (letter_outline(letter) - disc.grow(BADGE_RING_GAP)) | ring | ink
 
 
@@ -2358,11 +2358,12 @@ LETTER_OVER = {
 LETTER_SOLID_REST = ("alef_1", "alef_2", "alef_3", "alef_4", "alef_5")
 
 
-def outline_recipe(filled, badged_letter=False, over=None, solid_rest=False):
+def outline_recipe(filled, badged_letter=False, over=None, solid_rest=False,
+                   air=None):
     def build():
         if badged_letter:
             letter, disc, mark = _split_badge(filled)
-            return ring_badge(letter, disc, mark), [], False
+            return ring_badge(letter, disc, mark, air), [], False
         return (letter_outline(glyph(filled), glyph(over) if over else None,
                                 solid_rest),
                 [], False)
@@ -2551,9 +2552,771 @@ def _check_filled():
 
 
 # --------------------------------------------------------------------------
+# Round 1: a Fluent mark on the book cover / the document page
+# --------------------------------------------------------------------------
+# The same two templates the set already uses for a centred mark -
+# `_book_marked` (book_download, book_exclamation) and `document` (document_alef,
+# document_upload) - carrying a Fluent mark instead of a drawn one. Fluent's own
+# filled style is the source, as it is for the badges: the regular style is a
+# 1.5-unit outline and an outline reduced to this size is a ring too fine to
+# print. The mark is fitted into the block the existing marks occupy, and its
+# stroke is put back to the cover's weight after scaling.
+MARK_WEIGHT = 1.45
+
+# short name -> Fluent base name (always read from the `_24_filled` font)
+ROUND1_MARKS = {
+    "checkmark": "checkmark",
+    "bookmark": "bookmark",
+    "edit": "edit",
+    "delete": "delete",
+    "dismiss": "dismiss",
+    "copy": "copy",
+    "settings": "settings",
+    "lock": "lock_closed",
+    "pin": "pin",
+    "history": "history",
+    "save": "save",
+    "link": "link",
+    "clock": "clock",
+}
+
+# Per-mark fitting boxes where the default block does not suit a mark's shape.
+# The chain sits in a wider, shorter band than the square-ish marks, so it can be
+# larger without touching the page's margin (interior x 5.5 to 18.5).
+ROUND1_BOX = {"link": (6.6, 9.5, 17.4, 18.5)}
+# A thin chain closes its own gaps when it is thickened at this size, so it
+# keeps closer to Fluent's own weight.
+ROUND1_WEIGHT = {"link": 0.95}
+ROUND1_TURN = {}
+
+
+def fluent_mark(short, box):
+    """Fluent's `short` mark, fitted to `box`, with the cover's stroke weight."""
+    box = ROUND1_BOX.get(short, box)
+    if short == "lock":
+        # The padlock the alef badges carry, not Fluent's, so every lock in the
+        # set is one drawing.
+        return sym_lock().fit(box).scale(0.8, about=((box[0] + box[2]) / 2,
+                                                     (box[1] + box[3]) / 2))
+    if short == "info":
+        # The set's own "i" (as on the badges), not Fluent's disc with an "i" cut
+        # in it, which at this size is a blob with a hairline.
+        return sym_information(4.4).centred_on((box[0] + box[2]) / 2,
+                                               (box[1] + box[3]) / 2)
+    weight = ROUND1_WEIGHT.get(short, MARK_WEIGHT)
+    art = use_fluent("%s_24_filled" % ROUND1_MARKS[short])
+    if short in ROUND1_TURN:
+        art = art.rotate(ROUND1_TURN[short])
+    art = art.fit(box)
+    have = art.mean_stroke()
+    if have and have < weight:
+        art = art.grow((weight - have) / 2)
+    return art.fill_holes(BADGE_MIN_HOLE)
+
+
+def _round1_book(short, filled):
+    def build():
+        solid, cuts = _book_marked(fluent_mark(short, BOOK_MARK_BLOCK), filled)
+        return solid, cuts, filled
+    return build
+
+
+def otzaria_links_mark(box):
+    """The set's own two-link chain (`links`), on the page like any other mark.
+    It is drawn at 24 px with a 2-unit line, so at mark size the line is put
+    back to the weight Fluent's chain carries here."""
+    art = glyph("links_24_regular").fit(box)
+    have = art.mean_stroke()
+    if have and have < ROUND1_WEIGHT["link"]:
+        art = art.grow((ROUND1_WEIGHT["link"] - have) / 2)
+    return art
+
+
+def _round1_document(short, filled):
+    def build():
+        mark = (otzaria_links_mark(ROUND1_BOX["link"]) if short == "links"
+                else fluent_mark(short, MARK_BOX))
+        solid, cuts = document(mark, filled)
+        return solid, cuts, False
+    return build
+
+
+ROUND1_BOOKS = {"book_checkmark": "checkmark", "book_bookmark": "bookmark",
+                "book_edit": "edit", "book_delete": "delete",
+                "book_dismiss": "dismiss", "book_copy": "copy",
+                "book_settings": "settings", "book_lock": "lock",
+                "book_pin": "pin", "book_history": "history"}
+ROUND1_DOCUMENTS = {"document_checkmark": "checkmark", "document_edit": "edit",
+                    "document_save": "save", "document_copy": "copy",
+                    "document_lock": "lock", "document_link": "link",
+                    "document_links": "links",
+                    "document_clock": "clock"}
+
+for _stem, _short in ROUND1_BOOKS.items():
+    for _filled in (False, True):
+        RECIPES["%s_24_%s" % (_stem, "filled" if _filled else "regular")] = \
+            _round1_book(_short, _filled)
+for _stem, _short in ROUND1_DOCUMENTS.items():
+    for _filled in (False, True):
+        RECIPES["%s_24_%s" % (_stem, "filled" if _filled else "regular")] = \
+            _round1_document(_short, _filled)
+
+
+# Fluent draws these with the panel / the binding on the left. In a right-to-left
+# layout the panel is on the right, and Fluent has no right-hand twin of
+# `panel_left_expand` / `panel_left_text`, so they are Fluent's own drawing turned
+# over about the canvas centre. Nothing in them is text or a numeral, so the
+# mirror does not reverse anything that must not be reversed.
+def _mirrored(source, filled):
+    def build():
+        art = use_fluent("%s_24_%s" % (source, "filled" if filled else "regular"))
+        return art.scale(-1, 1, about=(12, 0)), [], False
+    return build
+
+
+for _stem, _source in (("panel_right_expand", "panel_left_expand"),
+                       ("panel_right_contract", "panel_left_contract"),
+                       ("panel_right_text", "panel_left_text"),
+                       ("notebook", "notebook")):
+    for _filled in (False, True):
+        RECIPES["%s_24_%s" % (_stem, "filled" if _filled else "regular")] = \
+            _mirrored(_source, _filled)
+
+
+# --------------------------------------------------------------------------
+# Round 2
+# --------------------------------------------------------------------------
+# More Fluent marks for the badge machinery above (`symbol` reads FLUENT_SYMBOLS).
+FLUENT_SYMBOLS.update({
+    "edit": ("edit_24_filled", 0),
+    "search": ("search_24_filled", 0),
+    "star": ("star_24_filled", 0),
+    "settings": ("settings_24_filled", 0),
+    "refresh": ("arrow_clockwise_24_filled", 0),
+})
+
+# Fluent text icons drawn for a left-to-right page: the paragraph, the bullets
+# or the tree start on the left. Fluent has no right-to-left twin of these four,
+# so each is Fluent's own drawing turned over about the canvas centre.
+for _stem in ("text_first_line", "text_hanging", "text_bullet_list_tree",
+              "text_bullet_list_square"):
+    for _filled in (False, True):
+        RECIPES["%s_24_%s" % (_stem, "filled" if _filled else "regular")] =             _mirrored(_stem, _filled)
+
+
+# alef_* and link_* with a new badge: the same disc and placement as the rest of
+# each family, only the mark differs.
+for _kind, _stem in (("edit", "alef_edit"), ("search", "alef_search"),
+                     ("settings", "alef_settings")):
+    _f, _r = _stem + "_24_filled", _stem + "_24_regular"
+    RECIPES[_f] = alef_badge(_kind)
+    RECIPES[_r] = outline_recipe(_f, True)
+    DEPENDS[_r] = _f
+    PROVENANCE_OF[_r] = _f
+
+for _kind, _stem in (("lock", "link_lock"), ("edit", "link_edit"),
+                     ("search", "link_search"), ("star", "link_star")):
+    RECIPES[_stem + "_24_regular"] = link_badge(_kind)
+    RECIPES[_stem + "_24_filled"] = link_badge(_kind, True)
+
+
+# search_in_*: the shared ring with a new content mark in the lens. The ring and
+# the filled derivation are the family's own; only the content is new.
+SEARCH_IN_REACH = 4.9
+SEARCH_IN_WEIGHT = 1.35
+
+
+def _fitted(art, reach, weight):
+    art = art.fit_radius(reach)
+    have = art.mean_stroke()
+    if have and have < weight:
+        art = art.grow((weight - have) / 2)
+    return art.fill_holes(BADGE_MIN_HOLE)
+
+
+# Marks made of fine lines close up when thickened to the default weight.
+SEARCH_IN_WEIGHT_OF = {"search_in_history": 0.9, "search_in_commentary": 0.85}
+SEARCH_IN_REACH_OF = {"search_in_history": 5.4, "search_in_commentary": 5.4}
+
+SEARCH_IN_CONTENT = {
+    "search_in_bookmarks": lambda: use_fluent("bookmark_24_filled"),
+    "search_in_notes": lambda: use_fluent("note_24_filled"),
+    "search_in_links": lambda: glyph("links_24_regular"),
+    "search_in_history": lambda: use_fluent("history_24_filled"),
+    "search_in_commentary": lambda: glyph("book_open_medium_24_regular"),
+}
+
+
+def _search_in_new(stem):
+    def build():
+        outer, lens = search_ring()
+        content = _fitted(SEARCH_IN_CONTENT[stem](),
+                          SEARCH_IN_REACH_OF.get(stem, SEARCH_IN_REACH),
+                          SEARCH_IN_WEIGHT_OF.get(stem, SEARCH_IN_WEIGHT)
+                          ).centred_on(*SEARCH_CENTRE)
+        return (outer - lens) | content, [], False
+    return build
+
+
+for _stem in SEARCH_IN_CONTENT:
+    _r, _f = _stem + "_24_regular", _stem + "_24_filled"
+    RECIPES[_r] = _search_in_new(_stem)
+    DEPENDS[_f] = _r
+
+    def _search_in_filled(base=_r):
+        solid, cuts = inverted(base, edge=SEARCH_FILLED_EDGE)
+        return sized(solid), cuts, False
+    RECIPES[_f] = _search_in_filled
+
+
+# calendar_alef: the set's calendar with the five dots of its grid replaced by
+# an alef, placed the way `document_alef` places it on its page.
+CALENDAR_MARK_BOX = (8.0, 9.7, 16.0, 18.5)
+
+
+def _calendar_alef(filled):
+    def build():
+        mark = alef_solid().fit(CALENDAR_MARK_BOX)
+        if filled:
+            cs = ic.contours(part("calendar_24_filled", 0))
+            return cs[0] | cs[1], [mark], True
+        cs = ic.contours(part("calendar_24_regular", 0))
+        dots = Art()
+        for c in cs[3:]:
+            dots = dots | c
+        return (glyph("calendar_24_regular") - dots) | mark, [], False
+    return build
+
+
+RECIPES["calendar_alef_24_regular"] = _calendar_alef(False)
+RECIPES["calendar_alef_24_filled"] = _calendar_alef(True)
+
+
+# library_*: Fluent's three standing books with a corner disc and a mark knocked
+# out of it - the disc `book_add` carries, with the books cut back to clear it.
+LIBRARY_DISC = (17.6, 17.6, 5.2)
+LIBRARY_CLEAR = 0.9
+
+
+def _library_badged(kind, filled):
+    def build():
+        art = use_fluent("library_24_%s" % ("filled" if filled else "regular"))
+        cx, cy, r = LIBRARY_DISC
+        disc = circle(cx, cy, r)
+        mark = symbol(kind, r * SYMBOL_REACH).centred_on(cx, cy)
+        return (art - disc.grow(LIBRARY_CLEAR)) | disc, [mark], True
+    return build
+
+
+for _kind, _stem in (("plus", "library_add"), ("settings", "library_settings"),
+                     ("refresh", "library_refresh")):
+    RECIPES[_stem + "_24_regular"] = _library_badged(_kind, False)
+    RECIPES[_stem + "_24_filled"] = _library_badged(_kind, True)
+
+
+# --------------------------------------------------------------------------
+# Round 3
+# --------------------------------------------------------------------------
+FLUENT_SYMBOLS.update({
+    "download": ("arrow_download_24_filled", 0),
+    "upload": ("arrow_upload_24_filled", 0),
+    "link": ("link_24_filled", 0),
+    "delete": ("delete_24_filled", 0),
+    "clock": ("clock_24_filled", 0),
+    "person": ("person_24_filled", 0),
+    "tag": ("tag_24_filled", 0),
+    "share": ("share_24_filled", 0),
+    "print": ("print_24_filled", 0),
+    "folder": ("folder_24_filled", 0),
+    "calendar": ("calendar_rtl_24_filled", 0),
+})
+
+# Book and document marks (the Round 1 templates).
+ROUND1_MARKS.update({
+    "refresh": "arrow_clockwise", "share": "share", "print": "print",
+    "tag": "tag", "person": "person", "calendar": "calendar_rtl",
+    "star": "star", "info": "info",
+    "exclamation": "important",
+})
+for _stem, _short in (("book_refresh", "refresh"), ("book_share", "share"),
+                      ("book_print", "print"), ("book_tag", "tag"),
+                      ("book_person", "person"), ("book_calendar", "calendar")):
+    for _filled in (False, True):
+        RECIPES["%s_24_%s" % (_stem, "filled" if _filled else "regular")] = \
+            _round1_book(_short, _filled)
+for _stem, _short in (("document_dismiss", "dismiss"), ("document_star", "star"), ("document_info", "info"),
+                      ("document_exclamation", "exclamation"),
+                      ("document_delete", "delete"), ("document_tag", "tag"),
+                      ("document_print", "print"), ("document_share", "share")):
+    for _filled in (False, True):
+        RECIPES["%s_24_%s" % (_stem, "filled" if _filled else "regular")] = \
+            _round1_document(_short, _filled)
+
+
+# library_*: more marks on the corner disc.
+for _kind, _stem in (("cross", "library_dismiss"), ("share", "library_share"),
+                     ("tag", "library_tag"), ("search", "library_search"), ("download", "library_download"),
+                     ("upload", "library_upload"), ("link", "library_link"),
+                     ("lock", "library_lock"), ("star", "library_star"),
+                     ("check", "library_checkmark"), ("delete", "library_delete"),
+                     ("information", "library_info"),
+                     ("exclamation", "library_exclamation"),
+                     ("edit", "library_edit"), ("clock", "library_clock"),
+                     ("person", "library_person")):
+    RECIPES[_stem + "_24_regular"] = _library_badged(_kind, False)
+    RECIPES[_stem + "_24_filled"] = _library_badged(_kind, True)
+
+
+# alef_* / link_* with more marks.
+# The clock's face is a full disc, so the default gap to the ring reads as a hair
+# line; a wider one makes the ring and the face two separate things.
+CLOCK_RING_AIR = 1.0
+for _kind, _stem in (("clock", "alef_clock"), ("star", "alef_star"),
+                     ("download", "alef_download"), ("upload", "alef_upload"),
+                     ("tag", "alef_tag")):
+    _f, _r = _stem + "_24_filled", _stem + "_24_regular"
+    RECIPES[_f] = alef_badge(_kind)
+    RECIPES[_r] = outline_recipe(_f, True,
+                                 air=CLOCK_RING_AIR if _kind == "clock" else None)
+    DEPENDS[_r] = _f
+    PROVENANCE_OF[_r] = _f
+
+for _kind, _stem in (("clock", "link_clock"), ("settings", "link_settings"),
+                     ("download", "link_download"), ("upload", "link_upload"),
+                     ("tag", "link_tag")):
+    RECIPES[_stem + "_24_regular"] = link_badge(_kind)
+    RECIPES[_stem + "_24_filled"] = link_badge(_kind, True)
+
+
+# search_in_*: more content.
+SEARCH_IN_CONTENT.update({
+    "search_in_star": lambda: use_fluent("star_24_filled"),
+    "search_in_folder": lambda: use_fluent("folder_24_filled"),
+    "search_in_calendar": lambda: use_fluent("calendar_rtl_24_filled"),
+    "search_in_tag": lambda: use_fluent("tag_24_filled"),
+    "search_in_pdf": lambda: mark_pdf(),
+})
+SEARCH_IN_WEIGHT_OF["search_in_pdf"] = 0.8
+for _stem in ("search_in_star", "search_in_folder", "search_in_calendar",
+              "search_in_tag", "search_in_pdf"):
+    _r, _f = _stem + "_24_regular", _stem + "_24_filled"
+    RECIPES[_r] = _search_in_new(_stem)
+    DEPENDS[_f] = _r
+
+    def _search_in_filled2(base=_r):
+        solid, cuts = inverted(base, edge=SEARCH_FILLED_EDGE)
+        return sized(solid), cuts, False
+    RECIPES[_f] = _search_in_filled2
+
+
+# More Fluent drawings for a left-to-right layout, turned over.
+for _stem, _source in (
+        ("panel_right_add", "panel_left_add"),
+        ("panel_right_text_add", "panel_left_text_add"),
+        ("panel_right_text_dismiss", "panel_left_text_dismiss"),
+        ("panel_right_header", "panel_left_header"),
+        ("panel_right_header_add", "panel_left_header_add"),
+        ("panel_right_key", "panel_left_key"),
+        ("notebook_add", "notebook_add"),
+        ("notebook_sync", "notebook_sync"),
+        ("text_bullet_list_add", "text_bullet_list_add"),
+        ("text_bullet_list_square_edit", "text_bullet_list_square_edit"),
+        ("text_bullet_list_square_warning", "text_bullet_list_square_warning")):
+    for _filled in (False, True):
+        RECIPES["%s_24_%s" % (_stem, "filled" if _filled else "regular")] = \
+            _mirrored(_source, _filled)
+
+
+# Fluent's Latin-letter text icons with the letters replaced by Hebrew ones. The
+# arrow and the rule - anything that is not a letter - are Fluent's own, and the
+# drawing is turned so the letters sit on the right, where a Hebrew reader
+# starts. The letters are the set's own alef and beit. The font and underline
+# icons follow the letter family (regular = outline, filled = solid, and the
+# underline's rule is hollow too); the sort icons follow Fluent's own sort
+# (regular = the plain weight, filled = the same drawing heavier).
+def _hebrew_text(layout, filled):
+    def build():
+        alef, beit = alef_solid(), glyph("beit_24_filled")
+        letters, rest, hollow_rest = layout(alef, beit)
+        if not filled:
+            letters = letter_outline(letters)
+            if hollow_rest:
+                rest = rest.outlined(LETTER_LINE, inside=True)
+        return (letters | rest), [], False
+    return build
+
+
+def _sort_build(top, bottom_letter, filled):
+    def build():
+        alef, beit = alef_solid(), glyph("beit_24_filled")
+        art = use_fluent("text_sort_ascending_24_%s"
+                         % ("filled" if filled else "regular"))
+        arrow = (art & ic.rect(12.5, 0, 24, 24)).scale(-1, 1, about=(12, 0))
+        a = {"alef": alef, "beit": beit}
+        first = a[top].fit((13.0, 2.8, 21.0, 10.8))
+        second = a[bottom_letter].fit((13.0, 13.2, 21.0, 21.2))
+        letters = first | second
+        if filled:
+            # The same drawing, heavier: Fluent's filled sort is the plain one
+            # with a thicker line, so the letters and the arrow both gain weight.
+            letters = letters.grow(0.25)
+            arrow = arrow.grow(0.15)
+        return letters | arrow, [], False
+    return build
+
+
+def _font_layout(alef, beit):
+    big = alef.fit((10.5, 6.0, 22.5, 22.0))
+    small = alef.fit((1.5, 1.5, 9.5, 10.5))
+    return big | small, Art(), False
+
+
+def _font_number_layout(alef, beit):
+    big = alef.fit((10.5, 6.0, 22.5, 22.0))
+    # The numeral is the rightmost shape of `alef_1`; it stays solid in both
+    # variants, like the numerals that icon already carries.
+    one = max(ic.contours(glyph("alef_1_24_filled")), key=lambda c: c.bounds[0])
+    return big, one.fit((2.5, 1.5, 8.5, 10.5)), False
+
+
+def _font_size_layout(alef, beit):
+    small = alef.fit((2.0, 11.0, 10.5, 21.0))
+    big = alef.fit((11.5, 3.0, 22.5, 21.0))
+    return small | big, Art(), False
+
+
+def _underline_layout(alef, beit):
+    return (alef.fit((6.5, 2.5, 17.5, 16.0)),
+            round_rect(4.0, 18.6, 20.0, 20.6, 1.0), True)
+
+
+for _stem, _top, _bottom in (("text_sort_ascending_hebrew", "alef", "beit"),
+                             ("text_sort_descending_hebrew", "beit", "alef")):
+    for _filled in (False, True):
+        RECIPES["%s_24_%s" % (_stem, "filled" if _filled else "regular")] =             _sort_build(_top, _bottom, _filled)
+
+for _stem, _layout in (
+        ("text_font_hebrew", _font_layout),
+        ("text_font_number_hebrew", _font_number_layout),
+        ("text_font_size_hebrew", _font_size_layout),
+        ("text_underline_hebrew", _underline_layout)):
+    for _filled in (False, True):
+        RECIPES["%s_24_%s" % (_stem, "filled" if _filled else "regular")] =             _hebrew_text(_layout, _filled)
+
+
+# --------------------------------------------------------------------------
+# Round 4: icons drawn here, from the set's own parts
+# --------------------------------------------------------------------------
+# A page, or a pane, is an outline in the regular variant and a solid with its
+# text knocked out in the filled one - the same pairing as every document icon.
+# Text is a stack of round-ended rules, like every other text rule in the set.
+FRAME_LINE = 1.5
+RULE_H = 1.2
+
+
+def _frame(x0, y0, x1, y1, r, line=FRAME_LINE):
+    outer = round_rect(x0, y0, x1, y1, r)
+    inner = round_rect(x0 + line, y0 + line, x1 - line, y1 - line,
+                       max(r - line, 0.5))
+    return outer, outer - inner
+
+
+def _rules(spans, h=RULE_H):
+    """Round-ended rules: `spans` is a list of (x0, x1, y_centre)."""
+    out = Art()
+    for x0, x1, y in spans:
+        out = out | round_rect(x0, y - h / 2, x1, y + h / 2, h / 2)
+    return out
+
+
+# book_dictionary: the book cover with an alef and a beit on it.
+def _dictionary_mark():
+    alef = alef_solid().fit((11.7, 7.4, 16.7, 15.6))
+    beit = glyph("beit_24_filled").fit((7.3, 7.4, 12.1, 15.6))
+    return alef | beit
+
+
+for _filled in (False, True):
+    def _dict_build(filled=_filled):
+        solid, cuts = _book_marked(_dictionary_mark(), filled)
+        return solid, cuts, filled
+    RECIPES["book_dictionary_24_%s" % ("filled" if _filled else "regular")] = \
+        _dict_build
+
+
+# text_citation: a quotation mark over the line that names its source.
+def _citation(filled):
+    def build():
+        h = LIST_RULE_HEIGHT if filled else 1.5
+        quote = use_fluent("text_quote_24_filled").fit((3.0, 2.5, 21.0, 12.0))
+        out = quote
+        for (x0, y) in ((9.0, 15.5), (13.0, 19.5)):
+            out = out | round_rect(x0, y - h / 2, 21.0, y + h / 2, h / 2)
+        return out, [], False
+    return build
+
+
+RECIPES["text_citation_24_regular"] = _citation(False)
+RECIPES["text_citation_24_filled"] = _citation(True)
+
+
+# text_compare: two pages, the same text on both except for the middle line.
+def _compare(filled):
+    def build():
+        left_o, left_r = _frame(2.5, 3.0, 11.0, 21.0, 2.0)
+        right_o, right_r = _frame(13.0, 3.0, 21.5, 21.0, 2.0)
+        text = _rules([(4.8, 8.7, 8.0), (4.8, 8.7, 12.0), (4.8, 8.7, 16.0),
+                       (15.3, 19.2, 8.0), (15.3, 17.2, 12.0), (15.3, 19.2, 16.0)])
+        if filled:
+            return left_o | right_o, [text], True
+        return left_r | right_r | text, [], False
+    return build
+
+
+RECIPES["text_compare_24_regular"] = _compare(False)
+RECIPES["text_compare_24_filled"] = _compare(True)
+
+
+# --------------------------------------------------------------------------
+# Round 5: objects drawn here
+# --------------------------------------------------------------------------
+# An object is a solid silhouette with details. The regular variant draws the
+# silhouette as a 1.5-unit outline with the details as ink; the filled one keeps
+# the silhouette solid and cuts the details out of it - the pairing of every
+# cover and page in the set. Objects that are a drawing in lines (a menorah, a
+# sun) are strokes instead, and their filled variant is the same lines at the
+# 2.0 weight the other line icons use.
+OBJECT_LINE = 1.5
+OBJECT_LINE_FILLED = 2.0
+CAP_ROUND = pathops.LineCap.ROUND_CAP
+
+
+def _path(ops):
+    p = pathops.Path()
+    for op in ops:
+        c, a = op[0], op[1:]
+        if c == "M":
+            p.moveTo(*a)
+        elif c == "L":
+            p.lineTo(*a)
+        elif c == "Q":
+            p.quadTo(*a)
+        elif c == "C":
+            p.cubicTo(*a)
+        elif c == "Z":
+            p.close()
+    return p
+
+
+def _stroke(ops, width):
+    """An open or closed path stroked to a region, round ends and joins."""
+    return ic._stroked(_path(ops), width, CAP_ROUND)
+
+
+def _solid(ops):
+    """A closed path as a region."""
+    return Art(pathops.simplify(_path(ops)))
+
+
+def _object(solid, details=None, ink=None):
+    """(regular, filled) recipes' shared shape: `details` are cut out of the
+    filled variant and drawn as ink on the regular one; `ink` is drawn solid in
+    both (a flame, a knob)."""
+    details = details or Art()
+    ink = ink or Art()
+
+    def regular():
+        return solid.outlined(OBJECT_LINE, inside=True) | details | ink, [], False
+
+    def filled():
+        return solid | ink, [details], True
+    return regular, filled
+
+
+def _register_object(stem, regular, filled):
+    RECIPES[stem + "_24_regular"] = regular
+    RECIPES[stem + "_24_filled"] = filled
+
+
+# Arms are the nested U-shapes of a common hanukkiah: each pair leaves the stem
+# lower the farther out it goes, swings out in a round half-ellipse and rises
+# to the same height, where a flame stands on it. K is the cubic's constant for
+# a quarter ellipse.
+ARM_K = 0.5523
+ARM_TOP = 9.2
+ARM_BOTTOM = 19.2
+FLAME_GAP = 0.4
+
+
+def _flame(cx, base, height=4.4, half=1.15):
+    """A teardrop flame (shalevet): a point above, a round belly below."""
+    return _solid([("M", cx, base - height),
+                   ("C", cx + 0.2, base - height * 0.55, cx + half, base - height * 0.38,
+                    cx + half, base - half),
+                   ("C", cx + half, base - half * 0.35, cx + half * 0.55, base, cx, base),
+                   ("C", cx - half * 0.55, base, cx - half, base - half * 0.35,
+                    cx - half, base - half),
+                   ("C", cx - half, base - height * 0.38, cx - 0.2, base - height * 0.55,
+                    cx, base - height), ("Z",)])
+
+
+def _menorah(filled):
+    def build():
+        w = OBJECT_LINE_FILLED if filled else OBJECT_LINE
+        out = _stroke([("M", 12.0, ARM_TOP), ("L", 12.0, 21.4)], w)
+        out |= _stroke([("M", 7.5, 21.4), ("L", 16.5, 21.4)], w)
+        # The U-shapes' bottoms are a stroke width and a little apart, or they
+        # run together into one dark lump at the stem.
+        step = w + 0.5
+        for k, d in enumerate((3.0, 6.0, 9.0)):
+            ry = 2.4 + k * step
+            rise = ARM_BOTTOM - 2.4 - 2 * step
+            y = rise + ry
+            for sign in (-1, 1):
+                x = 12.0 + sign * d
+                out |= _stroke([("M", x, ARM_TOP), ("L", x, rise),
+                                ("C", x, rise + ARM_K * ry,
+                                 12.0 + sign * ARM_K * d, y, 12.0, y)], w)
+        for d in (0.0, 3.0, 6.0, 9.0):
+            for sign in ((1,) if d == 0 else (-1, 1)):
+                # The flame sits a hair above the arm's rounded end.
+                out |= _flame(12.0 + sign * d, ARM_TOP - w / 2 - FLAME_GAP)
+        return out, [], False
+    return build
+
+
+RECIPES["menorah_24_regular"] = _menorah(False)
+RECIPES["menorah_24_filled"] = _menorah(True)
+
+
+def _kiddush_cup():
+    # A round bowl on a short stem and a wide foot. The three are joined and the
+    # inside corners closed with a fillet, so the bowl runs into the stem and the
+    # stem flares into the foot instead of meeting them at a seam. The foot is
+    # lower than twice the outline weight, so it stays solid in the regular one.
+    bowl = _solid([("M", 6.3, 3.0), ("L", 17.7, 3.0), ("L", 17.4, 8.0),
+                   ("C", 17.2, 11.9, 14.9, 14.2, 12.0, 14.2),
+                   ("C", 9.1, 14.2, 6.8, 11.9, 6.6, 8.0), ("Z",)])
+    stem = round_rect(10.9, 13.0, 13.1, 19.6, 0.2)
+    foot = round_rect(6.4, 19.0, 17.6, 21.6, 1.3)
+    cup = (bowl | stem | foot)
+    cup = cup.grow(1.1).shrink(1.1)
+    wine = round_rect(8.4, 6.2, 15.6, 7.4, 0.6)
+    _, filled = _object(cup, wine)
+
+    def regular():
+        # The cavity is the bare bowl drawn in by the outline weight, not the
+        # cup's own inner edge - that comes to a point where the fillet joins
+        # bowl and stem. A sliver of white the fillets leave where the foot
+        # meets the stem is dropped too.
+        inner = bowl.shrink(OBJECT_LINE)
+        return ((cup - inner) | wine).fill_holes(1.0), [], False
+    return regular, filled
+
+
+_register_object("kiddush_cup", *_kiddush_cup())
+
+
+def _shabbat_candles():
+    def flame(cx):
+        return _solid([("M", cx, 2.4), ("Q", cx + 1.9, 5.0, cx + 1.9, 6.4),
+                       ("Q", cx + 1.9, 8.2, cx, 8.2), ("Q", cx - 1.9, 8.2, cx - 1.9, 6.4),
+                       ("Q", cx - 1.9, 5.0, cx, 2.4), ("Z",)])
+
+    def candle(cx):
+        return round_rect(cx - 2.2, 9.6, cx + 2.2, 18.0, 0.8)
+
+    def holder(cx):
+        return round_rect(cx - 4.4, 18.0, cx + 4.4, 21.4, 1.5)
+    body = candle(6.9) | candle(17.1) | holder(6.9) | holder(17.1)
+    return _object(body, Art(), flame(6.9) | flame(17.1))
+
+
+_register_object("shabbat_candles", *_shabbat_candles())
+
+
+def _mezuzah():
+    case = round_rect(9.2, 2.0, 14.8, 22.0, 1.6).rotate(12, about=(12, 12))
+    slot = round_rect(11.2, 6.2, 12.8, 17.8, 0.8).rotate(12, about=(12, 12))
+    cap = round_rect(9.2, 4.2, 14.8, 5.4, 0.6).rotate(12, about=(12, 12))
+    return _object(case, slot | cap)
+
+
+_register_object("mezuzah", *_mezuzah())
+
+
+def _luchot():
+    def tablet(x0, x1):
+        mid = (x0 + x1) / 2
+        return _solid([("M", x0, 20.5), ("L", x0, 8.5), ("Q", x0, 3.8, mid, 3.8),
+                       ("Q", x1, 3.8, x1, 8.5), ("L", x1, 20.5), ("Z",)])
+
+    def rules(x0, x1):
+        return (round_rect(x0 + 2.0, 9.0, x1 - 2.0, 10.1, 0.55)
+                | round_rect(x0 + 2.0, 12.4, x1 - 2.0, 13.5, 0.55)
+                | round_rect(x0 + 2.0, 15.8, x1 - 2.0, 16.9, 0.55))
+    return _object(tablet(3.0, 11.2) | tablet(12.8, 21.0),
+                   rules(3.0, 11.2) | rules(12.8, 21.0))
+
+
+_register_object("luchot_habrit", *_luchot())
+
+
+def _sun_on_horizon(filled, arrow):
+    def build():
+        w = OBJECT_LINE_FILLED if filled else OBJECT_LINE
+        out = _stroke([("M", 3.0, 16.0), ("L", 21.0, 16.0)], w)
+        half = [("M", 7.2, 16.0), ("C", 7.2, 9.5, 16.8, 9.5, 16.8, 16.0)]
+        out |= (_solid(half + [("Z",)]) if filled else _stroke(half, w))
+        for ang in (90.0, 45.0, 135.0):
+            c, sn = math.cos(math.radians(ang)), math.sin(math.radians(ang))
+            out |= _stroke([("M", 12.0 + c * 7.4, 16.0 - sn * 7.4),
+                            ("L", 12.0 + c * 9.6, 16.0 - sn * 9.6)], w)
+        out |= _stroke([("M", 12.0, 21.8), ("L", 12.0, 18.6)], w)
+        if arrow == "up":
+            out |= _stroke([("M", 10.0, 20.4), ("L", 12.0, 18.4), ("L", 14.0, 20.4)], w)
+        else:
+            out |= _stroke([("M", 10.0, 20.0), ("L", 12.0, 22.0), ("L", 14.0, 20.0)], w)
+        return out, [], False
+    return build
+
+
+for _stem, _arrow in (("sunrise", "up"), ("sunset", "down")):
+    RECIPES[_stem + "_24_regular"] = _sun_on_horizon(False, _arrow)
+    RECIPES[_stem + "_24_filled"] = _sun_on_horizon(True, _arrow)
+
+
+# --------------------------------------------------------------------------
+# shamor_vezachor: an open book built as a wall of bricks
+# --------------------------------------------------------------------------
+# The regular variant is supplied artwork (an open book whose pages are laid out
+# as brick courses), brought onto the 24-unit canvas at 22 units and smoothed;
+# it is a source file like any other, not a recipe. The filled variant follows
+# the set's rule - every white brick turns black, the mortar turns white, a thin
+# edge is added - and carries the tick the supplied filled drawing had at the top
+# left, drawn as a black tick with a clear halo cut round it so it stays readable
+# on the black bricks. The tick is the supplied polyline (167,265 - 238,317 -
+# 421,124 on its 1024 canvas) put through the same transform as the book.
+SHAMOR_CHECK = [(3.532, 5.769), (5.277, 7.047), (9.775, 2.303)]
+SHAMOR_CHECK_WIDTH = 1.7
+SHAMOR_CHECK_HALO = 0.6
+
+
+def _shamor_vezachor_filled():
+    solid, cuts = inverted("shamor_vezachor_24_regular")
+    tick = ic.stroke_line(SHAMOR_CHECK, SHAMOR_CHECK_WIDTH)
+    halo = ic.stroke_line(SHAMOR_CHECK, SHAMOR_CHECK_WIDTH + 2 * SHAMOR_CHECK_HALO)
+    return (solid - halo) | tick, cuts, False
+
+
+RECIPES["shamor_vezachor_24_filled"] = _shamor_vezachor_filled
+DEPENDS["shamor_vezachor_24_filled"] = "shamor_vezachor_24_regular"
+
+
+# --------------------------------------------------------------------------
 # Recording where the artwork came from
 # --------------------------------------------------------------------------
-MANIFEST = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
+MANIFEST =os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
                         "icon_manifest.yaml")
 
 

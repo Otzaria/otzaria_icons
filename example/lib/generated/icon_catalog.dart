@@ -415,4 +415,360 @@ const iconCatalog = <GalleryIcon>[
   GalleryIcon('link_check_24_regular', OtzariaIcons.link_check_24_regular),
   GalleryIcon('search_check_24_filled', OtzariaIcons.search_check_24_filled),
   GalleryIcon('search_check_24_regular', OtzariaIcons.search_check_24_regular),
+  GalleryIcon('book_bookmark_24_filled', OtzariaIcons.book_bookmark_24_filled),
+  GalleryIcon(
+      'book_bookmark_24_regular', OtzariaIcons.book_bookmark_24_regular),
+  GalleryIcon(
+      'book_checkmark_24_filled', OtzariaIcons.book_checkmark_24_filled),
+  GalleryIcon(
+      'book_checkmark_24_regular', OtzariaIcons.book_checkmark_24_regular),
+  GalleryIcon('book_copy_24_filled', OtzariaIcons.book_copy_24_filled),
+  GalleryIcon('book_copy_24_regular', OtzariaIcons.book_copy_24_regular),
+  GalleryIcon('book_delete_24_filled', OtzariaIcons.book_delete_24_filled),
+  GalleryIcon('book_delete_24_regular', OtzariaIcons.book_delete_24_regular),
+  GalleryIcon('book_dismiss_24_filled', OtzariaIcons.book_dismiss_24_filled),
+  GalleryIcon('book_dismiss_24_regular', OtzariaIcons.book_dismiss_24_regular),
+  GalleryIcon('book_edit_24_filled', OtzariaIcons.book_edit_24_filled),
+  GalleryIcon('book_edit_24_regular', OtzariaIcons.book_edit_24_regular),
+  GalleryIcon('book_history_24_filled', OtzariaIcons.book_history_24_filled),
+  GalleryIcon('book_history_24_regular', OtzariaIcons.book_history_24_regular),
+  GalleryIcon('book_lock_24_filled', OtzariaIcons.book_lock_24_filled),
+  GalleryIcon('book_lock_24_regular', OtzariaIcons.book_lock_24_regular),
+  GalleryIcon('book_pin_24_filled', OtzariaIcons.book_pin_24_filled),
+  GalleryIcon('book_pin_24_regular', OtzariaIcons.book_pin_24_regular),
+  GalleryIcon('book_settings_24_filled', OtzariaIcons.book_settings_24_filled),
+  GalleryIcon(
+      'book_settings_24_regular', OtzariaIcons.book_settings_24_regular),
+  GalleryIcon('document_checkmark_24_filled',
+      OtzariaIcons.document_checkmark_24_filled),
+  GalleryIcon('document_checkmark_24_regular',
+      OtzariaIcons.document_checkmark_24_regular),
+  GalleryIcon(
+      'document_clock_24_filled', OtzariaIcons.document_clock_24_filled),
+  GalleryIcon(
+      'document_clock_24_regular', OtzariaIcons.document_clock_24_regular),
+  GalleryIcon('document_copy_24_filled', OtzariaIcons.document_copy_24_filled),
+  GalleryIcon(
+      'document_copy_24_regular', OtzariaIcons.document_copy_24_regular),
+  GalleryIcon('document_edit_24_filled', OtzariaIcons.document_edit_24_filled),
+  GalleryIcon(
+      'document_edit_24_regular', OtzariaIcons.document_edit_24_regular),
+  GalleryIcon('document_link_24_filled', OtzariaIcons.document_link_24_filled),
+  GalleryIcon(
+      'document_link_24_regular', OtzariaIcons.document_link_24_regular),
+  GalleryIcon('document_lock_24_filled', OtzariaIcons.document_lock_24_filled),
+  GalleryIcon(
+      'document_lock_24_regular', OtzariaIcons.document_lock_24_regular),
+  GalleryIcon('document_save_24_filled', OtzariaIcons.document_save_24_filled),
+  GalleryIcon(
+      'document_save_24_regular', OtzariaIcons.document_save_24_regular),
+  GalleryIcon('notebook_24_filled', OtzariaIcons.notebook_24_filled),
+  GalleryIcon('notebook_24_regular', OtzariaIcons.notebook_24_regular),
+  GalleryIcon('panel_right_expand_24_filled',
+      OtzariaIcons.panel_right_expand_24_filled),
+  GalleryIcon('panel_right_expand_24_regular',
+      OtzariaIcons.panel_right_expand_24_regular),
+  GalleryIcon(
+      'panel_right_text_24_filled', OtzariaIcons.panel_right_text_24_filled),
+  GalleryIcon(
+      'panel_right_text_24_regular', OtzariaIcons.panel_right_text_24_regular),
+  GalleryIcon(
+      'document_links_24_filled', OtzariaIcons.document_links_24_filled),
+  GalleryIcon(
+      'document_links_24_regular', OtzariaIcons.document_links_24_regular),
+  GalleryIcon('alef_edit_24_filled', OtzariaIcons.alef_edit_24_filled),
+  GalleryIcon('alef_edit_24_regular', OtzariaIcons.alef_edit_24_regular),
+  GalleryIcon('alef_search_24_filled', OtzariaIcons.alef_search_24_filled),
+  GalleryIcon('alef_search_24_regular', OtzariaIcons.alef_search_24_regular),
+  GalleryIcon('alef_settings_24_filled', OtzariaIcons.alef_settings_24_filled),
+  GalleryIcon(
+      'alef_settings_24_regular', OtzariaIcons.alef_settings_24_regular),
+  GalleryIcon('calendar_alef_24_filled', OtzariaIcons.calendar_alef_24_filled),
+  GalleryIcon(
+      'calendar_alef_24_regular', OtzariaIcons.calendar_alef_24_regular),
+  GalleryIcon('library_add_24_filled', OtzariaIcons.library_add_24_filled),
+  GalleryIcon('library_add_24_regular', OtzariaIcons.library_add_24_regular),
+  GalleryIcon(
+      'library_refresh_24_filled', OtzariaIcons.library_refresh_24_filled),
+  GalleryIcon(
+      'library_refresh_24_regular', OtzariaIcons.library_refresh_24_regular),
+  GalleryIcon(
+      'library_settings_24_filled', OtzariaIcons.library_settings_24_filled),
+  GalleryIcon(
+      'library_settings_24_regular', OtzariaIcons.library_settings_24_regular),
+  GalleryIcon('link_edit_24_filled', OtzariaIcons.link_edit_24_filled),
+  GalleryIcon('link_edit_24_regular', OtzariaIcons.link_edit_24_regular),
+  GalleryIcon('link_lock_24_filled', OtzariaIcons.link_lock_24_filled),
+  GalleryIcon('link_lock_24_regular', OtzariaIcons.link_lock_24_regular),
+  GalleryIcon('link_search_24_filled', OtzariaIcons.link_search_24_filled),
+  GalleryIcon('link_search_24_regular', OtzariaIcons.link_search_24_regular),
+  GalleryIcon('link_star_24_filled', OtzariaIcons.link_star_24_filled),
+  GalleryIcon('link_star_24_regular', OtzariaIcons.link_star_24_regular),
+  GalleryIcon('search_in_bookmarks_24_filled',
+      OtzariaIcons.search_in_bookmarks_24_filled),
+  GalleryIcon('search_in_bookmarks_24_regular',
+      OtzariaIcons.search_in_bookmarks_24_regular),
+  GalleryIcon('search_in_commentary_24_filled',
+      OtzariaIcons.search_in_commentary_24_filled),
+  GalleryIcon('search_in_commentary_24_regular',
+      OtzariaIcons.search_in_commentary_24_regular),
+  GalleryIcon(
+      'search_in_history_24_filled', OtzariaIcons.search_in_history_24_filled),
+  GalleryIcon('search_in_history_24_regular',
+      OtzariaIcons.search_in_history_24_regular),
+  GalleryIcon(
+      'search_in_links_24_filled', OtzariaIcons.search_in_links_24_filled),
+  GalleryIcon(
+      'search_in_links_24_regular', OtzariaIcons.search_in_links_24_regular),
+  GalleryIcon(
+      'search_in_notes_24_filled', OtzariaIcons.search_in_notes_24_filled),
+  GalleryIcon(
+      'search_in_notes_24_regular', OtzariaIcons.search_in_notes_24_regular),
+  GalleryIcon('text_bullet_list_square_24_filled',
+      OtzariaIcons.text_bullet_list_square_24_filled),
+  GalleryIcon('text_bullet_list_square_24_regular',
+      OtzariaIcons.text_bullet_list_square_24_regular),
+  GalleryIcon('text_bullet_list_tree_24_filled',
+      OtzariaIcons.text_bullet_list_tree_24_filled),
+  GalleryIcon('text_bullet_list_tree_24_regular',
+      OtzariaIcons.text_bullet_list_tree_24_regular),
+  GalleryIcon(
+      'text_first_line_24_filled', OtzariaIcons.text_first_line_24_filled),
+  GalleryIcon(
+      'text_first_line_24_regular', OtzariaIcons.text_first_line_24_regular),
+  GalleryIcon('text_hanging_24_filled', OtzariaIcons.text_hanging_24_filled),
+  GalleryIcon('text_hanging_24_regular', OtzariaIcons.text_hanging_24_regular),
+  GalleryIcon('panel_right_contract_24_filled',
+      OtzariaIcons.panel_right_contract_24_filled),
+  GalleryIcon('panel_right_contract_24_regular',
+      OtzariaIcons.panel_right_contract_24_regular),
+  GalleryIcon('alef_clock_24_filled', OtzariaIcons.alef_clock_24_filled),
+  GalleryIcon('alef_clock_24_regular', OtzariaIcons.alef_clock_24_regular),
+  GalleryIcon('alef_download_24_filled', OtzariaIcons.alef_download_24_filled),
+  GalleryIcon(
+      'alef_download_24_regular', OtzariaIcons.alef_download_24_regular),
+  GalleryIcon('alef_star_24_filled', OtzariaIcons.alef_star_24_filled),
+  GalleryIcon('alef_star_24_regular', OtzariaIcons.alef_star_24_regular),
+  GalleryIcon('alef_tag_24_filled', OtzariaIcons.alef_tag_24_filled),
+  GalleryIcon('alef_tag_24_regular', OtzariaIcons.alef_tag_24_regular),
+  GalleryIcon('book_calendar_24_filled', OtzariaIcons.book_calendar_24_filled),
+  GalleryIcon(
+      'book_calendar_24_regular', OtzariaIcons.book_calendar_24_regular),
+  GalleryIcon('book_person_24_filled', OtzariaIcons.book_person_24_filled),
+  GalleryIcon('book_person_24_regular', OtzariaIcons.book_person_24_regular),
+  GalleryIcon('book_print_24_filled', OtzariaIcons.book_print_24_filled),
+  GalleryIcon('book_print_24_regular', OtzariaIcons.book_print_24_regular),
+  GalleryIcon('book_refresh_24_filled', OtzariaIcons.book_refresh_24_filled),
+  GalleryIcon('book_refresh_24_regular', OtzariaIcons.book_refresh_24_regular),
+  GalleryIcon('book_share_24_filled', OtzariaIcons.book_share_24_filled),
+  GalleryIcon('book_share_24_regular', OtzariaIcons.book_share_24_regular),
+  GalleryIcon('book_tag_24_filled', OtzariaIcons.book_tag_24_filled),
+  GalleryIcon('book_tag_24_regular', OtzariaIcons.book_tag_24_regular),
+  GalleryIcon(
+      'document_delete_24_filled', OtzariaIcons.document_delete_24_filled),
+  GalleryIcon(
+      'document_delete_24_regular', OtzariaIcons.document_delete_24_regular),
+  GalleryIcon('document_exclamation_24_filled',
+      OtzariaIcons.document_exclamation_24_filled),
+  GalleryIcon('document_exclamation_24_regular',
+      OtzariaIcons.document_exclamation_24_regular),
+  GalleryIcon('document_info_24_filled', OtzariaIcons.document_info_24_filled),
+  GalleryIcon(
+      'document_info_24_regular', OtzariaIcons.document_info_24_regular),
+  GalleryIcon(
+      'document_print_24_filled', OtzariaIcons.document_print_24_filled),
+  GalleryIcon(
+      'document_print_24_regular', OtzariaIcons.document_print_24_regular),
+  GalleryIcon(
+      'document_share_24_filled', OtzariaIcons.document_share_24_filled),
+  GalleryIcon(
+      'document_share_24_regular', OtzariaIcons.document_share_24_regular),
+  GalleryIcon('document_star_24_filled', OtzariaIcons.document_star_24_filled),
+  GalleryIcon(
+      'document_star_24_regular', OtzariaIcons.document_star_24_regular),
+  GalleryIcon('document_tag_24_filled', OtzariaIcons.document_tag_24_filled),
+  GalleryIcon('document_tag_24_regular', OtzariaIcons.document_tag_24_regular),
+  GalleryIcon(
+      'library_checkmark_24_filled', OtzariaIcons.library_checkmark_24_filled),
+  GalleryIcon('library_checkmark_24_regular',
+      OtzariaIcons.library_checkmark_24_regular),
+  GalleryIcon('library_clock_24_filled', OtzariaIcons.library_clock_24_filled),
+  GalleryIcon(
+      'library_clock_24_regular', OtzariaIcons.library_clock_24_regular),
+  GalleryIcon(
+      'library_delete_24_filled', OtzariaIcons.library_delete_24_filled),
+  GalleryIcon(
+      'library_delete_24_regular', OtzariaIcons.library_delete_24_regular),
+  GalleryIcon(
+      'library_download_24_filled', OtzariaIcons.library_download_24_filled),
+  GalleryIcon(
+      'library_download_24_regular', OtzariaIcons.library_download_24_regular),
+  GalleryIcon('library_edit_24_filled', OtzariaIcons.library_edit_24_filled),
+  GalleryIcon('library_edit_24_regular', OtzariaIcons.library_edit_24_regular),
+  GalleryIcon('library_exclamation_24_filled',
+      OtzariaIcons.library_exclamation_24_filled),
+  GalleryIcon('library_exclamation_24_regular',
+      OtzariaIcons.library_exclamation_24_regular),
+  GalleryIcon('library_info_24_filled', OtzariaIcons.library_info_24_filled),
+  GalleryIcon('library_info_24_regular', OtzariaIcons.library_info_24_regular),
+  GalleryIcon('library_link_24_filled', OtzariaIcons.library_link_24_filled),
+  GalleryIcon('library_link_24_regular', OtzariaIcons.library_link_24_regular),
+  GalleryIcon('library_lock_24_filled', OtzariaIcons.library_lock_24_filled),
+  GalleryIcon('library_lock_24_regular', OtzariaIcons.library_lock_24_regular),
+  GalleryIcon(
+      'library_person_24_filled', OtzariaIcons.library_person_24_filled),
+  GalleryIcon(
+      'library_person_24_regular', OtzariaIcons.library_person_24_regular),
+  GalleryIcon(
+      'library_search_24_filled', OtzariaIcons.library_search_24_filled),
+  GalleryIcon(
+      'library_search_24_regular', OtzariaIcons.library_search_24_regular),
+  GalleryIcon('library_star_24_filled', OtzariaIcons.library_star_24_filled),
+  GalleryIcon('library_star_24_regular', OtzariaIcons.library_star_24_regular),
+  GalleryIcon(
+      'library_upload_24_filled', OtzariaIcons.library_upload_24_filled),
+  GalleryIcon(
+      'library_upload_24_regular', OtzariaIcons.library_upload_24_regular),
+  GalleryIcon('link_clock_24_filled', OtzariaIcons.link_clock_24_filled),
+  GalleryIcon('link_clock_24_regular', OtzariaIcons.link_clock_24_regular),
+  GalleryIcon('link_download_24_filled', OtzariaIcons.link_download_24_filled),
+  GalleryIcon(
+      'link_download_24_regular', OtzariaIcons.link_download_24_regular),
+  GalleryIcon('link_settings_24_filled', OtzariaIcons.link_settings_24_filled),
+  GalleryIcon(
+      'link_settings_24_regular', OtzariaIcons.link_settings_24_regular),
+  GalleryIcon('link_tag_24_filled', OtzariaIcons.link_tag_24_filled),
+  GalleryIcon('link_tag_24_regular', OtzariaIcons.link_tag_24_regular),
+  GalleryIcon('notebook_add_24_filled', OtzariaIcons.notebook_add_24_filled),
+  GalleryIcon('notebook_add_24_regular', OtzariaIcons.notebook_add_24_regular),
+  GalleryIcon('notebook_sync_24_filled', OtzariaIcons.notebook_sync_24_filled),
+  GalleryIcon(
+      'notebook_sync_24_regular', OtzariaIcons.notebook_sync_24_regular),
+  GalleryIcon(
+      'panel_right_add_24_filled', OtzariaIcons.panel_right_add_24_filled),
+  GalleryIcon(
+      'panel_right_add_24_regular', OtzariaIcons.panel_right_add_24_regular),
+  GalleryIcon('panel_right_header_24_filled',
+      OtzariaIcons.panel_right_header_24_filled),
+  GalleryIcon('panel_right_header_24_regular',
+      OtzariaIcons.panel_right_header_24_regular),
+  GalleryIcon('panel_right_header_add_24_filled',
+      OtzariaIcons.panel_right_header_add_24_filled),
+  GalleryIcon('panel_right_header_add_24_regular',
+      OtzariaIcons.panel_right_header_add_24_regular),
+  GalleryIcon(
+      'panel_right_key_24_filled', OtzariaIcons.panel_right_key_24_filled),
+  GalleryIcon(
+      'panel_right_key_24_regular', OtzariaIcons.panel_right_key_24_regular),
+  GalleryIcon('panel_right_text_add_24_filled',
+      OtzariaIcons.panel_right_text_add_24_filled),
+  GalleryIcon('panel_right_text_add_24_regular',
+      OtzariaIcons.panel_right_text_add_24_regular),
+  GalleryIcon('panel_right_text_dismiss_24_filled',
+      OtzariaIcons.panel_right_text_dismiss_24_filled),
+  GalleryIcon('panel_right_text_dismiss_24_regular',
+      OtzariaIcons.panel_right_text_dismiss_24_regular),
+  GalleryIcon('search_in_calendar_24_filled',
+      OtzariaIcons.search_in_calendar_24_filled),
+  GalleryIcon('search_in_calendar_24_regular',
+      OtzariaIcons.search_in_calendar_24_regular),
+  GalleryIcon(
+      'search_in_folder_24_filled', OtzariaIcons.search_in_folder_24_filled),
+  GalleryIcon(
+      'search_in_folder_24_regular', OtzariaIcons.search_in_folder_24_regular),
+  GalleryIcon('search_in_pdf_24_filled', OtzariaIcons.search_in_pdf_24_filled),
+  GalleryIcon(
+      'search_in_pdf_24_regular', OtzariaIcons.search_in_pdf_24_regular),
+  GalleryIcon(
+      'search_in_star_24_filled', OtzariaIcons.search_in_star_24_filled),
+  GalleryIcon(
+      'search_in_star_24_regular', OtzariaIcons.search_in_star_24_regular),
+  GalleryIcon('search_in_tag_24_filled', OtzariaIcons.search_in_tag_24_filled),
+  GalleryIcon(
+      'search_in_tag_24_regular', OtzariaIcons.search_in_tag_24_regular),
+  GalleryIcon('text_bullet_list_add_24_filled',
+      OtzariaIcons.text_bullet_list_add_24_filled),
+  GalleryIcon('text_bullet_list_add_24_regular',
+      OtzariaIcons.text_bullet_list_add_24_regular),
+  GalleryIcon('text_bullet_list_square_edit_24_filled',
+      OtzariaIcons.text_bullet_list_square_edit_24_filled),
+  GalleryIcon('text_bullet_list_square_edit_24_regular',
+      OtzariaIcons.text_bullet_list_square_edit_24_regular),
+  GalleryIcon('text_bullet_list_square_warning_24_filled',
+      OtzariaIcons.text_bullet_list_square_warning_24_filled),
+  GalleryIcon('text_bullet_list_square_warning_24_regular',
+      OtzariaIcons.text_bullet_list_square_warning_24_regular),
+  GalleryIcon(
+      'text_font_hebrew_24_filled', OtzariaIcons.text_font_hebrew_24_filled),
+  GalleryIcon(
+      'text_font_hebrew_24_regular', OtzariaIcons.text_font_hebrew_24_regular),
+  GalleryIcon('text_font_size_hebrew_24_filled',
+      OtzariaIcons.text_font_size_hebrew_24_filled),
+  GalleryIcon('text_font_size_hebrew_24_regular',
+      OtzariaIcons.text_font_size_hebrew_24_regular),
+  GalleryIcon('text_sort_ascending_hebrew_24_filled',
+      OtzariaIcons.text_sort_ascending_hebrew_24_filled),
+  GalleryIcon('text_sort_ascending_hebrew_24_regular',
+      OtzariaIcons.text_sort_ascending_hebrew_24_regular),
+  GalleryIcon('text_sort_descending_hebrew_24_filled',
+      OtzariaIcons.text_sort_descending_hebrew_24_filled),
+  GalleryIcon('text_sort_descending_hebrew_24_regular',
+      OtzariaIcons.text_sort_descending_hebrew_24_regular),
+  GalleryIcon('text_underline_hebrew_24_filled',
+      OtzariaIcons.text_underline_hebrew_24_filled),
+  GalleryIcon('text_underline_hebrew_24_regular',
+      OtzariaIcons.text_underline_hebrew_24_regular),
+  GalleryIcon('text_font_number_hebrew_24_filled',
+      OtzariaIcons.text_font_number_hebrew_24_filled),
+  GalleryIcon('text_font_number_hebrew_24_regular',
+      OtzariaIcons.text_font_number_hebrew_24_regular),
+  GalleryIcon('alef_upload_24_filled', OtzariaIcons.alef_upload_24_filled),
+  GalleryIcon('alef_upload_24_regular', OtzariaIcons.alef_upload_24_regular),
+  GalleryIcon('link_upload_24_filled', OtzariaIcons.link_upload_24_filled),
+  GalleryIcon('link_upload_24_regular', OtzariaIcons.link_upload_24_regular),
+  GalleryIcon(
+      'document_dismiss_24_filled', OtzariaIcons.document_dismiss_24_filled),
+  GalleryIcon(
+      'document_dismiss_24_regular', OtzariaIcons.document_dismiss_24_regular),
+  GalleryIcon(
+      'library_dismiss_24_filled', OtzariaIcons.library_dismiss_24_filled),
+  GalleryIcon(
+      'library_dismiss_24_regular', OtzariaIcons.library_dismiss_24_regular),
+  GalleryIcon('library_share_24_filled', OtzariaIcons.library_share_24_filled),
+  GalleryIcon(
+      'library_share_24_regular', OtzariaIcons.library_share_24_regular),
+  GalleryIcon('library_tag_24_filled', OtzariaIcons.library_tag_24_filled),
+  GalleryIcon('library_tag_24_regular', OtzariaIcons.library_tag_24_regular),
+  GalleryIcon(
+      'book_dictionary_24_filled', OtzariaIcons.book_dictionary_24_filled),
+  GalleryIcon(
+      'book_dictionary_24_regular', OtzariaIcons.book_dictionary_24_regular),
+  GalleryIcon('text_citation_24_filled', OtzariaIcons.text_citation_24_filled),
+  GalleryIcon(
+      'text_citation_24_regular', OtzariaIcons.text_citation_24_regular),
+  GalleryIcon('text_compare_24_filled', OtzariaIcons.text_compare_24_filled),
+  GalleryIcon('text_compare_24_regular', OtzariaIcons.text_compare_24_regular),
+  GalleryIcon('kiddush_cup_24_filled', OtzariaIcons.kiddush_cup_24_filled),
+  GalleryIcon('kiddush_cup_24_regular', OtzariaIcons.kiddush_cup_24_regular),
+  GalleryIcon('luchot_habrit_24_filled', OtzariaIcons.luchot_habrit_24_filled),
+  GalleryIcon(
+      'luchot_habrit_24_regular', OtzariaIcons.luchot_habrit_24_regular),
+  GalleryIcon('menorah_24_filled', OtzariaIcons.menorah_24_filled),
+  GalleryIcon('menorah_24_regular', OtzariaIcons.menorah_24_regular),
+  GalleryIcon('mezuzah_24_filled', OtzariaIcons.mezuzah_24_filled),
+  GalleryIcon('mezuzah_24_regular', OtzariaIcons.mezuzah_24_regular),
+  GalleryIcon(
+      'shabbat_candles_24_filled', OtzariaIcons.shabbat_candles_24_filled),
+  GalleryIcon(
+      'shabbat_candles_24_regular', OtzariaIcons.shabbat_candles_24_regular),
+  GalleryIcon('sunrise_24_filled', OtzariaIcons.sunrise_24_filled),
+  GalleryIcon('sunrise_24_regular', OtzariaIcons.sunrise_24_regular),
+  GalleryIcon('sunset_24_filled', OtzariaIcons.sunset_24_filled),
+  GalleryIcon('sunset_24_regular', OtzariaIcons.sunset_24_regular),
+  GalleryIcon(
+      'shamor_vezachor_24_filled', OtzariaIcons.shamor_vezachor_24_filled),
+  GalleryIcon(
+      'shamor_vezachor_24_regular', OtzariaIcons.shamor_vezachor_24_regular),
+  GalleryIcon('mount_sinai_24_filled', OtzariaIcons.mount_sinai_24_filled),
+  GalleryIcon('mount_sinai_24_regular', OtzariaIcons.mount_sinai_24_regular),
 ];
