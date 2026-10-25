@@ -743,13 +743,13 @@ Map<String, Map<String, ManifestIcon>> _iconPairs(List<ManifestIcon> icons) {
 }
 
 String _generateSvgCatalog(List<ManifestIcon> icons) {
-  // Contact sheet of regular/filled pairs: three pairs (six icons) per row, the
+  // Contact sheet of regular/filled pairs: four pairs (eight icons) per row, the
   // two variants of an icon always side by side and the base name centred under
   // them. The glyphs keep their size; the sheet gets narrower by dropping the
   // empty space between tiles. Names are centered and, only when too long to
   // fit, squeezed to the tile width; every glyph also carries a <title> so the
   // full name shows on hover.
-  const columns = 3;
+  const columns = 4;
   const tileW = 150;
   const tileH = 84;
   const margin = 20;
