@@ -1,6 +1,12 @@
 # Changelog
 
-## Unreleased
+## 0.7.0 - 2026-10-25
+
+116 new icons, each with a `_regular` and a `_filled` variant: the set grows
+from 280 to **512** glyphs over a contiguous `U+E000`-`U+E1FF`. The release is
+purely additive - no icon was removed, renamed or renumbered, so every
+codepoint of 0.6.0 is unchanged and an application can move to it by changing
+its `ref` to `v0.7.0`. The entries below list the new icons by family.
 
 - `mount_sinai`, `_regular` and `_filled` (2 glyphs, 512 in all): Mount Sinai
   with the tablets of the covenant.
@@ -11,14 +17,19 @@
   side by side on one card, so a pair is never split across two rows. The
   gallery picks the number of pairs per row from the screen width - four (eight
   icons) from 1100px, three (six) up to 1099px, two (four) up to 699px, one
-  (two) up to 330px - and the catalog sheet has three (six). The icons keep
+  (two) up to 330px - and the catalog sheet has four (eight). The icons keep
   their size; the empty space between them is what shrank.
 - Every `search_in_*` icon now carries `search_24_regular`'s own ring and handle -
   the drawing `search_check` is built on - instead of a second construction of
   it.
 - 7 objects drawn from scratch, each with `_regular` and `_filled` (14 glyphs,
   508 in all): `menorah`, `kiddush_cup`, `shabbat_candles`, `mezuzah`,
-  `luchot_habrit`, `sunrise` and `sunset`.
+  `luchot_habrit`, `sunrise` and `sunset`. The `menorah` has the nested round
+  arms of a common hanukkiah - each pair leaves the stem lower the farther out
+  it goes and swings out in a half-ellipse - with a flame on every arm. The
+  `kiddush_cup` is one smooth outline: the bowl runs into the stem and the stem
+  flares into the foot without a seam, and the regular variant's cavity has a
+  round bottom.
 - 3 icons drawn from the set's own parts, each with `_regular` and `_filled`
   (6 glyphs, 494 in all): `book_dictionary`, `text_citation` and `text_compare`.
 - 62 more icons, each with `_regular` and `_filled` (124 glyphs, 488 in all).
