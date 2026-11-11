@@ -771,4 +771,10 @@ const iconCatalog = <GalleryIcon>[
       'shamor_vezachor_24_regular', OtzariaIcons.shamor_vezachor_24_regular),
   GalleryIcon('mount_sinai_24_filled', OtzariaIcons.mount_sinai_24_filled),
   GalleryIcon('mount_sinai_24_regular', OtzariaIcons.mount_sinai_24_regular),
+  GalleryIcon(
+      'alef_alef_badge_24_filled', OtzariaIcons.alef_alef_badge_24_filled),
+  GalleryIcon(
+      'alef_alef_badge_24_regular', OtzariaIcons.alef_alef_badge_24_regular),
+  GalleryIcon('book_eye_24_filled', OtzariaIcons.book_eye_24_filled),
+  GalleryIcon('book_eye_24_regular', OtzariaIcons.book_eye_24_regular),
 ];

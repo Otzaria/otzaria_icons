@@ -2,13 +2,33 @@
 
 ## Unreleased
 
+- 2 new icons, `_regular` and `_filled` (4 glyphs, 516 in all):
+  `book_eye` - a book with the eye of `alef_eye` on its cover, placed like the
+  mark of `book_delete` - and `alef_alef_badge`, an alef whose badge disc holds
+  another alef.
+- `alef_1` ... `alef_5`: the five numerals are now one set. They were two
+  drawings (1, 2 and 3 of unknown origin, 4 and 5 traced from Times New Roman
+  Bold, which this repository may not redistribute) of different heights and
+  weights; all five are now cut from Tinos (Apache-2.0, see
+  `THIRD_PARTY_NOTICES.md`) with a shared baseline, height, column and weight.
+  `tool/numerals_from_tinos.py` regenerates them (condensed to 0.75 so they fit
+  beside the alef's foot, with a 0.3 gap cut from the alef). The numeral beside
+  the alef of `text_font_number_hebrew` follows.
+- The plus is one drawing: two round-ended bars `PLUS_STROKE` (1.5) thick, in
+  `alef_add`, `book_add`, `clock_add`, `library_add` and `link_add` - knocked out
+  of the disc in the `_filled`, as ink inside the ring in the `_regular` - and
+  in Fluent's own badge on `notebook_add`, `panel_right_add`,
+  `panel_right_header_add`, `panel_right_text_add` and `text_bullet_list_add`.
+  Before, the filled badges drew it 2.8 thick with square ends, the regular ones
+  1.1, and Fluent's 1.0.
 - The 46 `_regular` icons that carried a badge as a solid disc with the mark
   knocked out of it (`book_add`, `clock_add`, `library_*`, `link_*`,
   `search_check`, `search_not_found`; issue #6) now carry it as a ring one unit
   thick with the mark drawn as ink inside it, as the `alef_*` badges already
   did. At 48 px and up the solid disc was a heavy black blot beside the line
   drawing around it. The icon is cut back from the ring, the badge keeps its
-  size and place, and the `_filled` variants are unchanged. The plus of
+  size and place, and the `_filled` variants are unchanged. The ring is two
+  true circles; the library's marks keep more air from it (0.95). The plus of
   `book_add`, `clock_add`, `library_add` and `link_add`, and the hands of
   `library_clock` and `link_clock`, are drawn as lines for the ring. Codepoints
   and names are unchanged; the artwork of those 46 `_regular` glyphs is not, so

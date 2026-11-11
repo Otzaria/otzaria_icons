@@ -562,4 +562,8 @@ const generatedIconExpectations = <String, IconData>{
   'shamor_vezachor_24_regular': OtzariaIcons.shamor_vezachor_24_regular,
   'mount_sinai_24_filled': OtzariaIcons.mount_sinai_24_filled,
   'mount_sinai_24_regular': OtzariaIcons.mount_sinai_24_regular,
+  'alef_alef_badge_24_filled': OtzariaIcons.alef_alef_badge_24_filled,
+  'alef_alef_badge_24_regular': OtzariaIcons.alef_alef_badge_24_regular,
+  'book_eye_24_filled': OtzariaIcons.book_eye_24_filled,
+  'book_eye_24_regular': OtzariaIcons.book_eye_24_regular,
 };

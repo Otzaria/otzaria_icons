@@ -237,3 +237,9 @@ The following entries are derivative works and retain the provenance recorded in
 - `library_tag_24_regular` — based on `microsoft/fluentui-system-icons: library_24_regular, tag_24_filled (fluentui_system_icons 1.1.273)` at `pub:fluentui_system_icons@1.1.273`; license: MIT AND GPL-3.0-only.
 - `text_citation_24_filled` — based on `microsoft/fluentui-system-icons: text_quote_24_filled (fluentui_system_icons 1.1.273)` at `pub:fluentui_system_icons@1.1.273`; license: MIT AND GPL-3.0-only.
 - `text_citation_24_regular` — based on `microsoft/fluentui-system-icons: text_quote_24_filled (fluentui_system_icons 1.1.273)` at `pub:fluentui_system_icons@1.1.273`; license: MIT AND GPL-3.0-only.
+- `book_eye_24_filled` — based on `microsoft/fluentui-system-icons: eye_24_filled (fluentui_system_icons 1.1.273)` at `pub:fluentui_system_icons@1.1.273`; license: MIT AND GPL-3.0-only.
+- `book_eye_24_regular` — based on `microsoft/fluentui-system-icons: eye_24_filled (fluentui_system_icons 1.1.273)` at `pub:fluentui_system_icons@1.1.273`; license: MIT AND GPL-3.0-only.
+
+## Fonts
+
+The numerals in `alef_1` to `alef_5` are outlines of the digits 1-5 of Tinos Regular, thickened and set beside the alef (see `tool/numerals_from_tinos.py`). Tinos is copyright (c) 2010-2012 Google Corporation and is licensed under the Apache License, Version 2.0 (https://www.apache.org/licenses/LICENSE-2.0).

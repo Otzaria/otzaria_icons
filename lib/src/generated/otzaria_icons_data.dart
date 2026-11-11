@@ -3593,6 +3593,34 @@ abstract final class OtzariaIcons {
     fontPackage: fontPackage,
   );
 
+  /// `alef_alef_badge_24_filled.svg`
+  static const IconData alef_alef_badge_24_filled = IconData(
+    0xe200,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `alef_alef_badge_24_regular.svg`
+  static const IconData alef_alef_badge_24_regular = IconData(
+    0xe201,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `book_eye_24_filled.svg`
+  static const IconData book_eye_24_filled = IconData(
+    0xe202,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `book_eye_24_regular.svg`
+  static const IconData book_eye_24_regular = IconData(
+    0xe203,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
   /// Every icon in this library, keyed by its name.
   static const Map<String, IconData> allIcons = <String, IconData>{
     'book_24_filled': book_24_filled,
@@ -4116,5 +4144,9 @@ abstract final class OtzariaIcons {
     'shamor_vezachor_24_regular': shamor_vezachor_24_regular,
     'mount_sinai_24_filled': mount_sinai_24_filled,
     'mount_sinai_24_regular': mount_sinai_24_regular,
+    'alef_alef_badge_24_filled': alef_alef_badge_24_filled,
+    'alef_alef_badge_24_regular': alef_alef_badge_24_regular,
+    'book_eye_24_filled': book_eye_24_filled,
+    'book_eye_24_regular': book_eye_24_regular,
   };
 }
