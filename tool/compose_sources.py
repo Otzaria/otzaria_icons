@@ -233,8 +233,14 @@ def clock_hands(face_r):
     variants, 0.5 thick, and a different line again in each regular.
     """
     w = 0.2 + 0.15 * face_r
-    return (ic.stroke_line([(0, -0.62 * face_r), (0, 0), (0.40 * face_r, 0)], w)
-            .translate(-0.10 * face_r, 0.12 * face_r))
+    up, right, r = 0.62 * face_r, 0.40 * face_r, w / 2
+    # Two round-ended bars, as the plus is: the same outline as a round-joined
+    # stroke, but built from arcs and lines. The stroker's own output for this
+    # shape came back from skia's `simplify` with a different number of points
+    # on Linux than on Windows, which made `generate --check` fail in CI.
+    return (round_rect(-r, -up - r, r, r, r)
+            | round_rect(-r, -r, right + r, r, r)
+            ).translate(-0.10 * face_r, 0.12 * face_r)
 
 
 def clock_face(face_r):
