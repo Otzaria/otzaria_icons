@@ -1,5 +1,19 @@
 # Changelog
 
+## Unreleased
+
+- The 46 `_regular` icons that carried a badge as a solid disc with the mark
+  knocked out of it (`book_add`, `clock_add`, `library_*`, `link_*`,
+  `search_check`, `search_not_found`; issue #6) now carry it as a ring one unit
+  thick with the mark drawn as ink inside it, as the `alef_*` badges already
+  did. At 48 px and up the solid disc was a heavy black blot beside the line
+  drawing around it. The icon is cut back from the ring, the badge keeps its
+  size and place, and the `_filled` variants are unchanged. The plus of
+  `book_add`, `clock_add`, `library_add` and `link_add`, and the hands of
+  `library_clock` and `link_clock`, are drawn as lines for the ring. Codepoints
+  and names are unchanged; the artwork of those 46 `_regular` glyphs is not, so
+  an application that shows one of them solid will see an outline.
+
 ## 0.7.0 - 2026-10-25
 
 116 new icons, each with a `_regular` and a `_filled` variant: the set grows

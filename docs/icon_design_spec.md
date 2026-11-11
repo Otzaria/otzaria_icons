@@ -49,6 +49,13 @@
     across, kept inside the silhouette. A badge on an outlined letter is a ring
     with the mark as ink inside it; on the solid letter it is a disc with the
     mark knocked out. Never file a solid letter as `_regular`.
+  - **Badged icons** (`book_add`, `clock_add`, `library_*`, `link_*`,
+    `search_check`, `search_not_found`). The same rule as for the letters: the
+    `_regular` carries its badge as a ring one unit thick with the mark as ink
+    inside it, the icon is cut back from the ring, and the `_filled` keeps the
+    solid disc with the mark knocked out. A solid disc with a cut-out mark
+    reads as a black blot beside line art once the icon is shown at 48 px or
+    more.
   - **Stroke icons** (links, lists, crosses). The filled variant is the same
     drawing in the heavier weight: a link takes Fluent's filled chain, a list
     rule goes from 1.5 to 2.0 units tall. A regular drawn heavier than that is

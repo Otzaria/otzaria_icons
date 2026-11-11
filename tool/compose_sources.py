@@ -495,6 +495,57 @@ def badged(base, kind, badge_scale=1.0):
     return base | disc, [mark]
 
 
+def _ring_plus(reach):
+    """A plus of two BADGE_MIN_STROKE bars. `sym_plus` is drawn for a solid disc
+    and carries that disc's heavy stroke, which inside a ring one unit thick
+    outweighs the ring itself."""
+    w = BADGE_MIN_STROKE * 1.15
+    reach *= 0.88
+    return (round_rect(-reach, -w / 2, reach, w / 2, 0.25)
+            | round_rect(-w / 2, -reach, w / 2, reach, 0.25))
+
+
+def _ring_clock(reach):
+    """The hands alone. Fluent's clock is a face with the hands cut out of it,
+    and a face inside a ring is a second disc; a ring with hands is the clock."""
+    return ic.stroke_line([(0, -reach * 0.80), (0, 0), (reach * 0.60, 0)],
+                          BADGE_MIN_STROKE * 1.1)
+
+
+# Marks that are drawn differently when they stand in a ring than when they are
+# knocked out of a disc.
+RING_LINE_MARKS = {"plus": _ring_plus, "clock": _ring_clock}
+
+
+def ringed(disc, kind, air=None):
+    """What a regular icon carries in place of a badge's solid disc: the disc as
+    a ring BADGE_RING thick, and `kind` drawn as ink inside it.
+
+    The filled variants keep the solid disc with the mark knocked out of it. A
+    disc that big is a black blot beside the line drawing around it once the
+    icon is shown at 48 px and up, and a regular icon is meant to be line art.
+    The mark is built for the room inside the ring, not shrunk into it, so
+    `weighted` still brings its stroke up to BADGE_MIN_STROKE; the caller cuts
+    the icon back from the disc, as it always had to.
+    """
+    reach = disc.radius() - BADGE_RING - (BADGE_RING_AIR if air is None
+                                          else air)
+    ring = disc.outlined(BADGE_RING, inside=True)
+    if kind in RING_LINE_MARKS:
+        return ring | RING_LINE_MARKS[kind](reach).centred_on(*disc.centre)
+    # Skia's offset fails outright at the odd reach (the alef at 5.1144 does),
+    # and succeeds a hair either side; a thousandth of a unit is not visible.
+    for nudge in range(5):
+        try:
+            mark = symbol(kind, reach - 0.002 * nudge)
+            break
+        except pathops.PathOpsError:
+            pass
+    else:
+        raise ValueError("no mark for %s at reach %.3f" % (kind, reach))
+    return ring | mark.centred_on(*disc.centre)
+
+
 # --------------------------------------------------------------------------
 # Recipes
 # --------------------------------------------------------------------------
@@ -562,12 +613,21 @@ def link_badge(kind, filled=False):
     def build():
         link, disc, _ = link_plate(LINK_TEMPLATE_FILLED if filled
                                    else LINK_TEMPLATE)
-        x0, y0, x1, y1 = disc.bounds
-        mark = symbol(kind, disc.radius() * SYMBOL_REACH).centred_on(
-            (x0 + x1) / 2, (y0 + y1) / 2)
         corner = _anchor_corner(disc.bounds)
         scale = LINK_BADGE_SCALE * (LINK_BADGE_FILLED if filled
                                     else LINK_BADGE_REGULAR)
+        if not filled:
+            # A ring does not hide what is under it, and the enlarged disc
+            # reaches over Fluent's own cut-back, so the link is cut back again.
+            disc = disc.scale(scale, about=corner)
+            # Scaled by the whole drawing - the link before it is cut back - so
+            # the icon is the same size as the filled one and as it was.
+            link2, (_, disc2) = fill_canvas_pair(
+                link - disc.grow(BADGE_RING_GAP), [link, disc])
+            return link2 | ringed(disc2, kind), [], False
+        x0, y0, x1, y1 = disc.bounds
+        mark = symbol(kind, disc.radius() * SYMBOL_REACH).centred_on(
+            (x0 + x1) / 2, (y0 + y1) / 2)
         disc = disc.scale(scale, about=corner)
         mark = mark.scale(scale, about=corner)
         solid, cuts = fill_canvas_pair(link | disc, [mark])
@@ -684,10 +744,16 @@ def filled_edge(base):
     return FILLED_EDGE
 
 
-def inverted(base, edge=None):
-    """The regular icon turned inside out, by the rule above."""
+def inverted(base, edge=None, art=None):
+    """The regular icon turned inside out, by the rule above.
+
+    `art` is the regular's region when it is not what `base`'s file holds - a
+    regular whose badge is a ring has a different drawing from the knocked-out
+    disc its filled twin is made from, so the twin is built from that drawing
+    directly instead of from the file."""
     edge = filled_edge(base) if edge is None else edge
-    art = glyph(base)
+    if art is None:
+        art = glyph(base)
     body = ic.contours(art)[0]              # the silhouette, holes filled
     # The interior is cut with the exact silhouette, so the white lines land
     # exactly where the black ones were. Only the outer line is grown, and only
@@ -1367,44 +1433,33 @@ CLOCK_ADD_PLUS_REACH = 1.12
 CLOCK_ADD_PLUS_GROW = -0.15
 
 
+# The disc the clock carries, measured from the source this recipe was written
+# against: centred where the old plus was, and reaching the canvas box on the
+# right and at the bottom, which is how the icon was sized.
+CLOCK_ADD_DISC = (17.6295, 17.6295, 5.8705)
+
+
 @recipe("clock_add_24_regular")
 def _clock_add():
-    """Enlarge the badge disc 15% (this family's own rule, matching the link
-    badges), and redraw the plus larger and heavier so it still reads at a
-    small rendered size, then fill the canvas.
+    """The clock with its badge as a ring and a plus, instead of a solid disc
+    with the plus knocked out of it.
 
-    Rebuilt from the file's own three raw paths rather than through `glyph`,
-    because the two knockout paths (badge disc, then the plus knocked out of
-    it) are told apart by position here, not by `fill="white"` - this source
-    predates that convention (it is one of `LEGACY_INFERRED_KNOCKOUTS` in
-    `repair_glyphs.py`) - and the plus is being replaced outright, not kept.
-    `write` marks the new cut explicitly, so the source no longer needs the
-    legacy inference to render correctly.
+    Edits its own source, like every recipe that was drawn by hand first: the
+    clock and the disc are read back as the one solid the file holds, the clock
+    is cut back from the disc, and the badge is laid on as a ring. The file
+    that was here before - disc, and a plus knocked out of it - is the sign
+    that the recipe has not run yet; a file with no knockout has.
+
+    The plus is the family's own plus, at the ring's room; it is no longer the
+    "noticeably larger, heavier" one (CLOCK_ADD_PLUS_*), which was drawn for a
+    solid disc and would fill a ring.
     """
-    clock = part("clock_add_24_regular", 0)
-    disc = part("clock_add_24_regular", 1)
-    x0, y0, x1, y1 = (clock | disc).bounds
-    if max(x1 - x0, y1 - y0) >= CANVAS_BOX - 0.05:
-        raise Restated("clock_add_24_regular already measures %.2f x %.2f "
-                       "units; rebuilding it would enlarge it again"
-                       % (x1 - x0, y1 - y0))
-    corner = _anchor_corner(disc.bounds)
-    disc2 = disc.scale(1.15, about=corner)
-    # An earlier version of this recipe clipped the clock's hand (both its
-    # upright stroke and its horizontal arm, drawn as one bent shape - the
-    # smallest of the clock's three contours) back from the enlarged disc's
-    # edge, meaning to trim only the small spur where the hand's corner poked
-    # a notch into the union's silhouette. The clip line fell to the left of
-    # most of the arm instead and cut the whole arm away, leaving what looked
-    # like a clock with one hand. The two are simply unioned here instead:
-    # the arm's own length already falls almost entirely inside the enlarged
-    # disc's own footprint, so it is covered by solid badge ink there rather
-    # than sticking out past it, and nothing needs trimming.
-    plus = sym_plus().fit_radius(disc2.radius() * SYMBOL_REACH
-                                 * CLOCK_ADD_PLUS_REACH)
-    plus = plus.grow(CLOCK_ADD_PLUS_GROW).centred_on(*disc2.centre)
-    solid, cuts = fill_canvas_pair(clock | disc2, [plus])
-    return solid, cuts, True
+    solids, cuts = ic.layers("clock_add_24_regular")
+    if not cuts:
+        raise Restated("clock_add_24_regular already carries its ring badge")
+    disc = circle(*CLOCK_ADD_DISC)
+    clock = solids[0] - disc.grow(BADGE_RING_GAP)
+    return clock | ringed(disc, "plus"), [], False
 
 
 # --------------------------------------------------------------------------
@@ -1532,9 +1587,11 @@ def _book_title_bar():
 @recipe("book_add_24_regular")
 def _book_add_r():
     outer, inner = _book_cover()
-    disc, mark = _book_add_badge()
+    disc, _ = _book_add_badge()
     bar_regular, _ = _book_title_bar()
-    return (outer - inner) | disc | bar_regular, [mark], True
+    cover = (outer - inner) | bar_regular
+    return ((cover - disc.grow(BADGE_RING_GAP)) | ringed(disc, "plus"),
+            [], False)
 
 
 @recipe("book_add_24_filled")
@@ -1740,7 +1797,7 @@ def _search_split(name):
     return outer, lens, full & lens
 
 
-def _search_not_found_badge(kind="cross"):
+def _search_not_found_badge(kind="cross", ring=False):
     """search_24_regular's own ring+handle, empty lens, with a small corner
     badge - a disc with the alef family's own X knocked out of it - added
     opposite the handle.
@@ -1794,8 +1851,14 @@ def _search_not_found_badge(kind="cross"):
     else:
         mark = symbol(kind, badge_r * 0.78).centred_on(bx, by)
     mark = mark.scale(group_scale, about=anchor).translate(0, shift_down)
-    ring = (t_outer - t_lens) | badge
-    return sized(ring), [mark]
+    if ring:
+        # The regular's badge: a ring, with the lens ring and handle cut back
+        # from it. Sized by the same rule as the solid one - on the drawing
+        # with its disc - and the badge is taken from the sized result, so the
+        # mark is built for the room that is really there.
+        body, (disc,) = fill_canvas_pair(t_outer - t_lens, [badge])
+        return (body - disc.grow(BADGE_RING_GAP)) | ringed(disc, kind), []
+    return sized((t_outer - t_lens) | badge), [mark]
 
 
 # How much the ring's own band is thickened, outward only - the lens opening
@@ -1917,17 +1980,25 @@ for _name in SEARCH_IN_NAMES:
 # `search_not_found_24_regular/_filled` don't match the `search_in_*` glob
 # the family loop above targets, so they were missed the first time.
 def _search_not_found_r():
-    solid, cuts = _search_not_found_badge()
-    return solid, cuts, True
+    solid, cuts = _search_not_found_badge(ring=True)
+    return solid, cuts, False
 
 
 RECIPES["search_not_found_24_regular"] = _search_not_found_r
-DEPENDS["search_not_found_24_filled"] = "search_not_found_24_regular"
+
+
+def _search_badge_filled(kind):
+    """The filled twin of a search badge: inverted from the drawing with the
+    solid disc, which is not what the regular's file holds any more."""
+    solid, cuts = _search_not_found_badge(kind)
+    for c in cuts:
+        solid = solid - c
+    solid, cuts = inverted("", edge=SEARCH_FILLED_EDGE, art=solid)
+    return sized(solid), cuts, False
 
 
 def _search_not_found_filled_recipe():
-    solid, cuts = inverted("search_not_found_24_regular", edge=SEARCH_FILLED_EDGE)
-    return sized(solid), cuts, False
+    return _search_badge_filled("cross")
 
 
 RECIPES["search_not_found_24_filled"] = _search_not_found_filled_recipe
@@ -1937,17 +2008,15 @@ RECIPES["search_not_found_24_filled"] = _search_not_found_filled_recipe
 # cross: the query was found. Built by the same function, so the badge is the
 # same disc in the same place and only the mark differs.
 def _search_check_regular_recipe():
-    solid, cuts = _search_not_found_badge("check")
-    return solid, cuts, True
+    solid, cuts = _search_not_found_badge("check", ring=True)
+    return solid, cuts, False
 
 
 RECIPES["search_check_24_regular"] = _search_check_regular_recipe
-DEPENDS["search_check_24_filled"] = "search_check_24_regular"
 
 
 def _search_check_filled_recipe():
-    solid, cuts = inverted("search_check_24_regular", edge=SEARCH_FILLED_EDGE)
-    return sized(solid), cuts, False
+    return _search_badge_filled("check")
 
 
 RECIPES["search_check_24_filled"] = _search_check_filled_recipe
@@ -2121,8 +2190,11 @@ def _inverted_recipe(regular, fit=False):
     return build
 
 
+# (`clock_add_24_filled` is not here any more: its regular now carries a ring
+# badge, which is not the drawing the filled twin was inverted from, and the
+# filled keeps its solid disc. Its source stays as it was derived.)
 for _base, _fit in [("booklet", False), ("booklet_empty", False),
-                    ("clock_add", True), ("dependent_library", True),
+                    ("dependent_library", True),
                     ("torah_scroll", True)]:
     RECIPES[_base + "_24_filled"] = _inverted_recipe(_base + "_24_regular", _fit)
     DEPENDS[_base + "_24_filled"] = _base + "_24_regular"
@@ -2803,6 +2875,9 @@ def _library_badged(kind, filled):
         art = use_fluent("library_24_%s" % ("filled" if filled else "regular"))
         cx, cy, r = LIBRARY_DISC
         disc = circle(cx, cy, r)
+        if not filled:
+            return ((art - disc.grow(LIBRARY_CLEAR)) | ringed(disc, kind),
+                    [], False)
         mark = symbol(kind, r * SYMBOL_REACH).centred_on(cx, cy)
         return (art - disc.grow(LIBRARY_CLEAR)) | disc, [mark], True
     return build

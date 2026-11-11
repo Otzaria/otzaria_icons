@@ -730,11 +730,11 @@ icons:
     deprecated: false
     upstream_status: missing
     upstream_equivalent: null
-    origin: custom
-    based_on: null
+    origin: modified_fluent
+    based_on: 'microsoft/fluentui-system-icons: link_dismiss_24_regular (fluentui_system_icons 1.1.273)'
     author: Otzaria contributors
-    license: GPL-3.0-only
-    upstream_commit: null
+    license: MIT AND GPL-3.0-only
+    upstream_commit: pub:fluentui_system_icons@1.1.273
   - id: icon-0053
     name: apps_list_24_filled
     source: assets_src/svg/apps_list_24_filled.svg
@@ -6026,7 +6026,7 @@ icons:
     upstream_status: missing
     upstream_equivalent: null
     origin: modified_fluent
-    based_on: 'microsoft/fluentui-system-icons: library_24_regular, clock_24_filled (fluentui_system_icons 1.1.273)'
+    based_on: 'microsoft/fluentui-system-icons: library_24_regular (fluentui_system_icons 1.1.273)'
     author: Otzaria contributors
     license: MIT AND GPL-3.0-only
     upstream_commit: pub:fluentui_system_icons@1.1.273
@@ -6386,7 +6386,7 @@ icons:
     upstream_status: missing
     upstream_equivalent: null
     origin: modified_fluent
-    based_on: 'microsoft/fluentui-system-icons: link_dismiss_24_regular, clock_24_filled (fluentui_system_icons 1.1.273)'
+    based_on: 'microsoft/fluentui-system-icons: link_dismiss_24_regular (fluentui_system_icons 1.1.273)'
     author: Otzaria contributors
     license: MIT AND GPL-3.0-only
     upstream_commit: pub:fluentui_system_icons@1.1.273
