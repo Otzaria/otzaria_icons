@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+- 4 new icons, `_regular` and `_filled` (8 glyphs, 578 in all): `book_cloud`,
+  `link_auto` (a link with sparkles: made by the linker), `plugin_error` (the
+  puzzle piece with an exclamation badge) and `dreidel`, drawn from plain
+  shapes like the other symbols.
 - 8 new icons, `_regular` and `_filled` (16 glyphs, 570 in all): `book_note`,
   `book_progress` and `document_tzurat_hadaf` (the page of the Talmud, the
   drawing of `book_open_tzurat_hadaf` on a page), `alef_gematria` (a number sign

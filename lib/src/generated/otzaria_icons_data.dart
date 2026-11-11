@@ -3999,6 +3999,62 @@ abstract final class OtzariaIcons {
     fontPackage: fontPackage,
   );
 
+  /// `book_cloud_24_filled.svg`
+  static const IconData book_cloud_24_filled = IconData(
+    0xe23a,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `book_cloud_24_regular.svg`
+  static const IconData book_cloud_24_regular = IconData(
+    0xe23b,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `dreidel_24_filled.svg`
+  static const IconData dreidel_24_filled = IconData(
+    0xe23c,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `dreidel_24_regular.svg`
+  static const IconData dreidel_24_regular = IconData(
+    0xe23d,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `link_auto_24_filled.svg`
+  static const IconData link_auto_24_filled = IconData(
+    0xe23e,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `link_auto_24_regular.svg`
+  static const IconData link_auto_24_regular = IconData(
+    0xe23f,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `plugin_error_24_filled.svg`
+  static const IconData plugin_error_24_filled = IconData(
+    0xe240,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `plugin_error_24_regular.svg`
+  static const IconData plugin_error_24_regular = IconData(
+    0xe241,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
   /// Every icon in this library, keyed by its name.
   static const Map<String, IconData> allIcons = <String, IconData>{
     'book_24_filled': book_24_filled,
@@ -4580,5 +4636,13 @@ abstract final class OtzariaIcons {
     'shofar_24_regular': shofar_24_regular,
     'stars_tzeis_24_filled': stars_tzeis_24_filled,
     'stars_tzeis_24_regular': stars_tzeis_24_regular,
+    'book_cloud_24_filled': book_cloud_24_filled,
+    'book_cloud_24_regular': book_cloud_24_regular,
+    'dreidel_24_filled': dreidel_24_filled,
+    'dreidel_24_regular': dreidel_24_regular,
+    'link_auto_24_filled': link_auto_24_filled,
+    'link_auto_24_regular': link_auto_24_regular,
+    'plugin_error_24_filled': plugin_error_24_filled,
+    'plugin_error_24_regular': plugin_error_24_regular,
   };
 }

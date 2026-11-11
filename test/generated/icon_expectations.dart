@@ -622,4 +622,12 @@ const generatedIconExpectations = <String, IconData>{
   'shofar_24_regular': OtzariaIcons.shofar_24_regular,
   'stars_tzeis_24_filled': OtzariaIcons.stars_tzeis_24_filled,
   'stars_tzeis_24_regular': OtzariaIcons.stars_tzeis_24_regular,
+  'book_cloud_24_filled': OtzariaIcons.book_cloud_24_filled,
+  'book_cloud_24_regular': OtzariaIcons.book_cloud_24_regular,
+  'dreidel_24_filled': OtzariaIcons.dreidel_24_filled,
+  'dreidel_24_regular': OtzariaIcons.dreidel_24_regular,
+  'link_auto_24_filled': OtzariaIcons.link_auto_24_filled,
+  'link_auto_24_regular': OtzariaIcons.link_auto_24_regular,
+  'plugin_error_24_filled': OtzariaIcons.plugin_error_24_filled,
+  'plugin_error_24_regular': OtzariaIcons.plugin_error_24_regular,
 };

@@ -255,6 +255,12 @@ The following entries are derivative works and retain the provenance recorded in
 - `book_note_24_regular` — based on `microsoft/fluentui-system-icons: note_24_filled (fluentui_system_icons 1.1.273)` at `pub:fluentui_system_icons@1.1.273`; license: MIT AND GPL-3.0-only.
 - `book_progress_24_filled` — based on `microsoft/fluentui-system-icons: data_pie_24_filled (fluentui_system_icons 1.1.273)` at `pub:fluentui_system_icons@1.1.273`; license: MIT AND GPL-3.0-only.
 - `book_progress_24_regular` — based on `microsoft/fluentui-system-icons: data_pie_24_filled (fluentui_system_icons 1.1.273)` at `pub:fluentui_system_icons@1.1.273`; license: MIT AND GPL-3.0-only.
+- `book_cloud_24_filled` — based on `microsoft/fluentui-system-icons: cloud_24_filled (fluentui_system_icons 1.1.273)` at `pub:fluentui_system_icons@1.1.273`; license: MIT AND GPL-3.0-only.
+- `book_cloud_24_regular` — based on `microsoft/fluentui-system-icons: cloud_24_filled (fluentui_system_icons 1.1.273)` at `pub:fluentui_system_icons@1.1.273`; license: MIT AND GPL-3.0-only.
+- `link_auto_24_filled` — based on `microsoft/fluentui-system-icons: link_dismiss_24_filled, sparkle_24_filled (fluentui_system_icons 1.1.273)` at `pub:fluentui_system_icons@1.1.273`; license: MIT AND GPL-3.0-only.
+- `link_auto_24_regular` — based on `microsoft/fluentui-system-icons: link_dismiss_24_regular, sparkle_24_filled (fluentui_system_icons 1.1.273)` at `pub:fluentui_system_icons@1.1.273`; license: MIT AND GPL-3.0-only.
+- `plugin_error_24_filled` — based on `microsoft/fluentui-system-icons: puzzle_piece_24_filled (fluentui_system_icons 1.1.273)` at `pub:fluentui_system_icons@1.1.273`; license: MIT AND GPL-3.0-only.
+- `plugin_error_24_regular` — based on `microsoft/fluentui-system-icons: puzzle_piece_24_regular (fluentui_system_icons 1.1.273)` at `pub:fluentui_system_icons@1.1.273`; license: MIT AND GPL-3.0-only.
 
 ## Fonts
 

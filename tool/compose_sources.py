@@ -2801,6 +2801,7 @@ ROUND1_MARKS = {
     "eye": "eye",
     "note": "note",
     "progress": "data_pie",
+    "cloud": "cloud",
 }
 
 # Per-mark fitting boxes where the default block does not suit a mark's shape.
@@ -2894,7 +2895,7 @@ ROUND1_BOOKS = {"book_checkmark": "checkmark", "book_bookmark": "bookmark",
                 "book_settings": "settings", "book_lock": "lock",
                 "book_pin": "pin", "book_history": "history",
                 "book_eye": "eye", "book_note": "note",
-                "book_progress": "progress"}
+                "book_progress": "progress", "book_cloud": "cloud"}
 ROUND1_DOCUMENTS = {"document_checkmark": "checkmark", "document_edit": "edit",
                     "document_save": "save", "document_copy": "copy",
                     "document_lock": "lock", "document_link": "link",
@@ -3323,6 +3324,49 @@ RECIPES["calendar_shabbat_24_regular"] = _calendar_alef(False, _shabbat_candles)
 RECIPES["calendar_shabbat_24_filled"] = _calendar_alef(True, _shabbat_candles)
 
 
+def _inset_convex(points, d):
+    """The convex polygon `points` with every edge moved `d` inwards."""
+    n = len(points)
+    area = sum(points[i][0] * points[(i + 1) % n][1]
+               - points[(i + 1) % n][0] * points[i][1] for i in range(n))
+    sign = 1 if area > 0 else -1
+    lines = []
+    for i in range(n):
+        (x0, y0), (x1, y1) = points[i], points[(i + 1) % n]
+        m = math.hypot(x1 - x0, y1 - y0)
+        nx, ny = -(y1 - y0) / m * sign, (x1 - x0) / m * sign
+        lines.append(((x0 + nx * d, y0 + ny * d), (x1 - x0, y1 - y0)))
+    out = []
+    for i in range(n):
+        (px, py), (dx, dy) = lines[i - 1]
+        (qx, qy), (ex, ey) = lines[i]
+        det = dx * ey - dy * ex
+        t = ((qx - px) * ey - (qy - py) * ex) / det
+        out.append((px + t * dx, py + t * dy))
+    return out
+
+
+def _dreidel(filled):
+    """A spinning top: a handle, a square block and a cone below it, the block
+    and the cone drawn apart so it is not read as a pin."""
+    def build():
+        handle = round_rect(10.9, 1.8, 13.1, 6.4, 1.0)
+        block = (6.0, 6.8, 18.0, 14.2)
+        cone = [(6.6, 15.4), (17.4, 15.4), (12.0, 22.4)]
+        b = round_rect(*block, 1.6)
+        if filled:
+            return handle | b | polygon(cone), [], False
+        bi = round_rect(block[0] + JUDAICA_LINE, block[1] + JUDAICA_LINE,
+                        block[2] - JUDAICA_LINE, block[3] - JUDAICA_LINE, 0.5)
+        return ((b - bi) | handle
+                | (polygon(cone) - polygon(_inset_convex(cone, JUDAICA_LINE)))), [], False
+    return build
+
+
+for _name, _fn in (("dreidel", _dreidel),):
+    RECIPES[_name + "_24_regular"] = _fn(False)
+    RECIPES[_name + "_24_filled"] = _fn(True)
+
 # library_*: Fluent's three standing books with a corner disc and a mark knocked
 # out of it - the disc `book_add` carries, with the books cut back to clear it.
 LIBRARY_DISC = (17.6, 17.6, 5.2)
@@ -3335,9 +3379,9 @@ LIBRARY_RING_AIR = 0.95
 LIBRARY_MARK_LIGHT = 0.7
 
 
-def _library_badged(kind, filled):
+def _library_badged(kind, filled, base="library"):
     def build():
-        art = use_fluent("library_24_%s" % ("filled" if filled else "regular"))
+        art = use_fluent("%s_24_%s" % (base, "filled" if filled else "regular"))
         cx, cy, r = LIBRARY_DISC
         disc = circle(cx, cy, r)
         if not filled:
@@ -3353,6 +3397,11 @@ for _kind, _stem in (("plus", "library_add"), ("settings", "library_settings"),
                      ("refresh", "library_refresh")):
     RECIPES[_stem + "_24_regular"] = _library_badged(_kind, False)
     RECIPES[_stem + "_24_filled"] = _library_badged(_kind, True)
+
+RECIPES["plugin_error_24_regular"] = _library_badged(
+    "exclamation", False, "puzzle_piece")
+RECIPES["plugin_error_24_filled"] = _library_badged(
+    "exclamation", True, "puzzle_piece")
 
 
 # --------------------------------------------------------------------------
@@ -3436,6 +3485,7 @@ FLUENT_SYMBOLS.update({
     "index": ("text_bullet_list_rtl_24_filled", 0),
     "import": ("arrow_import_24_filled", 0),
     "database": ("database_24_filled", 0),
+    "auto": ("sparkle_24_filled", 0),
     "source": ("arrow_up_left_24_filled", 0),
 })
 for _kind, _stem in (("index", "library_index"), ("cloud", "library_cloud"),
@@ -3444,7 +3494,7 @@ for _kind, _stem in (("index", "library_index"), ("cloud", "library_cloud"),
     RECIPES[_stem + "_24_regular"] = _library_badged(_kind, False)
     RECIPES[_stem + "_24_filled"] = _library_badged(_kind, True)
 for _kind, _stem in (("source", "link_source"), ("database", "link_database"),
-                     ("parallel", "link_parallel")):
+                     ("parallel", "link_parallel"), ("auto", "link_auto")):
     RECIPES[_stem + "_24_regular"] = link_badge(_kind)
     RECIPES[_stem + "_24_filled"] = link_badge(_kind, True)
 
