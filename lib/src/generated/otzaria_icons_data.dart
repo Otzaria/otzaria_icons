@@ -3621,6 +3621,20 @@ abstract final class OtzariaIcons {
     fontPackage: fontPackage,
   );
 
+  /// `vav_stam_24_filled.svg`
+  static const IconData vav_stam_24_filled = IconData(
+    0xe204,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `vav_stam_24_regular.svg`
+  static const IconData vav_stam_24_regular = IconData(
+    0xe205,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
   /// Every icon in this library, keyed by its name.
   static const Map<String, IconData> allIcons = <String, IconData>{
     'book_24_filled': book_24_filled,
@@ -4148,5 +4162,7 @@ abstract final class OtzariaIcons {
     'alef_alef_badge_24_regular': alef_alef_badge_24_regular,
     'book_eye_24_filled': book_eye_24_filled,
     'book_eye_24_regular': book_eye_24_regular,
+    'vav_stam_24_filled': vav_stam_24_filled,
+    'vav_stam_24_regular': vav_stam_24_regular,
   };
 }

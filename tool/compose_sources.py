@@ -220,6 +220,29 @@ def plus_mark(half_length, stroke=None):
             | round_rect(-w / 2, -half_length, w / 2, half_length, w / 2))
 
 
+def clock_hands(face_r):
+    """The hands every clock in the set carries, for a face `face_r` in radius,
+    centred on the origin: a long one up and a short one to the right, round
+    ended, from a pivot set a little down and to the left so that the pair - which
+    fills the upper right of the face - sits in the middle of it.
+
+    One drawing at every size: the stroke is 0.2 plus 0.15 of the face, which is
+    0.8 on the faces of the badges and 1.7 on the clock's own, so the small ones
+    are not thinner than a line can be drawn and the big one is not as heavy as
+    a face that size could carry. It used to be Fluent's cut in the filled
+    variants, 0.5 thick, and a different line again in each regular.
+    """
+    w = 0.2 + 0.15 * face_r
+    return (ic.stroke_line([(0, -0.62 * face_r), (0, 0), (0.40 * face_r, 0)], w)
+            .translate(-0.10 * face_r, 0.12 * face_r))
+
+
+def clock_face(face_r):
+    """A face with its hands cut out of it, centred on the origin: what a badge
+    knocks out of its disc, so the hands stay as ink in a white face."""
+    return circle(0, 0, face_r) - clock_hands(face_r)
+
+
 # How far an arm reaches, as a fraction of the reach a mark is given on a solid
 # disc (SYMBOL_REACH of the disc's radius): 0.70 of the radius, which is what
 # Fluent's own plus badge has.
@@ -462,6 +485,8 @@ def symbol(kind, reach):
     """The mark for `kind`, centred on the origin, reaching `reach` units."""
     if kind == "plus":
         return plus_mark(reach * PLUS_REACH)
+    if kind == "clock":
+        return clock_face(reach)
     if kind in DRAWN_SYMBOLS:
         # Drawn at badge scale, so they need no re-weighting - but they are
         # still fitted, or they would stay at whatever size the disc used to be.
@@ -513,17 +538,16 @@ def badged(base, kind, badge_scale=1.0):
     return base | disc, [mark]
 
 
-def _ring_plus(reach):
+def _ring_plus(reach, face=None):
     """The standard plus, shorter than on a solid disc: the arms of a plus that
     reaches as far as it does there would be half a unit from the ring."""
     return plus_mark(reach * 0.88)
 
 
-def _ring_clock(reach):
+def _ring_clock(reach, face):
     """The hands alone. Fluent's clock is a face with the hands cut out of it,
     and a face inside a ring is a second disc; a ring with hands is the clock."""
-    return ic.stroke_line([(0, -reach * 0.72), (0, 0), (reach * 0.50, 0)],
-                          BADGE_MIN_STROKE * 0.8)
+    return clock_hands(face)
 
 
 # Marks that are drawn differently when they stand in a ring than when they are
@@ -549,7 +573,9 @@ def ringed(disc, kind, air=None, light=1.0):
     cx, cy = disc.centre
     ring = disc - circle(cx, cy, disc.radius() - BADGE_RING)
     if kind in RING_LINE_MARKS:
-        return ring | RING_LINE_MARKS[kind](reach).centred_on(*disc.centre)
+        mark = RING_LINE_MARKS[kind](reach, disc.radius() - BADGE_RING)
+        return ring | (mark.translate(*disc.centre) if kind == "clock"
+                       else mark.centred_on(*disc.centre))
     # Skia's offset fails outright at the odd reach (the alef at 5.1144 does),
     # and succeeds a hair either side; a thousandth of a unit is not visible.
     _MARK_LIGHT[0] = light
@@ -1440,6 +1466,26 @@ def _link_plain():
 CLOCK_ADD_DISC = (17.6295, 17.6295, 5.8705)
 
 
+# The clock's own face: its centre, and where the hands the source was drawn
+# with stand (to be replaced).
+CLOCK_CENTRE = (11.845, 11.845)
+# The hands are drawn for a face a little smaller than the clock's, so that the
+# short one stops short of the badge's ring instead of running into it.
+CLOCK_HANDS_R = 8.8
+CLOCK_OLD_HANDS = (9.5, 4.5, 15.5, 14.2)
+
+
+def _clock_hands_clear(keep_out):
+    """The clock's hands, moved up and to the left a tenth of a unit at a time
+    until they stand 0.6 clear of `keep_out` (the badge and its margin)."""
+    hands = clock_hands(CLOCK_HANDS_R).translate(*CLOCK_CENTRE)
+    for step in range(30):
+        moved = hands.translate(-0.1 * step, -0.1 * step)
+        if (moved & keep_out.grow(0.6)).is_empty:
+            return moved
+    raise ValueError("the clock's hands do not clear the badge")
+
+
 @recipe("clock_add_24_regular")
 def _clock_add():
     """The clock with its badge as a ring and a plus, instead of a solid disc
@@ -1452,7 +1498,11 @@ def _clock_add():
     """
     disc = circle(*CLOCK_ADD_DISC)
     clock = glyph("clock_add_24_regular") - disc.grow(BADGE_RING_GAP)
-    return clock | ringed(disc, "plus"), [], False
+    # The hands are the set's: what the file holds of them is cut away (they
+    # stand inside this box, clear of the ring and the badge) and redrawn.
+    clock = clock - ic.rect(*CLOCK_OLD_HANDS)
+    hands = _clock_hands_clear(disc.grow(BADGE_RING_GAP))
+    return clock | hands | ringed(disc, "plus"), [], False
 
 
 # The plus knocked out of the filled clock's disc: where it is, and how far its
@@ -1461,6 +1511,8 @@ CLOCK_ADD_FILLED_PLUS = (17.373, 17.373, 3.78)
 # The badge disc of the filled icon: it reaches the canvas box at 23.5.
 CLOCK_ADD_FILLED_RADIUS = 23.5 - 17.373
 CLOCK_ADD_FILLED_GAP = 0.7
+# The filled clock's black face reaches 9.2 from its centre.
+CLOCK_FILLED_FACE_R = 9.2
 
 
 @recipe("clock_add_24_filled")
@@ -1476,7 +1528,12 @@ def _clock_add_filled():
     # as in every other filled icon that carries one.
     disc = circle(cx, cy, CLOCK_ADD_FILLED_RADIUS)
     plus = plus_mark(half).centred_on(cx, cy)
-    clock = glyph("clock_add_24_filled") - disc.grow(CLOCK_ADD_FILLED_GAP)
+    # The face is solid with the hands cut out of it: the old hands' cut is
+    # filled and the set's are cut in its place, and then the clock is cut back
+    # from the badge.
+    clock = glyph("clock_add_24_filled") | ic.rect(*CLOCK_OLD_HANDS)
+    clock = clock - _clock_hands_clear(disc.grow(CLOCK_ADD_FILLED_GAP))
+    clock = clock - disc.grow(CLOCK_ADD_FILLED_GAP)
     return (clock | disc) - plus, [], False
 
 
@@ -1815,7 +1872,7 @@ def _search_split(name):
     return outer, lens, full & lens
 
 
-def _search_not_found_badge(kind="cross", ring=False):
+def _search_not_found_badge(kind="cross", ring=False, parts=False):
     """search_24_regular's own ring+handle, empty lens, with a small corner
     badge - a disc with the alef family's own X knocked out of it - added
     opposite the handle.
@@ -1876,6 +1933,8 @@ def _search_not_found_badge(kind="cross", ring=False):
         # mark is built for the room that is really there.
         body, (disc,) = fill_canvas_pair(t_outer - t_lens, [badge])
         return (body - disc.grow(BADGE_RING_GAP)) | ringed(disc, kind), []
+    if parts:
+        return t_outer - t_lens, badge, mark
     return sized((t_outer - t_lens) | badge), [mark]
 
 
@@ -2005,14 +2064,26 @@ def _search_not_found_r():
 RECIPES["search_not_found_24_regular"] = _search_not_found_r
 
 
+# The black circle round the badge in the filled variants: the weight of the
+# outline it joins (`SEARCH_FILLED_EDGE` grown outward lands at 0.91).
+SEARCH_BADGE_EDGE = 0.91
+
+
 def _search_badge_filled(kind):
     """The filled twin of a search badge: inverted from the drawing with the
-    solid disc, which is not what the regular's file holds any more."""
-    solid, cuts = _search_not_found_badge(kind)
-    for c in cuts:
-        solid = solid - c
-    solid, cuts = inverted("", edge=SEARCH_FILLED_EDGE, art=solid)
-    return sized(solid), cuts, False
+    solid disc, which is not what the regular's file holds any more.
+
+    Inverted, the disc is white and the lens ring it overlaps is white too, so
+    where the two meet the disc has no edge: its black circle is open from the
+    crescent's tip round to the outline. The circle is drawn there, outside the
+    disc and inside the outline's own reach.
+    """
+    ring, disc, mark = _search_not_found_badge(kind, parts=True)
+    drawn = ring | disc
+    solid, _ = inverted("", edge=SEARCH_FILLED_EDGE, art=drawn - mark)
+    reach = ic.contours(drawn)[0].deburr().grow(SEARCH_FILLED_EDGE)
+    halo = (disc.grow(SEARCH_BADGE_EDGE) - disc) & reach
+    return sized(solid | halo), [], False
 
 
 def _search_not_found_filled_recipe():
@@ -2404,15 +2475,18 @@ def letter_outline(art, over=None, solid_rest=False):
     return out.despeckle(0.05).prune(0.002)
 
 
-def ring_badge(letter, disc, mark, air=None):
+def ring_badge(letter, disc, mark, air=None, clock=False):
     """An outlined `letter` carrying a ring badge: the letter is cut back from
     the disc by BADGE_RING_GAP, the disc becomes a ring, and `mark` - which the
     solid icon knocks out of its disc - is drawn as ink inside it, brought down
     to fit within the ring."""
     inner = disc.radius() - BADGE_RING
     ring = disc.outlined(BADGE_RING, inside=True)
-    ink = mark.fit_radius(inner - (BADGE_RING_AIR if air is None else air),
-                          about=disc.centre)
+    if clock:
+        ink = clock_hands(inner).translate(*disc.centre)
+    else:
+        ink = mark.fit_radius(inner - (BADGE_RING_AIR if air is None else air),
+                              about=disc.centre)
     return (letter_outline(letter) - disc.grow(BADGE_RING_GAP)) | ring | ink
 
 
@@ -2450,7 +2524,7 @@ LETTER_SOLID_REST = ("alef_1", "alef_2", "alef_3", "alef_4", "alef_5")
 
 
 def outline_recipe(filled, badged_letter=False, over=None, solid_rest=False,
-                   air=None, art=None):
+                   air=None, art=None, clock=False):
     """`art`, when given, is the solid drawing to outline, taken in memory rather
     than read back from `filled`'s file: a numeral sits against the alef it is
     cut by, and a file that was just written carries the alef at a slightly
@@ -2459,7 +2533,7 @@ def outline_recipe(filled, badged_letter=False, over=None, solid_rest=False,
     def build():
         if badged_letter:
             letter, disc, mark = _split_badge(filled)
-            return ring_badge(letter, disc, mark, air), [], False
+            return ring_badge(letter, disc, mark, air, clock), [], False
         solid = art() if art else glyph(filled)
         return (letter_outline(solid, glyph(over) if over else None,
                                 solid_rest),
@@ -2483,7 +2557,7 @@ LETTER_PLAIN = (
     "alef_near_alef_stam", "alef_rashi", "alef_stam", "alef_niqqud_taamim",
     "alef_punctuation", "alef_niqqud", "alef_writing", "beit",
     "beit_behind_alef", "beit_near_alef", "tet", "tet_behind_tet",
-    "tet_near_tet", "tet_tet", "tet_latin_t",
+    "tet_near_tet", "tet_tet", "tet_latin_t", "vav_stam",
 )
 
 for _letter in LETTER_PLAIN + LETTER_BADGED:
@@ -2724,6 +2798,11 @@ def fluent_mark(short, box):
         # in it, which at this size is a blob with a hairline.
         return sym_information(4.4).centred_on((box[0] + box[2]) / 2,
                                                (box[1] + box[3]) / 2)
+    if short == "clock":
+        # The set's own clock face, hands cut out of it, as in every badge.
+        r = min(box[2] - box[0], box[3] - box[1]) / 2
+        return clock_face(r).translate((box[0] + box[2]) / 2,
+                                       (box[1] + box[3]) / 2)
     if short == "eye":
         # The eye `alef_eye` carries - lid and pupil drawn apart, which a plain
         # fit and thickening of Fluent's closes into one blob.
@@ -3030,7 +3109,8 @@ for _kind, _stem in (("clock", "alef_clock"), ("star", "alef_star"),
     _f, _r = _stem + "_24_filled", _stem + "_24_regular"
     RECIPES[_f] = alef_badge(_kind)
     RECIPES[_r] = outline_recipe(_f, True,
-                                 air=CLOCK_RING_AIR if _kind == "clock" else None)
+                                 air=CLOCK_RING_AIR if _kind == "clock" else None,
+                                 clock=_kind == "clock")
     DEPENDS[_r] = _f
     PROVENANCE_OF[_r] = _f
 

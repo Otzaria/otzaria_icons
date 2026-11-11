@@ -777,4 +777,6 @@ const iconCatalog = <GalleryIcon>[
       'alef_alef_badge_24_regular', OtzariaIcons.alef_alef_badge_24_regular),
   GalleryIcon('book_eye_24_filled', OtzariaIcons.book_eye_24_filled),
   GalleryIcon('book_eye_24_regular', OtzariaIcons.book_eye_24_regular),
+  GalleryIcon('vav_stam_24_filled', OtzariaIcons.vav_stam_24_filled),
+  GalleryIcon('vav_stam_24_regular', OtzariaIcons.vav_stam_24_regular),
 ];

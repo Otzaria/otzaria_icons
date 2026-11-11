@@ -2,10 +2,22 @@
 
 ## Unreleased
 
-- 2 new icons, `_regular` and `_filled` (4 glyphs, 516 in all):
+- 3 new icons, `_regular` and `_filled` (6 glyphs, 518 in all):
   `book_eye` - a book with the eye of `alef_eye` on its cover, placed like the
-  mark of `book_delete` - and `alef_alef_badge`, an alef whose badge disc holds
-  another alef.
+  mark of `book_delete` - `alef_alef_badge`, an alef whose badge disc holds
+  another alef, and `vav_stam`, a vav in the Stam script at the size and weight
+  of `alef_stam`. It was traced from a bitmap; `tool/import_traced_letter.py`
+  smooths and fits such a tracing, and the `_regular` is derived from it as for
+  the other letters.
+- Every clock draws the same hands: a long one up and a short one to the right,
+  round ended, 0.8 thick on the badges' faces and 1.7 on `clock_add`'s own (the
+  stroke is 0.2 plus 0.15 of the face), in the `_regular` and the `_filled`
+  alike - `alef_clock`, `document_clock`, `library_clock`, `link_clock` and
+  `clock_add`. They were Fluent's cut in the filled (0.5 thick) and a different
+  line in each regular.
+- `search_not_found_filled` and `search_check_filled`: the black circle round the
+  badge is closed. Inverted, the badge and the lens ring it overlaps were one
+  white area, and the circle was open from the crescent's tip to the outline.
 - `alef_1` ... `alef_5`: the five numerals are now one set. They were two
   drawings (1, 2 and 3 of unknown origin, 4 and 5 traced from Times New Roman
   Bold, which this repository may not redistribute) of different heights and

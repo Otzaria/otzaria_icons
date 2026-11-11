@@ -566,4 +566,6 @@ const generatedIconExpectations = <String, IconData>{
   'alef_alef_badge_24_regular': OtzariaIcons.alef_alef_badge_24_regular,
   'book_eye_24_filled': OtzariaIcons.book_eye_24_filled,
   'book_eye_24_regular': OtzariaIcons.book_eye_24_regular,
+  'vav_stam_24_filled': OtzariaIcons.vav_stam_24_filled,
+  'vav_stam_24_regular': OtzariaIcons.vav_stam_24_regular,
 };
