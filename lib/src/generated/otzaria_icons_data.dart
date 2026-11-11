@@ -4055,6 +4055,20 @@ abstract final class OtzariaIcons {
     fontPackage: fontPackage,
   );
 
+  /// `megillah_24_filled.svg`
+  static const IconData megillah_24_filled = IconData(
+    0xe242,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `megillah_24_regular.svg`
+  static const IconData megillah_24_regular = IconData(
+    0xe243,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
   /// Every icon in this library, keyed by its name.
   static const Map<String, IconData> allIcons = <String, IconData>{
     'book_24_filled': book_24_filled,
@@ -4644,5 +4658,7 @@ abstract final class OtzariaIcons {
     'link_auto_24_regular': link_auto_24_regular,
     'plugin_error_24_filled': plugin_error_24_filled,
     'plugin_error_24_regular': plugin_error_24_regular,
+    'megillah_24_filled': megillah_24_filled,
+    'megillah_24_regular': megillah_24_regular,
   };
 }

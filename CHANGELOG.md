@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+- `megillah`, `_regular` and `_filled` (2 glyphs, 580 in all): `torah_scroll`
+  with its left roller taken away - the Scroll of Esther is rolled on a single
+  roller, at the right, with the parchment and its two columns of text to the
+  left of it.
 - 4 new icons, `_regular` and `_filled` (8 glyphs, 578 in all): `book_cloud`,
   `link_auto` (a link with sparkles: made by the linker), `plugin_error` (the
   puzzle piece with an exclamation badge) and `dreidel`, drawn from plain

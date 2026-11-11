@@ -630,4 +630,6 @@ const generatedIconExpectations = <String, IconData>{
   'link_auto_24_regular': OtzariaIcons.link_auto_24_regular,
   'plugin_error_24_filled': OtzariaIcons.plugin_error_24_filled,
   'plugin_error_24_regular': OtzariaIcons.plugin_error_24_regular,
+  'megillah_24_filled': OtzariaIcons.megillah_24_filled,
+  'megillah_24_regular': OtzariaIcons.megillah_24_regular,
 };

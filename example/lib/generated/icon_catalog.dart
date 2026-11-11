@@ -869,4 +869,6 @@ const iconCatalog = <GalleryIcon>[
   GalleryIcon('link_auto_24_regular', OtzariaIcons.link_auto_24_regular),
   GalleryIcon('plugin_error_24_filled', OtzariaIcons.plugin_error_24_filled),
   GalleryIcon('plugin_error_24_regular', OtzariaIcons.plugin_error_24_regular),
+  GalleryIcon('megillah_24_filled', OtzariaIcons.megillah_24_filled),
+  GalleryIcon('megillah_24_regular', OtzariaIcons.megillah_24_regular),
 ];

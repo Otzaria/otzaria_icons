@@ -2315,9 +2315,42 @@ def _inverted_recipe(regular, fit=False):
 # filled keeps its solid disc; its own recipe below redraws only the plus.)
 for _base, _fit in [("booklet", False), ("booklet_empty", False),
                     ("dependent_library", True),
-                    ("torah_scroll", True)]:
+                    ("torah_scroll", True), ("megillah", True)]:
     RECIPES[_base + "_24_filled"] = _inverted_recipe(_base + "_24_regular", _fit)
     DEPENDS[_base + "_24_filled"] = _base + "_24_regular"
+
+
+@recipe("megillah_24_regular")
+def _megillah():
+    """`torah_scroll` with its left roller taken away: the Scroll of Esther is
+    rolled on one wooden roller (the etz chaim), at the right, and the parchment
+    runs out to the left of it.
+
+    The sheet keeps the Torah scroll's own drawing - its frame, its two columns
+    of text - and gets the left edge the roller used to give it; the whole is
+    then centred on the canvas."""
+    art = glyph("torah_scroll_24_regular")
+    # The sheet's left wall is the right wall of the left roller: it stands
+    # between x 5.62 and 6.06, and the roller, with its rims, is everything to
+    # the left of it.
+    # (The rims of that roller reach a little past it, above and below the sheet.)
+    sheet = (art - ic.rect(0, 0, 6.07, 24) - ic.rect(0, 0, 7.5, 5.9)
+             - ic.rect(0, 18.6, 7.5, 24))
+    top, bottom = 6.17, 18.30
+    wall = ic.rect(5.62, top, 6.08, bottom)
+    out = (sheet | wall).despeckle(0.5)
+    # The two corners on the left are rounded: the corner is cut off and the
+    # line goes round it as a quarter ring a little thicker than the wall.
+    r, t, x = 1.7, 0.7, 5.62
+    for y, up in ((top, True), (bottom, False)):
+        cy = y + r if up else y - r
+        disc = circle(x + r, cy, r)
+        quad = (ic.rect(x - 0.01, y - 0.01, x + r, cy) if up
+                else ic.rect(x - 0.01, cy, x + r, y + 0.01))
+        out = (out - (quad - disc)) | ((disc - circle(x + r, cy, r - t)) & quad)
+    out = out.despeckle(0.02)
+    x0, _, x1, _ = out.bounds
+    return out.translate(12 - (x0 + x1) / 2, 0), [], False
 
 
 # --------------------------------------------------------------------------
