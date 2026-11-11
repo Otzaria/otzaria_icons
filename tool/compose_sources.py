@@ -485,6 +485,15 @@ def sym_book_empty():
 
 # Marks already drawn at badge scale for the alef's disc, which is the only disc
 # they go on: they take neither scaling nor re-weighting.
+def sym_hash():
+    """The number sign: two upright bars crossed by two flat ones."""
+    out = Art()
+    for v in (-1.25, 1.25):
+        out = (out | round_rect(v - 0.55, -3.1, v + 0.55, 3.1, 0.55)
+               | round_rect(-3.1, v - 0.55, 3.1, v + 0.55, 0.55))
+    return out
+
+
 def sym_parallel():
     """Two slanted bars, "//": the sign for parallel. Upright they read as a
     pause button, and Fluent's two-column text icon as a table."""
@@ -493,6 +502,7 @@ def sym_parallel():
 
 
 DRAWN_SYMBOLS = {
+    "gematria": sym_hash,
     "parallel": sym_parallel,
     "exclamation": sym_exclamation,
     "lock": sym_lock,
@@ -2144,7 +2154,8 @@ for _kind, _name in [("scissors", "alef_scissors_24_filled"),
                      ("alef", "alef_alef_badge_24_filled"),
                      ("lock", "alef_lock_24_filled"),
                      ("crown", "alef_crown_24_filled"),
-                     ("check", "alef_check_24_filled")]:
+                     ("check", "alef_check_24_filled"),
+                     ("gematria", "alef_gematria_24_filled")]:
     RECIPES[_name] = alef_badge(_kind)
 
 for _kind, _name in [("copy", "link_copy_24_regular"),
@@ -2567,7 +2578,7 @@ LETTER_BADGED = (
     "alef_add", "alef_copy", "alef_crown", "alef_delete", "alef_eye",
     "alef_lips", "alef_lock", "alef_marker", "alef_scissors",
     "alef_eraser", "alef_exclamation", "alef_information", "alef_check",
-    "alef_alef_badge",
+    "alef_alef_badge", "alef_gematria",
 )
 LETTER_PLAIN = (
     "alef_1", "alef_2", "alef_3", "alef_4", "alef_5", "alef_alef",
@@ -2788,12 +2799,15 @@ ROUND1_MARKS = {
     "link": "link",
     "clock": "clock",
     "eye": "eye",
+    "note": "note",
+    "progress": "data_pie",
 }
 
 # Per-mark fitting boxes where the default block does not suit a mark's shape.
 # The chain sits in a wider, shorter band than the square-ish marks, so it can be
 # larger without touching the page's margin (interior x 5.5 to 18.5).
 ROUND1_BOX = {"link": (6.6, 9.5, 17.4, 18.5),
+              "tzurat_hadaf": (6.3, 10.1, 17.7, 19.1),
               # An eye is wider than it is tall, like the chain.
               "eye": (6.6, 7.3, 17.4, 15.5)}
 # A thin chain closes its own gaps when it is thickened at this size, so it
@@ -2802,6 +2816,13 @@ ROUND1_WEIGHT = {"link": 0.95}
 # How far the eye on a book reaches: as wide as the chain, which has the same box.
 EYE_BOOK_REACH = 5.9
 ROUND1_TURN = {}
+
+
+def _page_layout_mark(box):
+    """The set's own page of the Talmud - the drawing of
+    `book_open_tzurat_hadaf_24_filled`: a square of text with the commentaries
+    wrapped round it on both sides - fitted to `box`."""
+    return glyph("book_open_tzurat_hadaf_24_filled").fit(box)
 
 
 def fluent_mark(short, box):
@@ -2822,6 +2843,8 @@ def fluent_mark(short, box):
         r = min(box[2] - box[0], box[3] - box[1]) / 2
         return clock_face(r).translate((box[0] + box[2]) / 2,
                                        (box[1] + box[3]) / 2)
+    if short == "tzurat_hadaf":
+        return _page_layout_mark(box)
     if short == "eye":
         # The eye `alef_eye` carries - lid and pupil drawn apart, which a plain
         # fit and thickening of Fluent's closes into one blob.
@@ -2870,12 +2893,14 @@ ROUND1_BOOKS = {"book_checkmark": "checkmark", "book_bookmark": "bookmark",
                 "book_dismiss": "dismiss", "book_copy": "copy",
                 "book_settings": "settings", "book_lock": "lock",
                 "book_pin": "pin", "book_history": "history",
-                "book_eye": "eye"}
+                "book_eye": "eye", "book_note": "note",
+                "book_progress": "progress"}
 ROUND1_DOCUMENTS = {"document_checkmark": "checkmark", "document_edit": "edit",
                     "document_save": "save", "document_copy": "copy",
                     "document_lock": "lock", "document_link": "link",
                     "document_links": "links",
-                    "document_clock": "clock"}
+                    "document_clock": "clock",
+                    "document_tzurat_hadaf": "tzurat_hadaf"}
 
 for _stem, _short in ROUND1_BOOKS.items():
     for _filled in (False, True):
@@ -3142,9 +3167,10 @@ for _stem in SEARCH_MODES:
 CALENDAR_MARK_BOX = (8.0, 9.7, 16.0, 18.5)
 
 
-def _calendar_alef(filled):
+def _calendar_alef(filled, make_mark=None):
     def build():
-        mark = alef_solid().fit(CALENDAR_MARK_BOX)
+        mark = (make_mark() if make_mark
+                else alef_solid().fit(CALENDAR_MARK_BOX))
         if filled:
             cs = ic.contours(part("calendar_24_filled", 0))
             return cs[0] | cs[1], [mark], True
@@ -3158,6 +3184,143 @@ def _calendar_alef(filled):
 
 RECIPES["calendar_alef_24_regular"] = _calendar_alef(False)
 RECIPES["calendar_alef_24_filled"] = _calendar_alef(True)
+
+
+# --------------------------------------------------------------------------
+# Judaica: drawn from simple shapes, the `_regular` a line and the `_filled`
+# solid. Every outline is a difference of two shapes (the drawing and a smaller
+# copy of it), never a stroker's offset, so it is the same on every platform.
+# --------------------------------------------------------------------------
+JUDAICA_LINE = 1.5
+
+
+def _star_points(cx, cy, outer, inner, n, turn=-90.0):
+    pts = []
+    for i in range(2 * n):
+        r = outer if i % 2 == 0 else inner
+        a = math.radians(turn + i * 180.0 / n)
+        pts.append((cx + r * math.cos(a), cy + r * math.sin(a)))
+    return pts
+
+
+def _chanukiah(filled):
+    """Nine candles on a bowl: the shamash, a little taller, in the middle.
+
+    The bowl is the lower half of an ellipse, its two ends joined across by the
+    candle rail, so the candles stand on one line; the stem and the foot are the
+    same strokes the bowl is. Every round end is a round_rect, which makes the
+    drawing the same on every platform."""
+    def build():
+        w = 1.4 + (0.3 if filled else 0.0)
+        rail = 10.0
+        cw = 1.25 + (0.15 if filled else 0.0)
+        left, right = 2.4, 21.6
+        bowl = (ic.ellipse(12, rail, 9.6, 8.2)
+                - ic.ellipse(12, rail, 9.6 - w, 8.2 - w)) & ic.rect(0, rail, 24, 24)
+        art = (bowl
+               | round_rect(left, rail - w / 2, right, rail + w / 2, w / 2)
+               | round_rect(12 - w / 2, rail + 6.5, 12 + w / 2, 20.6, w / 2)
+               | round_rect(6.6, 20.6 - w / 2, 17.4, 20.6 + w / 2, w / 2))
+        for i in range(9):
+            x = left + cw / 2 + i * (right - left - cw) / 8
+            top = 2.4 if i == 4 else 4.6
+            art = art | round_rect(x - cw / 2, top, x + cw / 2, rail, cw / 2)
+        return sized(art), [], False
+    return build
+
+
+RECIPES["chanukiah_24_regular"] = _chanukiah(False)
+RECIPES["chanukiah_24_filled"] = _chanukiah(True)
+
+
+def _shofar_chain(shrink):
+    """A horn: a chain of circles that swell from a narrow mouthpiece to the
+    bell along a curve. With `shrink` each circle gives up that much radius, so
+    the union is exactly the horn's inner edge. Returns the chain and `band`,
+    which makes a strip across the horn `a` to `b` along its end (0 at the
+    bell's rim, negative inside it)."""
+    p0, p1, p2, p3 = (3.6, 14.6), (6.5, 22.5), (16.5, 19.5), (19.2, 8.6)
+    art = Art()
+    n = 90
+    for i in range(n + 1):
+        t = 1.12 * i / n
+        a, b, c, d = (1 - t) ** 3, 3 * t * (1 - t) ** 2, 3 * t * t * (1 - t), t ** 3
+        x = a * p0[0] + b * p1[0] + c * p2[0] + d * p3[0]
+        y = a * p0[1] + b * p1[1] + c * p2[1] + d * p3[1]
+        r = 1.1 + 3.1 * min(t, 1.0) - shrink
+        if r > 0.2:
+            art = art | circle(x, y, r)
+    tx, ty = p3[0] - p2[0], p3[1] - p2[1]
+    m = math.hypot(tx, ty)
+    tx, ty = tx / m, ty / m
+    nx, ny = -ty, tx
+    cx, cy = p3[0], p3[1]
+
+    def band(a, b):
+        return polygon([(cx + nx * 12 + tx * a, cy + ny * 12 + ty * a),
+                        (cx - nx * 12 + tx * a, cy - ny * 12 + ty * a),
+                        (cx - nx * 12 + tx * b, cy - ny * 12 + ty * b),
+                        (cx + nx * 12 + tx * b, cy + ny * 12 + ty * b)])
+    return art, band
+
+
+RIM = (-3.1, -2.2)
+
+
+def _shofar(filled):
+    """The bell is cut square across its end, so it is an opening and not a
+    ball, and banded a little inside it. The `_regular` is closed all round: its
+    inside stops a line's width short of the rim, and the band is ink across it."""
+    def build():
+        horn, band = _shofar_chain(0)
+        if filled:
+            return sized(horn - band(0, 12) - band(*RIM)), [], False
+        inner, _ = _shofar_chain(JUDAICA_LINE)
+        hole = inner - band(-JUDAICA_LINE, 12) - band(*RIM)
+        return sized((horn - band(0, 12)) - hole), [], False
+    return build
+
+
+RECIPES["shofar_24_regular"] = _shofar(False)
+RECIPES["shofar_24_filled"] = _shofar(True)
+
+
+def _stars_tzeis(filled):
+    def build():
+        art = Art()
+        for cx, cy, r in ((8.2, 15.4, 6.6), (17.2, 7.6, 4.6),
+                          (17.6, 17.8, 3.4)):
+            star = polygon(_star_points(cx, cy, r, r * 0.42, 5))
+            if filled:
+                art = art | star
+            else:
+                # The five-point star's inner vertices sit 0.42 out, and its
+                # edges 0.31 - shrunk about the centre to leave a line.
+                k = max(0.0, 1 - JUDAICA_LINE * (0.75 if r < 4 else 1.0)
+                        / (r * 0.31 * 2.2))
+                art = art | (star - star.scale(k, about=(cx, cy)))
+        return art, [], False
+    return build
+
+
+RECIPES["stars_tzeis_24_regular"] = _stars_tzeis(False)
+RECIPES["stars_tzeis_24_filled"] = _stars_tzeis(True)
+
+
+def _shabbat_candles():
+    """Two candles with a flame each, in the calendar's mark box."""
+    x0, y0, x1, y1 = CALENDAR_MARK_BOX
+    out = Art()
+    for cx in (x0 + 2.2, x1 - 2.2):
+        flame = circle(cx, y0 + 2.4, 0.85) | polygon(
+            [(cx - 0.8, y0 + 2.2), (cx, y0 - 0.3), (cx + 0.8, y0 + 2.2)])
+        out = (out | round_rect(cx - 1.0, y0 + 4.2, cx + 1.0, y1, 0.4)
+               | flame)
+    return out
+
+
+RECIPES["calendar_shabbat_24_regular"] = _calendar_alef(False, _shabbat_candles)
+RECIPES["calendar_shabbat_24_filled"] = _calendar_alef(True, _shabbat_candles)
 
 
 # library_*: Fluent's three standing books with a corner disc and a mark knocked

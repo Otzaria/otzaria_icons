@@ -2,6 +2,14 @@
 
 ## Unreleased
 
+- 8 new icons, `_regular` and `_filled` (16 glyphs, 570 in all): `book_note`,
+  `book_progress` and `document_tzurat_hadaf` (the page of the Talmud, the
+  drawing of `book_open_tzurat_hadaf` on a page), `alef_gematria` (a number sign
+  on the alef's badge), `calendar_shabbat` (two candles in the calendar's grid)
+  and the Jewish symbols `chanukiah`, `shofar` and `stars_tzeis`. The symbols
+  are drawn from plain shapes; their `_regular` is a line 1.5 wide made by
+  subtracting a smaller copy, not by a stroker, so it is identical on every
+  platform.
 - 8 new icons, `_regular` and `_filled` (16 glyphs, 554 in all): the library with
   a corner badge for what a library holds and does - `library_index`,
   `library_cloud`, `library_database`, `library_folder`, `library_import` - and

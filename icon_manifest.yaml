@@ -8310,3 +8310,243 @@ icons:
     author: Otzaria contributors
     license: MIT AND GPL-3.0-only
     upstream_commit: pub:fluentui_system_icons@1.1.273
+  - id: icon-0584
+    name: alef_gematria_24_filled
+    source: assets_src/svg/alef_gematria_24_filled.svg
+    codepoint: 0xe22a
+    variant: filled
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: custom
+    based_on: null
+    author: Otzaria contributors
+    license: GPL-3.0-only
+    upstream_commit: null
+  - id: icon-0585
+    name: alef_gematria_24_regular
+    source: assets_src/svg/alef_gematria_24_regular.svg
+    codepoint: 0xe22b
+    variant: regular
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: custom
+    based_on: null
+    author: Otzaria contributors
+    license: GPL-3.0-only
+    upstream_commit: null
+  - id: icon-0586
+    name: book_note_24_filled
+    source: assets_src/svg/book_note_24_filled.svg
+    codepoint: 0xe22c
+    variant: filled
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: modified_fluent
+    based_on: 'microsoft/fluentui-system-icons: note_24_filled (fluentui_system_icons 1.1.273)'
+    author: Otzaria contributors
+    license: MIT AND GPL-3.0-only
+    upstream_commit: pub:fluentui_system_icons@1.1.273
+  - id: icon-0587
+    name: book_note_24_regular
+    source: assets_src/svg/book_note_24_regular.svg
+    codepoint: 0xe22d
+    variant: regular
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: modified_fluent
+    based_on: 'microsoft/fluentui-system-icons: note_24_filled (fluentui_system_icons 1.1.273)'
+    author: Otzaria contributors
+    license: MIT AND GPL-3.0-only
+    upstream_commit: pub:fluentui_system_icons@1.1.273
+  - id: icon-0588
+    name: book_progress_24_filled
+    source: assets_src/svg/book_progress_24_filled.svg
+    codepoint: 0xe22e
+    variant: filled
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: modified_fluent
+    based_on: 'microsoft/fluentui-system-icons: data_pie_24_filled (fluentui_system_icons 1.1.273)'
+    author: Otzaria contributors
+    license: MIT AND GPL-3.0-only
+    upstream_commit: pub:fluentui_system_icons@1.1.273
+  - id: icon-0589
+    name: book_progress_24_regular
+    source: assets_src/svg/book_progress_24_regular.svg
+    codepoint: 0xe22f
+    variant: regular
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: modified_fluent
+    based_on: 'microsoft/fluentui-system-icons: data_pie_24_filled (fluentui_system_icons 1.1.273)'
+    author: Otzaria contributors
+    license: MIT AND GPL-3.0-only
+    upstream_commit: pub:fluentui_system_icons@1.1.273
+  - id: icon-0590
+    name: calendar_shabbat_24_filled
+    source: assets_src/svg/calendar_shabbat_24_filled.svg
+    codepoint: 0xe230
+    variant: filled
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: custom
+    based_on: null
+    author: Otzaria contributors
+    license: GPL-3.0-only
+    upstream_commit: null
+  - id: icon-0591
+    name: calendar_shabbat_24_regular
+    source: assets_src/svg/calendar_shabbat_24_regular.svg
+    codepoint: 0xe231
+    variant: regular
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: custom
+    based_on: null
+    author: Otzaria contributors
+    license: GPL-3.0-only
+    upstream_commit: null
+  - id: icon-0592
+    name: chanukiah_24_filled
+    source: assets_src/svg/chanukiah_24_filled.svg
+    codepoint: 0xe232
+    variant: filled
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: custom
+    based_on: null
+    author: Otzaria contributors
+    license: GPL-3.0-only
+    upstream_commit: null
+  - id: icon-0593
+    name: chanukiah_24_regular
+    source: assets_src/svg/chanukiah_24_regular.svg
+    codepoint: 0xe233
+    variant: regular
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: custom
+    based_on: null
+    author: Otzaria contributors
+    license: GPL-3.0-only
+    upstream_commit: null
+  - id: icon-0594
+    name: document_tzurat_hadaf_24_filled
+    source: assets_src/svg/document_tzurat_hadaf_24_filled.svg
+    codepoint: 0xe234
+    variant: filled
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: custom
+    based_on: null
+    author: Otzaria contributors
+    license: GPL-3.0-only
+    upstream_commit: null
+  - id: icon-0595
+    name: document_tzurat_hadaf_24_regular
+    source: assets_src/svg/document_tzurat_hadaf_24_regular.svg
+    codepoint: 0xe235
+    variant: regular
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: custom
+    based_on: null
+    author: Otzaria contributors
+    license: GPL-3.0-only
+    upstream_commit: null
+  - id: icon-0596
+    name: shofar_24_filled
+    source: assets_src/svg/shofar_24_filled.svg
+    codepoint: 0xe236
+    variant: filled
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: custom
+    based_on: null
+    author: Otzaria contributors
+    license: GPL-3.0-only
+    upstream_commit: null
+  - id: icon-0597
+    name: shofar_24_regular
+    source: assets_src/svg/shofar_24_regular.svg
+    codepoint: 0xe237
+    variant: regular
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: custom
+    based_on: null
+    author: Otzaria contributors
+    license: GPL-3.0-only
+    upstream_commit: null
+  - id: icon-0598
+    name: stars_tzeis_24_filled
+    source: assets_src/svg/stars_tzeis_24_filled.svg
+    codepoint: 0xe238
+    variant: filled
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: custom
+    based_on: null
+    author: Otzaria contributors
+    license: GPL-3.0-only
+    upstream_commit: null
+  - id: icon-0599
+    name: stars_tzeis_24_regular
+    source: assets_src/svg/stars_tzeis_24_regular.svg
+    codepoint: 0xe239
+    variant: regular
+    size: 24
+    match_text_direction: false
+    deprecated: false
+    upstream_status: missing
+    upstream_equivalent: null
+    origin: custom
+    based_on: null
+    author: Otzaria contributors
+    license: GPL-3.0-only
+    upstream_commit: null

@@ -3887,6 +3887,118 @@ abstract final class OtzariaIcons {
     fontPackage: fontPackage,
   );
 
+  /// `alef_gematria_24_filled.svg`
+  static const IconData alef_gematria_24_filled = IconData(
+    0xe22a,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `alef_gematria_24_regular.svg`
+  static const IconData alef_gematria_24_regular = IconData(
+    0xe22b,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `book_note_24_filled.svg`
+  static const IconData book_note_24_filled = IconData(
+    0xe22c,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `book_note_24_regular.svg`
+  static const IconData book_note_24_regular = IconData(
+    0xe22d,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `book_progress_24_filled.svg`
+  static const IconData book_progress_24_filled = IconData(
+    0xe22e,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `book_progress_24_regular.svg`
+  static const IconData book_progress_24_regular = IconData(
+    0xe22f,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `calendar_shabbat_24_filled.svg`
+  static const IconData calendar_shabbat_24_filled = IconData(
+    0xe230,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `calendar_shabbat_24_regular.svg`
+  static const IconData calendar_shabbat_24_regular = IconData(
+    0xe231,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `chanukiah_24_filled.svg`
+  static const IconData chanukiah_24_filled = IconData(
+    0xe232,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `chanukiah_24_regular.svg`
+  static const IconData chanukiah_24_regular = IconData(
+    0xe233,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `document_tzurat_hadaf_24_filled.svg`
+  static const IconData document_tzurat_hadaf_24_filled = IconData(
+    0xe234,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `document_tzurat_hadaf_24_regular.svg`
+  static const IconData document_tzurat_hadaf_24_regular = IconData(
+    0xe235,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `shofar_24_filled.svg`
+  static const IconData shofar_24_filled = IconData(
+    0xe236,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `shofar_24_regular.svg`
+  static const IconData shofar_24_regular = IconData(
+    0xe237,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `stars_tzeis_24_filled.svg`
+  static const IconData stars_tzeis_24_filled = IconData(
+    0xe238,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `stars_tzeis_24_regular.svg`
+  static const IconData stars_tzeis_24_regular = IconData(
+    0xe239,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
   /// Every icon in this library, keyed by its name.
   static const Map<String, IconData> allIcons = <String, IconData>{
     'book_24_filled': book_24_filled,
@@ -4452,5 +4564,21 @@ abstract final class OtzariaIcons {
     'link_parallel_24_regular': link_parallel_24_regular,
     'link_source_24_filled': link_source_24_filled,
     'link_source_24_regular': link_source_24_regular,
+    'alef_gematria_24_filled': alef_gematria_24_filled,
+    'alef_gematria_24_regular': alef_gematria_24_regular,
+    'book_note_24_filled': book_note_24_filled,
+    'book_note_24_regular': book_note_24_regular,
+    'book_progress_24_filled': book_progress_24_filled,
+    'book_progress_24_regular': book_progress_24_regular,
+    'calendar_shabbat_24_filled': calendar_shabbat_24_filled,
+    'calendar_shabbat_24_regular': calendar_shabbat_24_regular,
+    'chanukiah_24_filled': chanukiah_24_filled,
+    'chanukiah_24_regular': chanukiah_24_regular,
+    'document_tzurat_hadaf_24_filled': document_tzurat_hadaf_24_filled,
+    'document_tzurat_hadaf_24_regular': document_tzurat_hadaf_24_regular,
+    'shofar_24_filled': shofar_24_filled,
+    'shofar_24_regular': shofar_24_regular,
+    'stars_tzeis_24_filled': stars_tzeis_24_filled,
+    'stars_tzeis_24_regular': stars_tzeis_24_regular,
   };
 }

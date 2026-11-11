@@ -251,6 +251,10 @@ The following entries are derivative works and retain the provenance recorded in
 - `link_parallel_24_regular` — based on `microsoft/fluentui-system-icons: link_dismiss_24_regular (fluentui_system_icons 1.1.273)` at `pub:fluentui_system_icons@1.1.273`; license: MIT AND GPL-3.0-only.
 - `link_source_24_filled` — based on `microsoft/fluentui-system-icons: link_dismiss_24_filled, arrow_up_left_24_filled (fluentui_system_icons 1.1.273)` at `pub:fluentui_system_icons@1.1.273`; license: MIT AND GPL-3.0-only.
 - `link_source_24_regular` — based on `microsoft/fluentui-system-icons: link_dismiss_24_regular, arrow_up_left_24_filled (fluentui_system_icons 1.1.273)` at `pub:fluentui_system_icons@1.1.273`; license: MIT AND GPL-3.0-only.
+- `book_note_24_filled` — based on `microsoft/fluentui-system-icons: note_24_filled (fluentui_system_icons 1.1.273)` at `pub:fluentui_system_icons@1.1.273`; license: MIT AND GPL-3.0-only.
+- `book_note_24_regular` — based on `microsoft/fluentui-system-icons: note_24_filled (fluentui_system_icons 1.1.273)` at `pub:fluentui_system_icons@1.1.273`; license: MIT AND GPL-3.0-only.
+- `book_progress_24_filled` — based on `microsoft/fluentui-system-icons: data_pie_24_filled (fluentui_system_icons 1.1.273)` at `pub:fluentui_system_icons@1.1.273`; license: MIT AND GPL-3.0-only.
+- `book_progress_24_regular` — based on `microsoft/fluentui-system-icons: data_pie_24_filled (fluentui_system_icons 1.1.273)` at `pub:fluentui_system_icons@1.1.273`; license: MIT AND GPL-3.0-only.
 
 ## Fonts
 

@@ -604,4 +604,22 @@ const generatedIconExpectations = <String, IconData>{
   'link_parallel_24_regular': OtzariaIcons.link_parallel_24_regular,
   'link_source_24_filled': OtzariaIcons.link_source_24_filled,
   'link_source_24_regular': OtzariaIcons.link_source_24_regular,
+  'alef_gematria_24_filled': OtzariaIcons.alef_gematria_24_filled,
+  'alef_gematria_24_regular': OtzariaIcons.alef_gematria_24_regular,
+  'book_note_24_filled': OtzariaIcons.book_note_24_filled,
+  'book_note_24_regular': OtzariaIcons.book_note_24_regular,
+  'book_progress_24_filled': OtzariaIcons.book_progress_24_filled,
+  'book_progress_24_regular': OtzariaIcons.book_progress_24_regular,
+  'calendar_shabbat_24_filled': OtzariaIcons.calendar_shabbat_24_filled,
+  'calendar_shabbat_24_regular': OtzariaIcons.calendar_shabbat_24_regular,
+  'chanukiah_24_filled': OtzariaIcons.chanukiah_24_filled,
+  'chanukiah_24_regular': OtzariaIcons.chanukiah_24_regular,
+  'document_tzurat_hadaf_24_filled':
+      OtzariaIcons.document_tzurat_hadaf_24_filled,
+  'document_tzurat_hadaf_24_regular':
+      OtzariaIcons.document_tzurat_hadaf_24_regular,
+  'shofar_24_filled': OtzariaIcons.shofar_24_filled,
+  'shofar_24_regular': OtzariaIcons.shofar_24_regular,
+  'stars_tzeis_24_filled': OtzariaIcons.stars_tzeis_24_filled,
+  'stars_tzeis_24_regular': OtzariaIcons.stars_tzeis_24_regular,
 };
