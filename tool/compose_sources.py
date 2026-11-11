@@ -291,6 +291,10 @@ FLUENT_SYMBOLS = {
     "information": ("info_24_filled", 0),
 }
 
+# A diagonal arrow fills a round disc to its edge, where a box-shaped mark
+# leaves its corners clear: it is fitted smaller.
+SYMBOL_REACH_SCALE = {"source": 0.7}
+
 # Per-mark stroke weights, where the default does not suit.
 SYMBOL_WEIGHT = {
     # Fluent's cut is already the heaviest mark here - a 1.88 mean stroke
@@ -312,7 +316,8 @@ def sym_fluent(kind, reach):
     art = use_fluent(name)
     if turn:
         art = art.rotate(turn, about=art.centre)
-    return weighted(art, reach, SYMBOL_WEIGHT.get(kind, BADGE_MIN_STROKE))
+    return weighted(art, reach * SYMBOL_REACH_SCALE.get(kind, 1.0),
+                    SYMBOL_WEIGHT.get(kind, BADGE_MIN_STROKE))
 
 
 def sym_information(reach):
@@ -480,7 +485,15 @@ def sym_book_empty():
 
 # Marks already drawn at badge scale for the alef's disc, which is the only disc
 # they go on: they take neither scaling nor re-weighting.
+def sym_parallel():
+    """Two slanted bars, "//": the sign for parallel. Upright they read as a
+    pause button, and Fluent's two-column text icon as a table."""
+    return (round_rect(-2.3, -3.2, -0.8, 3.2, 0.75)
+            | round_rect(0.8, -3.2, 2.3, 3.2, 0.75)).rotate(28, about=(0, 0))
+
+
 DRAWN_SYMBOLS = {
+    "parallel": sym_parallel,
     "exclamation": sym_exclamation,
     "lock": sym_lock,
     "crown": sym_crown,
@@ -3250,6 +3263,25 @@ for _kind, _stem in (("clock", "alef_clock"), ("star", "alef_star"),
 for _kind, _stem in (("clock", "link_clock"), ("settings", "link_settings"),
                      ("download", "link_download"), ("upload", "link_upload"),
                      ("tag", "link_tag")):
+    RECIPES[_stem + "_24_regular"] = link_badge(_kind)
+    RECIPES[_stem + "_24_filled"] = link_badge(_kind, True)
+
+
+# library_* and link_*: the places and kinds of a link.
+FLUENT_SYMBOLS.update({
+    "cloud": ("cloud_24_filled", 0),
+    "index": ("text_bullet_list_rtl_24_filled", 0),
+    "import": ("arrow_import_24_filled", 0),
+    "database": ("database_24_filled", 0),
+    "source": ("arrow_up_left_24_filled", 0),
+})
+for _kind, _stem in (("index", "library_index"), ("cloud", "library_cloud"),
+                     ("folder", "library_folder"), ("import", "library_import"),
+                     ("database", "library_database")):
+    RECIPES[_stem + "_24_regular"] = _library_badged(_kind, False)
+    RECIPES[_stem + "_24_filled"] = _library_badged(_kind, True)
+for _kind, _stem in (("source", "link_source"), ("database", "link_database"),
+                     ("parallel", "link_parallel")):
     RECIPES[_stem + "_24_regular"] = link_badge(_kind)
     RECIPES[_stem + "_24_filled"] = link_badge(_kind, True)
 

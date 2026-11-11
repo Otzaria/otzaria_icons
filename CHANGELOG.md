@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+- 8 new icons, `_regular` and `_filled` (16 glyphs, 554 in all): the library with
+  a corner badge for what a library holds and does - `library_index`,
+  `library_cloud`, `library_database`, `library_folder`, `library_import` - and
+  the link with a badge for the kinds of a connection between texts -
+  `link_source`, `link_database` and `link_parallel` (a "//", the sign for
+  parallel).
 - 10 new icons, `_regular` and `_filled` (20 glyphs, 538 in all), the modes of a
   search, each a small drawing in the lens of `search`: `search_regex`,
   `search_fuzzy`, `search_proximity`, `search_whole_word`, `search_word_forms`,

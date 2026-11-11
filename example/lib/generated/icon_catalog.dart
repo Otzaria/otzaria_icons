@@ -813,4 +813,30 @@ const iconCatalog = <GalleryIcon>[
       'search_word_forms_24_filled', OtzariaIcons.search_word_forms_24_filled),
   GalleryIcon('search_word_forms_24_regular',
       OtzariaIcons.search_word_forms_24_regular),
+  GalleryIcon('library_cloud_24_filled', OtzariaIcons.library_cloud_24_filled),
+  GalleryIcon(
+      'library_cloud_24_regular', OtzariaIcons.library_cloud_24_regular),
+  GalleryIcon(
+      'library_database_24_filled', OtzariaIcons.library_database_24_filled),
+  GalleryIcon(
+      'library_database_24_regular', OtzariaIcons.library_database_24_regular),
+  GalleryIcon(
+      'library_folder_24_filled', OtzariaIcons.library_folder_24_filled),
+  GalleryIcon(
+      'library_folder_24_regular', OtzariaIcons.library_folder_24_regular),
+  GalleryIcon(
+      'library_import_24_filled', OtzariaIcons.library_import_24_filled),
+  GalleryIcon(
+      'library_import_24_regular', OtzariaIcons.library_import_24_regular),
+  GalleryIcon('library_index_24_filled', OtzariaIcons.library_index_24_filled),
+  GalleryIcon(
+      'library_index_24_regular', OtzariaIcons.library_index_24_regular),
+  GalleryIcon('link_database_24_filled', OtzariaIcons.link_database_24_filled),
+  GalleryIcon(
+      'link_database_24_regular', OtzariaIcons.link_database_24_regular),
+  GalleryIcon('link_parallel_24_filled', OtzariaIcons.link_parallel_24_filled),
+  GalleryIcon(
+      'link_parallel_24_regular', OtzariaIcons.link_parallel_24_regular),
+  GalleryIcon('link_source_24_filled', OtzariaIcons.link_source_24_filled),
+  GalleryIcon('link_source_24_regular', OtzariaIcons.link_source_24_regular),
 ];

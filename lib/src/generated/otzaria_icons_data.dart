@@ -3775,6 +3775,118 @@ abstract final class OtzariaIcons {
     fontPackage: fontPackage,
   );
 
+  /// `library_cloud_24_filled.svg`
+  static const IconData library_cloud_24_filled = IconData(
+    0xe21a,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `library_cloud_24_regular.svg`
+  static const IconData library_cloud_24_regular = IconData(
+    0xe21b,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `library_database_24_filled.svg`
+  static const IconData library_database_24_filled = IconData(
+    0xe21c,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `library_database_24_regular.svg`
+  static const IconData library_database_24_regular = IconData(
+    0xe21d,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `library_folder_24_filled.svg`
+  static const IconData library_folder_24_filled = IconData(
+    0xe21e,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `library_folder_24_regular.svg`
+  static const IconData library_folder_24_regular = IconData(
+    0xe21f,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `library_import_24_filled.svg`
+  static const IconData library_import_24_filled = IconData(
+    0xe220,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `library_import_24_regular.svg`
+  static const IconData library_import_24_regular = IconData(
+    0xe221,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `library_index_24_filled.svg`
+  static const IconData library_index_24_filled = IconData(
+    0xe222,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `library_index_24_regular.svg`
+  static const IconData library_index_24_regular = IconData(
+    0xe223,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `link_database_24_filled.svg`
+  static const IconData link_database_24_filled = IconData(
+    0xe224,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `link_database_24_regular.svg`
+  static const IconData link_database_24_regular = IconData(
+    0xe225,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `link_parallel_24_filled.svg`
+  static const IconData link_parallel_24_filled = IconData(
+    0xe226,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `link_parallel_24_regular.svg`
+  static const IconData link_parallel_24_regular = IconData(
+    0xe227,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `link_source_24_filled.svg`
+  static const IconData link_source_24_filled = IconData(
+    0xe228,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `link_source_24_regular.svg`
+  static const IconData link_source_24_regular = IconData(
+    0xe229,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
   /// Every icon in this library, keyed by its name.
   static const Map<String, IconData> allIcons = <String, IconData>{
     'book_24_filled': book_24_filled,
@@ -4324,5 +4436,21 @@ abstract final class OtzariaIcons {
     'search_whole_word_24_regular': search_whole_word_24_regular,
     'search_word_forms_24_filled': search_word_forms_24_filled,
     'search_word_forms_24_regular': search_word_forms_24_regular,
+    'library_cloud_24_filled': library_cloud_24_filled,
+    'library_cloud_24_regular': library_cloud_24_regular,
+    'library_database_24_filled': library_database_24_filled,
+    'library_database_24_regular': library_database_24_regular,
+    'library_folder_24_filled': library_folder_24_filled,
+    'library_folder_24_regular': library_folder_24_regular,
+    'library_import_24_filled': library_import_24_filled,
+    'library_import_24_regular': library_import_24_regular,
+    'library_index_24_filled': library_index_24_filled,
+    'library_index_24_regular': library_index_24_regular,
+    'link_database_24_filled': link_database_24_filled,
+    'link_database_24_regular': link_database_24_regular,
+    'link_parallel_24_filled': link_parallel_24_filled,
+    'link_parallel_24_regular': link_parallel_24_regular,
+    'link_source_24_filled': link_source_24_filled,
+    'link_source_24_regular': link_source_24_regular,
   };
 }

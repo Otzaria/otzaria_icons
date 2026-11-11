@@ -76,8 +76,6 @@ The following entries are derivative works and retain the provenance recorded in
 - `book_settings_24_regular` — based on `microsoft/fluentui-system-icons: settings_24_filled (fluentui_system_icons 1.1.273)` at `pub:fluentui_system_icons@1.1.273`; license: MIT AND GPL-3.0-only.
 - `document_checkmark_24_filled` — based on `microsoft/fluentui-system-icons: checkmark_24_filled (fluentui_system_icons 1.1.273)` at `pub:fluentui_system_icons@1.1.273`; license: MIT AND GPL-3.0-only.
 - `document_checkmark_24_regular` — based on `microsoft/fluentui-system-icons: checkmark_24_filled (fluentui_system_icons 1.1.273)` at `pub:fluentui_system_icons@1.1.273`; license: MIT AND GPL-3.0-only.
-- `document_clock_24_filled` — based on `microsoft/fluentui-system-icons: clock_24_filled (fluentui_system_icons 1.1.273)` at `pub:fluentui_system_icons@1.1.273`; license: MIT AND GPL-3.0-only.
-- `document_clock_24_regular` — based on `microsoft/fluentui-system-icons: clock_24_filled (fluentui_system_icons 1.1.273)` at `pub:fluentui_system_icons@1.1.273`; license: MIT AND GPL-3.0-only.
 - `document_copy_24_filled` — based on `microsoft/fluentui-system-icons: copy_24_filled (fluentui_system_icons 1.1.273)` at `pub:fluentui_system_icons@1.1.273`; license: MIT AND GPL-3.0-only.
 - `document_copy_24_regular` — based on `microsoft/fluentui-system-icons: copy_24_filled (fluentui_system_icons 1.1.273)` at `pub:fluentui_system_icons@1.1.273`; license: MIT AND GPL-3.0-only.
 - `document_edit_24_filled` — based on `microsoft/fluentui-system-icons: edit_24_filled (fluentui_system_icons 1.1.273)` at `pub:fluentui_system_icons@1.1.273`; license: MIT AND GPL-3.0-only.
@@ -125,8 +123,6 @@ The following entries are derivative works and retain the provenance recorded in
 - `text_hanging_24_regular` — based on `microsoft/fluentui-system-icons: text_hanging_24_regular (fluentui_system_icons 1.1.273)` at `pub:fluentui_system_icons@1.1.273`; license: MIT AND GPL-3.0-only.
 - `panel_right_contract_24_filled` — based on `microsoft/fluentui-system-icons: panel_left_contract_24_filled (fluentui_system_icons 1.1.273)` at `pub:fluentui_system_icons@1.1.273`; license: MIT AND GPL-3.0-only.
 - `panel_right_contract_24_regular` — based on `microsoft/fluentui-system-icons: panel_left_contract_24_regular (fluentui_system_icons 1.1.273)` at `pub:fluentui_system_icons@1.1.273`; license: MIT AND GPL-3.0-only.
-- `alef_clock_24_filled` — based on `microsoft/fluentui-system-icons: clock_24_filled (fluentui_system_icons 1.1.273)` at `pub:fluentui_system_icons@1.1.273`; license: MIT AND GPL-3.0-only.
-- `alef_clock_24_regular` — based on `microsoft/fluentui-system-icons: clock_24_filled (fluentui_system_icons 1.1.273)` at `pub:fluentui_system_icons@1.1.273`; license: MIT AND GPL-3.0-only.
 - `alef_download_24_filled` — based on `microsoft/fluentui-system-icons: arrow_download_24_filled (fluentui_system_icons 1.1.273)` at `pub:fluentui_system_icons@1.1.273`; license: MIT AND GPL-3.0-only.
 - `alef_download_24_regular` — based on `microsoft/fluentui-system-icons: arrow_download_24_filled (fluentui_system_icons 1.1.273)` at `pub:fluentui_system_icons@1.1.273`; license: MIT AND GPL-3.0-only.
 - `alef_star_24_filled` — based on `microsoft/fluentui-system-icons: star_24_filled (fluentui_system_icons 1.1.273)` at `pub:fluentui_system_icons@1.1.273`; license: MIT AND GPL-3.0-only.
@@ -161,7 +157,7 @@ The following entries are derivative works and retain the provenance recorded in
 - `document_tag_24_regular` — based on `microsoft/fluentui-system-icons: tag_24_filled (fluentui_system_icons 1.1.273)` at `pub:fluentui_system_icons@1.1.273`; license: MIT AND GPL-3.0-only.
 - `library_checkmark_24_filled` — based on `microsoft/fluentui-system-icons: library_24_filled, checkmark_24_filled (fluentui_system_icons 1.1.273)` at `pub:fluentui_system_icons@1.1.273`; license: MIT AND GPL-3.0-only.
 - `library_checkmark_24_regular` — based on `microsoft/fluentui-system-icons: library_24_regular, checkmark_24_filled (fluentui_system_icons 1.1.273)` at `pub:fluentui_system_icons@1.1.273`; license: MIT AND GPL-3.0-only.
-- `library_clock_24_filled` — based on `microsoft/fluentui-system-icons: library_24_filled, clock_24_filled (fluentui_system_icons 1.1.273)` at `pub:fluentui_system_icons@1.1.273`; license: MIT AND GPL-3.0-only.
+- `library_clock_24_filled` — based on `microsoft/fluentui-system-icons: library_24_filled (fluentui_system_icons 1.1.273)` at `pub:fluentui_system_icons@1.1.273`; license: MIT AND GPL-3.0-only.
 - `library_clock_24_regular` — based on `microsoft/fluentui-system-icons: library_24_regular (fluentui_system_icons 1.1.273)` at `pub:fluentui_system_icons@1.1.273`; license: MIT AND GPL-3.0-only.
 - `library_delete_24_filled` — based on `microsoft/fluentui-system-icons: library_24_filled, delete_24_filled (fluentui_system_icons 1.1.273)` at `pub:fluentui_system_icons@1.1.273`; license: MIT AND GPL-3.0-only.
 - `library_delete_24_regular` — based on `microsoft/fluentui-system-icons: library_24_regular, delete_24_filled (fluentui_system_icons 1.1.273)` at `pub:fluentui_system_icons@1.1.273`; license: MIT AND GPL-3.0-only.
@@ -185,7 +181,7 @@ The following entries are derivative works and retain the provenance recorded in
 - `library_star_24_regular` — based on `microsoft/fluentui-system-icons: library_24_regular, star_24_filled (fluentui_system_icons 1.1.273)` at `pub:fluentui_system_icons@1.1.273`; license: MIT AND GPL-3.0-only.
 - `library_upload_24_filled` — based on `microsoft/fluentui-system-icons: library_24_filled, arrow_upload_24_filled (fluentui_system_icons 1.1.273)` at `pub:fluentui_system_icons@1.1.273`; license: MIT AND GPL-3.0-only.
 - `library_upload_24_regular` — based on `microsoft/fluentui-system-icons: library_24_regular, arrow_upload_24_filled (fluentui_system_icons 1.1.273)` at `pub:fluentui_system_icons@1.1.273`; license: MIT AND GPL-3.0-only.
-- `link_clock_24_filled` — based on `microsoft/fluentui-system-icons: link_dismiss_24_filled, clock_24_filled (fluentui_system_icons 1.1.273)` at `pub:fluentui_system_icons@1.1.273`; license: MIT AND GPL-3.0-only.
+- `link_clock_24_filled` — based on `microsoft/fluentui-system-icons: link_dismiss_24_filled (fluentui_system_icons 1.1.273)` at `pub:fluentui_system_icons@1.1.273`; license: MIT AND GPL-3.0-only.
 - `link_clock_24_regular` — based on `microsoft/fluentui-system-icons: link_dismiss_24_regular (fluentui_system_icons 1.1.273)` at `pub:fluentui_system_icons@1.1.273`; license: MIT AND GPL-3.0-only.
 - `link_download_24_filled` — based on `microsoft/fluentui-system-icons: link_dismiss_24_filled, arrow_download_24_filled (fluentui_system_icons 1.1.273)` at `pub:fluentui_system_icons@1.1.273`; license: MIT AND GPL-3.0-only.
 - `link_download_24_regular` — based on `microsoft/fluentui-system-icons: link_dismiss_24_regular, arrow_download_24_filled (fluentui_system_icons 1.1.273)` at `pub:fluentui_system_icons@1.1.273`; license: MIT AND GPL-3.0-only.
@@ -239,6 +235,22 @@ The following entries are derivative works and retain the provenance recorded in
 - `text_citation_24_regular` — based on `microsoft/fluentui-system-icons: text_quote_24_filled (fluentui_system_icons 1.1.273)` at `pub:fluentui_system_icons@1.1.273`; license: MIT AND GPL-3.0-only.
 - `book_eye_24_filled` — based on `microsoft/fluentui-system-icons: eye_24_filled (fluentui_system_icons 1.1.273)` at `pub:fluentui_system_icons@1.1.273`; license: MIT AND GPL-3.0-only.
 - `book_eye_24_regular` — based on `microsoft/fluentui-system-icons: eye_24_filled (fluentui_system_icons 1.1.273)` at `pub:fluentui_system_icons@1.1.273`; license: MIT AND GPL-3.0-only.
+- `library_cloud_24_filled` — based on `microsoft/fluentui-system-icons: library_24_filled, cloud_24_filled (fluentui_system_icons 1.1.273)` at `pub:fluentui_system_icons@1.1.273`; license: MIT AND GPL-3.0-only.
+- `library_cloud_24_regular` — based on `microsoft/fluentui-system-icons: library_24_regular, cloud_24_filled (fluentui_system_icons 1.1.273)` at `pub:fluentui_system_icons@1.1.273`; license: MIT AND GPL-3.0-only.
+- `library_database_24_filled` — based on `microsoft/fluentui-system-icons: library_24_filled, database_24_filled (fluentui_system_icons 1.1.273)` at `pub:fluentui_system_icons@1.1.273`; license: MIT AND GPL-3.0-only.
+- `library_database_24_regular` — based on `microsoft/fluentui-system-icons: library_24_regular, database_24_filled (fluentui_system_icons 1.1.273)` at `pub:fluentui_system_icons@1.1.273`; license: MIT AND GPL-3.0-only.
+- `library_folder_24_filled` — based on `microsoft/fluentui-system-icons: library_24_filled, folder_24_filled (fluentui_system_icons 1.1.273)` at `pub:fluentui_system_icons@1.1.273`; license: MIT AND GPL-3.0-only.
+- `library_folder_24_regular` — based on `microsoft/fluentui-system-icons: library_24_regular, folder_24_filled (fluentui_system_icons 1.1.273)` at `pub:fluentui_system_icons@1.1.273`; license: MIT AND GPL-3.0-only.
+- `library_import_24_filled` — based on `microsoft/fluentui-system-icons: library_24_filled, arrow_import_24_filled (fluentui_system_icons 1.1.273)` at `pub:fluentui_system_icons@1.1.273`; license: MIT AND GPL-3.0-only.
+- `library_import_24_regular` — based on `microsoft/fluentui-system-icons: library_24_regular, arrow_import_24_filled (fluentui_system_icons 1.1.273)` at `pub:fluentui_system_icons@1.1.273`; license: MIT AND GPL-3.0-only.
+- `library_index_24_filled` — based on `microsoft/fluentui-system-icons: library_24_filled, text_bullet_list_rtl_24_filled (fluentui_system_icons 1.1.273)` at `pub:fluentui_system_icons@1.1.273`; license: MIT AND GPL-3.0-only.
+- `library_index_24_regular` — based on `microsoft/fluentui-system-icons: library_24_regular, text_bullet_list_rtl_24_filled (fluentui_system_icons 1.1.273)` at `pub:fluentui_system_icons@1.1.273`; license: MIT AND GPL-3.0-only.
+- `link_database_24_filled` — based on `microsoft/fluentui-system-icons: link_dismiss_24_filled, database_24_filled (fluentui_system_icons 1.1.273)` at `pub:fluentui_system_icons@1.1.273`; license: MIT AND GPL-3.0-only.
+- `link_database_24_regular` — based on `microsoft/fluentui-system-icons: link_dismiss_24_regular, database_24_filled (fluentui_system_icons 1.1.273)` at `pub:fluentui_system_icons@1.1.273`; license: MIT AND GPL-3.0-only.
+- `link_parallel_24_filled` — based on `microsoft/fluentui-system-icons: link_dismiss_24_filled (fluentui_system_icons 1.1.273)` at `pub:fluentui_system_icons@1.1.273`; license: MIT AND GPL-3.0-only.
+- `link_parallel_24_regular` — based on `microsoft/fluentui-system-icons: link_dismiss_24_regular (fluentui_system_icons 1.1.273)` at `pub:fluentui_system_icons@1.1.273`; license: MIT AND GPL-3.0-only.
+- `link_source_24_filled` — based on `microsoft/fluentui-system-icons: link_dismiss_24_filled, arrow_up_left_24_filled (fluentui_system_icons 1.1.273)` at `pub:fluentui_system_icons@1.1.273`; license: MIT AND GPL-3.0-only.
+- `link_source_24_regular` — based on `microsoft/fluentui-system-icons: link_dismiss_24_regular, arrow_up_left_24_filled (fluentui_system_icons 1.1.273)` at `pub:fluentui_system_icons@1.1.273`; license: MIT AND GPL-3.0-only.
 
 ## Fonts
 
