@@ -779,4 +779,38 @@ const iconCatalog = <GalleryIcon>[
   GalleryIcon('book_eye_24_regular', OtzariaIcons.book_eye_24_regular),
   GalleryIcon('vav_stam_24_filled', OtzariaIcons.vav_stam_24_filled),
   GalleryIcon('vav_stam_24_regular', OtzariaIcons.vav_stam_24_regular),
+  GalleryIcon('search_fuzzy_24_filled', OtzariaIcons.search_fuzzy_24_filled),
+  GalleryIcon('search_fuzzy_24_regular', OtzariaIcons.search_fuzzy_24_regular),
+  GalleryIcon(
+      'search_gematria_24_filled', OtzariaIcons.search_gematria_24_filled),
+  GalleryIcon(
+      'search_gematria_24_regular', OtzariaIcons.search_gematria_24_regular),
+  GalleryIcon('search_niqqud_24_filled', OtzariaIcons.search_niqqud_24_filled),
+  GalleryIcon(
+      'search_niqqud_24_regular', OtzariaIcons.search_niqqud_24_regular),
+  GalleryIcon(
+      'search_proximity_24_filled', OtzariaIcons.search_proximity_24_filled),
+  GalleryIcon(
+      'search_proximity_24_regular', OtzariaIcons.search_proximity_24_regular),
+  GalleryIcon(
+      'search_reference_24_filled', OtzariaIcons.search_reference_24_filled),
+  GalleryIcon(
+      'search_reference_24_regular', OtzariaIcons.search_reference_24_regular),
+  GalleryIcon('search_regex_24_filled', OtzariaIcons.search_regex_24_filled),
+  GalleryIcon('search_regex_24_regular', OtzariaIcons.search_regex_24_regular),
+  GalleryIcon(
+      'search_synonyms_24_filled', OtzariaIcons.search_synonyms_24_filled),
+  GalleryIcon(
+      'search_synonyms_24_regular', OtzariaIcons.search_synonyms_24_regular),
+  GalleryIcon('search_taamim_24_filled', OtzariaIcons.search_taamim_24_filled),
+  GalleryIcon(
+      'search_taamim_24_regular', OtzariaIcons.search_taamim_24_regular),
+  GalleryIcon(
+      'search_whole_word_24_filled', OtzariaIcons.search_whole_word_24_filled),
+  GalleryIcon('search_whole_word_24_regular',
+      OtzariaIcons.search_whole_word_24_regular),
+  GalleryIcon(
+      'search_word_forms_24_filled', OtzariaIcons.search_word_forms_24_filled),
+  GalleryIcon('search_word_forms_24_regular',
+      OtzariaIcons.search_word_forms_24_regular),
 ];

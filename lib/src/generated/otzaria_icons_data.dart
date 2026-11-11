@@ -3635,6 +3635,146 @@ abstract final class OtzariaIcons {
     fontPackage: fontPackage,
   );
 
+  /// `search_fuzzy_24_filled.svg`
+  static const IconData search_fuzzy_24_filled = IconData(
+    0xe206,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `search_fuzzy_24_regular.svg`
+  static const IconData search_fuzzy_24_regular = IconData(
+    0xe207,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `search_gematria_24_filled.svg`
+  static const IconData search_gematria_24_filled = IconData(
+    0xe208,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `search_gematria_24_regular.svg`
+  static const IconData search_gematria_24_regular = IconData(
+    0xe209,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `search_niqqud_24_filled.svg`
+  static const IconData search_niqqud_24_filled = IconData(
+    0xe20a,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `search_niqqud_24_regular.svg`
+  static const IconData search_niqqud_24_regular = IconData(
+    0xe20b,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `search_proximity_24_filled.svg`
+  static const IconData search_proximity_24_filled = IconData(
+    0xe20c,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `search_proximity_24_regular.svg`
+  static const IconData search_proximity_24_regular = IconData(
+    0xe20d,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `search_reference_24_filled.svg`
+  static const IconData search_reference_24_filled = IconData(
+    0xe20e,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `search_reference_24_regular.svg`
+  static const IconData search_reference_24_regular = IconData(
+    0xe20f,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `search_regex_24_filled.svg`
+  static const IconData search_regex_24_filled = IconData(
+    0xe210,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `search_regex_24_regular.svg`
+  static const IconData search_regex_24_regular = IconData(
+    0xe211,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `search_synonyms_24_filled.svg`
+  static const IconData search_synonyms_24_filled = IconData(
+    0xe212,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `search_synonyms_24_regular.svg`
+  static const IconData search_synonyms_24_regular = IconData(
+    0xe213,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `search_taamim_24_filled.svg`
+  static const IconData search_taamim_24_filled = IconData(
+    0xe214,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `search_taamim_24_regular.svg`
+  static const IconData search_taamim_24_regular = IconData(
+    0xe215,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `search_whole_word_24_filled.svg`
+  static const IconData search_whole_word_24_filled = IconData(
+    0xe216,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `search_whole_word_24_regular.svg`
+  static const IconData search_whole_word_24_regular = IconData(
+    0xe217,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `search_word_forms_24_filled.svg`
+  static const IconData search_word_forms_24_filled = IconData(
+    0xe218,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `search_word_forms_24_regular.svg`
+  static const IconData search_word_forms_24_regular = IconData(
+    0xe219,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
   /// Every icon in this library, keyed by its name.
   static const Map<String, IconData> allIcons = <String, IconData>{
     'book_24_filled': book_24_filled,
@@ -4164,5 +4304,25 @@ abstract final class OtzariaIcons {
     'book_eye_24_regular': book_eye_24_regular,
     'vav_stam_24_filled': vav_stam_24_filled,
     'vav_stam_24_regular': vav_stam_24_regular,
+    'search_fuzzy_24_filled': search_fuzzy_24_filled,
+    'search_fuzzy_24_regular': search_fuzzy_24_regular,
+    'search_gematria_24_filled': search_gematria_24_filled,
+    'search_gematria_24_regular': search_gematria_24_regular,
+    'search_niqqud_24_filled': search_niqqud_24_filled,
+    'search_niqqud_24_regular': search_niqqud_24_regular,
+    'search_proximity_24_filled': search_proximity_24_filled,
+    'search_proximity_24_regular': search_proximity_24_regular,
+    'search_reference_24_filled': search_reference_24_filled,
+    'search_reference_24_regular': search_reference_24_regular,
+    'search_regex_24_filled': search_regex_24_filled,
+    'search_regex_24_regular': search_regex_24_regular,
+    'search_synonyms_24_filled': search_synonyms_24_filled,
+    'search_synonyms_24_regular': search_synonyms_24_regular,
+    'search_taamim_24_filled': search_taamim_24_filled,
+    'search_taamim_24_regular': search_taamim_24_regular,
+    'search_whole_word_24_filled': search_whole_word_24_filled,
+    'search_whole_word_24_regular': search_whole_word_24_regular,
+    'search_word_forms_24_filled': search_word_forms_24_filled,
+    'search_word_forms_24_regular': search_word_forms_24_regular,
   };
 }

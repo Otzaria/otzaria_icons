@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+- 10 new icons, `_regular` and `_filled` (20 glyphs, 538 in all), the modes of a
+  search, each a small drawing in the lens of `search`: `search_regex`,
+  `search_fuzzy`, `search_proximity`, `search_whole_word`, `search_word_forms`,
+  `search_niqqud`, `search_taamim`, `search_gematria`, `search_synonyms` and
+  `search_reference`. They are the options of the app's search that had no
+  symbol of their own.
 - 3 new icons, `_regular` and `_filled` (6 glyphs, 518 in all):
   `book_eye` - a book with the eye of `alef_eye` on its cover, placed like the
   mark of `book_delete` - `alef_alef_badge`, an alef whose badge disc holds

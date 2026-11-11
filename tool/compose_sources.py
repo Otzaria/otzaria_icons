@@ -2997,6 +2997,133 @@ for _stem in SEARCH_IN_CONTENT:
     RECIPES[_f] = _search_in_filled
 
 
+# --------------------------------------------------------------------------
+# search_*: the ways of searching - a small drawing in the lens
+# --------------------------------------------------------------------------
+# `search_in_X` is "search inside X", and the drawing in the lens is X. These are
+# the modes of a search (a pattern, an approximate match, near words, whole words,
+# word forms, vowels, accents, gematria, alternatives, a reference), and the
+# drawing is the symbol that says it. They are drawn at the size they are used,
+# in a lens whose room is about 5 units out from its centre, with a line 1.3
+# thick - what `search_in_*` content is brought to - so none is rescaled.
+MODE_W = 1.3
+
+
+def _bar(x0, x1, y, h=MODE_W):
+    return round_rect(x0, y - h / 2, x1, y + h / 2, h / 2)
+
+
+def _arrow_head(tip, direction, size=1.5):
+    """Two strokes meeting at `tip`, opening backwards along `direction`."""
+    tx, ty = tip
+    dx, dy = direction
+    px, py = -dy, dx
+    return ic.stroke_line([(tx - dx * size + px * size, ty - dy * size + py * size),
+                           (tx, ty),
+                           (tx - dx * size - px * size, ty - dy * size - py * size)],
+                          MODE_W)
+
+
+def _mode_regex():
+    star = Art()
+    for deg in (90, 30, 150):
+        a = math.radians(deg)
+        dx, dy = math.cos(a) * 2.6, math.sin(a) * 2.6
+        star = star | ic.stroke_line([(1.7 - dx, -0.9 - dy), (1.7 + dx, -0.9 + dy)],
+                                     MODE_W)
+    return star | circle(-3.3, 2.0, 1.0)
+
+
+def _mode_fuzzy():
+    return ic.curve([(-4.2, 0.7), (-3.5, -2.0), (-1.3, -2.0), (0, 0),
+                     (1.3, 2.0), (3.5, 2.0), (4.2, -0.7)], MODE_W * 1.1)
+
+
+def _mode_proximity():
+    words = _bar(-4.8, -1.2, -2.6, 1.5) | _bar(1.2, 4.8, -2.6, 1.5)
+    arrow = (ic.stroke_line([(-3.8, 2.0), (3.8, 2.0)], MODE_W)
+             | _arrow_head((-3.8, 2.0), (-1, 0), 1.7)
+             | _arrow_head((3.8, 2.0), (1, 0), 1.7))
+    return words | arrow
+
+
+def _mode_whole_word():
+    left = ic.stroke_line([(-2.7, -3.3), (-4.2, -3.3), (-4.2, 3.3), (-2.7, 3.3)],
+                          MODE_W)
+    right = ic.stroke_line([(2.7, -3.3), (4.2, -3.3), (4.2, 3.3), (2.7, 3.3)],
+                           MODE_W)
+    return left | right | _bar(-2.0, 2.0, 0, 1.5)
+
+
+def _mode_word_forms():
+    letter = alef_solid().fit((-2.8, -3.9, 2.8, 3.9))
+    return (letter | ic.stroke_line([(-5.2, 0), (-3.9, 0)], MODE_W)
+            | ic.stroke_line([(3.9, 0), (5.2, 0)], MODE_W))
+
+
+def _mode_niqqud():
+    # The qamats is a small T under the letter, clear of the alef's foot.
+    letter = alef_solid().fit((-2.5, -5.0, 2.5, 0.7))
+    qamats = (_bar(-1.7, 1.7, 2.6, 1.2)
+              | round_rect(-0.6, 2.6, 0.6, 5.0, 0.6))
+    return letter | qamats
+
+
+def _mode_taamim():
+    letter = alef_solid().fit((-2.9, -4.9, 2.9, 1.9))
+    etnachta = ic.stroke_line([(-1.6, 5.0), (0, 3.0), (1.6, 5.0)], MODE_W)
+    return letter | etnachta
+
+
+def _mode_gematria():
+    lines = Art()
+    for v in (-1.35, 1.35):
+        lines = (lines | ic.stroke_line([(v, -3.5), (v, 3.5)], MODE_W)
+                 | ic.stroke_line([(-3.5, v), (3.5, v)], MODE_W))
+    return lines
+
+
+def _mode_synonyms():
+    top = (ic.stroke_line([(-3.9, -1.6), (3.9, -1.6)], MODE_W)
+           | _arrow_head((3.9, -1.6), (1, 0)))
+    bottom = (ic.stroke_line([(3.9, 1.6), (-3.9, 1.6)], MODE_W)
+              | _arrow_head((-3.9, 1.6), (-1, 0)))
+    return top | bottom
+
+
+def _mode_reference():
+    return (_bar(-4.7, -1.8, 0) | _bar(1.8, 4.7, 0)
+            | circle(0, -1.3, 0.85) | circle(0, 1.3, 0.85))
+
+
+SEARCH_MODES = {
+    "search_regex": _mode_regex, "search_fuzzy": _mode_fuzzy,
+    "search_proximity": _mode_proximity, "search_whole_word": _mode_whole_word,
+    "search_word_forms": _mode_word_forms, "search_niqqud": _mode_niqqud,
+    "search_taamim": _mode_taamim, "search_gematria": _mode_gematria,
+    "search_synonyms": _mode_synonyms, "search_reference": _mode_reference,
+}
+
+
+def _search_mode_new(stem):
+    def build():
+        outer, lens = search_ring()
+        content = SEARCH_MODES[stem]().centred_on(*SEARCH_CENTRE)
+        return (outer - lens) | content, [], False
+    return build
+
+
+for _stem in SEARCH_MODES:
+    _r, _f = _stem + "_24_regular", _stem + "_24_filled"
+    RECIPES[_r] = _search_mode_new(_stem)
+    DEPENDS[_f] = _r
+
+    def _search_mode_filled(base=_r):
+        solid, cuts = inverted(base, edge=SEARCH_FILLED_EDGE)
+        return sized(solid), cuts, False
+    RECIPES[_f] = _search_mode_filled
+
+
 # calendar_alef: the set's calendar with the five dots of its grid replaced by
 # an alef, placed the way `document_alef` places it on its page.
 CALENDAR_MARK_BOX = (8.0, 9.7, 16.0, 18.5)
