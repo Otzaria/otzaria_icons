@@ -4069,6 +4069,146 @@ abstract final class OtzariaIcons {
     fontPackage: fontPackage,
   );
 
+  /// `note_copy_24_filled.svg`
+  static const IconData note_copy_24_filled = IconData(
+    0xe244,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `note_copy_24_regular.svg`
+  static const IconData note_copy_24_regular = IconData(
+    0xe245,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `note_delete_24_filled.svg`
+  static const IconData note_delete_24_filled = IconData(
+    0xe246,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `note_delete_24_regular.svg`
+  static const IconData note_delete_24_regular = IconData(
+    0xe247,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `note_eraser_24_filled.svg`
+  static const IconData note_eraser_24_filled = IconData(
+    0xe248,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `note_eraser_24_regular.svg`
+  static const IconData note_eraser_24_regular = IconData(
+    0xe249,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `note_exclamation_24_filled.svg`
+  static const IconData note_exclamation_24_filled = IconData(
+    0xe24a,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `note_exclamation_24_regular.svg`
+  static const IconData note_exclamation_24_regular = IconData(
+    0xe24b,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `note_export_24_filled.svg`
+  static const IconData note_export_24_filled = IconData(
+    0xe24c,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `note_export_24_regular.svg`
+  static const IconData note_export_24_regular = IconData(
+    0xe24d,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `note_lock_24_filled.svg`
+  static const IconData note_lock_24_filled = IconData(
+    0xe24e,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `note_lock_24_regular.svg`
+  static const IconData note_lock_24_regular = IconData(
+    0xe24f,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `note_marker_24_filled.svg`
+  static const IconData note_marker_24_filled = IconData(
+    0xe250,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `note_marker_24_regular.svg`
+  static const IconData note_marker_24_regular = IconData(
+    0xe251,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `note_search_24_filled.svg`
+  static const IconData note_search_24_filled = IconData(
+    0xe252,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `note_search_24_regular.svg`
+  static const IconData note_search_24_regular = IconData(
+    0xe253,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `note_star_24_filled.svg`
+  static const IconData note_star_24_filled = IconData(
+    0xe254,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `note_star_24_regular.svg`
+  static const IconData note_star_24_regular = IconData(
+    0xe255,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `note_tag_24_filled.svg`
+  static const IconData note_tag_24_filled = IconData(
+    0xe256,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `note_tag_24_regular.svg`
+  static const IconData note_tag_24_regular = IconData(
+    0xe257,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
   /// Every icon in this library, keyed by its name.
   static const Map<String, IconData> allIcons = <String, IconData>{
     'book_24_filled': book_24_filled,
@@ -4660,5 +4800,25 @@ abstract final class OtzariaIcons {
     'plugin_error_24_regular': plugin_error_24_regular,
     'megillah_24_filled': megillah_24_filled,
     'megillah_24_regular': megillah_24_regular,
+    'note_copy_24_filled': note_copy_24_filled,
+    'note_copy_24_regular': note_copy_24_regular,
+    'note_delete_24_filled': note_delete_24_filled,
+    'note_delete_24_regular': note_delete_24_regular,
+    'note_eraser_24_filled': note_eraser_24_filled,
+    'note_eraser_24_regular': note_eraser_24_regular,
+    'note_exclamation_24_filled': note_exclamation_24_filled,
+    'note_exclamation_24_regular': note_exclamation_24_regular,
+    'note_export_24_filled': note_export_24_filled,
+    'note_export_24_regular': note_export_24_regular,
+    'note_lock_24_filled': note_lock_24_filled,
+    'note_lock_24_regular': note_lock_24_regular,
+    'note_marker_24_filled': note_marker_24_filled,
+    'note_marker_24_regular': note_marker_24_regular,
+    'note_search_24_filled': note_search_24_filled,
+    'note_search_24_regular': note_search_24_regular,
+    'note_star_24_filled': note_star_24_filled,
+    'note_star_24_regular': note_star_24_regular,
+    'note_tag_24_filled': note_tag_24_filled,
+    'note_tag_24_regular': note_tag_24_regular,
   };
 }

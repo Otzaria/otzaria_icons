@@ -3482,6 +3482,25 @@ RECIPES["plugin_error_24_filled"] = _library_badged(
     "exclamation", True, "puzzle_piece", PLUGIN_ERROR_DISC)
 
 
+# note_*: Fluent's sticky note - its folded corner at the bottom right - with a
+# disc at the top left, where Fluent puts the plus of its own `note_add`.
+NOTE_DISC = (6.9, 6.9, 5.5)
+
+
+def _note_badged(kind, filled):
+    return _library_badged(kind, filled, "note", NOTE_DISC)
+
+
+NOTE_BADGES = (("delete", "note_delete"), ("search", "note_search"),
+               ("lock", "note_lock"), ("star", "note_star"),
+               ("tag", "note_tag"), ("marker", "note_marker"),
+               ("eraser", "note_eraser"), ("copy", "note_copy"),
+               ("download", "note_export"), ("exclamation", "note_exclamation"))
+for _kind, _stem in NOTE_BADGES:
+    RECIPES[_stem + "_24_regular"] = _note_badged(_kind, False)
+    RECIPES[_stem + "_24_filled"] = _note_badged(_kind, True)
+
+
 # --------------------------------------------------------------------------
 # Round 3
 # --------------------------------------------------------------------------

@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+- 10 new note icons, `_regular` and `_filled` (20 glyphs, 600 in all): Fluent's
+  sticky note with a badge at its top left, as Fluent puts the plus on its own
+  `note_add` - `note_delete`, `note_search`, `note_lock`, `note_star`,
+  `note_tag`, `note_marker` (a highlighter), `note_eraser` (takes a highlight
+  off), `note_copy`, `note_export` and `note_exclamation`.
 - Refinements: the circling arrows of `book_refresh` and `book_history` are
   now drawn as a ring with a barbed head instead of Fluent's arrow thickened to
   fit (which ran the head into the ring and blurred at 24 px); the corner

@@ -257,6 +257,26 @@ The following entries are derivative works and retain the provenance recorded in
 - `link_auto_24_regular` — based on `microsoft/fluentui-system-icons: link_dismiss_24_regular, sparkle_24_filled (fluentui_system_icons 1.1.273)` at `pub:fluentui_system_icons@1.1.273`; license: MIT AND GPL-3.0-only.
 - `plugin_error_24_filled` — based on `microsoft/fluentui-system-icons: puzzle_piece_24_filled (fluentui_system_icons 1.1.273)` at `pub:fluentui_system_icons@1.1.273`; license: MIT AND GPL-3.0-only.
 - `plugin_error_24_regular` — based on `microsoft/fluentui-system-icons: puzzle_piece_24_regular (fluentui_system_icons 1.1.273)` at `pub:fluentui_system_icons@1.1.273`; license: MIT AND GPL-3.0-only.
+- `note_copy_24_filled` — based on `microsoft/fluentui-system-icons: note_24_filled (fluentui_system_icons 1.1.273)` at `pub:fluentui_system_icons@1.1.273`; license: MIT AND GPL-3.0-only.
+- `note_copy_24_regular` — based on `microsoft/fluentui-system-icons: note_24_regular (fluentui_system_icons 1.1.273)` at `pub:fluentui_system_icons@1.1.273`; license: MIT AND GPL-3.0-only.
+- `note_delete_24_filled` — based on `microsoft/fluentui-system-icons: note_24_filled, delete_24_filled (fluentui_system_icons 1.1.273)` at `pub:fluentui_system_icons@1.1.273`; license: MIT AND GPL-3.0-only.
+- `note_delete_24_regular` — based on `microsoft/fluentui-system-icons: note_24_regular, delete_24_filled (fluentui_system_icons 1.1.273)` at `pub:fluentui_system_icons@1.1.273`; license: MIT AND GPL-3.0-only.
+- `note_eraser_24_filled` — based on `microsoft/fluentui-system-icons: note_24_filled, eraser_24_filled (fluentui_system_icons 1.1.273)` at `pub:fluentui_system_icons@1.1.273`; license: MIT AND GPL-3.0-only.
+- `note_eraser_24_regular` — based on `microsoft/fluentui-system-icons: note_24_regular, eraser_24_filled (fluentui_system_icons 1.1.273)` at `pub:fluentui_system_icons@1.1.273`; license: MIT AND GPL-3.0-only.
+- `note_exclamation_24_filled` — based on `microsoft/fluentui-system-icons: note_24_filled (fluentui_system_icons 1.1.273)` at `pub:fluentui_system_icons@1.1.273`; license: MIT AND GPL-3.0-only.
+- `note_exclamation_24_regular` — based on `microsoft/fluentui-system-icons: note_24_regular (fluentui_system_icons 1.1.273)` at `pub:fluentui_system_icons@1.1.273`; license: MIT AND GPL-3.0-only.
+- `note_export_24_filled` — based on `microsoft/fluentui-system-icons: note_24_filled, arrow_download_24_filled (fluentui_system_icons 1.1.273)` at `pub:fluentui_system_icons@1.1.273`; license: MIT AND GPL-3.0-only.
+- `note_export_24_regular` — based on `microsoft/fluentui-system-icons: note_24_regular, arrow_download_24_filled (fluentui_system_icons 1.1.273)` at `pub:fluentui_system_icons@1.1.273`; license: MIT AND GPL-3.0-only.
+- `note_lock_24_filled` — based on `microsoft/fluentui-system-icons: note_24_filled (fluentui_system_icons 1.1.273)` at `pub:fluentui_system_icons@1.1.273`; license: MIT AND GPL-3.0-only.
+- `note_lock_24_regular` — based on `microsoft/fluentui-system-icons: note_24_regular (fluentui_system_icons 1.1.273)` at `pub:fluentui_system_icons@1.1.273`; license: MIT AND GPL-3.0-only.
+- `note_marker_24_filled` — based on `microsoft/fluentui-system-icons: note_24_filled, highlight_24_filled (fluentui_system_icons 1.1.273)` at `pub:fluentui_system_icons@1.1.273`; license: MIT AND GPL-3.0-only.
+- `note_marker_24_regular` — based on `microsoft/fluentui-system-icons: note_24_regular, highlight_24_filled (fluentui_system_icons 1.1.273)` at `pub:fluentui_system_icons@1.1.273`; license: MIT AND GPL-3.0-only.
+- `note_search_24_filled` — based on `microsoft/fluentui-system-icons: note_24_filled, search_24_filled (fluentui_system_icons 1.1.273)` at `pub:fluentui_system_icons@1.1.273`; license: MIT AND GPL-3.0-only.
+- `note_search_24_regular` — based on `microsoft/fluentui-system-icons: note_24_regular, search_24_filled (fluentui_system_icons 1.1.273)` at `pub:fluentui_system_icons@1.1.273`; license: MIT AND GPL-3.0-only.
+- `note_star_24_filled` — based on `microsoft/fluentui-system-icons: note_24_filled, star_24_filled (fluentui_system_icons 1.1.273)` at `pub:fluentui_system_icons@1.1.273`; license: MIT AND GPL-3.0-only.
+- `note_star_24_regular` — based on `microsoft/fluentui-system-icons: note_24_regular, star_24_filled (fluentui_system_icons 1.1.273)` at `pub:fluentui_system_icons@1.1.273`; license: MIT AND GPL-3.0-only.
+- `note_tag_24_filled` — based on `microsoft/fluentui-system-icons: note_24_filled, tag_24_filled (fluentui_system_icons 1.1.273)` at `pub:fluentui_system_icons@1.1.273`; license: MIT AND GPL-3.0-only.
+- `note_tag_24_regular` — based on `microsoft/fluentui-system-icons: note_24_regular, tag_24_filled (fluentui_system_icons 1.1.273)` at `pub:fluentui_system_icons@1.1.273`; license: MIT AND GPL-3.0-only.
 
 ## Fonts
 
