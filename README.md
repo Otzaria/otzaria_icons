@@ -55,7 +55,7 @@ dependencies:
   otzaria_icons:
     git:
       url: https://github.com/Otzaria/otzaria_icons
-      ref: v0.7.0
+      ref: v0.8.0
 ```
 
 Then fetch dependencies:

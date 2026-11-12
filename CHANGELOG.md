@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 0.8.0 - 2026-11-12
 
 - 10 new note icons, `_regular` and `_filled` (20 glyphs, 600 in all): Fluent's
   sticky note with a badge at its top left, as Fluent puts the plus on its own
