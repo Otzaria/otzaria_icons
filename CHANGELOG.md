@@ -1,5 +1,89 @@
 # Changelog
 
+## Unreleased
+
+- 10 new note icons, `_regular` and `_filled` (20 glyphs, 600 in all): Fluent's
+  sticky note with a badge at its top left, as Fluent puts the plus on its own
+  `note_add` - `note_delete`, `note_search`, `note_lock`, `note_star`,
+  `note_tag`, `note_marker` (a highlighter), `note_eraser` (takes a highlight
+  off), `note_copy`, `note_export` and `note_exclamation`.
+- Refinements: the circling arrows of `book_refresh` and `book_history` are
+  now drawn as a ring with a barbed head instead of Fluent's arrow thickened to
+  fit (which ran the head into the ring and blurred at 24 px); the corner
+  discs of the `library_*` family are a little larger (radius 5.7 instead of
+  5.2); and the qamats of `search_niqqud` is smaller and thinner.
+- `megillah`, `_regular` and `_filled` (2 glyphs, 580 in all): `torah_scroll`
+  with its left roller taken away - the Scroll of Esther is rolled on a single
+  roller, at the right, with the parchment and its two columns of text to the
+  left of it.
+- 4 new icons, `_regular` and `_filled` (8 glyphs, 578 in all): `book_cloud`,
+  `link_auto` (a link with sparkles: made by the linker), `plugin_error` (the
+  puzzle piece with an exclamation badge) and `dreidel`, drawn from plain
+  shapes like the other symbols.
+- 8 new icons, `_regular` and `_filled` (16 glyphs, 570 in all): `book_note`,
+  `book_progress` and `document_tzurat_hadaf` (the page of the Talmud, the
+  drawing of `book_open_tzurat_hadaf` on a page), `alef_gematria` (a number sign
+  on the alef's badge), `calendar_shabbat` (two candles in the calendar's grid)
+  and the Jewish symbols `chanukiah`, `shofar` and `stars_tzeis`. The symbols
+  are drawn from plain shapes; their `_regular` is a line 1.5 wide made by
+  subtracting a smaller copy, not by a stroker, so it is identical on every
+  platform.
+- 8 new icons, `_regular` and `_filled` (16 glyphs, 554 in all): the library with
+  a corner badge for what a library holds and does - `library_index`,
+  `library_cloud`, `library_database`, `library_folder`, `library_import` - and
+  the link with a badge for the kinds of a connection between texts -
+  `link_source`, `link_database` and `link_parallel` (a "//", the sign for
+  parallel).
+- 10 new icons, `_regular` and `_filled` (20 glyphs, 538 in all), the modes of a
+  search, each a small drawing in the lens of `search`: `search_regex`,
+  `search_fuzzy`, `search_proximity`, `search_whole_word`, `search_word_forms`,
+  `search_niqqud`, `search_taamim`, `search_gematria`, `search_synonyms` and
+  `search_reference`. They are the options of the app's search that had no
+  symbol of their own.
+- 3 new icons, `_regular` and `_filled` (6 glyphs, 518 in all):
+  `book_eye` - a book with the eye of `alef_eye` on its cover, placed like the
+  mark of `book_delete` - `alef_alef_badge`, an alef whose badge disc holds
+  another alef, and `vav_stam`, a vav in the Stam script at the size and weight
+  of `alef_stam`. It was traced from a bitmap; `tool/import_traced_letter.py`
+  smooths and fits such a tracing, and the `_regular` is derived from it as for
+  the other letters.
+- Every clock draws the same hands: a long one up and a short one to the right,
+  round ended, 0.8 thick on the badges' faces and 1.7 on `clock_add`'s own (the
+  stroke is 0.2 plus 0.15 of the face), in the `_regular` and the `_filled`
+  alike - `alef_clock`, `document_clock`, `library_clock`, `link_clock` and
+  `clock_add`. They were Fluent's cut in the filled (0.5 thick) and a different
+  line in each regular.
+- `search_not_found_filled` and `search_check_filled`: the black circle round the
+  badge is closed. Inverted, the badge and the lens ring it overlaps were one
+  white area, and the circle was open from the crescent's tip to the outline.
+- `alef_1` ... `alef_5`: the five numerals are now one set. They were two
+  drawings (1, 2 and 3 of unknown origin, 4 and 5 traced from Times New Roman
+  Bold, which this repository may not redistribute) of different heights and
+  weights; all five are now cut from Tinos (Apache-2.0, see
+  `THIRD_PARTY_NOTICES.md`) with a shared baseline, height, column and weight.
+  `tool/numerals_from_tinos.py` regenerates them (condensed to 0.75 so they fit
+  beside the alef's foot, with a 0.3 gap cut from the alef). The numeral beside
+  the alef of `text_font_number_hebrew` follows.
+- The plus is one drawing: two round-ended bars `PLUS_STROKE` (1.5) thick, in
+  `alef_add`, `book_add`, `clock_add`, `library_add` and `link_add` - knocked out
+  of the disc in the `_filled`, as ink inside the ring in the `_regular` - and
+  in Fluent's own badge on `notebook_add`, `panel_right_add`,
+  `panel_right_header_add`, `panel_right_text_add` and `text_bullet_list_add`.
+  Before, the filled badges drew it 2.8 thick with square ends, the regular ones
+  1.1, and Fluent's 1.0.
+- The 46 `_regular` icons that carried a badge as a solid disc with the mark
+  knocked out of it (`book_add`, `clock_add`, `library_*`, `link_*`,
+  `search_check`, `search_not_found`; issue #6) now carry it as a ring one unit
+  thick with the mark drawn as ink inside it, as the `alef_*` badges already
+  did. At 48 px and up the solid disc was a heavy black blot beside the line
+  drawing around it. The icon is cut back from the ring, the badge keeps its
+  size and place, and the `_filled` variants are unchanged. The ring is two
+  true circles; the library's marks keep more air from it (0.95). The plus of
+  `book_add`, `clock_add`, `library_add` and `link_add`, and the hands of
+  `library_clock` and `link_clock`, are drawn as lines for the ring. Codepoints
+  and names are unchanged; the artwork of those 46 `_regular` glyphs is not, so
+  an application that shows one of them solid will see an outline.
+
 ## 0.7.0 - 2026-10-25
 
 116 new icons, each with a `_regular` and a `_filled` variant: the set grows

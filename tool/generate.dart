@@ -725,6 +725,17 @@ String _generateNotices(List<ManifestIcon> icons) {
       );
     }
   }
+  buffer
+    ..writeln()
+    ..writeln('## Fonts')
+    ..writeln()
+    ..writeln(
+      'The numerals in `alef_1` to `alef_5` are outlines of the digits 1-5 of '
+      'Tinos Regular, thickened and set beside the alef (see '
+      '`tool/numerals_from_tinos.py`). Tinos is copyright (c) 2010-2012 '
+      'Google Corporation and is licensed under the Apache License, '
+      'Version 2.0 (https://www.apache.org/licenses/LICENSE-2.0).',
+    );
   return buffer.toString();
 }
 

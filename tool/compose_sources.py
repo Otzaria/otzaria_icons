@@ -144,6 +144,12 @@ def place(art):
     return art.centred_on(BADGE_CX, BADGE_CY)
 
 
+# How much of its usual weight a mark is given (and of the hole it keeps open):
+# set around the build of a mark that has to be fitted into a small ring, where
+# the usual weight closes its counters. See `ringed`.
+_MARK_LIGHT = [1.0]
+
+
 def weighted(art, reach, weight=BADGE_MIN_STROKE):
     """Fit a mark to `reach` units of ink from its centre, then put its stroke
     weight back, and centre it on the origin ready for `place`.
@@ -155,9 +161,10 @@ def weighted(art, reach, weight=BADGE_MIN_STROKE):
     """
     art = art.fit_radius(reach)
     have = art.mean_stroke()
+    weight *= _MARK_LIGHT[0]
     if have and have < weight:
         art = art.grow((weight - have) / 2)
-    return art.fill_holes(BADGE_MIN_HOLE).centred_on(0, 0)
+    return art.fill_holes(BADGE_MIN_HOLE * _MARK_LIGHT[0] ** 2).centred_on(0, 0)
 
 
 # Which Fluent icons the recipe currently building has drawn on. Provenance has
@@ -195,24 +202,57 @@ def sym_cross():
     return cuts[0]
 
 
-def sym_plus():
-    """The deletion cross stood upright.
+# The one plus of the set. Every badge that adds something - alef_add,
+# book_add, clock_add, library_add, link_add - carries this plus, knocked out of
+# its disc in the `_filled` and drawn as ink inside its ring in the `_regular`,
+# so the two variants and every family share one stroke. It used to be the
+# deletion cross stood upright (2.8 units in the filled variants, with square
+# ends) in some icons and a 1.1-unit bar in others, and Fluent's own badges
+# (notebook_add, panel_right_add, ...) draw it at 1.0.
+PLUS_STROKE = 1.5
 
-    Not the cross rotated: rotating it about its centre would put the arm ends
-    on the axes and make the mark 1.41x wider, and scaling that back down would
-    thin every stroke by the same factor - a lighter badge, not the same badge
-    turned. So the plus is drawn to the cross's own measurements instead: the
-    same arm half-length (its bbox half-width) and the same bar thickness,
-    solved from its filled area for a cross of that reach.
+
+def plus_mark(half_length, stroke=None):
+    """A plus of two round-ended bars, centred on the origin, reaching
+    `half_length` from the centre to the tip of an arm."""
+    w = PLUS_STROKE if stroke is None else stroke
+    return (round_rect(-half_length, -w / 2, half_length, w / 2, w / 2)
+            | round_rect(-w / 2, -half_length, w / 2, half_length, w / 2))
+
+
+def clock_hands(face_r):
+    """The hands every clock in the set carries, for a face `face_r` in radius,
+    centred on the origin: a long one up and a short one to the right, round
+    ended, from a pivot set a little down and to the left so that the pair - which
+    fills the upper right of the face - sits in the middle of it.
+
+    One drawing at every size: the stroke is 0.2 plus 0.15 of the face, which is
+    0.8 on the faces of the badges and 1.7 on the clock's own, so the small ones
+    are not thinner than a line can be drawn and the big one is not as heavy as
+    a face that size could carry. It used to be Fluent's cut in the filled
+    variants, 0.5 thick, and a different line again in each regular.
     """
-    x0, y0, x1, y1 = sym_cross().bounds
-    a = max(x1 - x0, y1 - y0) / 2           # arm half-length
-    area = sym_cross().area
-    # area of a plus with arm half-length a and bar thickness t: 4at - t^2
-    t = (4 * a - ((4 * a) ** 2 - 4 * area) ** 0.5) / 2
-    r = t * 0.16                            # the cross's ends are barely eased
-    return (round_rect(-a, -t / 2, a, t / 2, r)
-            | round_rect(-t / 2, -a, t / 2, a, r))
+    w = 0.2 + 0.15 * face_r
+    up, right, r = 0.62 * face_r, 0.40 * face_r, w / 2
+    # Two round-ended bars, as the plus is: the same outline as a round-joined
+    # stroke, but built from arcs and lines. The stroker's own output for this
+    # shape came back from skia's `simplify` with a different number of points
+    # on Linux than on Windows, which made `generate --check` fail in CI.
+    return (round_rect(-r, -up - r, r, r, r)
+            | round_rect(-r, -r, right + r, r, r)
+            ).translate(-0.10 * face_r, 0.12 * face_r)
+
+
+def clock_face(face_r):
+    """A face with its hands cut out of it, centred on the origin: what a badge
+    knocks out of its disc, so the hands stay as ink in a white face."""
+    return circle(0, 0, face_r) - clock_hands(face_r)
+
+
+# How far an arm reaches, as a fraction of the reach a mark is given on a solid
+# disc (SYMBOL_REACH of the disc's radius): 0.70 of the radius, which is what
+# Fluent's own plus badge has.
+PLUS_REACH = 0.875
 
 
 def sym_exclamation():
@@ -251,6 +291,10 @@ FLUENT_SYMBOLS = {
     "information": ("info_24_filled", 0),
 }
 
+# A diagonal arrow fills a round disc to its edge, where a box-shaped mark
+# leaves its corners clear: it is fitted smaller.
+SYMBOL_REACH_SCALE = {"source": 0.7}
+
 # Per-mark stroke weights, where the default does not suit.
 SYMBOL_WEIGHT = {
     # Fluent's cut is already the heaviest mark here - a 1.88 mean stroke
@@ -272,7 +316,8 @@ def sym_fluent(kind, reach):
     art = use_fluent(name)
     if turn:
         art = art.rotate(turn, about=art.centre)
-    return weighted(art, reach, SYMBOL_WEIGHT.get(kind, BADGE_MIN_STROKE))
+    return weighted(art, reach * SYMBOL_REACH_SCALE.get(kind, 1.0),
+                    SYMBOL_WEIGHT.get(kind, BADGE_MIN_STROKE))
 
 
 def sym_information(reach):
@@ -440,8 +485,25 @@ def sym_book_empty():
 
 # Marks already drawn at badge scale for the alef's disc, which is the only disc
 # they go on: they take neither scaling nor re-weighting.
+def sym_hash():
+    """The number sign: two upright bars crossed by two flat ones."""
+    out = Art()
+    for v in (-1.25, 1.25):
+        out = (out | round_rect(v - 0.55, -3.1, v + 0.55, 3.1, 0.55)
+               | round_rect(-3.1, v - 0.55, 3.1, v + 0.55, 0.55))
+    return out
+
+
+def sym_parallel():
+    """Two slanted bars, "//": the sign for parallel. Upright they read as a
+    pause button, and Fluent's two-column text icon as a table."""
+    return (round_rect(-2.3, -3.2, -0.8, 3.2, 0.75)
+            | round_rect(0.8, -3.2, 2.3, 3.2, 0.75)).rotate(28, about=(0, 0))
+
+
 DRAWN_SYMBOLS = {
-    "plus": sym_plus,
+    "gematria": sym_hash,
+    "parallel": sym_parallel,
     "exclamation": sym_exclamation,
     "lock": sym_lock,
     "crown": sym_crown,
@@ -450,6 +512,10 @@ DRAWN_SYMBOLS = {
 
 def symbol(kind, reach):
     """The mark for `kind`, centred on the origin, reaching `reach` units."""
+    if kind == "plus":
+        return plus_mark(reach * PLUS_REACH)
+    if kind == "clock":
+        return clock_face(reach)
     if kind in DRAWN_SYMBOLS:
         # Drawn at badge scale, so they need no re-weighting - but they are
         # still fitted, or they would stay at whatever size the disc used to be.
@@ -472,6 +538,11 @@ def symbol(kind, reach):
     return sym_fluent(kind, reach)
 
 
+# A letter has fine feet and a thin diagonal, which the weight it is given then
+# swells: it is fitted smaller than an object, or it ends at the disc's edge.
+MARK_REACH_FACTOR = {"alef": 0.84}
+
+
 def badged(base, kind, badge_scale=1.0):
     """base + the alef family's disc, with `kind` knocked out of the disc.
 
@@ -487,12 +558,68 @@ def badged(base, kind, badge_scale=1.0):
     # corner-anchored scale that enlarged it also moved its centre - reading
     # the disc's current centre keeps the mark and the disc registered on each
     # other however the disc is drawn.
-    mark = symbol(kind, disc.radius() * SYMBOL_REACH).centred_on(*disc.centre)
+    mark = symbol(kind, disc.radius() * SYMBOL_REACH * MARK_REACH_FACTOR.get(kind, 1.0)
+                  ).centred_on(*disc.centre)
     if badge_scale != 1.0:
         corner = _anchor_corner(disc.bounds)
         disc = disc.scale(badge_scale, about=corner)
         mark = mark.scale(badge_scale, about=corner)
     return base | disc, [mark]
+
+
+def _ring_plus(reach, face=None):
+    """The standard plus, shorter than on a solid disc: the arms of a plus that
+    reaches as far as it does there would be half a unit from the ring."""
+    return plus_mark(reach * 0.88)
+
+
+def _ring_clock(reach, face):
+    """The hands alone. Fluent's clock is a face with the hands cut out of it,
+    and a face inside a ring is a second disc; a ring with hands is the clock."""
+    return clock_hands(face)
+
+
+# Marks that are drawn differently when they stand in a ring than when they are
+# knocked out of a disc.
+RING_LINE_MARKS = {"plus": _ring_plus, "clock": _ring_clock}
+
+
+def ringed(disc, kind, air=None, light=1.0):
+    """What a regular icon carries in place of a badge's solid disc: the disc as
+    a ring BADGE_RING thick, and `kind` drawn as ink inside it.
+
+    The filled variants keep the solid disc with the mark knocked out of it. A
+    disc that big is a black blot beside the line drawing around it once the
+    icon is shown at 48 px and up, and a regular icon is meant to be line art.
+    The mark is built for the room inside the ring, not shrunk into it, so
+    `weighted` still brings its stroke up to BADGE_MIN_STROKE; the caller cuts
+    the icon back from the disc, as it always had to.
+    """
+    reach = disc.radius() - BADGE_RING - (BADGE_RING_AIR if air is None
+                                          else air)
+    # Two circles, not an offset of the disc: skia's inward offset of a circle is
+    # a hair squarer than the circle, so the ring came out thin on the diagonals.
+    cx, cy = disc.centre
+    ring = disc - circle(cx, cy, disc.radius() - BADGE_RING)
+    if kind in RING_LINE_MARKS:
+        mark = RING_LINE_MARKS[kind](reach, disc.radius() - BADGE_RING)
+        return ring | (mark.translate(*disc.centre) if kind == "clock"
+                       else mark.centred_on(*disc.centre))
+    # Skia's offset fails outright at the odd reach (the alef at 5.1144 does),
+    # and succeeds a hair either side; a thousandth of a unit is not visible.
+    _MARK_LIGHT[0] = light
+    try:
+        for nudge in range(5):
+            try:
+                mark = symbol(kind, reach - 0.002 * nudge)
+                break
+            except pathops.PathOpsError:
+                pass
+        else:
+            raise ValueError("no mark for %s at reach %.3f" % (kind, reach))
+    finally:
+        _MARK_LIGHT[0] = 1.0
+    return ring | mark.centred_on(*disc.centre)
 
 
 # --------------------------------------------------------------------------
@@ -562,12 +689,21 @@ def link_badge(kind, filled=False):
     def build():
         link, disc, _ = link_plate(LINK_TEMPLATE_FILLED if filled
                                    else LINK_TEMPLATE)
-        x0, y0, x1, y1 = disc.bounds
-        mark = symbol(kind, disc.radius() * SYMBOL_REACH).centred_on(
-            (x0 + x1) / 2, (y0 + y1) / 2)
         corner = _anchor_corner(disc.bounds)
         scale = LINK_BADGE_SCALE * (LINK_BADGE_FILLED if filled
                                     else LINK_BADGE_REGULAR)
+        if not filled:
+            # A ring does not hide what is under it, and the enlarged disc
+            # reaches over Fluent's own cut-back, so the link is cut back again.
+            disc = disc.scale(scale, about=corner)
+            # Scaled by the whole drawing - the link before it is cut back - so
+            # the icon is the same size as the filled one and as it was.
+            link2, (_, disc2) = fill_canvas_pair(
+                link - disc.grow(BADGE_RING_GAP), [link, disc])
+            return link2 | ringed(disc2, kind), [], False
+        x0, y0, x1, y1 = disc.bounds
+        mark = symbol(kind, disc.radius() * SYMBOL_REACH).centred_on(
+            (x0 + x1) / 2, (y0 + y1) / 2)
         disc = disc.scale(scale, about=corner)
         mark = mark.scale(scale, about=corner)
         solid, cuts = fill_canvas_pair(link | disc, [mark])
@@ -684,10 +820,16 @@ def filled_edge(base):
     return FILLED_EDGE
 
 
-def inverted(base, edge=None):
-    """The regular icon turned inside out, by the rule above."""
+def inverted(base, edge=None, art=None):
+    """The regular icon turned inside out, by the rule above.
+
+    `art` is the regular's region when it is not what `base`'s file holds - a
+    regular whose badge is a ring has a different drawing from the knocked-out
+    disc its filled twin is made from, so the twin is built from that drawing
+    directly instead of from the file."""
     edge = filled_edge(base) if edge is None else edge
-    art = glyph(base)
+    if art is None:
+        art = glyph(base)
     body = ic.contours(art)[0]              # the silhouette, holes filled
     # The interior is cut with the exact silhouette, so the white lines land
     # exactly where the black ones were. Only the outer line is grown, and only
@@ -1345,66 +1487,83 @@ def _link_plain():
 
 
 # --------------------------------------------------------------------------
-# clock_add: canvas fill, a larger badge, and a plus that survives small sizes
+# clock_add: canvas fill, a larger badge, and the set's plus
 # --------------------------------------------------------------------------
-# How much larger the plus is set inside the enlarged disc, on top of the
-# family's usual SYMBOL_REACH - the owner asked for it "noticeably larger",
-# not merely along for the disc's own 15%.
-CLOCK_ADD_PLUS_REACH = 1.12
+# The disc the clock carries, measured from the source this recipe was written
+# against: centred where the old plus was, and reaching the canvas box on the
+# right and at the bottom, which is how the icon was sized.
+CLOCK_ADD_DISC = (17.6295, 17.6295, 5.8705)
 
-# How much extra weight the plus is grown by after being fitted, so it reads
-# at 16-20 px. `sym_plus`'s own stroke already carries the family's usual
-# BADGE_MIN_STROKE; this is on top of that, same idea as `weighted`'s
-# regrowth but pushed further because a plus is the one badge mark with
-# nothing else to lose to a thicker stroke - no gap between two strokes to
-# close, no counter to fill.
-#
-# First set to 0.30 (mean stroke 3.67), which the owner reviewed as too
-# thick. A negative `grow` shrinks - see `Art.grow` - and -0.15 here lands the
-# mean stroke at 2.4: comfortably more than 25% under 3.67, and still over
-# twice the original icon's own 1.13, which was reviewed as too thin to read
-# at small sizes.
-CLOCK_ADD_PLUS_GROW = -0.15
+
+# The clock's own face: its centre, and where the hands the source was drawn
+# with stand (to be replaced).
+CLOCK_CENTRE = (11.845, 11.845)
+# The hands are drawn for a face a little smaller than the clock's, so that the
+# short one stops short of the badge's ring instead of running into it.
+CLOCK_HANDS_R = 8.8
+CLOCK_OLD_HANDS = (9.5, 4.5, 15.5, 14.2)
+
+
+def _clock_hands_clear(keep_out):
+    """The clock's hands, moved up and to the left a tenth of a unit at a time
+    until they stand 0.6 clear of `keep_out` (the badge and its margin)."""
+    hands = clock_hands(CLOCK_HANDS_R).translate(*CLOCK_CENTRE)
+    for step in range(30):
+        moved = hands.translate(-0.1 * step, -0.1 * step)
+        if (moved & keep_out.grow(0.6)).is_empty:
+            return moved
+    raise ValueError("the clock's hands do not clear the badge")
 
 
 @recipe("clock_add_24_regular")
 def _clock_add():
-    """Enlarge the badge disc 15% (this family's own rule, matching the link
-    badges), and redraw the plus larger and heavier so it still reads at a
-    small rendered size, then fill the canvas.
+    """The clock with its badge as a ring and a plus, instead of a solid disc
+    with the plus knocked out of it.
 
-    Rebuilt from the file's own three raw paths rather than through `glyph`,
-    because the two knockout paths (badge disc, then the plus knocked out of
-    it) are told apart by position here, not by `fill="white"` - this source
-    predates that convention (it is one of `LEGACY_INFERRED_KNOCKOUTS` in
-    `repair_glyphs.py`) - and the plus is being replaced outright, not kept.
-    `write` marks the new cut explicitly, so the source no longer needs the
-    legacy inference to render correctly.
+    Rebuilt from its own source, which is drawn by hand: whatever the file holds
+    inside the disc - the plus knocked out of a solid disc, or the ring and plus
+    this recipe wrote - is thrown away, and what is outside the disc and its
+    margin is the clock. So it gives the same result however often it runs.
     """
-    clock = part("clock_add_24_regular", 0)
-    disc = part("clock_add_24_regular", 1)
-    x0, y0, x1, y1 = (clock | disc).bounds
-    if max(x1 - x0, y1 - y0) >= CANVAS_BOX - 0.05:
-        raise Restated("clock_add_24_regular already measures %.2f x %.2f "
-                       "units; rebuilding it would enlarge it again"
-                       % (x1 - x0, y1 - y0))
-    corner = _anchor_corner(disc.bounds)
-    disc2 = disc.scale(1.15, about=corner)
-    # An earlier version of this recipe clipped the clock's hand (both its
-    # upright stroke and its horizontal arm, drawn as one bent shape - the
-    # smallest of the clock's three contours) back from the enlarged disc's
-    # edge, meaning to trim only the small spur where the hand's corner poked
-    # a notch into the union's silhouette. The clip line fell to the left of
-    # most of the arm instead and cut the whole arm away, leaving what looked
-    # like a clock with one hand. The two are simply unioned here instead:
-    # the arm's own length already falls almost entirely inside the enlarged
-    # disc's own footprint, so it is covered by solid badge ink there rather
-    # than sticking out past it, and nothing needs trimming.
-    plus = sym_plus().fit_radius(disc2.radius() * SYMBOL_REACH
-                                 * CLOCK_ADD_PLUS_REACH)
-    plus = plus.grow(CLOCK_ADD_PLUS_GROW).centred_on(*disc2.centre)
-    solid, cuts = fill_canvas_pair(clock | disc2, [plus])
-    return solid, cuts, True
+    disc = circle(*CLOCK_ADD_DISC)
+    clock = glyph("clock_add_24_regular") - disc.grow(BADGE_RING_GAP)
+    # The hands are the set's: what the file holds of them is cut away (they
+    # stand inside this box, clear of the ring and the badge) and redrawn.
+    clock = clock - ic.rect(*CLOCK_OLD_HANDS)
+    hands = _clock_hands_clear(disc.grow(BADGE_RING_GAP))
+    return clock | hands | ringed(disc, "plus"), [], False
+
+
+# The plus knocked out of the filled clock's disc: where it is, and how far its
+# arms reach (0.70 of the filled icon's disc radius, 5.4).
+CLOCK_ADD_FILLED_PLUS = (17.373, 17.373, 3.78)
+# The badge disc of the filled icon: it reaches the canvas box at 23.5.
+CLOCK_ADD_FILLED_RADIUS = 23.5 - 17.373
+CLOCK_ADD_FILLED_GAP = 0.7
+# The filled clock's black face reaches 9.2 from its centre.
+CLOCK_FILLED_FACE_R = 9.2
+
+
+@recipe("clock_add_24_filled")
+def _clock_add_filled():
+    """`clock_add_24_filled` is its own source: it was inverted from the old
+    regular once, and the regular has since changed shape. Only its plus is
+    redrawn - the hole at the badge's centre is filled and the standard plus is
+    cut in its place."""
+    cx, cy, half = CLOCK_ADD_FILLED_PLUS
+    # Whatever the file holds inside the badge and its margin - the old plus, or
+    # the plus this recipe cut on an earlier run - is thrown away: the clock is
+    # cut back from the badge, which is a solid disc with the plus cut out of it,
+    # as in every other filled icon that carries one.
+    disc = circle(cx, cy, CLOCK_ADD_FILLED_RADIUS)
+    plus = plus_mark(half).centred_on(cx, cy)
+    # The face is solid with the hands cut out of it: the old hands' cut is
+    # filled and the set's are cut in its place, and then the clock is cut back
+    # from the badge.
+    clock = glyph("clock_add_24_filled") | ic.rect(*CLOCK_OLD_HANDS)
+    clock = clock - _clock_hands_clear(disc.grow(CLOCK_ADD_FILLED_GAP))
+    clock = clock - disc.grow(CLOCK_ADD_FILLED_GAP)
+    return (clock | disc) - plus, [], False
 
 
 # --------------------------------------------------------------------------
@@ -1497,7 +1656,7 @@ BOOK_ADD_BADGE = (17.3, 18.85, 4.6 * 1.10)
 def _book_add_badge():
     cx, cy, r = BOOK_ADD_BADGE
     disc = circle(cx, cy, r)
-    mark = sym_plus().fit_radius(r * SYMBOL_REACH).centred_on(cx, cy)
+    mark = symbol("plus", r * SYMBOL_REACH).centred_on(cx, cy)
     return disc, mark
 
 
@@ -1532,9 +1691,11 @@ def _book_title_bar():
 @recipe("book_add_24_regular")
 def _book_add_r():
     outer, inner = _book_cover()
-    disc, mark = _book_add_badge()
+    disc, _ = _book_add_badge()
     bar_regular, _ = _book_title_bar()
-    return (outer - inner) | disc | bar_regular, [mark], True
+    cover = (outer - inner) | bar_regular
+    return ((cover - disc.grow(BADGE_RING_GAP)) | ringed(disc, "plus"),
+            [], False)
 
 
 @recipe("book_add_24_filled")
@@ -1740,7 +1901,7 @@ def _search_split(name):
     return outer, lens, full & lens
 
 
-def _search_not_found_badge(kind="cross"):
+def _search_not_found_badge(kind="cross", ring=False, parts=False):
     """search_24_regular's own ring+handle, empty lens, with a small corner
     badge - a disc with the alef family's own X knocked out of it - added
     opposite the handle.
@@ -1794,8 +1955,16 @@ def _search_not_found_badge(kind="cross"):
     else:
         mark = symbol(kind, badge_r * 0.78).centred_on(bx, by)
     mark = mark.scale(group_scale, about=anchor).translate(0, shift_down)
-    ring = (t_outer - t_lens) | badge
-    return sized(ring), [mark]
+    if ring:
+        # The regular's badge: a ring, with the lens ring and handle cut back
+        # from it. Sized by the same rule as the solid one - on the drawing
+        # with its disc - and the badge is taken from the sized result, so the
+        # mark is built for the room that is really there.
+        body, (disc,) = fill_canvas_pair(t_outer - t_lens, [badge])
+        return (body - disc.grow(BADGE_RING_GAP)) | ringed(disc, kind), []
+    if parts:
+        return t_outer - t_lens, badge, mark
+    return sized((t_outer - t_lens) | badge), [mark]
 
 
 # How much the ring's own band is thickened, outward only - the lens opening
@@ -1917,17 +2086,37 @@ for _name in SEARCH_IN_NAMES:
 # `search_not_found_24_regular/_filled` don't match the `search_in_*` glob
 # the family loop above targets, so they were missed the first time.
 def _search_not_found_r():
-    solid, cuts = _search_not_found_badge()
-    return solid, cuts, True
+    solid, cuts = _search_not_found_badge(ring=True)
+    return solid, cuts, False
 
 
 RECIPES["search_not_found_24_regular"] = _search_not_found_r
-DEPENDS["search_not_found_24_filled"] = "search_not_found_24_regular"
+
+
+# The black circle round the badge in the filled variants: the weight of the
+# outline it joins (`SEARCH_FILLED_EDGE` grown outward lands at 0.91).
+SEARCH_BADGE_EDGE = 0.91
+
+
+def _search_badge_filled(kind):
+    """The filled twin of a search badge: inverted from the drawing with the
+    solid disc, which is not what the regular's file holds any more.
+
+    Inverted, the disc is white and the lens ring it overlaps is white too, so
+    where the two meet the disc has no edge: its black circle is open from the
+    crescent's tip round to the outline. The circle is drawn there, outside the
+    disc and inside the outline's own reach.
+    """
+    ring, disc, mark = _search_not_found_badge(kind, parts=True)
+    drawn = ring | disc
+    solid, _ = inverted("", edge=SEARCH_FILLED_EDGE, art=drawn - mark)
+    reach = ic.contours(drawn)[0].deburr().grow(SEARCH_FILLED_EDGE)
+    halo = (disc.grow(SEARCH_BADGE_EDGE) - disc) & reach
+    return sized(solid | halo), [], False
 
 
 def _search_not_found_filled_recipe():
-    solid, cuts = inverted("search_not_found_24_regular", edge=SEARCH_FILLED_EDGE)
-    return sized(solid), cuts, False
+    return _search_badge_filled("cross")
 
 
 RECIPES["search_not_found_24_filled"] = _search_not_found_filled_recipe
@@ -1937,17 +2126,15 @@ RECIPES["search_not_found_24_filled"] = _search_not_found_filled_recipe
 # cross: the query was found. Built by the same function, so the badge is the
 # same disc in the same place and only the mark differs.
 def _search_check_regular_recipe():
-    solid, cuts = _search_not_found_badge("check")
-    return solid, cuts, True
+    solid, cuts = _search_not_found_badge("check", ring=True)
+    return solid, cuts, False
 
 
 RECIPES["search_check_24_regular"] = _search_check_regular_recipe
-DEPENDS["search_check_24_filled"] = "search_check_24_regular"
 
 
 def _search_check_filled_recipe():
-    solid, cuts = inverted("search_check_24_regular", edge=SEARCH_FILLED_EDGE)
-    return sized(solid), cuts, False
+    return _search_badge_filled("check")
 
 
 RECIPES["search_check_24_filled"] = _search_check_filled_recipe
@@ -1964,9 +2151,11 @@ for _kind, _name in [("scissors", "alef_scissors_24_filled"),
                      ("eraser", "alef_eraser_24_filled"),
                      ("exclamation", "alef_exclamation_24_filled"),
                      ("plus", "alef_add_24_filled"),
+                     ("alef", "alef_alef_badge_24_filled"),
                      ("lock", "alef_lock_24_filled"),
                      ("crown", "alef_crown_24_filled"),
-                     ("check", "alef_check_24_filled")]:
+                     ("check", "alef_check_24_filled"),
+                     ("gematria", "alef_gematria_24_filled")]:
     RECIPES[_name] = alef_badge(_kind)
 
 for _kind, _name in [("copy", "link_copy_24_regular"),
@@ -2121,11 +2310,47 @@ def _inverted_recipe(regular, fit=False):
     return build
 
 
+# (`clock_add_24_filled` is not here any more: its regular now carries a ring
+# badge, which is not the drawing the filled twin was inverted from, and the
+# filled keeps its solid disc; its own recipe below redraws only the plus.)
 for _base, _fit in [("booklet", False), ("booklet_empty", False),
-                    ("clock_add", True), ("dependent_library", True),
-                    ("torah_scroll", True)]:
+                    ("dependent_library", True),
+                    ("torah_scroll", True), ("megillah", True)]:
     RECIPES[_base + "_24_filled"] = _inverted_recipe(_base + "_24_regular", _fit)
     DEPENDS[_base + "_24_filled"] = _base + "_24_regular"
+
+
+@recipe("megillah_24_regular")
+def _megillah():
+    """`torah_scroll` with its left roller taken away: the Scroll of Esther is
+    rolled on one wooden roller (the etz chaim), at the right, and the parchment
+    runs out to the left of it.
+
+    The sheet keeps the Torah scroll's own drawing - its frame, its two columns
+    of text - and gets the left edge the roller used to give it; the whole is
+    then centred on the canvas."""
+    art = glyph("torah_scroll_24_regular")
+    # The sheet's left wall is the right wall of the left roller: it stands
+    # between x 5.62 and 6.06, and the roller, with its rims, is everything to
+    # the left of it.
+    # (The rims of that roller reach a little past it, above and below the sheet.)
+    sheet = (art - ic.rect(0, 0, 6.07, 24) - ic.rect(0, 0, 7.5, 5.9)
+             - ic.rect(0, 18.6, 7.5, 24))
+    top, bottom = 6.17, 18.30
+    wall = ic.rect(5.62, top, 6.08, bottom)
+    out = (sheet | wall).despeckle(0.5)
+    # The two corners on the left are rounded: the corner is cut off and the
+    # line goes round it as a quarter ring a little thicker than the wall.
+    r, t, x = 1.7, 0.7, 5.62
+    for y, up in ((top, True), (bottom, False)):
+        cy = y + r if up else y - r
+        disc = circle(x + r, cy, r)
+        quad = (ic.rect(x - 0.01, y - 0.01, x + r, cy) if up
+                else ic.rect(x - 0.01, cy, x + r, y + 0.01))
+        out = (out - (quad - disc)) | ((disc - circle(x + r, cy, r - t)) & quad)
+    out = out.despeckle(0.02)
+    x0, _, x1, _ = out.bounds
+    return out.translate(12 - (x0 + x1) / 2, 0), [], False
 
 
 # --------------------------------------------------------------------------
@@ -2313,15 +2538,18 @@ def letter_outline(art, over=None, solid_rest=False):
     return out.despeckle(0.05).prune(0.002)
 
 
-def ring_badge(letter, disc, mark, air=None):
+def ring_badge(letter, disc, mark, air=None, clock=False):
     """An outlined `letter` carrying a ring badge: the letter is cut back from
     the disc by BADGE_RING_GAP, the disc becomes a ring, and `mark` - which the
     solid icon knocks out of its disc - is drawn as ink inside it, brought down
     to fit within the ring."""
     inner = disc.radius() - BADGE_RING
     ring = disc.outlined(BADGE_RING, inside=True)
-    ink = mark.fit_radius(inner - (BADGE_RING_AIR if air is None else air),
-                          about=disc.centre)
+    if clock:
+        ink = clock_hands(inner).translate(*disc.centre)
+    else:
+        ink = mark.fit_radius(inner - (BADGE_RING_AIR if air is None else air),
+                              about=disc.centre)
     return (letter_outline(letter) - disc.grow(BADGE_RING_GAP)) | ring | ink
 
 
@@ -2359,12 +2587,18 @@ LETTER_SOLID_REST = ("alef_1", "alef_2", "alef_3", "alef_4", "alef_5")
 
 
 def outline_recipe(filled, badged_letter=False, over=None, solid_rest=False,
-                   air=None):
+                   air=None, art=None, clock=False):
+    """`art`, when given, is the solid drawing to outline, taken in memory rather
+    than read back from `filled`'s file: a numeral sits against the alef it is
+    cut by, and a file that was just written carries the alef at a slightly
+    different precision from the alef it is cut by, so the two edges almost
+    coincide and the cut comes out in slivers."""
     def build():
         if badged_letter:
             letter, disc, mark = _split_badge(filled)
-            return ring_badge(letter, disc, mark, air), [], False
-        return (letter_outline(glyph(filled), glyph(over) if over else None,
+            return ring_badge(letter, disc, mark, air, clock), [], False
+        solid = art() if art else glyph(filled)
+        return (letter_outline(solid, glyph(over) if over else None,
                                 solid_rest),
                 [], False)
     return build
@@ -2377,6 +2611,7 @@ LETTER_BADGED = (
     "alef_add", "alef_copy", "alef_crown", "alef_delete", "alef_eye",
     "alef_lips", "alef_lock", "alef_marker", "alef_scissors",
     "alef_eraser", "alef_exclamation", "alef_information", "alef_check",
+    "alef_alef_badge", "alef_gematria",
 )
 LETTER_PLAIN = (
     "alef_1", "alef_2", "alef_3", "alef_4", "alef_5", "alef_alef",
@@ -2385,14 +2620,16 @@ LETTER_PLAIN = (
     "alef_near_alef_stam", "alef_rashi", "alef_stam", "alef_niqqud_taamim",
     "alef_punctuation", "alef_niqqud", "alef_writing", "beit",
     "beit_behind_alef", "beit_near_alef", "tet", "tet_behind_tet",
-    "tet_near_tet", "tet_tet", "tet_latin_t",
+    "tet_near_tet", "tet_tet", "tet_latin_t", "vav_stam",
 )
 
 for _letter in LETTER_PLAIN + LETTER_BADGED:
     _filled, _regular = _letter + "_24_filled", _letter + "_24_regular"
-    RECIPES[_regular] = outline_recipe(_filled, _letter in LETTER_BADGED,
-                                       LETTER_OVER.get(_letter),
-                                       _letter in LETTER_SOLID_REST)
+    RECIPES[_regular] = outline_recipe(
+        _filled, _letter in LETTER_BADGED, LETTER_OVER.get(_letter),
+        _letter in LETTER_SOLID_REST,
+        art=(lambda n=int(_letter[5]): alef_numeral(n))
+        if _letter in LETTER_SOLID_REST else None)
     DEPENDS[_regular] = _filled
     PROVENANCE_OF[_regular] = _filled
 
@@ -2487,25 +2724,41 @@ _document_pair("document_pdf", mark_pdf)
 _document_pair("document_upload", mark_upload)
 
 
-# The numerals are drawn here as paths: they are not recoverable from
-# `alef_3_24_filled`, where the three is merged into the letter. They are set in
-# a serif like the 1, 2 and 3 - 7 units tall, right edge at 22.7, on the
-# baseline the 3 stands on.
+# The numerals beside the alef in alef_1 ... alef_5, drawn here as paths: they
+# are not recoverable from the icon files, where the numeral is merged into the
+# letter. All five are cut from one font - Tinos, Google's Apache-2.0 twin of
+# Times New Roman, regular weight, thickened to the letter's weight - by
+# `tool/numerals_from_tinos.py`, which prints this table. They share a baseline
+# and a column, so no two differ in design, size or weight; the table is
+# regenerated by that script, not edited by hand.
 NUMERALS = {
-    4: "M 18.407 16.147 L 21.42 11.286 Q 21.44 11.253 21.479 11.253 L 22.05 11.253 Q 22.079 11.253 22.099 11.273 Q 22.12 11.294 22.12 11.323 L 22.12 16.114 L 22.63 16.114 Q 22.659 16.115 22.679 16.135 Q 22.7 16.155 22.7 16.184 L 22.7 17.337 Q 22.7 17.366 22.679 17.387 Q 22.659 17.407 22.63 17.407 L 22.12 17.407 L 22.12 19.03 Q 22.12 19.059 22.099 19.08 Q 22.079 19.1 22.05 19.1 L 20.764 19.1 Q 20.735 19.1 20.714 19.08 Q 20.694 19.059 20.694 19.03 L 20.694 17.407 L 18.467 17.407 Q 18.438 17.407 18.417 17.387 Q 18.397 17.366 18.397 17.337 L 18.397 16.184 Q 18.397 16.164 18.407 16.147 Z M 19.046 16.114 L 20.694 16.114 L 20.694 13.451 Z",
-    5: "M 19.66 11.253 L 22.63 11.253 Q 22.659 11.253 22.679 11.274 Q 22.7 11.294 22.7 11.323 Q 22.7 11.334 22.696 11.345 L 22.224 12.781 Q 22.208 12.83 22.158 12.83 L 19.711 12.83 L 19.515 13.446 Q 21.09 13.54 21.955 14.42 Q 22.691 15.17 22.691 16.285 Q 22.691 16.997 22.351 17.677 Q 22.01 18.361 21.389 18.731 Q 20.769 19.1 20.029 19.1 Q 19.227 19.1 18.792 18.739 Q 18.476 18.472 18.476 18.128 Q 18.476 17.863 18.644 17.66 Q 18.817 17.451 19.051 17.451 Q 19.25 17.451 19.451 17.547 Q 19.646 17.64 20.107 18.024 Q 20.384 18.251 20.582 18.337 Q 20.714 18.398 20.881 18.398 Q 21.23 18.398 21.479 18.09 Q 21.732 17.775 21.732 17.332 Q 21.732 16.387 20.937 15.795 Q 20.132 15.196 18.902 15.196 Q 18.777 15.196 18.524 15.202 Q 18.495 15.203 18.475 15.183 Q 18.454 15.163 18.453 15.134 Q 18.453 15.123 18.456 15.112 L 19.593 11.303 Q 19.607 11.253 19.66 11.253 Z",
+    # 1: x 19.75-22.85  y 11.95-19.25  mean stroke 0.74
+    1: "M 21.786 18.554 L 22.719 18.677 Q 22.775 18.684 22.813 18.727 Q 22.85 18.769 22.85 18.826 L 22.85 19.1 Q 22.85 19.13 22.838 19.157 Q 22.827 19.185 22.806 19.206 Q 22.785 19.227 22.757 19.239 Q 22.73 19.25 22.7 19.25 L 19.9 19.25 Q 19.87 19.25 19.843 19.239 Q 19.815 19.227 19.794 19.206 Q 19.773 19.185 19.762 19.157 Q 19.75 19.13 19.75 19.1 L 19.75 18.826 Q 19.75 18.769 19.787 18.727 Q 19.825 18.684 19.881 18.677 L 20.818 18.554 L 20.818 13.259 L 19.98 13.659 Q 19.953 13.672 19.924 13.674 Q 19.894 13.675 19.866 13.665 Q 19.837 13.655 19.815 13.635 Q 19.793 13.615 19.78 13.588 Q 19.766 13.558 19.766 13.524 L 19.766 13.249 Q 19.766 13.175 19.825 13.13 L 21.343 11.98 Q 21.384 11.95 21.434 11.95 L 21.636 11.95 Q 21.666 11.95 21.693 11.961 Q 21.721 11.973 21.742 11.994 Q 21.763 12.015 21.774 12.043 Q 21.786 12.07 21.786 12.1 Z",
+    # 2: x 19.56-23.04  y 11.93-19.25  mean stroke 0.76
+    2: "M 22.894 19.25 L 19.706 19.25 Q 19.676 19.25 19.649 19.239 Q 19.621 19.227 19.6 19.206 Q 19.579 19.185 19.567 19.157 Q 19.556 19.13 19.556 19.1 L 19.556 18.339 Q 19.556 18.285 19.59 18.243 L 20.313 17.368 Q 21.003 16.561 21.324 16.067 Q 21.637 15.585 21.772 15.075 Q 21.909 14.56 21.909 13.891 Q 21.909 13.263 21.704 12.948 Q 21.52 12.664 21.081 12.664 Q 20.9 12.664 20.706 12.731 Q 20.542 12.788 20.411 12.875 L 20.285 13.661 Q 20.276 13.716 20.234 13.752 Q 20.192 13.788 20.137 13.788 L 19.881 13.788 Q 19.851 13.788 19.823 13.776 Q 19.796 13.765 19.775 13.744 Q 19.754 13.723 19.742 13.695 Q 19.731 13.668 19.731 13.638 L 19.731 12.302 Q 19.731 12.253 19.76 12.213 Q 19.789 12.174 19.836 12.159 Q 20.564 11.929 21.081 11.929 Q 22.001 11.929 22.475 12.452 Q 22.943 12.969 22.943 13.891 Q 22.943 14.495 22.767 15.033 Q 22.591 15.569 22.229 16.096 Q 21.875 16.614 21.061 17.537 Q 20.809 17.824 20.534 18.153 L 22.894 18.153 Q 22.924 18.153 22.951 18.164 Q 22.979 18.175 23 18.197 Q 23.021 18.218 23.033 18.245 Q 23.044 18.273 23.044 18.303 L 23.044 19.1 Q 23.044 19.13 23.033 19.157 Q 23.021 19.185 23 19.206 Q 22.979 19.227 22.951 19.239 Q 22.924 19.25 22.894 19.25 Z",
+    # 3: x 19.51-23.09  y 11.93-19.35  mean stroke 0.75
+    3: "M 23.093 17.21 Q 23.093 18.205 22.572 18.777 Q 22.046 19.354 21.098 19.354 Q 20.336 19.354 19.652 19.123 Q 19.608 19.108 19.58 19.07 Q 19.552 19.032 19.55 18.985 L 19.507 17.525 Q 19.507 17.495 19.517 17.468 Q 19.528 17.44 19.548 17.418 Q 19.569 17.396 19.596 17.384 Q 19.623 17.372 19.653 17.371 L 19.657 17.371 L 19.914 17.371 Q 19.968 17.371 20.01 17.406 Q 20.052 17.441 20.061 17.494 L 20.225 18.406 Q 20.35 18.485 20.56 18.547 Q 20.817 18.624 21.036 18.624 Q 21.572 18.624 21.819 18.309 Q 22.078 17.977 22.078 17.158 Q 22.078 16.525 21.84 16.211 Q 21.614 15.911 21.12 15.879 L 20.563 15.838 Q 20.504 15.833 20.464 15.79 Q 20.424 15.747 20.424 15.688 L 20.424 15.263 Q 20.424 15.205 20.463 15.162 Q 20.503 15.119 20.561 15.114 L 21.117 15.067 Q 21.482 15.042 21.651 14.774 Q 21.837 14.48 21.837 13.85 Q 21.837 13.199 21.638 12.92 Q 21.456 12.664 21.036 12.664 Q 20.854 12.664 20.652 12.732 Q 20.482 12.789 20.347 12.876 L 20.221 13.661 Q 20.212 13.716 20.17 13.752 Q 20.128 13.788 20.073 13.788 L 19.817 13.788 Q 19.787 13.788 19.759 13.776 Q 19.732 13.765 19.711 13.744 Q 19.689 13.723 19.678 13.695 Q 19.667 13.668 19.667 13.638 L 19.667 12.302 Q 19.667 12.254 19.694 12.215 Q 19.722 12.176 19.767 12.16 Q 20.164 12.021 20.457 11.975 Q 20.749 11.929 21.036 11.929 Q 22.856 11.929 22.856 13.788 Q 22.856 14.555 22.532 15.02 Q 22.345 15.288 22.074 15.442 Q 22.485 15.601 22.727 15.915 Q 23.093 16.388 23.093 17.21 Z",
+    # 4: x 19.30-23.30  y 11.97-19.25  mean stroke 0.82
+    4: "M 22.592 17.723 L 22.592 19.1 Q 22.592 19.13 22.58 19.157 Q 22.569 19.185 22.548 19.206 Q 22.527 19.227 22.499 19.239 Q 22.471 19.25 22.442 19.25 L 21.774 19.25 Q 21.744 19.25 21.716 19.239 Q 21.689 19.227 21.668 19.206 Q 21.647 19.185 21.635 19.157 Q 21.624 19.13 21.624 19.1 L 21.624 17.723 L 19.452 17.723 Q 19.422 17.723 19.394 17.711 Q 19.367 17.7 19.346 17.679 Q 19.324 17.658 19.313 17.63 Q 19.302 17.602 19.302 17.573 L 19.302 16.884 Q 19.302 16.846 19.319 16.813 L 21.863 12.05 Q 21.905 11.971 21.995 11.971 L 22.442 11.971 Q 22.471 11.971 22.499 11.982 Q 22.527 11.994 22.548 12.015 Q 22.569 12.036 22.58 12.063 Q 22.592 12.091 22.592 12.121 L 22.592 16.682 L 23.148 16.682 Q 23.178 16.682 23.206 16.694 Q 23.233 16.705 23.254 16.726 Q 23.276 16.747 23.287 16.775 Q 23.298 16.802 23.298 16.832 L 23.298 17.573 Q 23.298 17.602 23.287 17.63 Q 23.276 17.658 23.254 17.679 Q 23.233 17.7 23.206 17.711 Q 23.178 17.723 23.148 17.723 Z M 21.624 13.901 L 20.14 16.682 L 21.624 16.682 Z",
+    # 5: x 19.55-23.05  y 12.01-19.35  mean stroke 0.73
+    5: "M 21.119 14.891 Q 22.087 14.891 22.573 15.433 Q 23.052 15.967 23.052 17.034 Q 23.052 18.135 22.538 18.739 Q 22.016 19.354 21.057 19.354 Q 20.292 19.354 19.687 19.121 Q 19.645 19.105 19.619 19.068 Q 19.592 19.031 19.591 18.985 L 19.548 17.525 Q 19.547 17.495 19.558 17.468 Q 19.569 17.44 19.589 17.418 Q 19.61 17.396 19.637 17.384 Q 19.664 17.372 19.694 17.371 L 19.698 17.371 L 19.954 17.371 Q 20.009 17.371 20.051 17.406 Q 20.093 17.441 20.102 17.494 L 20.266 18.406 Q 20.402 18.494 20.585 18.554 Q 20.801 18.624 20.995 18.624 Q 21.534 18.624 21.778 18.298 Q 22.037 17.952 22.037 17.086 Q 22.037 16.471 21.923 16.168 Q 21.818 15.89 21.593 15.761 Q 21.355 15.626 20.937 15.626 Q 20.61 15.626 20.298 15.741 Q 20.272 15.75 20.246 15.75 L 19.873 15.75 Q 19.843 15.75 19.816 15.739 Q 19.788 15.727 19.767 15.706 Q 19.746 15.685 19.734 15.657 Q 19.723 15.63 19.723 15.6 L 19.723 12.157 Q 19.723 12.127 19.734 12.1 Q 19.746 12.072 19.767 12.051 Q 19.788 12.03 19.816 12.018 Q 19.843 12.007 19.873 12.007 L 22.513 12.007 Q 22.543 12.007 22.571 12.018 Q 22.598 12.03 22.62 12.051 Q 22.641 12.072 22.652 12.1 Q 22.663 12.127 22.663 12.157 L 22.663 12.949 Q 22.663 12.979 22.652 13.007 Q 22.641 13.034 22.62 13.055 Q 22.598 13.076 22.571 13.088 Q 22.543 13.099 22.513 13.099 L 20.372 13.099 L 20.372 14.971 Q 20.728 14.891 21.119 14.891 Z",
 }
 
 
+# The white left between a numeral and the alef's foot, which it stands beside.
+NUMERAL_GAP = 0.3
+
+
 def alef_numeral(n):
-    return glyph("alef_24_filled") | Art.from_d(NUMERALS[n])
+    numeral = Art.from_d(NUMERALS[n])
+    return (glyph("alef_24_filled") - numeral.grow(NUMERAL_GAP)) | numeral
 
 
 def _alef_numeral_recipe(n):
     return lambda: (alef_numeral(n), [], False)
 
 
-for _n in (4, 5):
+for _n in NUMERALS:
     RECIPES["alef_%d_24_filled" % _n] = _alef_numeral_recipe(_n)
 
 
@@ -2578,16 +2831,73 @@ ROUND1_MARKS = {
     "save": "save",
     "link": "link",
     "clock": "clock",
+    "eye": "eye",
+    "note": "note",
+    "progress": "data_pie",
+    "cloud": "cloud",
 }
 
 # Per-mark fitting boxes where the default block does not suit a mark's shape.
 # The chain sits in a wider, shorter band than the square-ish marks, so it can be
 # larger without touching the page's margin (interior x 5.5 to 18.5).
-ROUND1_BOX = {"link": (6.6, 9.5, 17.4, 18.5)}
+ROUND1_BOX = {"link": (6.6, 9.5, 17.4, 18.5),
+              "tzurat_hadaf": (6.3, 10.1, 17.7, 19.1),
+              # An eye is wider than it is tall, like the chain.
+              "eye": (6.6, 7.3, 17.4, 15.5)}
 # A thin chain closes its own gaps when it is thickened at this size, so it
 # keeps closer to Fluent's own weight.
 ROUND1_WEIGHT = {"link": 0.95}
+# How far the eye on a book reaches: as wide as the chain, which has the same box.
+EYE_BOOK_REACH = 5.9
 ROUND1_TURN = {}
+
+
+def _page_layout_mark(box):
+    """The set's own page of the Talmud - the drawing of
+    `book_open_tzurat_hadaf_24_filled`: a square of text with the commentaries
+    wrapped round it on both sides - fitted to `box`."""
+    return glyph("book_open_tzurat_hadaf_24_filled").fit(box)
+
+
+ROUND_ARROW_LINE = 1.25
+
+
+def _round_arrow_mark(short, box):
+    """The circling arrow of `refresh` and `history`, drawn rather than fitted:
+    thickening Fluent's own at this size runs the head into the ring and blurs
+    both. A ring with a gap and a barbed head at the end of the arc, in plain
+    circle and polygon booleans; `history` turns the other way and has clock
+    hands inside."""
+    x0, y0, x1, y1 = box
+    cx, cy = (x0 + x1) / 2, (y0 + y1) / 2
+    big, t = 4.3, ROUND_ARROW_LINE
+    mid = big - t / 2
+    start, sweep = -25.0, 285.0
+    end = start + sweep
+
+    def pt(angle, radius):
+        a = math.radians(angle)
+        return (cx + radius * math.cos(a), cy + radius * math.sin(a))
+
+    ring = circle(cx, cy, big) - circle(cx, cy, big - t)
+    far = big * 3
+    gap = polygon([(cx, cy), pt(end, far), pt((end + start + 360) / 2, far),
+                   pt(start + 360, far)])
+    a = math.radians(end)
+    tx, ty = -math.sin(a), math.cos(a)          # clockwise, along the arc
+    nx, ny = math.cos(a), math.sin(a)           # outwards
+    px, py = pt(end, mid)
+    half, length = t / 2 + 0.95, 2.2
+    head = polygon([(px - tx * 0.4 + nx * half, py - ty * 0.4 + ny * half),
+                    (px - tx * 0.4 - nx * half, py - ty * 0.4 - ny * half),
+                    (px + tx * length, py + ty * length)])
+    art = (ring - gap) | head
+    if short == "refresh":
+        return art
+    art = art.scale(-1, 1, about=(cx, cy))
+    hands = (round_rect(cx - 0.6, cy - 1.6, cx + 0.6, cy + 0.6, 0.6)
+             | round_rect(cx - 0.6, cy - 0.6, cx + 1.7, cy + 0.6, 0.6))
+    return art | hands
 
 
 def fluent_mark(short, box):
@@ -2603,6 +2913,20 @@ def fluent_mark(short, box):
         # in it, which at this size is a blob with a hairline.
         return sym_information(4.4).centred_on((box[0] + box[2]) / 2,
                                                (box[1] + box[3]) / 2)
+    if short == "clock":
+        # The set's own clock face, hands cut out of it, as in every badge.
+        r = min(box[2] - box[0], box[3] - box[1]) / 2
+        return clock_face(r).translate((box[0] + box[2]) / 2,
+                                       (box[1] + box[3]) / 2)
+    if short == "tzurat_hadaf":
+        return _page_layout_mark(box)
+    if short == "eye":
+        # The eye `alef_eye` carries - lid and pupil drawn apart, which a plain
+        # fit and thickening of Fluent's closes into one blob.
+        return sym_eye(EYE_BOOK_REACH).centred_on((box[0] + box[2]) / 2,
+                                                  (box[1] + box[3]) / 2)
+    if short in ("refresh", "history"):
+        return _round_arrow_mark(short, box)
     weight = ROUND1_WEIGHT.get(short, MARK_WEIGHT)
     art = use_fluent("%s_24_filled" % ROUND1_MARKS[short])
     if short in ROUND1_TURN:
@@ -2645,12 +2969,15 @@ ROUND1_BOOKS = {"book_checkmark": "checkmark", "book_bookmark": "bookmark",
                 "book_edit": "edit", "book_delete": "delete",
                 "book_dismiss": "dismiss", "book_copy": "copy",
                 "book_settings": "settings", "book_lock": "lock",
-                "book_pin": "pin", "book_history": "history"}
+                "book_pin": "pin", "book_history": "history",
+                "book_eye": "eye", "book_note": "note",
+                "book_progress": "progress", "book_cloud": "cloud"}
 ROUND1_DOCUMENTS = {"document_checkmark": "checkmark", "document_edit": "edit",
                     "document_save": "save", "document_copy": "copy",
                     "document_lock": "lock", "document_link": "link",
                     "document_links": "links",
-                    "document_clock": "clock"}
+                    "document_clock": "clock",
+                    "document_tzurat_hadaf": "tzurat_hadaf"}
 
 for _stem, _short in ROUND1_BOOKS.items():
     for _filled in (False, True):
@@ -2667,9 +2994,25 @@ for _stem, _short in ROUND1_DOCUMENTS.items():
 # `panel_left_expand` / `panel_left_text`, so they are Fluent's own drawing turned
 # over about the canvas centre. Nothing in them is text or a numeral, so the
 # mirror does not reverse anything that must not be reversed.
-def _mirrored(source, filled):
+def restyled_plus(art):
+    """`art` with Fluent's plus - the small cross-shaped hole in its badge disc,
+    1.0 thick with square ends - replaced by the set's own, in the same place
+    and at the same reach."""
+    out = art
+    for h in ic.contours(art.holes()):
+        x0, y0, x1, y1 = h.bounds
+        w = x1 - x0
+        if 6.5 < w < 7.5 and abs(w - (y1 - y0)) < 0.2 and h.area < 14:
+            out = (out | h) - plus_mark(w / 2).centred_on((x0 + x1) / 2,
+                                                          (y0 + y1) / 2)
+    return out
+
+
+def _mirrored(source, filled, plus=False):
     def build():
         art = use_fluent("%s_24_%s" % (source, "filled" if filled else "regular"))
+        if plus:
+            art = restyled_plus(art)
         return art.scale(-1, 1, about=(12, 0)), [], False
     return build
 
@@ -2769,14 +3112,142 @@ for _stem in SEARCH_IN_CONTENT:
     RECIPES[_f] = _search_in_filled
 
 
+# --------------------------------------------------------------------------
+# search_*: the ways of searching - a small drawing in the lens
+# --------------------------------------------------------------------------
+# `search_in_X` is "search inside X", and the drawing in the lens is X. These are
+# the modes of a search (a pattern, an approximate match, near words, whole words,
+# word forms, vowels, accents, gematria, alternatives, a reference), and the
+# drawing is the symbol that says it. They are drawn at the size they are used,
+# in a lens whose room is about 5 units out from its centre, with a line 1.3
+# thick - what `search_in_*` content is brought to - so none is rescaled.
+MODE_W = 1.3
+
+
+def _bar(x0, x1, y, h=MODE_W):
+    return round_rect(x0, y - h / 2, x1, y + h / 2, h / 2)
+
+
+def _arrow_head(tip, direction, size=1.5):
+    """Two strokes meeting at `tip`, opening backwards along `direction`."""
+    tx, ty = tip
+    dx, dy = direction
+    px, py = -dy, dx
+    return ic.stroke_line([(tx - dx * size + px * size, ty - dy * size + py * size),
+                           (tx, ty),
+                           (tx - dx * size - px * size, ty - dy * size - py * size)],
+                          MODE_W)
+
+
+def _mode_regex():
+    star = Art()
+    for deg in (90, 30, 150):
+        a = math.radians(deg)
+        dx, dy = math.cos(a) * 2.6, math.sin(a) * 2.6
+        star = star | ic.stroke_line([(1.7 - dx, -0.9 - dy), (1.7 + dx, -0.9 + dy)],
+                                     MODE_W)
+    return star | circle(-3.3, 2.0, 1.0)
+
+
+def _mode_fuzzy():
+    return ic.curve([(-4.2, 0.7), (-3.5, -2.0), (-1.3, -2.0), (0, 0),
+                     (1.3, 2.0), (3.5, 2.0), (4.2, -0.7)], MODE_W * 1.1)
+
+
+def _mode_proximity():
+    words = _bar(-4.8, -1.2, -2.6, 1.5) | _bar(1.2, 4.8, -2.6, 1.5)
+    arrow = (ic.stroke_line([(-3.8, 2.0), (3.8, 2.0)], MODE_W)
+             | _arrow_head((-3.8, 2.0), (-1, 0), 1.7)
+             | _arrow_head((3.8, 2.0), (1, 0), 1.7))
+    return words | arrow
+
+
+def _mode_whole_word():
+    left = ic.stroke_line([(-2.7, -3.3), (-4.2, -3.3), (-4.2, 3.3), (-2.7, 3.3)],
+                          MODE_W)
+    right = ic.stroke_line([(2.7, -3.3), (4.2, -3.3), (4.2, 3.3), (2.7, 3.3)],
+                           MODE_W)
+    return left | right | _bar(-2.0, 2.0, 0, 1.5)
+
+
+def _mode_word_forms():
+    letter = alef_solid().fit((-2.8, -3.9, 2.8, 3.9))
+    return (letter | ic.stroke_line([(-5.2, 0), (-3.9, 0)], MODE_W)
+            | ic.stroke_line([(3.9, 0), (5.2, 0)], MODE_W))
+
+
+def _mode_niqqud():
+    # The qamats is a small T under the letter, clear of the alef's foot.
+    letter = alef_solid().fit((-2.5, -5.0, 2.5, 0.7))
+    qamats = (_bar(-1.2, 1.2, 1.9, 0.95)
+              | round_rect(-0.475, 2.0, 0.475, 3.9, 0.475))
+    return letter | qamats
+
+
+def _mode_taamim():
+    letter = alef_solid().fit((-2.9, -4.9, 2.9, 1.9))
+    etnachta = ic.stroke_line([(-1.6, 5.0), (0, 3.0), (1.6, 5.0)], MODE_W)
+    return letter | etnachta
+
+
+def _mode_gematria():
+    lines = Art()
+    for v in (-1.35, 1.35):
+        lines = (lines | ic.stroke_line([(v, -3.5), (v, 3.5)], MODE_W)
+                 | ic.stroke_line([(-3.5, v), (3.5, v)], MODE_W))
+    return lines
+
+
+def _mode_synonyms():
+    top = (ic.stroke_line([(-3.9, -1.6), (3.9, -1.6)], MODE_W)
+           | _arrow_head((3.9, -1.6), (1, 0)))
+    bottom = (ic.stroke_line([(3.9, 1.6), (-3.9, 1.6)], MODE_W)
+              | _arrow_head((-3.9, 1.6), (-1, 0)))
+    return top | bottom
+
+
+def _mode_reference():
+    return (_bar(-4.7, -1.8, 0) | _bar(1.8, 4.7, 0)
+            | circle(0, -1.3, 0.85) | circle(0, 1.3, 0.85))
+
+
+SEARCH_MODES = {
+    "search_regex": _mode_regex, "search_fuzzy": _mode_fuzzy,
+    "search_proximity": _mode_proximity, "search_whole_word": _mode_whole_word,
+    "search_word_forms": _mode_word_forms, "search_niqqud": _mode_niqqud,
+    "search_taamim": _mode_taamim, "search_gematria": _mode_gematria,
+    "search_synonyms": _mode_synonyms, "search_reference": _mode_reference,
+}
+
+
+def _search_mode_new(stem):
+    def build():
+        outer, lens = search_ring()
+        content = SEARCH_MODES[stem]().centred_on(*SEARCH_CENTRE)
+        return (outer - lens) | content, [], False
+    return build
+
+
+for _stem in SEARCH_MODES:
+    _r, _f = _stem + "_24_regular", _stem + "_24_filled"
+    RECIPES[_r] = _search_mode_new(_stem)
+    DEPENDS[_f] = _r
+
+    def _search_mode_filled(base=_r):
+        solid, cuts = inverted(base, edge=SEARCH_FILLED_EDGE)
+        return sized(solid), cuts, False
+    RECIPES[_f] = _search_mode_filled
+
+
 # calendar_alef: the set's calendar with the five dots of its grid replaced by
 # an alef, placed the way `document_alef` places it on its page.
 CALENDAR_MARK_BOX = (8.0, 9.7, 16.0, 18.5)
 
 
-def _calendar_alef(filled):
+def _calendar_alef(filled, make_mark=None):
     def build():
-        mark = alef_solid().fit(CALENDAR_MARK_BOX)
+        mark = (make_mark() if make_mark
+                else alef_solid().fit(CALENDAR_MARK_BOX))
         if filled:
             cs = ic.contours(part("calendar_24_filled", 0))
             return cs[0] | cs[1], [mark], True
@@ -2792,17 +3263,207 @@ RECIPES["calendar_alef_24_regular"] = _calendar_alef(False)
 RECIPES["calendar_alef_24_filled"] = _calendar_alef(True)
 
 
+# --------------------------------------------------------------------------
+# Judaica: drawn from simple shapes, the `_regular` a line and the `_filled`
+# solid. Every outline is a difference of two shapes (the drawing and a smaller
+# copy of it), never a stroker's offset, so it is the same on every platform.
+# --------------------------------------------------------------------------
+JUDAICA_LINE = 1.5
+
+
+def _star_points(cx, cy, outer, inner, n, turn=-90.0):
+    pts = []
+    for i in range(2 * n):
+        r = outer if i % 2 == 0 else inner
+        a = math.radians(turn + i * 180.0 / n)
+        pts.append((cx + r * math.cos(a), cy + r * math.sin(a)))
+    return pts
+
+
+def _chanukiah(filled):
+    """Nine candles on a bowl: the shamash, a little taller, in the middle.
+
+    The bowl is the lower half of an ellipse, its two ends joined across by the
+    candle rail, so the candles stand on one line; the stem and the foot are the
+    same strokes the bowl is. Every round end is a round_rect, which makes the
+    drawing the same on every platform."""
+    def build():
+        w = 1.4 + (0.3 if filled else 0.0)
+        rail = 10.0
+        cw = 1.25 + (0.15 if filled else 0.0)
+        left, right = 2.4, 21.6
+        bowl = (ic.ellipse(12, rail, 9.6, 8.2)
+                - ic.ellipse(12, rail, 9.6 - w, 8.2 - w)) & ic.rect(0, rail, 24, 24)
+        art = (bowl
+               | round_rect(left, rail - w / 2, right, rail + w / 2, w / 2)
+               | round_rect(12 - w / 2, rail + 6.5, 12 + w / 2, 20.6, w / 2)
+               | round_rect(6.6, 20.6 - w / 2, 17.4, 20.6 + w / 2, w / 2))
+        for i in range(9):
+            x = left + cw / 2 + i * (right - left - cw) / 8
+            top = 2.4 if i == 4 else 4.6
+            art = art | round_rect(x - cw / 2, top, x + cw / 2, rail, cw / 2)
+        return sized(art), [], False
+    return build
+
+
+RECIPES["chanukiah_24_regular"] = _chanukiah(False)
+RECIPES["chanukiah_24_filled"] = _chanukiah(True)
+
+
+def _shofar_chain(shrink):
+    """A horn: a chain of circles that swell from a narrow mouthpiece to the
+    bell along a curve. With `shrink` each circle gives up that much radius, so
+    the union is exactly the horn's inner edge. Returns the chain and `band`,
+    which makes a strip across the horn `a` to `b` along its end (0 at the
+    bell's rim, negative inside it)."""
+    p0, p1, p2, p3 = (3.6, 14.6), (6.5, 22.5), (16.5, 19.5), (19.2, 8.6)
+    art = Art()
+    n = 90
+    for i in range(n + 1):
+        t = 1.12 * i / n
+        a, b, c, d = (1 - t) ** 3, 3 * t * (1 - t) ** 2, 3 * t * t * (1 - t), t ** 3
+        x = a * p0[0] + b * p1[0] + c * p2[0] + d * p3[0]
+        y = a * p0[1] + b * p1[1] + c * p2[1] + d * p3[1]
+        r = 1.1 + 3.1 * min(t, 1.0) - shrink
+        if r > 0.2:
+            art = art | circle(x, y, r)
+    tx, ty = p3[0] - p2[0], p3[1] - p2[1]
+    m = math.hypot(tx, ty)
+    tx, ty = tx / m, ty / m
+    nx, ny = -ty, tx
+    cx, cy = p3[0], p3[1]
+
+    def band(a, b):
+        return polygon([(cx + nx * 12 + tx * a, cy + ny * 12 + ty * a),
+                        (cx - nx * 12 + tx * a, cy - ny * 12 + ty * a),
+                        (cx - nx * 12 + tx * b, cy - ny * 12 + ty * b),
+                        (cx + nx * 12 + tx * b, cy + ny * 12 + ty * b)])
+    return art, band
+
+
+RIM = (-3.1, -2.2)
+
+
+def _shofar(filled):
+    """The bell is cut square across its end, so it is an opening and not a
+    ball, and banded a little inside it. The `_regular` is closed all round: its
+    inside stops a line's width short of the rim, and the band is ink across it."""
+    def build():
+        horn, band = _shofar_chain(0)
+        if filled:
+            return sized(horn - band(0, 12) - band(*RIM)), [], False
+        inner, _ = _shofar_chain(JUDAICA_LINE)
+        hole = inner - band(-JUDAICA_LINE, 12) - band(*RIM)
+        return sized((horn - band(0, 12)) - hole), [], False
+    return build
+
+
+RECIPES["shofar_24_regular"] = _shofar(False)
+RECIPES["shofar_24_filled"] = _shofar(True)
+
+
+def _stars_tzeis(filled):
+    def build():
+        art = Art()
+        for cx, cy, r in ((8.2, 15.4, 6.6), (17.2, 7.6, 4.6),
+                          (17.6, 17.8, 3.4)):
+            star = polygon(_star_points(cx, cy, r, r * 0.42, 5))
+            if filled:
+                art = art | star
+            else:
+                # The five-point star's inner vertices sit 0.42 out, and its
+                # edges 0.31 - shrunk about the centre to leave a line.
+                k = max(0.0, 1 - JUDAICA_LINE * (0.75 if r < 4 else 1.0)
+                        / (r * 0.31 * 2.2))
+                art = art | (star - star.scale(k, about=(cx, cy)))
+        return art, [], False
+    return build
+
+
+RECIPES["stars_tzeis_24_regular"] = _stars_tzeis(False)
+RECIPES["stars_tzeis_24_filled"] = _stars_tzeis(True)
+
+
+def _shabbat_candles():
+    """Two candles with a flame each, in the calendar's mark box."""
+    x0, y0, x1, y1 = CALENDAR_MARK_BOX
+    out = Art()
+    for cx in (x0 + 2.2, x1 - 2.2):
+        flame = circle(cx, y0 + 2.4, 0.85) | polygon(
+            [(cx - 0.8, y0 + 2.2), (cx, y0 - 0.3), (cx + 0.8, y0 + 2.2)])
+        out = (out | round_rect(cx - 1.0, y0 + 4.2, cx + 1.0, y1, 0.4)
+               | flame)
+    return out
+
+
+RECIPES["calendar_shabbat_24_regular"] = _calendar_alef(False, _shabbat_candles)
+RECIPES["calendar_shabbat_24_filled"] = _calendar_alef(True, _shabbat_candles)
+
+
+def _inset_convex(points, d):
+    """The convex polygon `points` with every edge moved `d` inwards."""
+    n = len(points)
+    area = sum(points[i][0] * points[(i + 1) % n][1]
+               - points[(i + 1) % n][0] * points[i][1] for i in range(n))
+    sign = 1 if area > 0 else -1
+    lines = []
+    for i in range(n):
+        (x0, y0), (x1, y1) = points[i], points[(i + 1) % n]
+        m = math.hypot(x1 - x0, y1 - y0)
+        nx, ny = -(y1 - y0) / m * sign, (x1 - x0) / m * sign
+        lines.append(((x0 + nx * d, y0 + ny * d), (x1 - x0, y1 - y0)))
+    out = []
+    for i in range(n):
+        (px, py), (dx, dy) = lines[i - 1]
+        (qx, qy), (ex, ey) = lines[i]
+        det = dx * ey - dy * ex
+        t = ((qx - px) * ey - (qy - py) * ex) / det
+        out.append((px + t * dx, py + t * dy))
+    return out
+
+
+def _dreidel(filled):
+    """A spinning top: a handle, a square block and a cone below it, the block
+    and the cone drawn apart so it is not read as a pin."""
+    def build():
+        handle = round_rect(10.9, 1.8, 13.1, 6.4, 1.0)
+        block = (6.0, 6.8, 18.0, 14.2)
+        cone = [(6.6, 15.4), (17.4, 15.4), (12.0, 22.4)]
+        b = round_rect(*block, 1.6)
+        if filled:
+            return handle | b | polygon(cone), [], False
+        bi = round_rect(block[0] + JUDAICA_LINE, block[1] + JUDAICA_LINE,
+                        block[2] - JUDAICA_LINE, block[3] - JUDAICA_LINE, 0.5)
+        return ((b - bi) | handle
+                | (polygon(cone) - polygon(_inset_convex(cone, JUDAICA_LINE)))), [], False
+    return build
+
+
+for _name, _fn in (("dreidel", _dreidel),):
+    RECIPES[_name + "_24_regular"] = _fn(False)
+    RECIPES[_name + "_24_filled"] = _fn(True)
+
 # library_*: Fluent's three standing books with a corner disc and a mark knocked
 # out of it - the disc `book_add` carries, with the books cut back to clear it.
-LIBRARY_DISC = (17.6, 17.6, 5.2)
+LIBRARY_DISC = (17.4, 17.4, 5.7)
 LIBRARY_CLEAR = 0.9
+# The library's disc is the smallest in the set (5.2); a mark that fills it the way
+# it fills a larger disc ends at the ring.
+LIBRARY_RING_AIR = 0.95
+# ... and its marks are given less weight, or their counters (the tag's hole, the
+# gap in the share box) close.
+LIBRARY_MARK_LIGHT = 0.7
 
 
-def _library_badged(kind, filled):
+def _library_badged(kind, filled, base="library", where=None):
     def build():
-        art = use_fluent("library_24_%s" % ("filled" if filled else "regular"))
-        cx, cy, r = LIBRARY_DISC
+        art = use_fluent("%s_24_%s" % (base, "filled" if filled else "regular"))
+        cx, cy, r = where or LIBRARY_DISC
         disc = circle(cx, cy, r)
+        if not filled:
+            return ((art - disc.grow(LIBRARY_CLEAR))
+                    | ringed(disc, kind, air=LIBRARY_RING_AIR,
+                           light=LIBRARY_MARK_LIGHT), [], False)
         mark = symbol(kind, r * SYMBOL_REACH).centred_on(cx, cy)
         return (art - disc.grow(LIBRARY_CLEAR)) | disc, [mark], True
     return build
@@ -2812,6 +3473,32 @@ for _kind, _stem in (("plus", "library_add"), ("settings", "library_settings"),
                      ("refresh", "library_refresh")):
     RECIPES[_stem + "_24_regular"] = _library_badged(_kind, False)
     RECIPES[_stem + "_24_filled"] = _library_badged(_kind, True)
+
+# The puzzle piece is not a library: its disc keeps the size it was approved at.
+PLUGIN_ERROR_DISC = (17.6, 17.6, 5.2)
+RECIPES["plugin_error_24_regular"] = _library_badged(
+    "exclamation", False, "puzzle_piece", PLUGIN_ERROR_DISC)
+RECIPES["plugin_error_24_filled"] = _library_badged(
+    "exclamation", True, "puzzle_piece", PLUGIN_ERROR_DISC)
+
+
+# note_*: Fluent's sticky note - its folded corner at the bottom right - with a
+# disc at the top left, where Fluent puts the plus of its own `note_add`.
+NOTE_DISC = (6.9, 6.9, 5.5)
+
+
+def _note_badged(kind, filled):
+    return _library_badged(kind, filled, "note", NOTE_DISC)
+
+
+NOTE_BADGES = (("delete", "note_delete"), ("search", "note_search"),
+               ("lock", "note_lock"), ("star", "note_star"),
+               ("tag", "note_tag"), ("marker", "note_marker"),
+               ("eraser", "note_eraser"), ("copy", "note_copy"),
+               ("download", "note_export"), ("exclamation", "note_exclamation"))
+for _kind, _stem in NOTE_BADGES:
+    RECIPES[_stem + "_24_regular"] = _note_badged(_kind, False)
+    RECIPES[_stem + "_24_filled"] = _note_badged(_kind, True)
 
 
 # --------------------------------------------------------------------------
@@ -2877,13 +3564,34 @@ for _kind, _stem in (("clock", "alef_clock"), ("star", "alef_star"),
     _f, _r = _stem + "_24_filled", _stem + "_24_regular"
     RECIPES[_f] = alef_badge(_kind)
     RECIPES[_r] = outline_recipe(_f, True,
-                                 air=CLOCK_RING_AIR if _kind == "clock" else None)
+                                 air=CLOCK_RING_AIR if _kind == "clock" else None,
+                                 clock=_kind == "clock")
     DEPENDS[_r] = _f
     PROVENANCE_OF[_r] = _f
 
 for _kind, _stem in (("clock", "link_clock"), ("settings", "link_settings"),
                      ("download", "link_download"), ("upload", "link_upload"),
                      ("tag", "link_tag")):
+    RECIPES[_stem + "_24_regular"] = link_badge(_kind)
+    RECIPES[_stem + "_24_filled"] = link_badge(_kind, True)
+
+
+# library_* and link_*: the places and kinds of a link.
+FLUENT_SYMBOLS.update({
+    "cloud": ("cloud_24_filled", 0),
+    "index": ("text_bullet_list_rtl_24_filled", 0),
+    "import": ("arrow_import_24_filled", 0),
+    "database": ("database_24_filled", 0),
+    "auto": ("sparkle_24_filled", 0),
+    "source": ("arrow_up_left_24_filled", 0),
+})
+for _kind, _stem in (("index", "library_index"), ("cloud", "library_cloud"),
+                     ("folder", "library_folder"), ("import", "library_import"),
+                     ("database", "library_database")):
+    RECIPES[_stem + "_24_regular"] = _library_badged(_kind, False)
+    RECIPES[_stem + "_24_filled"] = _library_badged(_kind, True)
+for _kind, _stem in (("source", "link_source"), ("database", "link_database"),
+                     ("parallel", "link_parallel"), ("auto", "link_auto")):
     RECIPES[_stem + "_24_regular"] = link_badge(_kind)
     RECIPES[_stem + "_24_filled"] = link_badge(_kind, True)
 
@@ -2924,7 +3632,7 @@ for _stem, _source in (
         ("text_bullet_list_square_warning", "text_bullet_list_square_warning")):
     for _filled in (False, True):
         RECIPES["%s_24_%s" % (_stem, "filled" if _filled else "regular")] = \
-            _mirrored(_source, _filled)
+            _mirrored(_source, _filled, _stem.endswith("_add"))
 
 
 # Fluent's Latin-letter text icons with the letters replaced by Hebrew ones. The
@@ -2973,9 +3681,11 @@ def _font_layout(alef, beit):
 
 def _font_number_layout(alef, beit):
     big = alef.fit((10.5, 6.0, 22.5, 22.0))
-    # The numeral is the rightmost shape of `alef_1`; it stays solid in both
-    # variants, like the numerals that icon already carries.
-    one = max(ic.contours(glyph("alef_1_24_filled")), key=lambda c: c.bounds[0])
+    # The numeral is the one `alef_1` carries, taken from the table rather than
+    # looked for in that icon: a numeral that touches the alef is one contour
+    # with it. It stays solid in both variants, like the numerals that icon
+    # already carries.
+    one = Art.from_d(NUMERALS[1])
     return big, one.fit((2.5, 1.5, 8.5, 10.5)), False
 
 
