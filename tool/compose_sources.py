@@ -2859,6 +2859,47 @@ def _page_layout_mark(box):
     return glyph("book_open_tzurat_hadaf_24_filled").fit(box)
 
 
+ROUND_ARROW_LINE = 1.25
+
+
+def _round_arrow_mark(short, box):
+    """The circling arrow of `refresh` and `history`, drawn rather than fitted:
+    thickening Fluent's own at this size runs the head into the ring and blurs
+    both. A ring with a gap and a barbed head at the end of the arc, in plain
+    circle and polygon booleans; `history` turns the other way and has clock
+    hands inside."""
+    x0, y0, x1, y1 = box
+    cx, cy = (x0 + x1) / 2, (y0 + y1) / 2
+    big, t = 4.3, ROUND_ARROW_LINE
+    mid = big - t / 2
+    start, sweep = -25.0, 285.0
+    end = start + sweep
+
+    def pt(angle, radius):
+        a = math.radians(angle)
+        return (cx + radius * math.cos(a), cy + radius * math.sin(a))
+
+    ring = circle(cx, cy, big) - circle(cx, cy, big - t)
+    far = big * 3
+    gap = polygon([(cx, cy), pt(end, far), pt((end + start + 360) / 2, far),
+                   pt(start + 360, far)])
+    a = math.radians(end)
+    tx, ty = -math.sin(a), math.cos(a)          # clockwise, along the arc
+    nx, ny = math.cos(a), math.sin(a)           # outwards
+    px, py = pt(end, mid)
+    half, length = t / 2 + 0.95, 2.2
+    head = polygon([(px - tx * 0.4 + nx * half, py - ty * 0.4 + ny * half),
+                    (px - tx * 0.4 - nx * half, py - ty * 0.4 - ny * half),
+                    (px + tx * length, py + ty * length)])
+    art = (ring - gap) | head
+    if short == "refresh":
+        return art
+    art = art.scale(-1, 1, about=(cx, cy))
+    hands = (round_rect(cx - 0.6, cy - 1.6, cx + 0.6, cy + 0.6, 0.6)
+             | round_rect(cx - 0.6, cy - 0.6, cx + 1.7, cy + 0.6, 0.6))
+    return art | hands
+
+
 def fluent_mark(short, box):
     """Fluent's `short` mark, fitted to `box`, with the cover's stroke weight."""
     box = ROUND1_BOX.get(short, box)
@@ -2884,6 +2925,8 @@ def fluent_mark(short, box):
         # fit and thickening of Fluent's closes into one blob.
         return sym_eye(EYE_BOOK_REACH).centred_on((box[0] + box[2]) / 2,
                                                   (box[1] + box[3]) / 2)
+    if short in ("refresh", "history"):
+        return _round_arrow_mark(short, box)
     weight = ROUND1_WEIGHT.get(short, MARK_WEIGHT)
     art = use_fluent("%s_24_filled" % ROUND1_MARKS[short])
     if short in ROUND1_TURN:
@@ -3136,8 +3179,8 @@ def _mode_word_forms():
 def _mode_niqqud():
     # The qamats is a small T under the letter, clear of the alef's foot.
     letter = alef_solid().fit((-2.5, -5.0, 2.5, 0.7))
-    qamats = (_bar(-1.7, 1.7, 2.6, 1.2)
-              | round_rect(-0.6, 2.6, 0.6, 5.0, 0.6))
+    qamats = (_bar(-1.2, 1.2, 1.9, 0.95)
+              | round_rect(-0.475, 2.0, 0.475, 3.9, 0.475))
     return letter | qamats
 
 
@@ -3402,7 +3445,7 @@ for _name, _fn in (("dreidel", _dreidel),):
 
 # library_*: Fluent's three standing books with a corner disc and a mark knocked
 # out of it - the disc `book_add` carries, with the books cut back to clear it.
-LIBRARY_DISC = (17.6, 17.6, 5.2)
+LIBRARY_DISC = (17.4, 17.4, 5.7)
 LIBRARY_CLEAR = 0.9
 # The library's disc is the smallest in the set (5.2); a mark that fills it the way
 # it fills a larger disc ends at the ring.
@@ -3412,10 +3455,10 @@ LIBRARY_RING_AIR = 0.95
 LIBRARY_MARK_LIGHT = 0.7
 
 
-def _library_badged(kind, filled, base="library"):
+def _library_badged(kind, filled, base="library", where=None):
     def build():
         art = use_fluent("%s_24_%s" % (base, "filled" if filled else "regular"))
-        cx, cy, r = LIBRARY_DISC
+        cx, cy, r = where or LIBRARY_DISC
         disc = circle(cx, cy, r)
         if not filled:
             return ((art - disc.grow(LIBRARY_CLEAR))
@@ -3431,10 +3474,12 @@ for _kind, _stem in (("plus", "library_add"), ("settings", "library_settings"),
     RECIPES[_stem + "_24_regular"] = _library_badged(_kind, False)
     RECIPES[_stem + "_24_filled"] = _library_badged(_kind, True)
 
+# The puzzle piece is not a library: its disc keeps the size it was approved at.
+PLUGIN_ERROR_DISC = (17.6, 17.6, 5.2)
 RECIPES["plugin_error_24_regular"] = _library_badged(
-    "exclamation", False, "puzzle_piece")
+    "exclamation", False, "puzzle_piece", PLUGIN_ERROR_DISC)
 RECIPES["plugin_error_24_filled"] = _library_badged(
-    "exclamation", True, "puzzle_piece")
+    "exclamation", True, "puzzle_piece", PLUGIN_ERROR_DISC)
 
 
 # --------------------------------------------------------------------------

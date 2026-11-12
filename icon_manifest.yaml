@@ -4390,11 +4390,11 @@ icons:
     deprecated: false
     upstream_status: missing
     upstream_equivalent: null
-    origin: modified_fluent
-    based_on: 'microsoft/fluentui-system-icons: history_24_filled (fluentui_system_icons 1.1.273)'
+    origin: custom
+    based_on: null
     author: Otzaria contributors
-    license: MIT AND GPL-3.0-only
-    upstream_commit: pub:fluentui_system_icons@1.1.273
+    license: GPL-3.0-only
+    upstream_commit: null
   - id: icon-0299
     name: book_history_24_regular
     source: assets_src/svg/book_history_24_regular.svg
@@ -4405,11 +4405,11 @@ icons:
     deprecated: false
     upstream_status: missing
     upstream_equivalent: null
-    origin: modified_fluent
-    based_on: 'microsoft/fluentui-system-icons: history_24_filled (fluentui_system_icons 1.1.273)'
+    origin: custom
+    based_on: null
     author: Otzaria contributors
-    license: MIT AND GPL-3.0-only
-    upstream_commit: pub:fluentui_system_icons@1.1.273
+    license: GPL-3.0-only
+    upstream_commit: null
   - id: icon-0300
     name: book_lock_24_filled
     source: assets_src/svg/book_lock_24_filled.svg
@@ -5680,11 +5680,11 @@ icons:
     deprecated: false
     upstream_status: missing
     upstream_equivalent: null
-    origin: modified_fluent
-    based_on: 'microsoft/fluentui-system-icons: arrow_clockwise_24_filled (fluentui_system_icons 1.1.273)'
+    origin: custom
+    based_on: null
     author: Otzaria contributors
-    license: MIT AND GPL-3.0-only
-    upstream_commit: pub:fluentui_system_icons@1.1.273
+    license: GPL-3.0-only
+    upstream_commit: null
   - id: icon-0389
     name: book_refresh_24_regular
     source: assets_src/svg/book_refresh_24_regular.svg
@@ -5695,11 +5695,11 @@ icons:
     deprecated: false
     upstream_status: missing
     upstream_equivalent: null
-    origin: modified_fluent
-    based_on: 'microsoft/fluentui-system-icons: arrow_clockwise_24_filled (fluentui_system_icons 1.1.273)'
+    origin: custom
+    based_on: null
     author: Otzaria contributors
-    license: MIT AND GPL-3.0-only
-    upstream_commit: pub:fluentui_system_icons@1.1.273
+    license: GPL-3.0-only
+    upstream_commit: null
   - id: icon-0390
     name: book_share_24_filled
     source: assets_src/svg/book_share_24_filled.svg
