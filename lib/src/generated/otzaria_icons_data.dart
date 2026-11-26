@@ -4209,6 +4209,20 @@ abstract final class OtzariaIcons {
     fontPackage: fontPackage,
   );
 
+  /// `book_open_cube_24_filled.svg`
+  static const IconData book_open_cube_24_filled = IconData(
+    0xe258,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
+  /// `book_open_cube_24_regular.svg`
+  static const IconData book_open_cube_24_regular = IconData(
+    0xe259,
+    fontFamily: fontFamily,
+    fontPackage: fontPackage,
+  );
+
   /// Every icon in this library, keyed by its name.
   static const Map<String, IconData> allIcons = <String, IconData>{
     'book_24_filled': book_24_filled,
@@ -4820,5 +4834,7 @@ abstract final class OtzariaIcons {
     'note_star_24_regular': note_star_24_regular,
     'note_tag_24_filled': note_tag_24_filled,
     'note_tag_24_regular': note_tag_24_regular,
+    'book_open_cube_24_filled': book_open_cube_24_filled,
+    'book_open_cube_24_regular': book_open_cube_24_regular,
   };
 }
