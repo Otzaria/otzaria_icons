@@ -652,4 +652,6 @@ const generatedIconExpectations = <String, IconData>{
   'note_star_24_regular': OtzariaIcons.note_star_24_regular,
   'note_tag_24_filled': OtzariaIcons.note_tag_24_filled,
   'note_tag_24_regular': OtzariaIcons.note_tag_24_regular,
+  'book_open_cube_24_filled': OtzariaIcons.book_open_cube_24_filled,
+  'book_open_cube_24_regular': OtzariaIcons.book_open_cube_24_regular,
 };

@@ -893,4 +893,8 @@ const iconCatalog = <GalleryIcon>[
   GalleryIcon('note_star_24_regular', OtzariaIcons.note_star_24_regular),
   GalleryIcon('note_tag_24_filled', OtzariaIcons.note_tag_24_filled),
   GalleryIcon('note_tag_24_regular', OtzariaIcons.note_tag_24_regular),
+  GalleryIcon(
+      'book_open_cube_24_filled', OtzariaIcons.book_open_cube_24_filled),
+  GalleryIcon(
+      'book_open_cube_24_regular', OtzariaIcons.book_open_cube_24_regular),
 ];
