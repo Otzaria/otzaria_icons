@@ -1,5 +1,11 @@
 # Changelog
 
+## Unreleased
+
+- `book_open_cube`, `_regular` and `_filled` (2 glyphs, 602 in all):
+  `book_open_large` with an isometric cube on its pages - three-dimensional
+  illustrations of a text, for the tab of the "Marot Torah" plugin.
+
 ## 0.8.0 - 2026-11-12
 
 - 10 new note icons, `_regular` and `_filled` (20 glyphs, 600 in all): Fluent's
